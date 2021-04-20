@@ -1,0 +1,46 @@
+echo 'start ~/.bashrc'
+
+if test -t 1; then
+exec zsh
+fi
+
+[ -n "$PS1" ] && source ~/.bash_profile;
+
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+
+export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+
+# better bash history - https://sanctum.geek.nz/arabesque/better-bash-history/
+
+# append history rather than overwrite
+shopt -s histappend
+
+# allow a larger history file
+HISTFILESIZE=1000000
+HISTSIZE=1000000
+
+# add timestamps
+# HISTTIMEFORMAT='%F %T '
+
+# one command per line
+shopt -s cmdhist
+
+# store history immediatly, dont wait for the session to end before writing history
+PROMPT_COMMAND='history -a'
+
+source ~/.bashrc.virtualenvwrapper
+source /Users/john/Library/Preferences/org.dystroy.broot/launcher/bash/br
+
+echo 'end ~/.bashrc'
+source "$HOME/.cargo/env"
+
+. "$(brew --prefix)/etc/profile.d/z.sh"
