@@ -1,0 +1,59 @@
+global !p
+import re
+import unidecode
+
+def slugify(text):
+    text = unidecode.unidecode(text).lower()
+    return re.sub(r'\W+', '-', text)
+endglobal
+
+snippet meta "Blog post metadata and front matter" b
+Title: $1
+Slug: `!p snip.rv = slugify(t[1])`
+Date: `!p from datetime import datetime
+if not snip.c:
+    snip.rv=datetime.now().strftime("%Y-%m-%d %H:%M:%S%z")`
+Category: $2
+Tags: $3
+endsnippet
+
+snippet Technical/Web "blog category"
+Technical/Web
+endsnippet
+
+snippet Technical/Developer_Tools "blog category"
+Technical/Developer Tools
+endsnippet
+
+snippet Technical/Web "blog category"
+Technical/Web
+endsnippet
+
+snippet Technical/Other "blog category"
+Technical/Other
+endsnippet
+
+snippet Technical/Cryptocurrencies "blog category"
+Technical/Cryptocurrencies
+endsnippet
+ 
+snippet Non-technical/Other "blog category"
+Non-technical/Other
+endsnippet
+
+snippet Non-technical/Social "blog category"
+Non-technical/Social
+endsnippet
+
+snippet Non-technical/Learning "blog category"
+Non-technical/Learning
+endsnippet
+
+snippet Non-technical/Journal "blog category"
+Non-technical/Journal
+endsnippet
+
+snippet Non-technical/Entrepreneurship "blog category"
+Non-technical/Entrepreneurship
+endsnippet
+
