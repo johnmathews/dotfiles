@@ -1,0 +1,165 @@
+#!/usr/bin/env zsh
+# vim:syntax=zsh
+# vim:filetype=zsh
+#
+# ====== .zshrc ======
+# sourced in interactive shells. should set 
+# 	- aliases
+# 	- functions,
+# 	- options
+# 	- key bindings,
+# 	- etc.
+
+# There are 5 startup files that zsh reads commands from:
+#     .zshenv - PATH settings go here
+#     .zprofile
+#     .zshrc
+#     .zlogin
+#     .zlogout
+ 
+
+# ~/.p10k.zsh -> location of p10k settings
+#
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block, everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+plugins=(
+    colorize # more syntax highlighting
+    brew # completion for brew commands, adds alias `brews`
+    extract # `extract` any archive. `extract -r <file>` remove orig archive file
+    fzf # fuzzy find
+    pip # completion for pip commands
+    pep8 # completion for pep8 python coding style
+    django # adds completion for django manage.py commands
+    git # adds git aliases and completions https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git/
+    chucknorris # commands `chuck` and `chuck_cow`
+    docker
+    docker-compose
+    kubectl
+    minikube
+    heroku
+    aws
+    colored-man-pages # yep
+    autopep8 # completion for the pep8 tool
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+    zsh-vi-mode # vi-mode # more vi-like behaviour https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/vi-mode
+)
+
+# * some p10k features are not set here but in .p10k.zsh
+POWERLEVEL9K_MODE='nerdfont-complete'
+POWERLEVEL9K_TIME_FORMAT='%D{%H:%M:%S}'
+POWERLEVEL9K_TIME_ICON=""
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(time virtualenv context dir rbenv vcs vi_mode)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs history)
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
+POWERLEVEL9K_VI_INSERT_MODE_STRING=''
+POWERLEVEL9K_VI_COMMAND_MODE_STRING='NORMAL'
+POWERLEVEL9K_CONTEXT_TEMPLATE="%n"
+POWERLEVEL9K_DIR_PATH_ABSOLUTE=false
+POWERLEVEL9K_COLOR_SCHEME='dark'
+POWERLEVEL9K_TIME_BACKGROUND='magenta1'
+
+ZSH_THEME="powerlevel10k/powerlevel10k"
+DEFAULT_USER=john
+VIRTUAL_ENV_DISABLE_PROMPT=0
+HYPHEN_INSENSITIVE="true"
+COMPLETION_WAITING_DOTS="true"
+HIST_STAMPS="yyyy-mm-dd"
+
+source $ZSH/oh-my-zsh.sh
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs, plugins, and themes.
+# Aliases can be placed here, though oh-my-zsh users are encouraged to define aliases 
+# within the ZSH_CUSTOM folder.
+source ~/.aliases 
+
+# source ~/.fzf.zsh if it exists
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
+if [ "$(uname)" = "Darwin" ]; then
+    # source iterm2_shell_integrations if is exists
+    test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+    # ========= zone of uncertainty =========
+    # WSL make autosuggestions work
+    # ZSH_DISABLE_COMPFIX=true
+     
+    # what is this ?
+    . $(brew --prefix)/etc/profile.d/z.sh
+     
+    # what is this ? 
+    # zmodload zsh/zprof
+     
+    # virtualenv wrapper for pyenv ?
+    source /usr/local/bin/virtualenvwrapper_lazy.sh
+    # ====== end of zone of uncertainty ======
+    
+
+    # kubernetes, only on MacOS
+    source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
+    PS1='$(kube_ps1)'$PS1
+
+    source /Users/john/Library/Preferences/org.dystroy.broot/launcher/bash/br
+
+    # Git completion I think this isn't needed if you load the plugin also
+    zstyle ':completion:*:*:git:*' script "${HOME}/projects/.dotfiles/git-completion.bash"
+    fpath=(~/.zsh $fpath)
+
+    # Google Cloud Platform (GCP) shell command completion - use it instead of the plugin because this is updated more frequently
+    source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
+
+    # AZURE completion - needed cos there isn't a plugin
+    autoload bashcompinit && bashcompinit
+    source /usr/local/Cellar/azure-cli/2.18.0/etc/bash_completion.d/az
+
+    # create virtual environments using pyenv rather than virtualenv.
+    # https://medium.freecodecamp.org/manage-multiple-python-versions-and-virtual-environments-venv-pyenv-pyvenv-a29fb00c296f
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+
+    # colors for ls commands
+    source ~/.zsh/zsh-dircolors-solarized/zsh-dircolors-solarized.zsh
+fi
+
+# if [ "$(uname)" = "Linux" ]; then
+#     source /home/$(whoami)/Library/Preferences/org.dystroy.broot/launcher/bash/br
+# fi
+
+
+# tab-space complete autosuggestions
+bindkey '^I ' autosuggest-accept
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
+
+# https://github.com/jeffreytse/zsh-vi-mode#custom-escape-key
+# Only changing the escape key to `jk` in insert mode, we still
+# keep using the default keybindings `^[` in other modes
+ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
+
+# vi-mode
+# bindkey -v
+# bindkey "jk" vi-cmd-mode
+# bindkey "^r" history-incremental-search-backward # this would mess up fzf...
+
+bindkey "^k" up-line-or-search
+bindkey "^j" down-line-or-search
+bindkey "^h" backward-word
+bindkey "^l" forward-word
+
+# ctrl-A - beginning of line
+# ctrl-E - end of line
+# ctrl-W - delete previous word
+
+bindkey "^p" push-line-or-edit
+
+. "$(brew --prefix)/etc/profile.d/z.sh"
