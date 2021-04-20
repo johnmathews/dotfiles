@@ -16,10 +16,8 @@
 #     .zshrc
 #     .zlogin
 #     .zlogout
- 
 
 # ~/.p10k.zsh -> location of p10k settings
-#
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -48,7 +46,8 @@ plugins=(
     autopep8 # completion for the pep8 tool
     zsh-autosuggestions
     zsh-syntax-highlighting
-    zsh-vi-mode # vi-mode # more vi-like behaviour https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/vi-mode
+    vi-mode # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/vi-mode
+    zsh-vi-mode # https://github.com/jeffreytse/zsh-vi-mode
 )
 
 # * some p10k features are not set here but in .p10k.zsh
