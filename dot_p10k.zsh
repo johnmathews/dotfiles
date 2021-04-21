@@ -1232,8 +1232,8 @@
   # Tip: Remove the next line to always show gcloud.
   typeset -g POWERLEVEL9K_GCLOUD_SHOW_ON_COMMAND='gcloud|gcs'
   # Google cloud color.
-  # typeset -g POWERLEVEL9K_GCLOUD_FOREGROUND=7
-  # typeset -g POWERLEVEL9K_GCLOUD_BACKGROUND=4
+  typeset -g POWERLEVEL9K_GCLOUD_FOREGROUND=11
+  typeset -g POWERLEVEL9K_GCLOUD_BACKGROUND=57
 
   # Google cloud format. Change the value of POWERLEVEL9K_GCLOUD_CONTENT_EXPANSION if the default
   # is too verbose or not informative enough.
