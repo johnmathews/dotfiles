@@ -643,72 +643,72 @@ let g:vim_markdown_math = 1
 let g:vim_markdown_new_list_item_indent = 4
 let g:vim_markdown_strikethrough = 1
 
-" writing prose
-Plug 'reedes/vim-pencil'
-Plug 'junegunn/goyo.vim'
+" " writing prose
+" Plug 'reedes/vim-pencil'
+" Plug 'junegunn/goyo.vim'
 
-augroup pencil
-  autocmd!
-  autocmd FileType wiki,md,txt call pencil#init()
-  autocmd FileType wiki,md,txt :PencilSoft
-augroup END
+" augroup pencil
+"   autocmd!
+"   autocmd FileType wiki,md,txt call pencil#init()
+"   autocmd FileType wiki,md,txt :PencilSoft
+" augroup END
 
-let g:pencil#wrapModeDefault = 'soft'
+" let g:pencil#wrapModeDefault = 'soft'
 
-autocmd! User GoyoEnter
-autocmd! User GoyoLeave
+" autocmd! User GoyoEnter
+" autocmd! User GoyoLeave
 
-" Ensure :q to quit even when Goyo is active
-function! s:goyo_enter()
-  let b:quitting = 0
-  let b:quitting_bang = 0
-  autocmd QuitPre <buffer> let b:quitting = 1
-  cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
-  setlocal wrap
-endfunction
+" " Ensure :q to quit even when Goyo is active
+" function! s:goyo_enter()
+"   let b:quitting = 0
+"   let b:quitting_bang = 0
+"   autocmd QuitPre <buffer> let b:quitting = 1
+"   cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
+"   setlocal wrap
+" endfunction
 
-" Quit Vim if this is the only remaining buffer
-function! s:goyo_leave()
-  if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
-    if b:quitting_bang
-      qa!
-    else
-      qa
-    endif
-  endif
-endfunction
+" " Quit Vim if this is the only remaining buffer
+" function! s:goyo_leave()
+"   if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
+"     if b:quitting_bang
+"       qa!
+"     else
+"       qa
+"     endif
+"   endif
+" endfunction
 
-autocmd! User GoyoEnter call <SID>goyo_enter()
-autocmd! User GoyoLeave call <SID>goyo_leave()
+" autocmd! User GoyoEnter call <SID>goyo_enter()
+" autocmd! User GoyoLeave call <SID>goyo_leave()
 
-nnoremap <Leader>g :Goyo<CR>
+" nnoremap <Leader>g :Goyo<CR>
 
-Plug 'vimwiki/vimwiki'
-nmap <Leader>vw <Plug>VimwikiIndex <bar> :cd %:p:h
+" Plug 'vimwiki/vimwiki'
+" nmap <Leader>vw <Plug>VimwikiIndex <bar> :cd %:p:h
 
-let g:vimwiki_global_ext = 0
-" let g:vimwiki_ext2syntax = {'.wiki': 'media'}
+" let g:vimwiki_global_ext = 0
+" " let g:vimwiki_ext2syntax = {'.wiki': 'media'}
 
-let g:vimwiki_hl_headers = 1
-let g:vimwiki_hl_cb_checked = 2
-let g:vimwiki_html_header_numbering = 2
-let g:vimwiki_html_header_numbering_sym = '.'
-let g:vimwiki_list_ignore_newline = 1
-let g:vimwiki_url_maxsave=0 " Link shortening, 1 is default on
-let g:vimwiki_list = [
-      \{'path':'~/projects/vimwiki/',
-         \ 'path_html':'~/projects/vimwiki/site_html/',
-         \ 'template_path':'~/projects/vimwiki/templates/',
-         \ 'template_default': 'default-bootstrap',
-         \ 'template_ext': '.tpl',
-         \ 'auto_export': 0,
-         \ 'nested_syntaxes': {'python': 'python'},
-         \ 'diary_rel_path': 'diary/',
-         \ 'diary_header': 'Journal',
-         \ 'diary_sort': 'desc',
-         \ 'diary_index': 'journal',
-      \}
- \]
+" let g:vimwiki_hl_headers = 1
+" let g:vimwiki_hl_cb_checked = 2
+" let g:vimwiki_html_header_numbering = 2
+" let g:vimwiki_html_header_numbering_sym = '.'
+" let g:vimwiki_list_ignore_newline = 1
+" let g:vimwiki_url_maxsave=0 " Link shortening, 1 is default on
+" let g:vimwiki_list = [
+"       \{'path':'~/projects/vimwiki/',
+"          \ 'path_html':'~/projects/vimwiki/site_html/',
+"          \ 'template_path':'~/projects/vimwiki/templates/',
+"          \ 'template_default': 'default-bootstrap',
+"          \ 'template_ext': '.tpl',
+"          \ 'auto_export': 0,
+"          \ 'nested_syntaxes': {'python': 'python'},
+"          \ 'diary_rel_path': 'diary/',
+"          \ 'diary_header': 'Journal',
+"          \ 'diary_sort': 'desc',
+"          \ 'diary_index': 'journal',
+"       \}
+"  \]
 
 " Ephemeris
 " Plug 'mattn/calendar-vim'
@@ -736,6 +736,7 @@ let g:vimwiki_list = [
 " let g:syntastic_check_on_open = 0
 " let g:syntastic_check_on_wq = 0
 
+" Plugins must be in .vimrc not in ftplugin/python.vim "
 " python linting
 " F7 checks flake8
 Plug 'nvie/vim-flake8'

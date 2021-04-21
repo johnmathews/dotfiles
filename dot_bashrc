@@ -40,7 +40,8 @@ PROMPT_COMMAND='history -a'
 source ~/.bashrc.virtualenvwrapper
 source /Users/john/Library/Preferences/org.dystroy.broot/launcher/bash/br
 
-echo 'end ~/.bashrc'
 source "$HOME/.cargo/env"
 
 . "$(brew --prefix)/etc/profile.d/z.sh"
+
+echo 'end ~/.bashrc'
