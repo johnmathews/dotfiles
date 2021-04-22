@@ -152,7 +152,7 @@ ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
 
 # vi-mode
 # bindkey -v
-# bindkey "jk" vi-cmd-mode
+bindkey "jk" vi-cmd-mode
 # bindkey "^r" history-incremental-search-backward # this would mess up fzf...
 
 bindkey "^k" up-line-or-search
