@@ -70,10 +70,10 @@ alias python="python3"
 
 # ls using exa
 alias l="echo 'briefly list files and dirs excluding hidden files:'; exa -lh --git --no-permissions --no-user --group-directories-first"
-alias la="echo 'briefly list files and dirs including hidden files:'; exa -lah --git --no-permissions --no-user --group-directories-first"
+alias la="echo 'briefly list all files and dirs including hidden files:'; exa -lah --git --no-permissions --no-user --group-directories-first"
 
 alias ls="echo 'detailed listing of files and dirs excluding hidden files:'; exa -lh --git --group-directories-first"
-alias lsa="echo 'detailed listing of files and dirs inlcuding hidden files:';exa -lah --git --group-directories-first"
+alias lsa="echo 'detailed listing of all files and dirs inlcuding hidden files:';exa -lah --git --group-directories-first"
 
 alias lsd="exa --tree --level=1 --long --git"
 alias ld="exa --tree --level=1 --long --git"
