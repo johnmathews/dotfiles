@@ -14,7 +14,7 @@ alias c="clear" # c has another (removed) alias below
 alias an="ansible"
 alias cm="chezmoi"
 
-alias host="echo $USER@$(hostname)"
+alias host='echo $fg_bold[blue] $bg[black]"$USER@$(hostname)"'
 
 
 
