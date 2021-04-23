@@ -17,6 +17,12 @@
 #     .zlogin
 #     .zlogout
 
+# === useful keyboard shortcuts =====
+# ctrl-A - beginning of line
+# ctrl-E - end of line
+# ctrl-W - delete previous word
+
+
 # ~/.p10k.zsh -> location of p10k settings
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -98,23 +104,23 @@ if [ "$(uname)" = "Darwin" ]; then
     # ========= zone of uncertainty =========
     # WSL make autosuggestions work
     # ZSH_DISABLE_COMPFIX=true
-     
-    # what is this ?
-    . $(brew --prefix)/etc/profile.d/z.sh
-     
+
     # what is this ? 
     # zmodload zsh/zprof
      
-    # virtualenv wrapper for pyenv ?
-    source /usr/local/bin/virtualenvwrapper_lazy.sh
     # ====== end of zone of uncertainty ======
     
+     
+    # this makes the z command work
+    . $(brew --prefix)/etc/profile.d/z.sh
+    # broot cli tool - see a big dir on one screen
+    source /Users/john/Library/Preferences/org.dystroy.broot/launcher/bash/br
+    # virtualenv wrapper for pyenv ?
+    source /usr/local/bin/virtualenvwrapper_lazy.sh
 
-    # kubernetes, only on MacOS
+    # kubernetes
     source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
     PS1='$(kube_ps1)'$PS1
-
-    source /Users/john/Library/Preferences/org.dystroy.broot/launcher/bash/br
 
     # Git completion I think this isn't needed if you load the plugin also
     zstyle ':completion:*:*:git:*' script "${HOME}/projects/.dotfiles/git-completion.bash"
@@ -159,10 +165,6 @@ bindkey "^k" up-line-or-search
 bindkey "^j" down-line-or-search
 bindkey "^h" backward-word
 bindkey "^l" forward-word
-
-# ctrl-A - beginning of line
-# ctrl-E - end of line
-# ctrl-W - delete previous word
 
 bindkey "^p" push-line-or-edit
 
