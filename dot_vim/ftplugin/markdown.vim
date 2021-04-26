@@ -19,6 +19,7 @@ setlocal textwidth=79
 " add text width to autoformat options
 " setlocal formatoptions+=t
 
+
 setlocal spell
 setlocal spelllang=en
 setlocal spellfile=$HOME/.dotfiles/vim/spell/en.utf-8.add

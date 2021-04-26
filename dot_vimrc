@@ -45,7 +45,9 @@ let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
 let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
 
 " make a blog post
-nnoremap <leader>mp :e ~/projects/websites/blog/content/articles/.md<left><left><left>
+nnoremap <leader>wp :e ~/projects/websites/blog/content/articles/.md<left><left><left>
+" make a snippet or tweet
+nnoremap <leader>ws :e ~/projects/websites/blog/content/articles/snippets/.md<left><left><left>
 
 
 set shortmess-=S              " show how many times a search result occurs in current buffer, and index of current match
@@ -85,8 +87,8 @@ highlight CursorColumn guibg=blue guifg=red
 highlight CursorColumn ctermbg=red ctermfg=blue
 highlight ColorColumn ctermbg=0 guibg=lightpink
 
-nnoremap § /
-nnoremap §§ :nohlsearch<CR>
+nnoremap \ /
+nnoremap \\ :nohlsearch<CR>
 nnoremap // :nohlsearch<CR>
 nnoremap # #``
 nnoremap * *``
@@ -114,7 +116,7 @@ set spellsuggest+=10 " make the spell suggestions window 10 lines high not whole
 
 " ========== Set leader and local leader ===================
 let mapleader="\<Space>"
-let localleader="\\"
+" let localleader="\\" " trying to use this for search instead
 
 " insert 1 space to the right, without leaving normal mode
 nnoremap <localleader><space> i<Space><Right><ESC>
@@ -336,6 +338,13 @@ nnoremap <silent> <leader>ak :ALEPrevious<cr>
 
 " :CocInfo is good for testing status
 " :CocConfig - opens the main config file
+
+" completion sources
+" https://github.com/neoclide/coc.nvim/wiki/Completion-with-sources#completion-sources
+
+" manage extensions
+" https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#manage-extensions-with-coclist "
+
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " to see which extensions are installed: ~/.config/coc/extensions/package.json
 
