@@ -30,7 +30,7 @@ tmux_conf_new_pane_retain_current_path=true
 # new pane tries to reconnect ssh sessions (experimental), possible values are:
 #   - true
 #   - false (default)
-tmux_conf_new_pane_reconnect_ssh=false
+tmux_conf_new_pane_reconnect_ssh=true
 
 # prompt for session name when creating a new session, possible values are:
 #   - true
@@ -448,5 +448,19 @@ bind -r C-l select-pane -R
 #   ping -c 1 1.1.1.1 >/dev/null 2>&1 && printf '✔' || printf '✘'
 # }
 #
+# renamePane () {                      
+#   read -p "Enter Pane Name: " pane_name;     
+#   printf "\033]2;%s\033\\r:r" "${pane_name}";
+#   export -f renamePane;                         \
+#   bash -i'
+# }                                           
+#
 # "$@"
 # # /!\ do not remove the previous line
+
+# -- RENAME PANE ----------------------------------------------------------------
+# https://stackoverflow.com/questions/40234553/how-to-rename-a-pane-in-tmu://stackoverflow.com/questions/40234553/how-to-rename-a-pane-in-tmux
+set -g pane-border-status top
+set -g pane-border-format "#{pane_index} #T #{pane_current_command}"
+bind-key -T prefix R send-keys "renamePane" C-m
+
