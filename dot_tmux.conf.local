@@ -4,6 +4,14 @@
 #         without any warranty.
 #         Copyright 2012— Gregory Pakosz (@gpakosz).
 
+# -- genereal ------------------------------------------------------------------
+set -s escape-time 50            							 # faster command sequences
+set -sg repeat-time 1000         							 # increase repeat timeout
+
+set -g display-panes-time 2000 								# slightly longer pane indicators display time
+set -g display-time 1200      								# slightly longer status messages display time
+
+set -g status-interval 10     								# redraw status line every 10 seconds
 
 # -- navigation ----------------------------------------------------------------
 
@@ -30,7 +38,7 @@ tmux_conf_new_pane_retain_current_path=true
 # new pane tries to reconnect ssh sessions (experimental), possible values are:
 #   - true
 #   - false (default)
-tmux_conf_new_pane_reconnect_ssh=true
+tmux_conf_new_pane_reconnect_ssh=false
 
 # prompt for session name when creating a new session, possible values are:
 #   - true
@@ -98,7 +106,7 @@ tmux_conf_theme_focused_pane_bg="$tmux_conf_theme_colour_2"
 # pane border style, possible values are:
 #   - thin (default)
 #   - fat
-tmux_conf_theme_pane_border_style=fat
+tmux_conf_theme_pane_border_style=thin
 
 # pane borders colours:
 tmux_conf_theme_pane_border="$tmux_conf_theme_colour_4"
