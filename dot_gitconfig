@@ -238,3 +238,5 @@
 	oldHighlight = "black bold red"
 	newNormal = "green bold"
 	newHighlight = "black bold green"
+[init]
+	defaultBranch = main

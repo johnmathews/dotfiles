@@ -4,6 +4,7 @@
 #         without any warranty.
 #         Copyright 2012— Gregory Pakosz (@gpakosz).
 
+
 # -- genereal ------------------------------------------------------------------
 set -s escape-time 50            							 # faster command sequences
 set -sg repeat-time 1000         							 # increase repeat timeout

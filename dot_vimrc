@@ -1,4 +1,5 @@
 " ========== Global ==========
+"
 set nocompatible              " always put it at the top of .vimrc. effects mappings, undo, etc.
 set encoding=utf-8            " utf-8 encoding
 set termguicolors
@@ -24,11 +25,12 @@ set ttimeoutlen=100            " ttimeoutlen is used for key code delays
 set mouse=a                   " Enable mouse for scrolling and resizing.
 
 set number relativenumber     " Line numbers
-augroup numbertoggle
-  autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-augroup END
+
+" augroup numbertoggle
+"   autocmd!
+"   autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+"   autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+" augroup END
 
 " ------------------------------------------
 
@@ -64,14 +66,8 @@ set cmdheight=2
 " detect filetype
 au BufNewFile,BufRead {.,}tmux*.local setf tmux
 
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-if has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
-else
-  set signcolumn=yes
-endif
+" the gutter is called the signcolumn "
+" set signcolumn=yes
 
 " ------------------------------------------
 " ------------------------------------------
@@ -246,6 +242,9 @@ nnoremap <silent> <C-u> :MundoToggle<CR>
 "run shell commands async in vim8"
 Plug 'skywind3000/asyncrun.vim'
 let g:asyncrun_open = 10
+
+
+Plug 'airblade/vim-gitgutter'
 
 " When using :python or :!python, access the packages in venv
 " :VirtualEnvList
@@ -503,6 +502,9 @@ set rtp+=/usr/local/opt/fzf
 " ensure you have the latest version
 Plug 'junegunn/fzf', {'dir': '~/.fzf','do': './install --all'}
 Plug 'junegunn/fzf.vim' " needed for previews
+
+" if you type more chars, reset the selected menu item to position 0
+" fzf --bind change:top
 
 nnoremap <silent> <Leader>e :Files<CR>
 nnoremap <silent> <Leader>r :Buffers<CR>

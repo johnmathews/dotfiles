@@ -36,6 +36,7 @@ EOF
 
 "========== create the additioanl tags file ==========
 nnoremap <F4> :!ctags -V --exclude=.mypy_cache/** -R -f $VIRTUAL_ENV/tags  $VIRTUAL_ENV/lib/python3.8/ <CR>
+
 set tags+=tags,$VIRTUAL_ENV/tags
 
 " ========== ALE ==========
@@ -66,7 +67,7 @@ else
 endif
 
 " YouCompleteMe "
-let b:ycm_hover = { 'command': 'GetDoc', 'syntax': &syntax }
+" let b:ycm_hover = { 'command': 'GetDoc', 'syntax': &syntax }
 
 augroup PreviewAutocmds
   autocmd!
