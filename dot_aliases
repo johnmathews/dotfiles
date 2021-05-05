@@ -13,6 +13,7 @@ alias c="clear" # c has another (removed) alias below
 
 alias an="ansible"
 alias cm="chezmoi"
+alias -g rl="status | cut -c 4- | xargs -I % -p sh -c 'chezmoi add ~/%'"
 
 alias host='echo $fg_bold[blue] $bg[black]"$USER@$(hostname)"'
 

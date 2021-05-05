@@ -91,6 +91,8 @@ source ~/.aliases
 # source ~/.fzf.zsh if it exists
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -f -g ""'
+
 # Solarized colors
 export FZF_DEFAULT_OPTS='
     --color fg:-1,bg:-1,hl:230,fg+:3,bg+:233,hl+:229
@@ -105,12 +107,12 @@ if [ "$(uname)" = "Darwin" ]; then
     # WSL make autosuggestions work
     # ZSH_DISABLE_COMPFIX=true
 
-    # what is this ? 
+    # what is this ?
     # zmodload zsh/zprof
-     
+
     # ====== end of zone of uncertainty ======
-    
-     
+
+
     # this makes the z command work
     . $(brew --prefix)/etc/profile.d/z.sh
     # broot cli tool - see a big dir on one screen
@@ -131,7 +133,8 @@ if [ "$(uname)" = "Darwin" ]; then
 
     # AZURE completion - needed cos there isn't a plugin
     autoload bashcompinit && bashcompinit
-    source /usr/local/Cellar/azure-cli/2.18.0/etc/bash_completion.d/az
+    source /usr/local/Cellar/azure-cli/2.22.1/etc/bash_completion.d/az
+    # source /usr/local/Cellar/azure-cli/2.22.1/etc/bash_completion.d/
 
     # create virtual environments using pyenv rather than virtualenv.
     # https://medium.freecodecamp.org/manage-multiple-python-versions-and-virtual-environments-venv-pyenv-pyvenv-a29fb00c296f
@@ -146,6 +149,9 @@ fi
 #     source /home/$(whoami)/Library/Preferences/org.dystroy.broot/launcher/bash/br
 # fi
 
+# colorful less
+export LESS='-R'
+export LESSOPEN='|~/.lessfilter %s'
 
 # tab-space complete autosuggestions
 bindkey '^I ' autosuggest-accept

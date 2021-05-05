@@ -1,5 +1,4 @@
 " ========== Global ==========
-"
 set nocompatible              " always put it at the top of .vimrc. effects mappings, undo, etc.
 set encoding=utf-8            " utf-8 encoding
 set termguicolors
@@ -15,15 +14,16 @@ set undofile                  " Maintain undo history between sessions
 set undodir=~/.vim/undo       " put all the undo files in this dir
 set undolevels=100000          " how many undo steps to save in a file
 
-filetype off                   " enables filetype detection, try setting it off then on in next line
+filetype on                   " enables filetype detection, try setting it off then on in next line
 filetype plugin indent on     " detection on, plugin on, indent on. To see the current status, type: :filetype
-syntax enable                     " syntax highlighting - 'syntax on' is just defaults
+syntax enable                 " syntax highlighting - 'syntax on' is just defaults
 set noesckeys			            " might break stuff, should make <ESC> delay smaller
 set timeoutlen=500            " timeoutlen is used for mapping delays
 set ttimeoutlen=100            " ttimeoutlen is used for key code delays
 
 set mouse=a                   " Enable mouse for scrolling and resizing.
 
+set nostartofline             " don't put cursor at start of line when switching buffers
 set number relativenumber     " Line numbers
 
 " augroup numbertoggle
@@ -34,8 +34,8 @@ set number relativenumber     " Line numbers
 
 " ------------------------------------------
 
+" Cursor settings:
 " https://vim.fandom.com/wiki/Change_cursor_shape_in_different_modes
-"Cursor settings:
 "  1 -> blinking block
 "  2 -> solid block
 "  3 -> blinking underscore
@@ -51,8 +51,8 @@ nnoremap <leader>wp :e ~/projects/websites/blog/content/articles/.md<left><left>
 " make a snippet or tweet
 nnoremap <leader>ws :e ~/projects/websites/blog/content/articles/snippets/.md<left><left><left>
 
-
-set shortmess-=S              " show how many times a search result occurs in current buffer, and index of current match
+" show how many times a search result occurs in current buffer, and index of current match
+set shortmess-=S
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c"
 
@@ -73,15 +73,16 @@ au BufNewFile,BufRead {.,}tmux*.local setf tmux
 " ------------------------------------------
 
 " unbind netrw
-nnoremap - <NOP>
+" nnoremap - <NOP>
+
 "Search/Find/Highlight ======================================
 set incsearch  ignorecase  smartcase  hlsearch
 highlight Search guibg=purple guifg='NONE'
 highlight Search cterm=none ctermbg=green ctermfg=black
 
 highlight CursorColumn guibg=blue guifg=red
-highlight CursorColumn ctermbg=red ctermfg=blue
-highlight ColorColumn ctermbg=0 guibg=lightpink
+
+highlight ColorColumn ctermbg=red ctermfg=red guifg=red guibg=lightpink
 
 nnoremap \ /
 nnoremap \\ :nohlsearch<CR>
@@ -94,8 +95,8 @@ nnoremap * *``
 " nnoremap N Nzz
 
 " close buffers properly go to previous buffer, then delete the buffer you were just in.
-nnoremap <Leader>bd :bp\|bd #<CR>
-inoremap <Leader>bd :bp\|bd #<CR>
+" nnoremap <Leader>bd :bp\|bd #<CR>
+" inoremap <Leader>bd :bp\|bd #<CR>
 
 " Spell check ==============================================
 set spelllang=en
@@ -129,8 +130,7 @@ nnoremap <localleader><space> i<Space><Right><ESC>
 
 " Edit/Reload the .vimrc file
 nnoremap <silent> <leader>ve :e $MYVIMRC<CR>
-nnoremap <silent> <leader>vr :so $MYVIMRC<CR>
-" open the filetype file for the current buffer
+nnoremap <silent> <leader>vr :source $MYVIMRC<CR>
 nnoremap <leader>vf :e ~/.vim/ftplugin/<C-R>=&filetype<CR>.vim<CR>
 
 augroup VimReload
@@ -234,7 +234,7 @@ Plug 'MisanthropicBit/vim-numbers'
 " visualizes the Vim undo tree
 " a fork (with additional cool features) of https://docs.stevelosh.com/gundo.vim/
 Plug 'simnalamburt/vim-mundo'
-nnoremap <silent> <C-u> :MundoToggle<CR>
+nnoremap <silent> <C-S-u> :MundoToggle<CR>
 
 " does this mess up syntax loading?
 " Plug 'tpope/vim-eunuch'
@@ -285,11 +285,11 @@ nnoremap <silent> cc :call ToggleQuickFix()<cr>
 " <C-]> jump to definition
 " <C-O> jump back
 " g] see a list of multiple matches
-" <C-t>
+" <C-S-t>
 
 " (re)generate tags file in the bg
-Plug 'ludovicchabant/vim-gutentags'
-let g:gutentags_ctags_exclude = ['.txt', '.md', '.json', '.mypy_cache/**']
+" Plug 'ludovicchabant/vim-gutentags'
+" let g:gutentags_ctags_exclude = ['.txt', '.md', '.json', '.mypy_cache/**']
 
 " sidebar that displays the ctags-generated tags of the current file, ordered by their scope
 Plug 'majutsushi/tagbar'
@@ -654,99 +654,6 @@ let g:vim_markdown_math = 1
 let g:vim_markdown_new_list_item_indent = 4
 let g:vim_markdown_strikethrough = 1
 
-" " writing prose
-" Plug 'reedes/vim-pencil'
-" Plug 'junegunn/goyo.vim'
-
-" augroup pencil
-"   autocmd!
-"   autocmd FileType wiki,md,txt call pencil#init()
-"   autocmd FileType wiki,md,txt :PencilSoft
-" augroup END
-
-" let g:pencil#wrapModeDefault = 'soft'
-
-" autocmd! User GoyoEnter
-" autocmd! User GoyoLeave
-
-" " Ensure :q to quit even when Goyo is active
-" function! s:goyo_enter()
-"   let b:quitting = 0
-"   let b:quitting_bang = 0
-"   autocmd QuitPre <buffer> let b:quitting = 1
-"   cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
-"   setlocal wrap
-" endfunction
-
-" " Quit Vim if this is the only remaining buffer
-" function! s:goyo_leave()
-"   if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
-"     if b:quitting_bang
-"       qa!
-"     else
-"       qa
-"     endif
-"   endif
-" endfunction
-
-" autocmd! User GoyoEnter call <SID>goyo_enter()
-" autocmd! User GoyoLeave call <SID>goyo_leave()
-
-" nnoremap <Leader>g :Goyo<CR>
-
-" Plug 'vimwiki/vimwiki'
-" nmap <Leader>vw <Plug>VimwikiIndex <bar> :cd %:p:h
-
-" let g:vimwiki_global_ext = 0
-" " let g:vimwiki_ext2syntax = {'.wiki': 'media'}
-
-" let g:vimwiki_hl_headers = 1
-" let g:vimwiki_hl_cb_checked = 2
-" let g:vimwiki_html_header_numbering = 2
-" let g:vimwiki_html_header_numbering_sym = '.'
-" let g:vimwiki_list_ignore_newline = 1
-" let g:vimwiki_url_maxsave=0 " Link shortening, 1 is default on
-" let g:vimwiki_list = [
-"       \{'path':'~/projects/vimwiki/',
-"          \ 'path_html':'~/projects/vimwiki/site_html/',
-"          \ 'template_path':'~/projects/vimwiki/templates/',
-"          \ 'template_default': 'default-bootstrap',
-"          \ 'template_ext': '.tpl',
-"          \ 'auto_export': 0,
-"          \ 'nested_syntaxes': {'python': 'python'},
-"          \ 'diary_rel_path': 'diary/',
-"          \ 'diary_header': 'Journal',
-"          \ 'diary_sort': 'desc',
-"          \ 'diary_index': 'journal',
-"       \}
-"  \]
-
-" Ephemeris
-" Plug 'mattn/calendar-vim'
-" Plug 'HP4k1h5/ephemeris'
-" let g:calendar_diary = '~/projects/.diary'
-" nnoremap <Leader>eci :EphemerisCreateIndex<CR>
-" nnoremap <Leader>egi :EphemerisGotoIndex<CR>
-" nnoremap <Leader>ect :EphemerisCopyTodos<CR>
-" nnoremap <Leader>eft :EphemerisFilterTasks<CR>
-" nnoremap <Leader>et  :EphemerisToggleTask<CR>
-
-
-" Plug 'mattn/emmet-vim'
-" let g:user_emmet_leader_key='<C-Z>'
-
-
-"SYNTAX/INDENTATION/WHITESPACE =============================
-"===========================================================
-
-"SYNTASTIC
-" Plug 'scrooloose/syntastic'
-" let syntastic_mode_map = { 'passive_filetypes': ['html'] }
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 0
-" let g:syntastic_check_on_open = 0
-" let g:syntastic_check_on_wq = 0
-
 " Plugins must be in .vimrc not in ftplugin/python.vim "
 " python linting
 " F7 checks flake8
@@ -801,5 +708,40 @@ call plug#end()
 "   map <Esc>[24~ <F12>
 " endif
 
-" COMMENT
-" COMMENT 2
+" https://stackoverflow.com/questions/12485981/syntax-highlighting-is-not-turned-on-in-vim-when-opening-multiple-files-using-ar
+" Enable syntax highlighting when buffers are displayed in a window through
+" :argdo and :bufdo, which disable the Syntax autocmd event to speed up
+" processing.
+augroup EnableSyntaxHighlighting
+    " Filetype processing does happen, so we can detect a buffer initially
+    " loaded during :argdo / :bufdo through a set filetype, but missing
+    " b:current_syntax. Also don't do this when the user explicitly turned off
+    " syntax highlighting via :syntax off.
+    " The following autocmd is triggered twice:
+    " 1. During the :...do iteration, where it is inactive, because
+    " 'eventignore' includes "Syntax". This speeds up the iteration itself.
+    " 2. After the iteration, when the user re-enters a buffer / window that was
+    " loaded during the iteration. Here is becomes active and enables syntax
+    " highlighting. Since that is done buffer after buffer, the delay doesn't
+    " matter so much.
+    " Note: When the :...do command itself edits the window (e.g. :argdo
+    " tabedit), the BufWinEnter event won't fire and enable the syntax when the
+    " window is re-visited. We need to hook into WinEnter, too. Note that for
+    " :argdo split, each window only gets syntax highlighting as it is entered.
+    " Alternatively, we could directly activate the normally effectless :syntax
+    " enable through :set eventignore-=Syntax, but that would also cause the
+    " slowdown during the iteration Vim wants to avoid.
+    " Note: Must allow nesting of autocmds so that the :syntax enable triggers
+    " the ColorScheme event. Otherwise, some highlighting groups may not be
+    " restored properly.
+    autocmd! BufWinEnter,WinEnter * nested if exists('syntax_on') && ! exists('b:current_syntax') && ! empty(&l:filetype) && index(split(&eventignore, ','), 'Syntax') == -1 | syntax enable | endif
+
+    " The above does not handle reloading via :bufdo edit!, because the
+    " b:current_syntax variable is not cleared by that. During the :bufdo,
+    " 'eventignore' contains "Syntax", so this can be used to detect this
+    " situation when the file is re-read into the buffer. Due to the
+    " 'eventignore', an immediate :syntax enable is ignored, but by clearing
+    " b:current_syntax, the above handler will do this when the reloaded buffer
+    " is displayed in a window again.
+    autocmd! BufRead * if exists('syntax_on') && exists('b:current_syntax') && ! empty(&l:filetype) && index(split(&eventignore, ','), 'Syntax') != -1 | unlet! b:current_syntax | endif
+augroup END
