@@ -1,3 +1,5 @@
+# OS checking question: https://unix.stackexchange.com/questions/252166/how-to-configure-zshrc-for-specfic-os
+
 # Setup fzf
 # ---------
 case `uname` in
@@ -13,10 +15,8 @@ case `uname` in
   ;;
 esac
 
-
 # Auto-completion
 # ---------------
-
 case `uname` in
   Darwin)
     [[ $- == *i* ]] && source "/usr/local/opt/fzf/shell/completion.zsh" 2> /dev/null
@@ -36,7 +36,3 @@ case `uname` in
     source "/home/linuxbrew/.linuxbrew/opt/fzf/shell/key-bindings.zsh"
   ;;
 esac
-
-
-# Notes
-# OS checking question: https://unix.stackexchange.com/questions/252166/how-to-configure-zshrc-for-specfic-os

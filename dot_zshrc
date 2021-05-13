@@ -165,7 +165,14 @@ ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
 # vi-mode
 # bindkey -v
 bindkey "jk" vi-cmd-mode
-# bindkey "^r" history-incremental-search-backward # this would mess up fzf...
+
+# fzf_history_seach() {
+#     BUFFER=$(history -t '%Y-%m-%d %H:%M:%S' 0 | fzf +s +m -x --tac -e -q "$BUFFER" | awk '{print substr($0, index($0, $4))}' | awk '!seen[$4, $5, $6, $7, $8, $9, $10]++' | awk '{print substr($0, index($0, $4))}' )
+#   zle end-of-line
+# }
+# autoload fzf_history_seach
+# zle -N fzf_history_seach
+# bindkey '^r' fzf_history_seach
 
 bindkey "^k" up-line-or-search
 bindkey "^j" down-line-or-search

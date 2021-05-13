@@ -14,9 +14,8 @@ set undofile                  " Maintain undo history between sessions
 set undodir=~/.vim/undo       " put all the undo files in this dir
 set undolevels=100000          " how many undo steps to save in a file
 
-filetype on                   " enables filetype detection, try setting it off then on in next line
 filetype plugin indent on     " detection on, plugin on, indent on. To see the current status, type: :filetype
-syntax enable                 " syntax highlighting - 'syntax on' is just defaults
+syntax on                 " syntax highlighting - 'syntax on' is just defaults
 set noesckeys			            " might break stuff, should make <ESC> delay smaller
 set timeoutlen=500            " timeoutlen is used for mapping delays
 set ttimeoutlen=100            " ttimeoutlen is used for key code delays
@@ -25,12 +24,6 @@ set mouse=a                   " Enable mouse for scrolling and resizing.
 
 set nostartofline             " don't put cursor at start of line when switching buffers
 set number relativenumber     " Line numbers
-
-" augroup numbertoggle
-"   autocmd!
-"   autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-"   autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-" augroup END
 
 " ------------------------------------------
 
@@ -46,10 +39,22 @@ let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
 let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
 let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
 
-" make a blog post
-nnoremap <leader>wp :e ~/projects/websites/blog/content/articles/.md<left><left><left>
-" make a snippet or tweet
-nnoremap <leader>ws :e ~/projects/websites/blog/content/articles/snippets/.md<left><left><left>
+" make a blog post or snippet
+command! -nargs=1 Ms call s:NewSnippet(<q-args>)
+command! -nargs=1 Ma call s:NewArticle(<q-args>)
+
+function! s:NewSnippet(fp)
+    echom a:fp
+    execute "e " . "~/projects/websites/blog/content/articles/snippets/" . a:fp . ".md"
+endfunction
+
+function! s:NewArticle(fp)
+    echom a:fp
+    execute "e " . "~/projects/websites/blog/content/articles/" . a:fp . ".md"
+endfunction
+
+" delete words without leaving insert mode
+inoremap <C-e> <C-o>de
 
 " show how many times a search result occurs in current buffer, and index of current match
 set shortmess-=S
@@ -64,7 +69,7 @@ set updatetime=300""
 set cmdheight=2
 
 " detect filetype
-au BufNewFile,BufRead {.,}tmux*.local setf tmux
+au BufNewFile,BufRead {.,}tmux*.local nested setf tmux
 
 " the gutter is called the signcolumn "
 " set signcolumn=yes
@@ -76,13 +81,11 @@ au BufNewFile,BufRead {.,}tmux*.local setf tmux
 " nnoremap - <NOP>
 
 "Search/Find/Highlight ======================================
+
 set incsearch  ignorecase  smartcase  hlsearch
 highlight Search guibg=purple guifg='NONE'
 highlight Search cterm=none ctermbg=green ctermfg=black
 
-highlight CursorColumn guibg=blue guifg=red
-
-highlight ColorColumn ctermbg=red ctermfg=red guifg=red guibg=lightpink
 
 nnoremap \ /
 nnoremap \\ :nohlsearch<CR>
@@ -90,9 +93,6 @@ nnoremap // :nohlsearch<CR>
 nnoremap # #``
 nnoremap * *``
 
-" put next matched string in centre of screen
-" nnoremap n nzz
-" nnoremap N Nzz
 
 " close buffers properly go to previous buffer, then delete the buffer you were just in.
 " nnoremap <Leader>bd :bp\|bd #<CR>
@@ -104,7 +104,7 @@ nnoremap <leader>ss :setlocal spell!<CR>
 nnoremap <leader>sf z=1<CR><CR>
 " [s or ]s go to next/previous bad word
 " z=  - list of suggestions
-" zg - add word to good word list 
+" zg - add word to good word list
 " zug - remove word from good word list
 " zw - add word to bad word list
 " zuw - remove word from bad word list
@@ -135,14 +135,13 @@ nnoremap <leader>vf :e ~/.vim/ftplugin/<C-R>=&filetype<CR>.vim<CR>
 
 augroup VimReload
     autocmd!
-    autocmd BufWritePost $MYVIMRC source $MYVIMRC
+    autocmd BufWritePost $MYVIMRC nested source $MYVIMRC
 augroup END
 
 " Yank to clipboard
 vnoremap <C-c> "+y
 if has("clipboard")
   set clipboard=unnamed " copy to the system clipboard
-
   if has("unnamedplus") " X11 support
     set clipboard+=unnamedplus
   endif
@@ -177,6 +176,7 @@ vnoremap : ;
 " nnoremap qa :qa<CR>
 
 " save all changes
+" i guess <C-i> is tab
 nnoremap <C-i>ww :wa<CR>
 nnoremap <C-i>ee :e<CR>
 nnoremap <C-i>qq :qa<CR>
@@ -185,8 +185,8 @@ nnoremap qq :bp\|bd #<CR>
 
 " close buffer
 " switch buffers
-nnoremap <silent> + :bn<CR>
-nnoremap <silent> _ :bp<CR>
+" nnoremap <silent> + :bn<CR>
+" nnoremap <silent> _ :bp<CR>
 
 " Split navigations
 nmap <Leader>h  <C-W><C-H>
@@ -473,27 +473,44 @@ let g:rainbow_conf = {
 set background=dark
 
 
+function! MyCustomColors() abort
+    " highlight Visual     cterm=NONE ctermbg=76  ctermfg=16  gui=NONE guibg=#5fd700 guifg=#000000
+    " highlight StatusLine cterm=NONE ctermbg=231 ctermfg=160 gui=NONE guibg=#ffffff guifg=#d70000
+    " highlight Normal     cterm=NONE ctermbg=17              gui=NONE guibg=#00005f
+    " highlight NonText    cterm=NONE ctermbg=17              gui=NONE guibg=#00005f
+
+    " colorscheme modifications
+    highlight Comment ctermfg=cyan guifg=cyan
+    highlight pythonComment ctermfg=cyan guifg=cyan
+    " let s:bwc.lime = ['aeee00', 154] is also a nice color
+    highlight LineNr ctermfg=cyan guifg=cyan
+    highlight Visual term=reverse guibg=blue
+
+    " this makes the visual highlight color the same the cursor color  highlight! link Visual CursorLine
+    highlight nontext term=bold ctermfg=Cyan guifg=#80a0ff gui=bold
+    highlight vimLineComment term=bold ctermfg=Cyan guifg=#80a0ff gui=bold
+    " SpecialKey - use :set list to toggle visibility of EOL, CR, etc
+    highlight specialKey term=bold ctermfg=Cyan guifg=#80a0ff gui=bold
+
+endfunction
+
+augroup MyCustomColorsGroup
+    autocmd!
+    " autocmd ColorScheme * call MyCustomColors()
+    autocmd ColorScheme badwolf call MyCustomColors()
+augroup END
+
 Plug 'sjl/badwolf'
-silent! colorscheme badwolf
+colorscheme badwolf
 let g:badwolf_html_link_underline = 1
 let g:badwolf_css_props_highlight = 1
 
-" colorscheme modifications
-highlight Comment ctermfg=cyan guifg=cyan
-highlight pythonComment ctermfg=cyan guifg=cyan
-highlight LineNr ctermfg=cyan guifg=cyan
-highlight Visual term=reverse guibg=blue
-" this makes the visual highlight color the same the cursor color  highlight! link Visual CursorLine
-highlight nontext term=bold ctermfg=Cyan guifg=#80a0ff gui=bold
-highlight vimLineComment term=bold ctermfg=Cyan guifg=#80a0ff gui=bold
-" SpecialKey - use :set list to toggle visibility of EOL, CR, etc
-highlight specialKey term=bold ctermfg=Cyan guifg=#80a0ff gui=bold
 
 " colors for flashing cursorline and cursorcolumn
 hi CursorLine   cterm=NONE ctermbg=green ctermfg=black guibg=green guifg=black
-hi CursorColumn cterm=NONE ctermbg=green ctermfg=black guibg=green guifg=black
+hi CursorColumn NONE ctermbg=green ctermfg=black guibg=green guifg=black
 
-" query what and which kind of syntax is this color? - wc
+" query which color - what and which kind of syntax is this color? - wc
 nnoremap wc :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") ."> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 " fuzzy file, buffer, tag finder
@@ -708,40 +725,40 @@ call plug#end()
 "   map <Esc>[24~ <F12>
 " endif
 
-" https://stackoverflow.com/questions/12485981/syntax-highlighting-is-not-turned-on-in-vim-when-opening-multiple-files-using-ar
-" Enable syntax highlighting when buffers are displayed in a window through
-" :argdo and :bufdo, which disable the Syntax autocmd event to speed up
-" processing.
-augroup EnableSyntaxHighlighting
-    " Filetype processing does happen, so we can detect a buffer initially
-    " loaded during :argdo / :bufdo through a set filetype, but missing
-    " b:current_syntax. Also don't do this when the user explicitly turned off
-    " syntax highlighting via :syntax off.
-    " The following autocmd is triggered twice:
-    " 1. During the :...do iteration, where it is inactive, because
-    " 'eventignore' includes "Syntax". This speeds up the iteration itself.
-    " 2. After the iteration, when the user re-enters a buffer / window that was
-    " loaded during the iteration. Here is becomes active and enables syntax
-    " highlighting. Since that is done buffer after buffer, the delay doesn't
-    " matter so much.
-    " Note: When the :...do command itself edits the window (e.g. :argdo
-    " tabedit), the BufWinEnter event won't fire and enable the syntax when the
-    " window is re-visited. We need to hook into WinEnter, too. Note that for
-    " :argdo split, each window only gets syntax highlighting as it is entered.
-    " Alternatively, we could directly activate the normally effectless :syntax
-    " enable through :set eventignore-=Syntax, but that would also cause the
-    " slowdown during the iteration Vim wants to avoid.
-    " Note: Must allow nesting of autocmds so that the :syntax enable triggers
-    " the ColorScheme event. Otherwise, some highlighting groups may not be
-    " restored properly.
-    autocmd! BufWinEnter,WinEnter * nested if exists('syntax_on') && ! exists('b:current_syntax') && ! empty(&l:filetype) && index(split(&eventignore, ','), 'Syntax') == -1 | syntax enable | endif
+" " https://stackoverflow.com/questions/12485981/syntax-highlighting-is-not-turned-on-in-vim-when-opening-multiple-files-using-ar
+" " Enable syntax highlighting when buffers are displayed in a window through
+" " :argdo and :bufdo, which disable the Syntax autocmd event to speed up
+" " processing.
+" augroup EnableSyntaxHighlighting
+"     " Filetype processing does happen, so we can detect a buffer initially
+"     " loaded during :argdo / :bufdo through a set filetype, but missing
+"     " b:current_syntax. Also don't do this when the user explicitly turned off
+"     " syntax highlighting via :syntax off.
+"     " The following autocmd is triggered twice:
+"     " 1. During the :...do iteration, where it is inactive, because
+"     " 'eventignore' includes "Syntax". This speeds up the iteration itself.
+"     " 2. After the iteration, when the user re-enters a buffer / window that was
+"     " loaded during the iteration. Here is becomes active and enables syntax
+"     " highlighting. Since that is done buffer after buffer, the delay doesn't
+"     " matter so much.
+"     " Note: When the :...do command itself edits the window (e.g. :argdo
+"     " tabedit), the BufWinEnter event won't fire and enable the syntax when the
+"     " window is re-visited. We need to hook into WinEnter, too. Note that for
+"     " :argdo split, each window only gets syntax highlighting as it is entered.
+"     " Alternatively, we could directly activate the normally effectless :syntax
+"     " enable through :set eventignore-=Syntax, but that would also cause the
+"     " slowdown during the iteration Vim wants to avoid.
+"     " Note: Must allow nesting of autocmds so that the :syntax enable triggers
+"     " the ColorScheme event. Otherwise, some highlighting groups may not be
+"     " restored properly.
+"     autocmd! BufWinEnter,WinEnter * nested if exists('syntax_on') && ! exists('b:current_syntax') && ! empty(&l:filetype) && index(split(&eventignore, ','), 'Syntax') == -1 | syntax enable | endif
 
-    " The above does not handle reloading via :bufdo edit!, because the
-    " b:current_syntax variable is not cleared by that. During the :bufdo,
-    " 'eventignore' contains "Syntax", so this can be used to detect this
-    " situation when the file is re-read into the buffer. Due to the
-    " 'eventignore', an immediate :syntax enable is ignored, but by clearing
-    " b:current_syntax, the above handler will do this when the reloaded buffer
-    " is displayed in a window again.
-    autocmd! BufRead * if exists('syntax_on') && exists('b:current_syntax') && ! empty(&l:filetype) && index(split(&eventignore, ','), 'Syntax') != -1 | unlet! b:current_syntax | endif
-augroup END
+"     " The above does not handle reloading via :bufdo edit!, because the
+"     " b:current_syntax variable is not cleared by that. During the :bufdo,
+"     " 'eventignore' contains "Syntax", so this can be used to detect this
+"     " situation when the file is re-read into the buffer. Due to the
+"     " 'eventignore', an immediate :syntax enable is ignored, but by clearing
+"     " b:current_syntax, the above handler will do this when the reloaded buffer
+"     " is displayed in a window again.
+"     autocmd! BufRead * if exists('syntax_on') && exists('b:current_syntax') && ! empty(&l:filetype) && index(split(&eventignore, ','), 'Syntax') != -1 | unlet! b:current_syntax | endif
+" augroup END

@@ -3,20 +3,27 @@
 alias vi="vim"
 
 # open vim in read only mode
-alias ri="vim -R"
-alias rim="vim -R"
+# alias ri="vim -R"
+# alias rim="vim -R"
 
 # can't use <C-K> in tmux.
 alias cl="clear"
-alias c="clear" # c has another (removed) alias below
+# alias c="clear" # c has another (removed) alias below
 
 
 alias an="ansible"
 alias cm="chezmoi"
-alias -g rl="status | cut -c 4- | xargs -I % -p sh -c 'chezmoi add ~/%'"
 
+# this is a -global alias. use it with `cm rl` to get chezmoi status, and then add each of the files that have been changed. 
+# why did I call it rl? reload?
+# Add Again - aa - seems better
+alias -g aa="status | cut -c 4- | xargs -I % -p sh -c 'chezmoi add ~/%'"
+
+# show username and hostname. this should probably be called something other that just "host"
 alias host='echo $fg_bold[blue] $bg[black]"$USER@$(hostname)"'
 
+# open a file using MacVim
+alias edit="open -a MacVim.app $1"
 
 
 # games

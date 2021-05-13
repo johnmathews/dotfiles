@@ -2,20 +2,18 @@ setlocal smarttab
 setlocal softtabstop=4
 setlocal noautoindent 			" if previous line is indented, don't make new line also indented
 
-filetype plugin indent on
+" filetype plugin indent on
 setlocal tabstop=4
 setlocal shiftwidth=4 			" this is how many spaces a tab is.
 setlocal expandtab
-set linebreak 							" Wrap lines at convenient points, avoid wrapping a line in the middle of a word.
+setlocal linebreak 							" Wrap lines at convenient points, avoid wrapping a line in the middle of a word.
 
 setlocal nowrap
 setlocal scrolloff=3							" The number of screen lines to keep above and below the cursor
 
-" syntax enable "might be the source of troublesome behaviour
-
-setlocal textwidth=79
-" setlocal colorcolumn=80,100
-highlight ColorColumn ctermbg=red ctermfg=red guifg=red guibg=blue
+setlocal textwidth=80
+setlocal colorcolumn=0
+highlight ColorColumn ctermbg=red ctermfg=red guifg=red guibg=darkcyan
 
 " add text width to autoformat options
 " setlocal formatoptions+=t
@@ -60,7 +58,7 @@ setlocal nojoinspaces
 inoremap [r [ref][/ref]<ESC>5hi
 
 " select some text and make it a hyperlink
-vnoremap ml d<esc>a[<C-o>p](<C-o>p)<esc>
+vnoremap ml "lxa[(F["lpf("lp
 
 " make text bold
 nnoremap <buffer> <leader>mb ebi*<ESC>ea*<ESC>
