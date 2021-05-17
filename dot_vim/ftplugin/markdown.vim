@@ -2,7 +2,6 @@ setlocal smarttab
 setlocal softtabstop=4
 setlocal noautoindent 			" if previous line is indented, don't make new line also indented
 
-" filetype plugin indent on
 setlocal tabstop=4
 setlocal shiftwidth=4 			" this is how many spaces a tab is.
 setlocal expandtab
@@ -19,8 +18,23 @@ highlight ColorColumn ctermbg=red ctermfg=red guifg=red guibg=darkcyan
 " setlocal formatoptions+=t
 
 setlocal spell
-setlocal spelllang=en
+setlocal spelllang=en_gb
 setlocal spellfile=$HOME/.dotfiles/vim/spell/en.utf-8.add
+
+
+" CoC extensions
+" CocList extensions
+" ? means invalid extension
+" * means extension is activated
+" + means extension is loaded
+" - means extension is disabled
+augroup toggleCocExtensions
+    autocmd!
+    autocmd BufEnter *.md call CocActionAsync('deactivateExtension', 'coc-tag')
+    autocmd BufEnter *.md echom "coc-tag should be activated"
+    autocmd BufLeave *.md call CocActionAsync('activeExtension', 'coc-tag')
+    autocmd BufLeave *.md echom "coc-tag should be deactivated"
+augroup END
 
 "]s [s next previos spelling error
 " zg - add word to list of good words

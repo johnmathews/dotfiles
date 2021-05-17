@@ -1,3 +1,6 @@
+" to make a print statement, use :echom "blah"' then :messages
+" :UltiSnipsEdit command opens a private snippet definition file for the current filetype.
+
 " ========== Global ==========
 set nocompatible              " always put it at the top of .vimrc. effects mappings, undo, etc.
 set encoding=utf-8            " utf-8 encoding
@@ -15,7 +18,7 @@ set undodir=~/.vim/undo       " put all the undo files in this dir
 set undolevels=100000          " how many undo steps to save in a file
 
 filetype plugin indent on     " detection on, plugin on, indent on. To see the current status, type: :filetype
-syntax on                 " syntax highlighting - 'syntax on' is just defaults
+syntax enable                " syntax highlighting
 set noesckeys			            " might break stuff, should make <ESC> delay smaller
 set timeoutlen=500            " timeoutlen is used for mapping delays
 set ttimeoutlen=100            " ttimeoutlen is used for key code delays
@@ -41,14 +44,14 @@ let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
 
 " make a blog post or snippet
 command! -nargs=1 Ms call s:NewSnippet(<q-args>)
-command! -nargs=1 Ma call s:NewArticle(<q-args>)
+command! -nargs=1 Mp call s:NewPost(<q-args>)
 
 function! s:NewSnippet(fp)
     echom a:fp
     execute "e " . "~/projects/websites/blog/content/articles/snippets/" . a:fp . ".md"
 endfunction
 
-function! s:NewArticle(fp)
+function! s:NewPost(fp)
     echom a:fp
     execute "e " . "~/projects/websites/blog/content/articles/" . a:fp . ".md"
 endfunction
@@ -137,6 +140,7 @@ augroup VimReload
     autocmd!
     autocmd BufWritePost $MYVIMRC nested source $MYVIMRC
 augroup END
+
 
 " Yank to clipboard
 vnoremap <C-c> "+y
@@ -251,7 +255,7 @@ Plug 'airblade/vim-gitgutter'
 " :VirtualEnvActivate <tab>
 Plug 'jmcantrell/vim-virtualenv'
 
-" force quickfix to be full widtth
+" force quickfix to be full width
 au FileType qf wincmd J
 
 " testing - many languages and test runners
@@ -337,19 +341,23 @@ nnoremap <silent> <leader>ak :ALEPrevious<cr>
 
 " :CocInfo is good for testing status
 " :CocConfig - opens the main config file
+" :CocList extensions
 
 " completion sources
+" https://github.com/neoclide/coc-sources
 " https://github.com/neoclide/coc.nvim/wiki/Completion-with-sources#completion-sources
+" to see which extensions are installed: ~/.config/coc/extensions/package.json
 
 " manage extensions
 " https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#manage-extensions-with-coclist "
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" to see which extensions are installed: ~/.config/coc/extensions/package.json
 
-" coc sources
-Plug 'stsewd/sphinx.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'tpope/vim-dadbod'
+augroup loadSyntaxHighlighting
+    autocmd!
+    autocmd BufEnter *.vim call CocActionAsync('deactivateExtension', 'coc-tag') 
+    autocmd BufEnter *.vimrc echom "coc-tag should be activated"
+augroup END
 
 nmap <leader>x <Plug>(coc-definition)
 " renames across all files
@@ -436,6 +444,7 @@ Plug 'fisadev/vim-isort'
 Plug 'yggdroot/indentline'
 
 " yaml code folding
+" B
 " Plug 'pedrohdz/vim-yaml-folds' " I don't like code folding. gimme all the info immediately
 
 " Fugitive
@@ -473,7 +482,7 @@ let g:rainbow_conf = {
 set background=dark
 
 
-function! MyCustomColors() abort
+function! CustomColors() abort
     " highlight Visual     cterm=NONE ctermbg=76  ctermfg=16  gui=NONE guibg=#5fd700 guifg=#000000
     " highlight StatusLine cterm=NONE ctermbg=231 ctermfg=160 gui=NONE guibg=#ffffff guifg=#d70000
     " highlight Normal     cterm=NONE ctermbg=17              gui=NONE guibg=#00005f
@@ -494,10 +503,26 @@ function! MyCustomColors() abort
 
 endfunction
 
+" Put this in .vimrc not ftplugin/ because these colors should be global for consistency
+function! SpellCheckHighlights() abort
+	hi clear SpellBad
+	hi SpellBad cterm=underline ctermfg=yellow
+
+	hi clear SpellCap
+	hi SpellCap cterm=underline ctermfg=red
+
+	hi clear SpellLocal
+	hi SpellLocal ctermfg=blue
+
+	hi clear SpellRare
+	hi SpellRare ctermfg=gray
+endfunction
+
 augroup MyCustomColorsGroup
     autocmd!
     " autocmd ColorScheme * call MyCustomColors()
-    autocmd ColorScheme badwolf call MyCustomColors()
+    autocmd ColorScheme * call SpellCheckHighlights()
+    autocmd ColorScheme badwolf call CustomColors()
 augroup END
 
 Plug 'sjl/badwolf'
@@ -507,8 +532,8 @@ let g:badwolf_css_props_highlight = 1
 
 
 " colors for flashing cursorline and cursorcolumn
-hi CursorLine   cterm=NONE ctermbg=green ctermfg=black guibg=green guifg=black
-hi CursorColumn NONE ctermbg=green ctermfg=black guibg=green guifg=black
+" hi CursorLine   cterm=NONE ctermbg=green ctermfg=black guibg=green guifg=black
+" hi CursorColumn NONE ctermbg=green ctermfg=black guibg=green guifg=black
 
 " query which color - what and which kind of syntax is this color? - wc
 nnoremap wc :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") ."> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
@@ -592,31 +617,27 @@ Plug 'tpope/vim-surround'
 " repeat commands from plugin mappings
 Plug 'tpope/vim-repeat'
 
-" vinegar
-Plug 'tpope/vim-vinegar'
-let g:netrw_liststyle = 3
-
 " CSV
 Plug 'chrisbra/csv.vim'
 
+" vinegar
+Plug 'tpope/vim-vinegar'
+nnoremap <Leader>n :Lexplore<CR>
+let g:netrw_winsize = -28               " absolute width of netrw window
+let g:netrw_banner = 0                  " do not display info on the top of window
+let g:netrw_liststyle = 3               " tree-view
+let g:netrw_sort_sequence = '[\/]$,*'   " sort is affecting only: directories on the top, files below
+let g:netrw_browse_split = 4            " use the previous window to open file "
+
+
 " nerdtree
-Plug 'scrooloose/nerdtree'
-
-
-function! ResetNERDTree()
-  so $MYVIMRC
-  NERDTreeToggle
-  NERDTreeToggle
-endfunction
-
-nnoremap <Leader>n :NERDTreeToggle<CR>
-nnoremap <silent>nr :call ResetNERDTree()<cr>
-
-let g:nerdtree_tabs_autoclose=1
-let NERDTreeAutoDeleteBuffer = 1 " Automatically delete the buffer of the file you just deleted
-let g:nerdtree_tabs_open_on_gui_startup=2 " 2 - open nerdtree only if directory was given as startup argument
-let g:nerdtree_tabs_smart_startup_focus=2 " always focus file window after startup
-let NERDTreeShowHidden=0
+" Plug 'scrooloose/nerdtree'
+" nnoremap <Leader>n :NERDTreeToggle<CR>
+" let g:nerdtree_tabs_autoclose=1
+" let NERDTreeAutoDeleteBuffer = 1 " Automatically delete the buffer of the file you just deleted
+" let g:nerdtree_tabs_open_on_gui_startup=2 " 2 - open nerdtree only if directory was given as startup argument
+" let g:nerdtree_tabs_smart_startup_focus=2 " always focus file window after startup
+" let NERDTreeShowHidden=0
 
 " Status bars
 Plug 'vim-airline/vim-airline'
