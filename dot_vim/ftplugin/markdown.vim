@@ -18,8 +18,14 @@ highlight ColorColumn ctermbg=red ctermfg=red guifg=red guibg=darkcyan
 " setlocal formatoptions+=t
 
 setlocal spell
-setlocal spelllang=en_gb
+setlocal spelllang=en_us
 setlocal spellfile=$HOME/.dotfiles/vim/spell/en.utf-8.add
+
+" show tab chars, EOL spaces, but why not $?
+setlocal list
+
+" don't insert 2 spaces after a '.','?' or '!'
+setlocal nojoinspaces
 
 
 " CoC extensions
@@ -31,9 +37,9 @@ setlocal spellfile=$HOME/.dotfiles/vim/spell/en.utf-8.add
 augroup toggleCocExtensions
     autocmd!
     autocmd BufEnter *.md call CocActionAsync('deactivateExtension', 'coc-tag')
-    autocmd BufEnter *.md echom "coc-tag should be activated"
+    autocmd BufEnter *.md call CocActionAsync('deactivateExtension', 'coc-syntax')
     autocmd BufLeave *.md call CocActionAsync('activeExtension', 'coc-tag')
-    autocmd BufLeave *.md echom "coc-tag should be deactivated"
+    autocmd BufLeave *.md call CocActionAsync('activeExtension', 'coc-syntax')
 augroup END
 
 "]s [s next previos spelling error
@@ -55,18 +61,13 @@ vnoremap <leader>fp gw
 " show text normally. no folding
 setlocal conceallevel=0
 
-let b:ale_fixers = ['remove_trailing_lines', 'trim_whitespace']
+let b:ale_fixers = ['remove_trailing_lines', 'trim_whitespace_not_two']
 let b:ale_warn_about_trailing_whitespace = 1
 
 
 " reveal concealed text when cursor is on it
 " setlocal concealcursor-=n
 
-" show tab chars, EOL spaces, but why not $?
-setlocal list
-
-" don't insert 2 spaces after a '.','?' or '!'
-setlocal nojoinspaces
 
 " footnotes when writing pelican blog posts
 inoremap [r [ref][/ref]<ESC>5hi
@@ -75,16 +76,15 @@ inoremap [r [ref][/ref]<ESC>5hi
 vnoremap ml "lxa[(F["lpf("lp
 
 " make text bold
-nnoremap <buffer> <leader>mb ebi*<ESC>ea*<ESC>
+nnoremap <buffer> <leader>mb ebi**<ESC>ea**<space><ESC>
 vmap <buffer> <leader>mb c**<ESC>gcP
-
 " make text italic
-nnoremap <buffer> <leader>mi ebi_<ESC>ea_<ESC>
+nnoremap <buffer> <leader>mi ebi*<ESC>ea*<ESC>
 vmap <buffer> <leader>mi c__<ESC>gcP
-
 " make code block
 nnoremap <buffer> <leader>mc ebi`<ESC>ea`<ESC>
 vmap <buffer> <leader>mc c``<ESC>gcP
+
 
 " Stop telling me underscores are errors:
 syn match markdownError "\w\@<=\w\@="

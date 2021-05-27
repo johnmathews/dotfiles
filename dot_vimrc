@@ -1,5 +1,9 @@
 " to make a print statement, use :echom "blah"' then :messages
 " :UltiSnipsEdit command opens a private snippet definition file for the current filetype.
+" :CocInfo is good for testing status
+" :CocConfig - opens the main config file
+" :CocList extensions
+" :CocUninstall <coc-highlight>
 
 " ========== Global ==========
 set nocompatible              " always put it at the top of .vimrc. effects mappings, undo, etc.
@@ -19,6 +23,12 @@ set undolevels=100000          " how many undo steps to save in a file
 
 filetype plugin indent on     " detection on, plugin on, indent on. To see the current status, type: :filetype
 syntax enable                " syntax highlighting
+augroup loadSyntaxHighlighting
+    autocmd!
+    autocmd BufEnter *.vimrc set filetype=vim
+    autocmd BufEnter *.vim set filetype=vim
+augroup END
+
 set noesckeys			            " might break stuff, should make <ESC> delay smaller
 set timeoutlen=500            " timeoutlen is used for mapping delays
 set ttimeoutlen=100            " ttimeoutlen is used for key code delays
@@ -29,6 +39,10 @@ set nostartofline             " don't put cursor at start of line when switching
 set number relativenumber     " Line numbers
 
 " ------------------------------------------
+
+" add this before plugins are loaded "
+"https://github.com/dense-analysis/ale#5iii-how-can-i-use-ale-and-cocnvim-together
+let g:ale_disable_lsp = 1
 
 " Cursor settings:
 " https://vim.fandom.com/wiki/Change_cursor_shape_in_different_modes
@@ -58,6 +72,8 @@ endfunction
 
 " delete words without leaving insert mode
 inoremap <C-e> <C-o>de
+" undo word by word instead of by entering/leaving insert mode
+inoremap <space> <C-G>u<space>
 
 " show how many times a search result occurs in current buffer, and index of current match
 set shortmess-=S
@@ -100,18 +116,6 @@ nnoremap * *``
 " close buffers properly go to previous buffer, then delete the buffer you were just in.
 " nnoremap <Leader>bd :bp\|bd #<CR>
 " inoremap <Leader>bd :bp\|bd #<CR>
-
-" Spell check ==============================================
-set spelllang=en
-nnoremap <leader>ss :setlocal spell!<CR>
-nnoremap <leader>sf z=1<CR><CR>
-" [s or ]s go to next/previous bad word
-" z=  - list of suggestions
-" zg - add word to good word list
-" zug - remove word from good word list
-" zw - add word to bad word list
-" zuw - remove word from bad word list
-set spellsuggest+=10 " make the spell suggestions window 10 lines high not whole screen
 
 
 " ========== Set leader and local leader ===================
@@ -353,12 +357,6 @@ nnoremap <silent> <leader>ak :ALEPrevious<cr>
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-augroup loadSyntaxHighlighting
-    autocmd!
-    autocmd BufEnter *.vim call CocActionAsync('deactivateExtension', 'coc-tag') 
-    autocmd BufEnter *.vimrc echom "coc-tag should be activated"
-augroup END
-
 nmap <leader>x <Plug>(coc-definition)
 " renames across all files
 nmap <leader>cn <Plug>(coc-rename)
@@ -503,19 +501,29 @@ function! CustomColors() abort
 
 endfunction
 
-" Put this in .vimrc not ftplugin/ because these colors should be global for consistency
+" Spell check ==============================================
+" [s or ]s go to next/previous bad word
+" z=  - list of suggestions
+" zg - add word to good word list
+" zug - remove word from good word list
+" zw - add word to bad word list
+" zuw - remove word from bad word list
+set spelllang=en_us
+set spellfile=$HOME/.dotfiles/vim/spell/en.utf-8.add
+set spellsuggest+=10 " make the spell suggestions window 10 lines high not whole screen
+
+nnoremap <leader>ss :setlocal spell!<CR>
+nnoremap zf z=1<CR><CR>
+
 function! SpellCheckHighlights() abort
 	hi clear SpellBad
-	hi SpellBad cterm=underline ctermfg=yellow
-
 	hi clear SpellCap
-	hi SpellCap cterm=underline ctermfg=red
-
 	hi clear SpellLocal
-	hi SpellLocal ctermfg=blue
-
 	hi clear SpellRare
-	hi SpellRare ctermfg=gray
+	hi SpellBad cterm=underline ctermfg=yellow
+	hi SpellCap cterm=underline ctermfg=red
+	hi SpellLocal cterm=underline ctermfg=blue
+	hi SpellRare cterm=underline ctermfg=gray
 endfunction
 
 augroup MyCustomColorsGroup
@@ -612,6 +620,12 @@ Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-unimpaired'
 
 " https://vimawesome.com/plugin/surround-vim
+" ds<text object><",{,(,etc> → delete surround
+" cs for change surround,
+" ys for add surround
+" to include/exclude space use open or closing char. `(` vs `)` or `[` vs `]`
+" for visual mode just use `V`
+" the readme on the get repo is useful
 Plug 'tpope/vim-surround'
 
 " repeat commands from plugin mappings
@@ -622,17 +636,17 @@ Plug 'chrisbra/csv.vim'
 
 " vinegar
 Plug 'tpope/vim-vinegar'
-nnoremap <Leader>n :Lexplore<CR>
+nmap <Leader>n -
 let g:netrw_winsize = -28               " absolute width of netrw window
 let g:netrw_banner = 0                  " do not display info on the top of window
 let g:netrw_liststyle = 3               " tree-view
 let g:netrw_sort_sequence = '[\/]$,*'   " sort is affecting only: directories on the top, files below
-let g:netrw_browse_split = 4            " use the previous window to open file "
+" let g:netrw_browse_split = 4            " use the previous window to open file "
 
 
 " nerdtree
-" Plug 'scrooloose/nerdtree'
-" nnoremap <Leader>n :NERDTreeToggle<CR>
+Plug 'scrooloose/nerdtree'
+nnoremap <Leader>n :NERDTreeToggle<CR>
 " let g:nerdtree_tabs_autoclose=1
 " let NERDTreeAutoDeleteBuffer = 1 " Automatically delete the buffer of the file you just deleted
 " let g:nerdtree_tabs_open_on_gui_startup=2 " 2 - open nerdtree only if directory was given as startup argument
@@ -658,7 +672,7 @@ let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#fugitiveline#enabled = 1
 let g:airline#extensions#gutentags#enabled = 1
 let g:airline#extensions#searchcount#enabled = 0
-let g:airline#extensions#tagbar#enabled = 0 " override in ftplugin/<filetype>.vim
+let g:airline#extensions#tagbar#enabled = 0
 let g:airline#extensions#tagbar#enabled = 1
 let g:airline#extensions#tagbar#flags = 'f'
 let g:airline#extensions#virtualenv#enabled = 1
@@ -713,7 +727,8 @@ let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_flow = 1
 
 " json syntax
-Plug 'kevinoid/vim-jsonc'
+" jsonc = json with comments
+" Plug 'kevinoid/vim-jsonc'
 
 " format .JSON files by using the jq cli tool
 com! JQ %!jq
