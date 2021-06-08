@@ -182,3 +182,8 @@ bindkey "^l" forward-word
 bindkey "^p" push-line-or-edit
 
 . "$(brew --prefix)/etc/profile.d/z.sh"
+
+# >>>> Vagrant command completion (start)
+fpath=(/opt/vagrant/embedded/gems/2.2.16/gems/vagrant-2.2.16/contrib/zsh $fpath)
+compinit
+# <<<<  Vagrant command completion (end)

@@ -1,3 +1,5 @@
+" :UltiSnipsEdit command opens a private snippet definition file for the current filetype.
+
 setlocal smarttab
 setlocal softtabstop=4
 setlocal noautoindent 			" if previous line is indented, don't make new line also indented
@@ -18,7 +20,7 @@ highlight ColorColumn ctermbg=red ctermfg=red guifg=red guibg=darkcyan
 " setlocal formatoptions+=t
 
 setlocal spell
-setlocal spelllang=en_us
+setlocal spelllang=en_us,en_gb
 setlocal spellfile=$HOME/.dotfiles/vim/spell/en.utf-8.add
 
 " show tab chars, EOL spaces, but why not $?
@@ -27,6 +29,9 @@ setlocal list
 " don't insert 2 spaces after a '.','?' or '!'
 setlocal nojoinspaces
 
+" show text normally. no folding
+setlocal conceallevel=0
+let g:indentLine_conceallevel = 0
 
 " CoC extensions
 " CocList extensions
@@ -36,18 +41,11 @@ setlocal nojoinspaces
 " - means extension is disabled
 augroup toggleCocExtensions
     autocmd!
-    autocmd BufEnter *.md call CocActionAsync('deactivateExtension', 'coc-tag')
-    autocmd BufEnter *.md call CocActionAsync('deactivateExtension', 'coc-syntax')
-    autocmd BufLeave *.md call CocActionAsync('activeExtension', 'coc-tag')
-    autocmd BufLeave *.md call CocActionAsync('activeExtension', 'coc-syntax')
+    autocmd BufWinEnter *.md let b:coc_suggest_disable = 1
+    autocmd BufLeave *.md let b:coc_suggest_disable = 0
 augroup END
 
-"]s [s next previos spelling error
-" zg - add word to list of good words
-" zug - undo zg
-" zw - make the word a bad word
-" zuw - undo zw
-" z= - suggest corrections
+
 " spellr - repeat the last z= correction for all matches of the replaced word in the current window
 " <C-X> in insert mode - find suggestions for a bad word. use <C-P> or <C-N> to make a choice
 
@@ -58,19 +56,12 @@ augroup END
 nnoremap <leader>fp vipgw
 vnoremap <leader>fp gw
 
-" show text normally. no folding
-setlocal conceallevel=0
+" call plug#begin('~/.vim/plugged')
+"     echom "Yes - each time I switch to a buffer these plugins will be loaded. Will they be unloaded?"
+" call plug#end()
 
 let b:ale_fixers = ['remove_trailing_lines', 'trim_whitespace_not_two']
 let b:ale_warn_about_trailing_whitespace = 1
-
-
-" reveal concealed text when cursor is on it
-" setlocal concealcursor-=n
-
-
-" footnotes when writing pelican blog posts
-inoremap [r [ref][/ref]<ESC>5hi
 
 " select some text and make it a hyperlink
 vnoremap ml "lxa[(F["lpf("lp
@@ -78,20 +69,20 @@ vnoremap ml "lxa[(F["lpf("lp
 " make text bold
 nnoremap <buffer> <leader>mb ebi**<ESC>ea**<space><ESC>
 vmap <buffer> <leader>mb c**<ESC>gcP
+
 " make text italic
 nnoremap <buffer> <leader>mi ebi*<ESC>ea*<ESC>
 vmap <buffer> <leader>mi c__<ESC>gcP
+
 " make code block
 nnoremap <buffer> <leader>mc ebi`<ESC>ea`<ESC>
 vmap <buffer> <leader>mc c``<ESC>gcP
-
 
 " Stop telling me underscores are errors:
 syn match markdownError "\w\@<=\w\@="
 
 " Rainbow parenthesis turned off
 let g:rainbow_active = 0
-
 
 " keep at bootom of file - reload vimrc to make syntax highlighting work
 " syntax sync fromstart

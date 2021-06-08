@@ -23,10 +23,16 @@ set undolevels=100000          " how many undo steps to save in a file
 
 filetype plugin indent on     " detection on, plugin on, indent on. To see the current status, type: :filetype
 syntax enable                " syntax highlighting
-augroup loadSyntaxHighlighting
+
+augroup forceFiletypeDetection
     autocmd!
-    autocmd BufEnter *.vimrc set filetype=vim
-    autocmd BufEnter *.vim set filetype=vim
+    " autocmd BufEnter *.vimrc set filetype=vim
+    " autocmd BufEnter *.vim set filetype=vim
+    " autocmd BufReadPre *.py,*.vim,*.vimrc filetype detect
+    autocmd BufEnter * filetype detect
+    " autocmd BufRead * filetype detect
+    " autocmd BufReadPre * filetype detect " didn't work for shell scripts
+    " autocmd BufReadPost * filetype detect " doesn't work most of the time "
 augroup END
 
 set noesckeys			            " might break stuff, should make <ESC> delay smaller
@@ -717,6 +723,11 @@ highlight BadWhitespace ctermbg=red guibg=darkred
 
 " polyglot is a syntax highligher for millions of languages
 Plug 'sheerun/vim-polyglot'
+
+" maybe this is screwing up filetype detection?"
+" let g:polyglot_disabled = ['ftdetect']
+
+
 let g:polyglot_disabled = ['latex', 'html']
 let g:python_highlight_all = 1
 let g:graphql_javascript_tags = []
