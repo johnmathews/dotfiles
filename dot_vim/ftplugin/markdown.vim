@@ -66,6 +66,11 @@ let b:ale_warn_about_trailing_whitespace = 1
 " select some text and make it a hyperlink
 vnoremap ml "lxa[(F["lpf("lp
 
+
+" make  row Tile Case
+nnoremap <buffer> <leader>mt :s/\<./\u&/g<bar>:nohlsearch<bar><esc><C-O>
+vnoremap <buffer> <leader>mt :s/\<./\u&/g<bar>:nohlsearch<bar><esc><C-O>
+
 " make text bold
 nnoremap <buffer> <leader>mb ebi**<ESC>ea**<space><ESC>
 vmap <buffer> <leader>mb c**<ESC>gcP

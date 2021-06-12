@@ -233,6 +233,12 @@ nnoremap <leader>O O<ESC>j
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'justinmk/vim-sneak'
+map f <Plug>Sneak_f
+map F <Plug>Sneak_F
+map t <Plug>Sneak_t
+map T <Plug>Sneak_T
+
 " https://www.barbarianmeetscoding.com/blog/exploring-vim-plugins-improve-and-extend-your-text-objects-with-targets-vim
 Plug 'wellle/targets.vim'
 

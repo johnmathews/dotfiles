@@ -1,5 +1,6 @@
-
 ### Blog meta 
+
+# helper function
 global !p
 import re
 import unidecode
@@ -9,6 +10,7 @@ def slugify(text):
     return re.sub(r'\W+', '-', text)
 endglobal
 
+# article meta
 snippet meta "Blog post metadata and front matter" b
 Title: $1
 Slug: `!p snip.rv = slugify(t[1])`
@@ -18,9 +20,10 @@ if not snip.c:
 Category: $2
 Tags: $3
 
-text-starts-here
+$4
 endsnippet
 
+# snippet meta
 snippet snip "a tweet or a snippet" b
 Title: $1
 Slug: `!p snip.rv = slugify(t[1])`
@@ -28,37 +31,83 @@ Date: `!p from datetime import datetime
 if not snip.c:
     snip.rv=datetime.now().strftime("%Y-%m-%d %H:%M:%S%z")`
 Category: snippet
-Tags: $3
+Tags: $2
 
-## Title
-
-content
+## $3
 endsnippet
-
 
 ### ABBREVIATIONS ###
 
-snippet "^- " "markdown unordered list" rbA
--   
+# download a file
+snippet dl "downloadable file"
+[$1]({attach}/documents/$2)$3
 endsnippet
 
-snippet "^[0-9]. " "markdown ordered list" rbA
-1.  
+# download a big (100mb+) file
+snippet dlb "downloadable big file"
+[$1](https://storage.googleapis.com/johnmathews.eu/$2)$3
 endsnippet
 
+# embed an image
+snippet im "embed an image"
+![$1]({static}/images/$2){: .image-process-article-inline-image loading='lazy'}
+endsnippet
+
+# embed a clickable image
+snippet cim "embed a clickable image"
+[![$1]({static}/images/$2){: .image-process-article-inline-image loading='lazy'}]({static}/images/`t[2]`)$4
+endsnippet
+
+# superscript
+snippet sup "superscript"
+$^{$1}$ $2
+endsnippet
+
+# add a comment in markdown (only)
 snippet com "markdown comment"
 [comment]: # ($1)$2
 endsnippet
 
+# embed reponsive youtube movie
+snippet youtube "embed youtube movie"
+<div class="relative mt-3" style="padding-top: 56.25%">
+  <iframe
+    class="absolute inset-0 w-full h-full"
+    src="$1"
+    frameborder="0"
+    allow="autoplay; encrypted-media" allowfullscreen >
+  </iframe>
+</div>$2
+endsnippet
+
+# highlight
 snippet mark "highlight text"
 <mark>$1</mark> $2
 endsnippet
 
-snippet foot "insert footnote"
+# footnotes
+snippet ref "insert footnote"
 [ref]$1[/ref] $2
 endsnippet
 
+# lists
+snippet "^- " "markdown unordered list" rbA
+-   
+endsnippet
+
+snippet "^[0-9]\. " "markdown ordered list" rbA
+1.  
+endsnippet
+
 ### CATEGORIES ###
+
+snippet tech "all technical categories"
+Technical/Web,Developer Tools,Web,Other,Cryptocurrencies
+endsnippet
+
+snippet non "all non-technical categories"
+Non-technical/Other,Social,Learning,Journal,Entrepreneurship
+endsnippet
 
 snippet Technical/Web "blog category"
 Technical/Web
@@ -99,4 +148,3 @@ endsnippet
 snippet Non-technical/Entrepreneurship "blog category"
 Non-technical/Entrepreneurship
 endsnippet
-
