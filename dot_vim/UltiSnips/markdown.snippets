@@ -33,10 +33,36 @@ if not snip.c:
 Category: snippet
 Tags: $2
 
-## $3
+$3
 endsnippet
 
+snippet date "insert date meta row"
+Date: `!p from datetime import datetime
+if not snip.c:
+    snip.rv=datetime.now().strftime("%Y-%m-%d %H:%M:%S%z")`
+endsnippet
+
+
+# snippet meta
+snippet nbdata "meta data for notebook conversion" b
+Title: $1
+Slug: `!p snip.rv = slugify(t[1])`
+Date: `!p from datetime import datetime
+if not snip.c:
+    snip.rv=datetime.now().strftime("%Y-%m-%d %H:%M:%S%z")`
+Category: Technical/Data
+Tags: $2
+Summary:
+
+
+[comment]: # (The summary needs to be blank and there needs to be 2 blank lines below, I think.)
+endsnippet
 ### ABBREVIATIONS ###
+
+# insert a link
+snippet li "insert a link"
+[$1]($2)$3
+endsnippet
 
 # download a file
 snippet dl "downloadable file"
@@ -59,8 +85,8 @@ snippet cim "embed a clickable image"
 endsnippet
 
 # superscript
-snippet sup "superscript"
-$^{$1}$ $2
+snippet sup "superscript" i
+$^{$1}$$2
 endsnippet
 
 # add a comment in markdown (only)
@@ -73,7 +99,7 @@ snippet youtube "embed youtube movie"
 <div class="relative mt-3" style="padding-top: 56.25%">
   <iframe
     class="absolute inset-0 w-full h-full"
-    src="$1"
+    src="https://youtube.com/embed/$1"
     frameborder="0"
     allow="autoplay; encrypted-media" allowfullscreen >
   </iframe>
@@ -81,12 +107,12 @@ snippet youtube "embed youtube movie"
 endsnippet
 
 # highlight
-snippet mark "highlight text"
-<mark>$1</mark> $2
+snippet mark "highlight text" i
+<mark>$1</mark>$2
 endsnippet
 
 # footnotes
-snippet ref "insert footnote"
+snippet ref "insert footnote" i
 [ref]$1[/ref] $2
 endsnippet
 
@@ -101,11 +127,11 @@ endsnippet
 
 ### CATEGORIES ###
 
-snippet tech "all technical categories"
-Technical/Web,Developer Tools,Web,Other,Cryptocurrencies
+snippet tech "all technical categories" i
+Technical/Web,Developer Tools,Data,Web,Other,Cryptocurrencies,Engineering
 endsnippet
 
-snippet non "all non-technical categories"
+snippet non "all non-technical categories" i
 Non-technical/Other,Social,Learning,Journal,Entrepreneurship
 endsnippet
 

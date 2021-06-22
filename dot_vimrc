@@ -234,10 +234,14 @@ nnoremap <leader>O O<ESC>j
 call plug#begin('~/.vim/plugged')
 
 Plug 'justinmk/vim-sneak'
+" rebinding s and S removes sneaks double char search "
+let g:sneak#s_next = 1
 map f <Plug>Sneak_f
 map F <Plug>Sneak_F
 map t <Plug>Sneak_t
 map T <Plug>Sneak_T
+map s <Plug>Sneak_;
+map S <Plug>Sneak_,
 
 " https://www.barbarianmeetscoding.com/blog/exploring-vim-plugins-improve-and-extend-your-text-objects-with-targets-vim
 Plug 'wellle/targets.vim'
@@ -728,7 +732,9 @@ Plug 'vim-scripts/pylint.vim'
 highlight BadWhitespace ctermbg=red guibg=darkred
 
 " polyglot is a syntax highligher for millions of languages
-Plug 'sheerun/vim-polyglot'
+" polyglot seems to cause a lot of problems with html/jinja/django and
+" yaml/ansibleyaml filetype detection. can't I just 86 it?
+" Plug 'sheerun/vim-polyglot'
 
 " maybe this is screwing up filetype detection?"
 " let g:polyglot_disabled = ['ftdetect']
