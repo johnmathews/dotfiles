@@ -96,8 +96,8 @@ source ~/.aliases
 # --hidden: Search hidden files and folders
 # --follow: Follow symlinks
 # --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
-# export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -f -g ""'
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
+# export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -f -g ""'
 
 # Solarized colors
 export FZF_DEFAULT_OPTS='

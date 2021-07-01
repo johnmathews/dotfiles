@@ -1,3 +1,8 @@
+# link to another article
+snippet la "link to another article"
+[$1]({filename}/articles/$2.md)$3
+endsnippet
+
 ### Blog meta 
 
 # helper function
@@ -64,6 +69,11 @@ snippet li "insert a link"
 [$1]($2)$3
 endsnippet
 
+# link to bucket
+snippet bu "download link for a file in gcp bucket"
+[archive](https://storage.googleapis.com/johnmathews.eu/movies/$2.mp4)$3
+endsnippet
+
 # download a file
 snippet dl "downloadable file"
 [$1]({attach}/documents/$2)$3
@@ -80,7 +90,7 @@ snippet im "embed an image"
 endsnippet
 
 # embed a clickable image
-snippet cim "embed a clickable image"
+snippet ci "embed a clickable image"
 [![$1]({static}/images/$2){: .image-process-article-inline-image loading='lazy'}]({static}/images/`t[2]`)$4
 endsnippet
 
@@ -89,13 +99,23 @@ snippet sup "superscript" i
 $^{$1}$$2
 endsnippet
 
+# proverbs
+snippet pro "superscript followed by highlighted text" i
+$^{$1}$<mark>$2</mark>$3
+endsnippet
+
+# highlight
+snippet mark "highlight text" i
+<mark>$1</mark>$2
+endsnippet
+
 # add a comment in markdown (only)
 snippet com "markdown comment"
 [comment]: # ($1)$2
 endsnippet
 
 # embed reponsive youtube movie
-snippet youtube "embed youtube movie"
+snippet yt "embed youtube movie"
 <div class="relative mt-3" style="padding-top: 56.25%">
   <iframe
     class="absolute inset-0 w-full h-full"
@@ -104,11 +124,6 @@ snippet youtube "embed youtube movie"
     allow="autoplay; encrypted-media" allowfullscreen >
   </iframe>
 </div>$2
-endsnippet
-
-# highlight
-snippet mark "highlight text" i
-<mark>$1</mark>$2
 endsnippet
 
 # footnotes
@@ -127,11 +142,11 @@ endsnippet
 
 ### CATEGORIES ###
 
-snippet tech "all technical categories" i
-Technical/Web,Developer Tools,Data,Web,Other,Cryptocurrencies,Engineering
+snippet "(?i)tech" "all technical categories" ir
+Technical/Developer Tools,Data,Web,Other,Cryptocurrencies,Engineering
 endsnippet
 
-snippet non "all non-technical categories" i
+snippet "(?i)non" "all non-technical categories" ir
 Non-technical/Other,Social,Learning,Journal,Entrepreneurship
 endsnippet
 

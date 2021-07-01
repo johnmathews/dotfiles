@@ -23,8 +23,8 @@ setlocal spell
 setlocal spelllang=en_us,en_gb
 setlocal spellfile=$HOME/.dotfiles/vim/spell/en.utf-8.add
 
-" show tab chars, EOL spaces, but why not $?
-setlocal list
+" toggle visibility of tab chars, EOL chars, CR chars
+setlocal nolist
 
 " don't insert 2 spaces after a '.','?' or '!'
 setlocal nojoinspaces
@@ -32,6 +32,9 @@ setlocal nojoinspaces
 " show text normally. no folding
 setlocal conceallevel=0
 let g:indentLine_conceallevel = 0
+
+call SpellCheckHighlights()
+
 
 " CoC extensions
 " CocList extensions
@@ -53,7 +56,9 @@ augroup END
 " nnoremap <leader>ff :1z=<CR>
 
 " format paragraph
-nnoremap <leader>fp vipgw
+" command! FormatParagraph normal! vipgw`^
+command! FormatParagraph normal! gwip
+nnoremap <leader>fp :FormatParagraph<CR>
 vnoremap <leader>fp gw
 
 " call plug#begin('~/.vim/plugged')

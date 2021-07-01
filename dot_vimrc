@@ -1,9 +1,13 @@
 " to make a print statement, use :echom "blah"' then :messages
+
 " :UltiSnipsEdit command opens a private snippet definition file for the current filetype.
+
 " :CocInfo is good for testing status
 " :CocConfig - opens the main config file
 " :CocList extensions
 " :CocUninstall <coc-highlight>
+ 
+" :scriptnames to see a list of all scripts that have been sources, in order https://vi.stackexchange.com/questions/8824/in-what-order-does-vim-read-ftplugin-files-syntax-files-and-the-vimrc-when-th
 
 " ========== Global ==========
 set nocompatible              " always put it at the top of .vimrc. effects mappings, undo, etc.
@@ -21,22 +25,19 @@ set undofile                  " Maintain undo history between sessions
 set undodir=~/.vim/undo       " put all the undo files in this dir
 set undolevels=100000          " how many undo steps to save in a file
 
+" https://vi.stackexchange.com/questions/2162/why-doesnt-the-backspace-key-work-in-insert-mode
+set backspace=indent,eol,start
+
 filetype plugin indent on     " detection on, plugin on, indent on. To see the current status, type: :filetype
 syntax enable                " syntax highlighting
 
 augroup forceFiletypeDetection
     autocmd!
-    " autocmd BufEnter *.vimrc set filetype=vim
-    " autocmd BufEnter *.vim set filetype=vim
-    " autocmd BufReadPre *.py,*.vim,*.vimrc filetype detect
     autocmd BufEnter * filetype detect
-    " autocmd BufRead * filetype detect
-    " autocmd BufReadPre * filetype detect " didn't work for shell scripts
-    " autocmd BufReadPost * filetype detect " doesn't work most of the time "
 augroup END
 
-set noesckeys			            " might break stuff, should make <ESC> delay smaller
-set timeoutlen=500            " timeoutlen is used for mapping delays
+"set noesckeys		       " might break stuff, should make <ESC> delay smaller
+set timeoutlen=500             " timeoutlen is used for mapping delays
 set ttimeoutlen=100            " ttimeoutlen is used for key code delays
 
 set mouse=a                   " Enable mouse for scrolling and resizing.
@@ -66,16 +67,18 @@ let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
 command! -nargs=1 Ms call s:NewSnippet(<q-args>)
 command! -nargs=1 Mp call s:NewPost(<q-args>)
 
-function! s:NewSnippet(fp)
-    echom a:fp
-    execute "e " . "~/projects/websites/blog/content/articles/snippets/" . a:fp . ".md"
+function! s:NewSnippet(fn)
+    echom a:fn
+    execute "e " . "~/projects/websites/blog/content/articles/snippets/" . a:fn . ".md"
 endfunction
 
-function! s:NewPost(fp)
-    echom a:fp
-    execute "e " . "~/projects/websites/blog/content/articles/" . a:fp . ".md"
+function! s:NewPost(fn)
+    echom a:fn
+    execute "e " . "~/projects/websites/blog/content/articles/" . a:fn . ".md"
 endfunction
 
+" move cursor to beginning of previous word in Insert mode
+" inoremap <C-h> <C-O>b
 " delete words without leaving insert mode
 inoremap <C-e> <C-o>de
 " undo word by word instead of by entering/leaving insert mode
@@ -336,6 +339,7 @@ Plug 'honza/vim-snippets'
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+let g:UltiSnipsListSnippets = "<c-s>"
 
 " let g:UltiSnipsExpandTrigger="<tab>"
 " let g:UltiSnipsJumpForwardTrigger="<c-b>"
