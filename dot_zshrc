@@ -122,7 +122,8 @@ if [ "$(uname)" = "Darwin" ]; then
     # this makes the z command work
     . $(brew --prefix)/etc/profile.d/z.sh
     # broot cli tool - see a big dir on one screen
-    source /Users/john/Library/Preferences/org.dystroy.broot/launcher/bash/br
+    # source /Users/$USER/Library/Preferences/org.dystroy.broot/launcher/bash/br
+    source /Users/$USER/.config/broot/launcher/bash/br
     # virtualenv wrapper for pyenv ?
     source /usr/local/bin/virtualenvwrapper_lazy.sh
 
@@ -138,8 +139,8 @@ if [ "$(uname)" = "Darwin" ]; then
     source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
 
     # AZURE completion - needed cos there isn't a plugin
-    autoload bashcompinit && bashcompinit
-    source /usr/local/Cellar/azure-cli/2.22.1/etc/bash_completion.d/az
+    # autoload bashcompinit && bashcompinit
+    # source /usr/local/Cellar/azure-cli/2.22.1/etc/bash_completion.d/az
     # source /usr/local/Cellar/azure-cli/2.22.1/etc/bash_completion.d/
 
     # create virtual environments using pyenv rather than virtualenv.
@@ -193,3 +194,4 @@ bindkey "^p" push-line-or-edit
 fpath=(/opt/vagrant/embedded/gems/2.2.16/gems/vagrant-2.2.16/contrib/zsh $fpath)
 compinit
 # <<<<  Vagrant command completion (end)
+

@@ -4,7 +4,7 @@
 # should be set in this file..
 #
 # sourced on all invocations of the shell, unless the -f option is set.
-# should contain commands to set the command search path, plus other important environment variables.
+# should contain commands to set the command search pathu plus other imcurl https://sh.rustup.rs -sSf | shcurl https://sh.rustup.rs -sSf | ssportant environment variables.
 # should not contain commands that produce output or assume the shell is attached to a tty.
  
 # to print each PATH section on its own line: tr ':' '\n' <<< "$PATH" or `echo $PATH | tr ':' '\n'`
@@ -81,7 +81,7 @@ export BAT_THEME="ansi-dark"
 export TERM="xterm-256color"
 
 # virtualenvwrapper
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
 export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Devel

@@ -50,3 +50,6 @@ source "$HOME/.cargo/env"
 . "$(brew --prefix)/etc/profile.d/z.sh"
 
 echo 'end ~/.bashrc'
+
+source /Users/jm943l/.config/broot/launcher/bash/br
+. "$HOME/.cargo/env"
