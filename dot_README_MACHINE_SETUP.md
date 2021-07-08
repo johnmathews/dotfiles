@@ -30,3 +30,13 @@ Additional items:
 `brew install pyenv-virtualenv`
 `brew install ripgrep`
 `brew install ack`
+`brew install ansible`
+`brew install tidwall/jj/jj`
+`brew install jq`
+`brew install ansible`
+`brew install diff-so-fancy`
+
+
+Vim needs the following dirs for permanent undo and for adding words to spelling dictionary
+`mkdir ~/.vim/undo`
+`mkdir ~/.vim/spell`

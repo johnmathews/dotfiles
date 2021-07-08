@@ -21,7 +21,6 @@ highlight ColorColumn ctermbg=red ctermfg=red guifg=red guibg=darkcyan
 
 setlocal spell
 setlocal spelllang=en_us,en_gb
-setlocal spellfile=$HOME/.dotfiles/vim/spell/en.utf-8.add
 
 " toggle visibility of tab chars, EOL chars, CR chars
 setlocal nolist
