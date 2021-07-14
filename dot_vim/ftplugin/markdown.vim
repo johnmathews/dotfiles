@@ -21,7 +21,6 @@ highlight ColorColumn ctermbg=red ctermfg=red guifg=red guibg=darkcyan
 
 setlocal spell
 setlocal spelllang=en_us,en_gb
-setlocal spellfile=$HOME/.dotfiles/vim/spell/en.utf-8.add
 
 " toggle visibility of tab chars, EOL chars, CR chars
 setlocal nolist
@@ -65,7 +64,7 @@ vnoremap <leader>fp gw
 "     echom "Yes - each time I switch to a buffer these plugins will be loaded. Will they be unloaded?"
 " call plug#end()
 
-let b:ale_fixers = ['remove_trailing_lines', 'trim_whitespace_not_two']
+let b:ale_fixers = ['remove_trailing_lines', 'trim_whitespace_except_double']
 let b:ale_warn_about_trailing_whitespace = 1
 
 " select some text and make it a hyperlink

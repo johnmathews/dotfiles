@@ -36,6 +36,9 @@ augroup forceFiletypeDetection
     autocmd BufEnter * filetype detect
 augroup END
 
+" bigquery scripts should have sql syntax
+autocmd BufEnter,BufNew *.bq setl filetype=sql
+
 "set noesckeys		       " might break stuff, should make <ESC> delay smaller
 set timeoutlen=500             " timeoutlen is used for mapping delays
 set ttimeoutlen=100            " ttimeoutlen is used for key code delays
@@ -529,7 +532,7 @@ endfunction
 " zw - add word to bad word list
 " zuw - remove word from bad word list
 set spelllang=en_us
-set spellfile=$HOME/.dotfiles/vim/spell/en.utf-8.add
+set spellfile=$HOME/.vim/spell/en.utf-8.add
 set spellsuggest+=10 " make the spell suggestions window 10 lines high not whole screen
 
 nnoremap <leader>ss :setlocal spell!<CR>
