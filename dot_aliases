@@ -37,7 +37,11 @@ alias solitaire="emacs -q --no-splash -f solitaire"
 alias wtf="wtfutil"
 
 # git 
+# omz git plugin is just a big list of plugins
+# gtr seems to be same as (omz) gc
 alias gtr="git tr"
+# gr checks if a pull is required, if the remote has changes that the local doesn't.
+alias gr="git remote -v update"
 
 # zsh colors
 alias zshc='for i in {0..255}; do print -Pn "%K{$i} %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%8)):#7}:+$"\n"}; done'
@@ -221,9 +225,6 @@ alias clock='watch -n1 "date '+%D%n%T'|figlet -k"'
 alias pg_start="launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
 alias pg_stop="launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
 
-# Git
-# see .oh-my-zsh git plugin, which is just a big list of aliases
-#
 
 # TODO
 alias todo='grep -rHn "TODO" --exclude="*.{.pyc,.swp,}" --exclude-dir={.git,htmlcov,}'
