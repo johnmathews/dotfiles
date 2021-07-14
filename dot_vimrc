@@ -36,6 +36,9 @@ augroup forceFiletypeDetection
     autocmd BufEnter * filetype detect
 augroup END
 
+" bigquery scripts should have sql syntax
+autocmd BufEnter,BufNew *.bq setl filetype=sql
+
 "set noesckeys		       " might break stuff, should make <ESC> delay smaller
 set timeoutlen=500             " timeoutlen is used for mapping delays
 set ttimeoutlen=100            " ttimeoutlen is used for key code delays

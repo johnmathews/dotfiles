@@ -64,7 +64,7 @@ vnoremap <leader>fp gw
 "     echom "Yes - each time I switch to a buffer these plugins will be loaded. Will they be unloaded?"
 " call plug#end()
 
-let b:ale_fixers = ['remove_trailing_lines', 'trim_whitespace_not_two']
+let b:ale_fixers = ['remove_trailing_lines', 'trim_whitespace_except_double']
 let b:ale_warn_about_trailing_whitespace = 1
 
 " select some text and make it a hyperlink
