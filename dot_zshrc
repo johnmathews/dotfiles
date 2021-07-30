@@ -22,9 +22,6 @@
 # ctrl-E - end of line
 # ctrl-W - delete previous word
 
-
-# ~/.p10k.zsh -> location of p10k settings
-
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block, everything else may go below.
@@ -55,21 +52,6 @@ plugins=(
     vi-mode # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/vi-mode
     # zsh-vi-mode # https://github.com/jeffreytse/zsh-vi-mode
 )
-
-# * some p10k features are not set here but in .p10k.zsh
-# POWERLEVEL9K_MODE='nerdfont-complete'
-# POWERLEVEL9K_TIME_FORMAT='%D{%H:%M:%S}'
-# POWERLEVEL9K_TIME_ICON=""
-# POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(time virtualenv context dir rbenv vcs vi_mode)
-# POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs history)
-# POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-# POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
-# POWERLEVEL9K_VI_INSERT_MODE_STRING=''
-# POWERLEVEL9K_VI_COMMAND_MODE_STRING='NORMAL'
-# POWERLEVEL9K_CONTEXT_TEMPLATE="%n"
-# POWERLEVEL9K_DIR_PATH_ABSOLUTE=false
-# POWERLEVEL9K_COLOR_SCHEME='dark'
-# POWERLEVEL9K_TIME_BACKGROUND='magenta1'
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 DEFAULT_USER=john
@@ -194,4 +176,3 @@ bindkey "^p" push-line-or-edit
 fpath=(/opt/vagrant/embedded/gems/2.2.16/gems/vagrant-2.2.16/contrib/zsh $fpath)
 compinit
 # <<<<  Vagrant command completion (end)
-

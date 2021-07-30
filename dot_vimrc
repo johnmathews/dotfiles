@@ -31,10 +31,10 @@ set backspace=indent,eol,start
 filetype plugin indent on     " detection on, plugin on, indent on. To see the current status, type: :filetype
 syntax enable                " syntax highlighting
 
-augroup forceFiletypeDetection
-    autocmd!
-    autocmd BufEnter * filetype detect
-augroup END
+" augroup forceFiletypeDetection
+"     autocmd!
+"     autocmd BufEnter * filetype detect
+" augroup END
 
 " bigquery scripts should have sql syntax
 autocmd BufEnter,BufNew *.bq setl filetype=sql
@@ -240,12 +240,13 @@ nnoremap <leader>O O<ESC>j
 call plug#begin('~/.vim/plugged')
 
 Plug 'justinmk/vim-sneak'
-" rebinding s and S removes sneaks double char search "
 let g:sneak#s_next = 1
 map f <Plug>Sneak_f
 map F <Plug>Sneak_F
 map t <Plug>Sneak_t
 map T <Plug>Sneak_T
+" rebinding s and S removes sneaks double char search "
+" what is the benefit of this? why did you do it?
 map s <Plug>Sneak_;
 map S <Plug>Sneak_,
 
@@ -582,15 +583,15 @@ Plug 'junegunn/fzf.vim' " needed for previews
 nnoremap <silent> <Leader>e :Files<CR>
 nnoremap <silent> <Leader>r :Buffers<CR>
 nnoremap <silent> <Leader>t :Tags<CR>
-nnoremap <silent> <Leader>ff :Rg<CR>
-" nnoremap <silent> <Leader>ff :Ag<CR>
+nnoremap <silent> <Leader>f :Rg<CR>
+" nnoremap <silent> <Leader>f :Ag<CR>
 nnoremap <silent> <Leader>la :BLines<CR>
 nnoremap <silent> <Leader>ll :Lines<CR>
 nnoremap <silent> <Leader>' :Marks<CR>
-nnoremap <silent> <Leader>fh :Helptags<CR>
-nnoremap <silent> <Leader>fs :Snippets<CR>
-nnoremap <silent> <Leader>fc :Commits<CR>
-nnoremap <silent> <Leader>fbc :BCommits<CR>
+nnoremap <silent> <Leader>gh :Helptags<CR>
+nnoremap <silent> <Leader>gs :Snippets<CR>
+nnoremap <silent> <Leader>gc :Commits<CR>
+nnoremap <silent> <Leader>gbc :BCommits<CR>
 nnoremap <silent> <Leader>hh :History<CR>
 nnoremap <silent> <Leader>h: :History:<CR>
 nnoremap <silent> <Leader>h/ :History/<CR>
