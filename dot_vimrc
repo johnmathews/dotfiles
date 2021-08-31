@@ -84,8 +84,9 @@ endfunction
 " inoremap <C-h> <C-O>b
 " delete words without leaving insert mode
 inoremap <C-e> <C-o>de
+
 " undo word by word instead of by entering/leaving insert mode
-inoremap <space> <C-G>u<space>
+inoremap <space> <C-O>u<space>
 
 " show how many times a search result occurs in current buffer, and index of current match
 set shortmess-=S
@@ -121,7 +122,8 @@ highlight Search cterm=none ctermbg=green ctermfg=black
 nnoremap \ /
 nnoremap \\ :nohlsearch<CR>
 nnoremap // :nohlsearch<CR>
-nnoremap # #``
+" nnoremap # #``
+nnoremap # <NOP>
 nnoremap * *``
 
 
@@ -473,6 +475,9 @@ Plug 'yggdroot/indentline'
 Plug 'tpope/vim-fugitive'
 
 " Marks
+" https://github.com/kshenoy/vim-signature
+" m<Space> Delete all marks from the current buffer
+" m. If no mark on line, place the next available mark. Otherwise remove (first) existing mark.
 Plug 'kshenoy/vim-signature'
 
 " Latex Vimtex
@@ -773,6 +778,10 @@ let g:closetag_filenames = "*.html, *.xhtml, *.phtml"
 
 " vagrant
 Plug 'hashivim/vim-vagrant'
+
+" sql
+Plug 'vim-scripts/SQLUtilities'
+Plug 'shmup/vim-sql-syntax'
 
 call plug#end()
 
