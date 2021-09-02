@@ -70,19 +70,20 @@ snippet li "insert a link"
 [$1]($2)$3
 endsnippet
 
-# link to bucket
-snippet bu "download link for a file in gcp bucket"
-[archive](https://storage.googleapis.com/johnmathews-eu/movies/$2.mp4)$3
-endsnippet
-
 # download a file
 snippet dl "downloadable file"
 [$1]({attach}/documents/$2)$3
 endsnippet
 
 # download a big (100mb+) file
+# you don't need to prefix the bucket object with a /
 snippet dlb "downloadable big file"
-[$1](https://storage.googleapis.com/johnmathews-eu/$2)$3
+[$1](https://us-east1-johnmathews-website.cloudfunctions.net/download?obj=$2)$3
+endsnippet
+
+# link to bucket
+snippet bu "download link for a file in gcp bucket"
+[archive](https://us-east1-johnmathews-website.cloudfunctions.net/download?obj=movies/$2.mp4)$3
 endsnippet
 
 # embed an image

@@ -14,7 +14,7 @@ alias cl="clear"
 alias an="ansible"
 alias cm="chezmoi"
 
-# this is a -global alias. use it with `cm rl` to get chezmoi status, and then add each of the files that have been changed. 
+# this is a -global alias. type `cm aa` to get chezmoi status, and then add each of the files that have been changed. 
 # Add Again - aa - seems better
 alias -g aa="status | cut -c 4- | xargs -I % -p sh -c 'chezmoi add ~/%'"
 
