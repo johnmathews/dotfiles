@@ -23,3 +23,20 @@ Additional items:
 8. nerdfonts - `brew cask install font-hack-nerd-font`
 9. grand perspective
 10. quicklook plugins as `brew cask install qlcolorcode qlstephen qlmarkdown quicklook-json qlimagesize suspicious-package quicklookase qlvideo` - but see cask install list
+
+`cargo install broot`
+`brew install --cask google-cloud-sdk` - the brew leafes command doesnt catch everything.
+`brew update && brew install azure-cli`
+`brew install pyenv-virtualenv`
+`brew install ripgrep`
+`brew install ack`
+`brew install ansible`
+`brew install tidwall/jj/jj`
+`brew install jq`
+`brew install ansible`
+`brew install diff-so-fancy`
+
+
+Vim needs the following dirs for permanent undo and for adding words to spelling dictionary
+`mkdir ~/.vim/undo`
+`mkdir ~/.vim/spell`

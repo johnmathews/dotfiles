@@ -1,5 +1,5 @@
 # link to another article
-snippet la "link to another article"
+snippet ar "link to another article" i
 [$1]({filename}/articles/$2.md)$3
 endsnippet
 
@@ -12,6 +12,7 @@ import unidecode
 
 def slugify(text):
     text = unidecode.unidecode(text).lower()
+    text = text.replace("'", "").replace("`", "").replace(";", "").replace(":", "")
     return re.sub(r'\W+', '-', text)
 endglobal
 
@@ -69,19 +70,20 @@ snippet li "insert a link"
 [$1]($2)$3
 endsnippet
 
-# link to bucket
-snippet bu "download link for a file in gcp bucket"
-[archive](https://storage.googleapis.com/johnmathews.eu/movies/$2.mp4)$3
-endsnippet
-
 # download a file
 snippet dl "downloadable file"
 [$1]({attach}/documents/$2)$3
 endsnippet
 
 # download a big (100mb+) file
+# you don't need to prefix the bucket object with a /
 snippet dlb "downloadable big file"
-[$1](https://storage.googleapis.com/johnmathews.eu/$2)$3
+[$1](https://us-east1-johnmathews-website.cloudfunctions.net/download?obj=$2)$3
+endsnippet
+
+# link to bucket
+snippet bu "download link for a file in gcp bucket"
+[archive](https://us-east1-johnmathews-website.cloudfunctions.net/download?obj=movies/$2.mp4)$3
 endsnippet
 
 # embed an image
@@ -99,8 +101,8 @@ snippet sup "superscript" i
 $^{$1}$$2
 endsnippet
 
-# proverbs
-snippet pro "superscript followed by highlighted text" i
+# bible verses
+snippet ver "superscript followed by highlighted text" i
 $^{$1}$<mark>$2</mark>$3
 endsnippet
 
@@ -147,7 +149,7 @@ Technical/Developer Tools,Data,Web,Other,Cryptocurrencies,Engineering
 endsnippet
 
 snippet "(?i)non" "all non-technical categories" ir
-Non-technical/Other,Social,Learning,Journal,Entrepreneurship
+Non-technical/Other,Social,Learning,Journal,Entrepreneurship,Photographs
 endsnippet
 
 snippet Technical/Web "blog category"
