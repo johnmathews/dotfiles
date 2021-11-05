@@ -30,26 +30,25 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 plugins=(
-    colorize # more syntax highlighting
+    autopep8 # completion for the pep8 tool
+    aws
     brew # completion for brew commands, adds alias `brews`
-    extract # `extract` any archive. `extract -r <file>` remove orig archive file
-    fzf # fuzzy find
-    pip # completion for pip commands
-    pep8 # completion for pep8 python coding style
-    django # adds completion for django manage.py commands
-    git # adds git aliases and completions https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git/
     chucknorris # commands `chuck` and `chuck_cow`
+    colored-man-pages # yep
+    colorize # more syntax highlighting
     docker
     docker-compose
+    extract # `extract` any archive. `extract -r <file>` remove orig archive file
+    fzf # fuzzy find
+    git # adds git aliases and completions https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git/
+    heroku
     kubectl
     minikube
-    heroku
-    aws
-    colored-man-pages # yep
-    autopep8 # completion for the pep8 tool
+    pep8 # completion for pep8 python coding style
+    pip # completion for pip commands
+    vi-mode # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/vi-mode
     zsh-autosuggestions
     zsh-syntax-highlighting
-    vi-mode # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/vi-mode
     # zsh-vi-mode # https://github.com/jeffreytse/zsh-vi-mode
 )
 
@@ -187,7 +186,10 @@ bindkey "^j" down-line-or-search
 bindkey "^h" backward-word
 bindkey "^l" forward-word
 
-bindkey "^p" push-line-or-edit
+# suspend a half-written command
+# https://unix.stackexchange.com/questions/10825/remember-a-half-typed-command-while-i-check-something
+# https://sgeb.io/posts/bash-zsh-half-typed-commands/
+bindkey "^q" push-line-or-edit
 
 . "$(brew --prefix)/etc/profile.d/z.sh"
 

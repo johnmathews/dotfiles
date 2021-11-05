@@ -520,7 +520,7 @@ function! CustomColors() abort
     highlight pythonComment ctermfg=cyan guifg=cyan
     " let s:bwc.lime = ['aeee00', 154] is also a nice color
     highlight LineNr ctermfg=cyan guifg=cyan
-    highlight Visual term=reverse guibg=blue
+    highlight Visual term=reverse guibg=darkgreen
 
     " this makes the visual highlight color the same the cursor color  highlight! link Visual CursorLine
     highlight nontext term=bold ctermfg=Cyan guifg=#80a0ff gui=bold

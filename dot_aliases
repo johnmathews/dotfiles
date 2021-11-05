@@ -76,10 +76,10 @@ alias pub="pelican content -s publishconf.py"
 alias post="python make_post.py"
 
 # python 3 is default
-alias pip2="pip"
-alias pip="pip3"
-alias python2="python"
-alias python="python3"
+#alias pip2="pip"
+#alias pip="pip3"
+#alias python2="python"
+#alias python="python3"
 
 
 alias l="echo 'detailed listing of files and dirs excluding hidden files:'; exa -lh --git --group-directories-first"
