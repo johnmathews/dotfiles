@@ -1,13 +1,38 @@
+# OS checking question: https://unix.stackexchange.com/questions/252166/how-to-configure-zshrc-for-specfic-os
+
 # Setup fzf
 # ---------
-if [[ ! "$PATH" == */Users/jm943l/.fzf/bin* ]]; then
-  export PATH="${PATH:+${PATH}:}/Users/jm943l/.fzf/bin"
-fi
+case `uname` in
+  Darwin)
+    if [[ ! "$PATH" == */usr/local/opt/fzf/bin* ]]; then
+      export PATH="${PATH:+${PATH}:}/usr/local/opt/fzf/bin"
+    fi
+  ;; 
+  Linux)
+    if [[ ! "$PATH" == */home/linuxbrew/.linuxbrew/opt/fzf/bin* ]]; then
+      export PATH="${PATH:+${PATH}:}/home/linuxbrew/.linuxbrew/opt/fzf/bin"
+    fi
+  ;;
+esac
 
 # Auto-completion
 # ---------------
-[[ $- == *i* ]] && source "/Users/jm943l/.fzf/shell/completion.zsh" 2> /dev/null
+case `uname` in
+  Darwin)
+    [[ $- == *i* ]] && source "/usr/local/opt/fzf/shell/completion.zsh" 2> /dev/null
+  ;; 
+  Linux)
+    [[ $- == *i* ]] && source "/home/linuxbrew/.linuxbrew/opt/fzf/shell/completion.zsh" 2> /dev/null
+  ;;
+esac
 
 # Key bindings
 # ------------
-source "/Users/jm943l/.fzf/shell/key-bindings.zsh"
+case `uname` in
+  Darwin)
+    source "/usr/local/opt/fzf/shell/key-bindings.zsh"
+  ;; 
+  Linux)
+    source "/home/linuxbrew/.linuxbrew/opt/fzf/shell/key-bindings.zsh"
+  ;;
+esac

@@ -118,7 +118,7 @@
 
 	# Use colors in Git commands that are capable of colored output when
 	# outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
-	ui = true
+	ui = auto
         status = always
 
 [color "branch"]
@@ -171,7 +171,7 @@
 	# Use the Git 1.x.x default to avoid errors on machines with old Git
 	# installations. To use `simple` instead, add this to your `~/.extra` file:
 	# `git config --global push.default simple`. See http://git.io/mMah-w.
-	default = current
+	default = simple
 	# Make `git push` push relevant annotated tags when pushing branches out.
 	followTags = true
 
@@ -197,8 +197,8 @@
 
 	insteadOf = "gist:"
 [user]
-	name = John Mathews
-	email = johnmatthews4@wayfair.com
+	name = johnmathews
+	email = mthwsjc@gmail.com
 	signingkey = A8BB6EB3
 [credential]
 	helper = osxkeychain
@@ -208,9 +208,7 @@
 	windowMemory = 100m
 	SizeLimit = 100m
 	threads = 4
-	useSparse = true
 [http]
-	sslVerify = false
 	; proxy = http://proxy-eu.shell.com:8080
 
 
@@ -223,11 +221,6 @@
 
 [core]
 	pager = "diff-so-fancy | less --tabs=2 -R"
-	autocrlf = false
-	preloadindex = true
-	fscache = true
-	symlinks = false
-	longpaths = true
 
 [interactive]
 	diffFilter = "diff-so-fancy --patch"
@@ -252,7 +245,3 @@
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
-[fetch]
-	prune = true
-[log]
-	decorate = short
