@@ -25,6 +25,7 @@ let g:airline#extensions#tagbar#flags = 'f'
 " python with virtualenv support
 " py3 is a builtin vim command
 " exec is a std lib py3 command to exec a file
+
 py3 << EOF
 import os
 import sys

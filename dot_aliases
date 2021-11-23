@@ -1,4 +1,3 @@
-
 # Vim not vi so that macvim compile options are used (for vimwiki links)
 alias vi="vim"
 

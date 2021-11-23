@@ -6,7 +6,9 @@
 " :CocConfig - opens the main config file
 " :CocList extensions
 " :CocUninstall <coc-highlight>
- 
+" Goto definition: nmap <C-X> <Plug>(coc-definition)
+" Rename a thing across all files: nmap <leader>cn <Plug>(coc-rename)
+
 " :scriptnames to see a list of all scripts that have been sources, in order https://vi.stackexchange.com/questions/8824/in-what-order-does-vim-read-ftplugin-files-syntax-files-and-the-vimrc-when-th
 
 " ========== Global ==========
@@ -383,7 +385,8 @@ nnoremap <silent> <leader>ak :ALEPrevious<cr>
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-nmap <leader>x <Plug>(coc-definition)
+" nmap <leader>x <Plug>(coc-definition)
+nmap <C-X> <Plug>(coc-definition)
 " renames across all files
 nmap <leader>cn <Plug>(coc-rename)
 
