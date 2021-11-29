@@ -27,6 +27,8 @@ set undofile                  " Maintain undo history between sessions
 set undodir=~/.vim/undo       " put all the undo files in this dir
 set undolevels=100000          " how many undo steps to save in a file
 
+set shell=zsh
+
 " https://vi.stackexchange.com/questions/2162/why-doesnt-the-backspace-key-work-in-insert-mode
 set backspace=indent,eol,start
 

@@ -36,6 +36,7 @@ fi
 
 
 plugins=(
+    git-auto-fetch
     autopep8 # completion for the pep8 tool
     # aws # some performance costs. disable if not using.
     brew # completion for brew commands, adds alias `brews`
@@ -47,9 +48,9 @@ plugins=(
     extract # `extract` any archive. `extract -r <file>` remove orig archive file
     fzf # fuzzy find
     git # adds git aliases and completions https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git/
-    heroku
-    # kubectl # some performance costs. disable if not using.
-    minikube
+    # heroku
+    # kubectl
+    # minikube
     pep8 # completion for pep8 python coding style
     pip # completion for pip commands
     vi-mode # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/vi-mode
@@ -164,16 +165,5 @@ fpath=(/opt/vagrant/embedded/gems/2.2.16/gems/vagrant-2.2.16/contrib/zsh $fpath)
 HISTDB_TABULATE_CMD=(sed -e $'s/\x1f/\t/g')
 source $HOME/.oh-my-zsh/custom/plugins/zsh-histdb/sqlite-history.zsh
 autoload -Uz add-zsh-hook
-
-# Unison
-uni() {
-  localProjectRoot=$(git rev-parse --show-toplevel)
-  remoteProjectRoot=$(cat $localProjectRoot/.remoteprojectroot)
-  host=ext_jmatthews4_wayfair_com
-  user=ainb-jmatthews4
-  echo "Local Project Root: "$localProjectRoot
-  echo "Remote Project Root: "$remoteProjectRoot
-  unison -batch -color true $localProjectRoot ssh://ext_jmatthews4_wayfair_com@ainb-jmatthews4/$remoteProjectRoot -force $localProjectRoot
-}
 
 # zprof

@@ -103,3 +103,14 @@ if [ "$(uname)" = "Linux" ]; then
     export FZF_BASE=" /home/linuxbrew/.linuxbrew/opt/fzf/install "
 fi
 
+# Unison
+uni() {
+  localProjectRoot=$(git rev-parse --show-toplevel)
+  remoteProjectRoot=$(cat $localProjectRoot/.remoteprojectroot)
+  host=ext_jmatthews4_wayfair_com
+  user=ainb-jmatthews4
+  echo "Local Project Root: "$localProjectRoot
+  echo "Remote Project Root: "$remoteProjectRoot
+  unison -batch -color true $localProjectRoot ssh://ext_jmatthews4_wayfair_com@ainb-jmatthews4/$remoteProjectRoot -force $localProjectRoot
+}
+
