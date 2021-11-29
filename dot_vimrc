@@ -1,12 +1,6 @@
+" ========= Notes =============== 
 " to make a print statement, use :echom "blah"' then :messages
-
 " :UltiSnipsEdit command opens a private snippet definition file for the current filetype.
-
-" :CocInfo is good for testing status
-" :CocConfig - opens the main config file
-" :CocList extensions
-" :CocUninstall <coc-highlight>
- 
 " :scriptnames to see a list of all scripts that have been sources, in order https://vi.stackexchange.com/questions/8824/in-what-order-does-vim-read-ftplugin-files-syntax-files-and-the-vimrc-when-th
 
 " ========== Global ==========
@@ -31,17 +25,6 @@ set backspace=indent,eol,start
 filetype plugin indent on     " detection on, plugin on, indent on. To see the current status, type: :filetype
 syntax enable                " syntax highlighting
 
-" augroup forceFiletypeDetection
-"     autocmd!
-"     autocmd BufEnter * filetype detect
-" augroup END
-
-" bigquery scripts should have sql syntax
-autocmd BufEnter,BufNew *.bq setl filetype=sql
-
-" bigquery scripts should have sql syntax
-autocmd BufEnter,BufNew *.bq setl filetype=sql
-
 "set noesckeys		       " might break stuff, should make <ESC> delay smaller
 set timeoutlen=500             " timeoutlen is used for mapping delays
 set ttimeoutlen=100            " ttimeoutlen is used for key code delays
@@ -59,12 +42,7 @@ let g:ale_disable_lsp = 1
 
 " Cursor settings:
 " https://vim.fandom.com/wiki/Change_cursor_shape_in_different_modes
-"  1 -> blinking block
-"  2 -> solid block
-"  3 -> blinking underscore
-"  4 -> solid underscore
-"  5 -> blinking vertical bar
-"  6 -> solid vertical bar
+" 1 -> blinking block  2 -> solid block  3 -> blinking underscore  4 -> solid underscore  5 -> blinking vertical bar  6 -> solid vertical bar
 let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
 let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
 let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
@@ -83,11 +61,11 @@ function! s:NewPost(fn)
     execute "e " . "~/projects/websites/blog/content/articles/" . a:fn . ".md"
 endfunction
 
+" Insert mode movement commands "
 " move cursor to beginning of previous word in Insert mode
-" inoremap <C-h> <C-O>b
+inoremap <C-h> <C-O>b
 " delete words without leaving insert mode
 inoremap <C-e> <C-o>de
-
 " undo word by word instead of by entering/leaving insert mode
 inoremap <space> <C-O>u<space>
 
@@ -96,72 +74,27 @@ set shortmess-=S
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c"
 
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
-set updatetime=300""
+set updatetime=300
 
 " Give more space for displaying messages.
 set cmdheight=2
 
-" detect filetype
+" bigquery scripts should have sql syntax
+autocmd BufEnter,BufNew *.bq setl filetype=sql
+" detect tmux.local filetype and set as tmux
 au BufNewFile,BufRead {.,}tmux*.local nested setf tmux
 
-" the gutter is called the signcolumn "
-" set signcolumn=yes
-
-" ------------------------------------------
-" ------------------------------------------
-
-" unbind netrw
-" nnoremap - <NOP>
-
-"Search/Find/Highlight ======================================
-
+" Search/Find/Highlight
 set incsearch  ignorecase  smartcase  hlsearch
 highlight Search guibg=purple guifg='NONE'
 highlight Search cterm=none ctermbg=green ctermfg=black
-
-
 nnoremap \ /
-nnoremap \\ :nohlsearch<CR>
 nnoremap // :nohlsearch<CR>
-" nnoremap # #``
 nnoremap # <NOP>
 nnoremap * *``
 
-
-" close buffers properly go to previous buffer, then delete the buffer you were just in.
-" nnoremap <Leader>bd :bp\|bd #<CR>
-" inoremap <Leader>bd :bp\|bd #<CR>
-
-
-" ========== Set leader and local leader ===================
+" Set leader and local leader
 let mapleader="\<Space>"
-" let localleader="\\" " trying to use this for search instead
-
-" insert 1 space to the right, without leaving normal mode
-nnoremap <localleader><space> i<Space><Right><ESC>
-
-" Flash the cursor row (and column) colors are set after color scheme ========
-" nnoremap <leader>f :call Flash()<CR>
-" function! Flash()
-"     " set cursorline cursorcolumn
-"     set cursorline
-"     redraw
-"     sleep 110m
-"     set nocursorline
-" endfunction
-
-" Edit/Reload the .vimrc file
-nnoremap <silent> <leader>ve :e $MYVIMRC<CR>
-nnoremap <silent> <leader>vr :source $MYVIMRC<CR>
-nnoremap <leader>vf :e ~/.vim/ftplugin/<C-R>=&filetype<CR>.vim<CR>
-
-augroup VimReload
-    autocmd!
-    autocmd BufWritePost $MYVIMRC nested source $MYVIMRC
-augroup END
-
 
 " Yank to clipboard
 vnoremap <C-c> "+y
@@ -181,37 +114,30 @@ nnoremap <leader>pwd :cd %:p:h<CR>
 " toggle line wrap
 nnoremap <leader>lw :set nowrap!<CR>
 
-" toggle line numbers
-nnoremap <leader>ln :set relativenumber!<CR>
-
-" Insert current datetime
-nnoremap <leader>dt A ()<ESC>hh "=strftime("\%Y-\%m-\%d")<CR>gp
-
 " Swap : and ;
 nnoremap ; :
 nnoremap : ;
 vnoremap ; :
 vnoremap : ;
 
-" Navigation & movemement
-" save buffer if it has been changed
-" nnoremap ww :update<CR>
+" Natural cursor movement over wrapped lines
+nnoremap j gj
+nnoremap k gk
 
-" close Vim, but not if there are unsaved changes
-" nnoremap qa :qa<CR>
+" Edit/Reload the .vimrc file
+nnoremap <silent> <leader>ve :e $MYVIMRC<CR>
+nnoremap <silent> <leader>vr :source $MYVIMRC<CR>
+nnoremap <leader>vf :e ~/.vim/ftplugin/<C-R>=&filetype<CR>.vim<CR>
 
-" save all changes
-" i guess <C-i> is tab
+augroup VimReload
+    autocmd!
+    autocmd BufWritePost $MYVIMRC nested source $MYVIMRC
+augroup END
+
+" save all changes - <C-I> is tab
 nnoremap <C-i>ww :wa<CR>
-nnoremap <C-i>ee :e<CR>
 nnoremap <C-i>qq :qa<CR>
 nnoremap qq :bp\|bd #<CR>
-" nnoremap wq :update<CR>:bp\|bd #<CR>
-
-" close buffer
-" switch buffers
-" nnoremap <silent> + :bn<CR>
-" nnoremap <silent> _ :bp<CR>
 
 " Split navigations
 nmap <Leader>h  <C-W><C-H>
@@ -227,20 +153,14 @@ nnoremap <C-j> :resize -2<CR>
 nnoremap <C-h> :vertical resize +2<CR>
 nnoremap <C-l> :vertical resize -2<CR>
 
+" force quickfix to be full width
+au FileType qf wincmd J
+
 " open help in vertical split by default
 cabbrev vhelp vert help
 
-" Natural cursor movement over wrapped lines
-nnoremap j gj
-nnoremap k gk
-
-" Insert blank lines in normal mode
-nnoremap <leader>o o<ESC>k
-nnoremap <leader>O O<ESC>j
-
-"*****************************
-"========== PLUGINS ==========
-"*****************************
+" ========== PLUGINS ==========
+" =============================
 
 call plug#begin('~/.vim/plugged')
 
@@ -252,33 +172,25 @@ map t <Plug>Sneak_t
 map T <Plug>Sneak_T
 " rebinding s and S removes sneaks double char search "
 " what is the benefit of this? why did you do it?
-map s <Plug>Sneak_;
-map S <Plug>Sneak_,
+" map s <Plug>Sneak_;
+" map S <Plug>Sneak_,
 
+" Text objects
 " https://www.barbarianmeetscoding.com/blog/exploring-vim-plugins-improve-and-extend-your-text-objects-with-targets-vim
 Plug 'wellle/targets.vim'
-
-
-" syntax and snippets for Dockerfile files
-Plug 'ekalinin/Dockerfile.vim'
-
-
-
 " numbers as text objects
 Plug 'MisanthropicBit/vim-numbers'
 
-" visualizes the Vim undo tree
-" a fork (with additional cool features) of https://docs.stevelosh.com/gundo.vim/
-Plug 'simnalamburt/vim-mundo'
-nnoremap <silent> <C-S-u> :MundoToggle<CR>
+" Dockerfile syntax, snippets "
+Plug 'ekalinin/Dockerfile.vim'
 
-" does this mess up syntax loading?
-" Plug 'tpope/vim-eunuch'
+" Undo - visualizes the Vim undo tree
+Plug 'simnalamburt/vim-mundo'
+" nnoremap <silent> <C-S-u> :MundoToggle<CR>
 
 "run shell commands async in vim8"
 Plug 'skywind3000/asyncrun.vim'
 let g:asyncrun_open = 10
-
 
 Plug 'airblade/vim-gitgutter'
 
@@ -286,9 +198,6 @@ Plug 'airblade/vim-gitgutter'
 " :VirtualEnvList
 " :VirtualEnvActivate <tab>
 Plug 'jmcantrell/vim-virtualenv'
-
-" force quickfix to be full width
-au FileType qf wincmd J
 
 " testing - many languages and test runners
 Plug 'janko-m/vim-test'
@@ -315,44 +224,25 @@ endfunction
 
 nnoremap <silent> cc :call ToggleQuickFix()<cr>
 
-
-" Plug 'universal-ctags/ctags'
-" generates an index (or tag) file of language objects found in source files
-" <C-]> jump to definition
-" <C-O> jump back
-" g] see a list of multiple matches
-" <C-S-t>
-
-" (re)generate tags file in the bg
-" Plug 'ludovicchabant/vim-gutentags'
-" let g:gutentags_ctags_exclude = ['.txt', '.md', '.json', '.mypy_cache/**']
-
 " sidebar that displays the ctags-generated tags of the current file, ordered by their scope
 Plug 'majutsushi/tagbar'
 nnoremap <F2> :TagbarToggle<CR>
 
 " add python library code to tags file, useful for goto def with <C-]>
-let pyEnvLib = $VIRTUAL_ENV
-let pyEnvLib .= '/lib/python3.8/'
+" let pyEnvLib = $VIRTUAL_ENV
+" let pyEnvLib .= '/lib/python3.8/'
 
 " ======= SNIPPETS ======== "
 " Track the engine.
 Plug 'sirver/ultisnips'
-" :UltiSnipsEdit command opens a private snippet definition file for the current filetype.
-" q: will open a window showing command mode history
-
 " Snippets are separated from the engine. Add this if you want them:
 Plug 'honza/vim-snippets'
-
+" :UltiSnipsEdit command opens a private snippet definition file for the current filetype.
 " better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 let g:UltiSnipsListSnippets = "<c-s>"
-
-" let g:UltiSnipsExpandTrigger="<tab>"
-" let g:UltiSnipsJumpForwardTrigger="<c-b>"
-" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
@@ -361,7 +251,7 @@ let g:UltiSnipsEditSplit="vertical"
 " 'linting' means checking syntax for errors and patterns that could introduce bugs
 Plug 'dense-analysis/ale'
 
-" ALE completion
+" === ALE completion =======
 let g:ale_completion_enabled = 0
 set omnifunc=ale#completion#OmniFunc
 let g:ale_completion_autoimport = 1
@@ -371,10 +261,12 @@ nnoremap <leader>af :ALEFix<CR>
 nnoremap <silent> <leader>aj :ALENext<cr>
 nnoremap <silent> <leader>ak :ALEPrevious<cr>
 
-
+" === COC ==================
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " :CocInfo is good for testing status
 " :CocConfig - opens the main config file
 " :CocList extensions
+" :CocUninstall <coc-highlight>
 
 " completion sources
 " https://github.com/neoclide/coc-sources
@@ -384,14 +276,16 @@ nnoremap <silent> <leader>ak :ALEPrevious<cr>
 " manage extensions
 " https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#manage-extensions-with-coclist "
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-nmap <leader>x <Plug>(coc-definition)
+" goto definition
+nmap <C-X> <Plug>(coc-definition)
 " renames across all files
-nmap <leader>cn <Plug>(coc-rename)
-
-" show documentation in the floating window "
-nnoremap <leader>d :call <SID>show_documentation()<CR>
+nmap <C-N> <Plug>(coc-rename)
+" show documentation in the floating window
+nnoremap <C-M> :call <SID>show_documentation()<CR>
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 
 function! s:show_documentation()
@@ -408,7 +302,7 @@ endfunction
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 
-" Remap <C-f> and <C-b> for scroll float windows/popups.
+" Remap <C-F> and <C-B> for scroll float windows/popups.
 if has('nvim-0.4.0') || has('patch-8.2.0750')
   nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
   nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
@@ -430,21 +324,16 @@ function! s:check_back_space() abort
 endfunction
 
 " Use <c-space> to trigger completion.
-if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
-else
-  inoremap <silent><expr> <c-@> coc#refresh()
-endif
+" if has('nvim')
+"   inoremap <silent><expr> <c-space> coc#refresh()
+" else
+"   inoremap <silent><expr> <c-@> coc#refresh()
+" endif
 
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-" Use `[g` and `]g` to navigate diagnostics
-" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 
 " https://www.vimfromscratch.com/articles/vim-for-python/
@@ -453,34 +342,25 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 " Basically, Jedi is an IDE as a service, without the GUI.
 " In order to use it, you need to install it with pip install jedi, and then also add a client.
 " The davidhalter/jedi Vim plugin does a good job.
-Plug 'davidhalter/jedi'
+" Plug 'davidhalter/jedi'
+
+" TODO make js look nicer?
 Plug 'maksimr/vim-jsbeautify'
 
 " autoclose parens, brackets etc
 Plug 'townk/vim-autoclose'
 
-" sorting stuff, like python imports? used by ALE?
+" TODO sorting stuff, like python imports? 
 Plug 'fisadev/vim-isort'
-
-" vim-tmux focus events
-" this is commented out because it doesnt play nice with neovim.coc
-" when focus is lost using alttab, `[0]` is inserted at cursor
-" Plug 'tmux-plugins/vim-tmux-focus-events'
 
 " adds vertical lines to easily show indent levels
 Plug 'yggdroot/indentline'
 
-" yaml code folding
-" B
-" Plug 'pedrohdz/vim-yaml-folds' " I don't like code folding. gimme all the info immediately
-
-" Fugitive
+" Fugitive - Git
 Plug 'tpope/vim-fugitive'
 
-" Marks
+" TODO Marks - doesnt work very well
 " https://github.com/kshenoy/vim-signature
-" m<Space> Delete all marks from the current buffer
-" m. If no mark on line, place the next available mark. Otherwise remove (first) existing mark.
 Plug 'kshenoy/vim-signature'
 
 " Latex Vimtex
@@ -511,7 +391,6 @@ let g:rainbow_conf = {
 " Set color scheme.
 set background=dark
 
-
 function! CustomColors() abort
     " highlight Visual     cterm=NONE ctermbg=76  ctermfg=16  gui=NONE guibg=#5fd700 guifg=#000000
     " highlight StatusLine cterm=NONE ctermbg=231 ctermfg=160 gui=NONE guibg=#ffffff guifg=#d70000
@@ -530,13 +409,10 @@ function! CustomColors() abort
     highlight vimLineComment term=bold ctermfg=Cyan guifg=#80a0ff gui=bold
     " SpecialKey - use :set list to toggle visibility of EOL, CR, etc
     highlight specialKey term=bold ctermfg=Cyan guifg=#80a0ff gui=bold
-
 endfunction
 
 " Spell check ==============================================
 " [s or ]s go to next/previous bad word
-" z=  - list of suggestions
-" zg - add word to good word list
 " zug - remove word from good word list
 " zw - add word to bad word list
 " zuw - remove word from bad word list
@@ -545,7 +421,6 @@ set spellfile=$HOME/.vim/spell/en.utf-8.add
 set spellsuggest+=10 " make the spell suggestions window 10 lines high not whole screen
 
 nnoremap <leader>ss :setlocal spell!<CR>
-nnoremap zf z=1<CR><CR>
 
 function! SpellCheckHighlights() abort
 	hi clear SpellBad
@@ -558,7 +433,7 @@ function! SpellCheckHighlights() abort
 	hi SpellRare cterm=underline ctermfg=gray
 endfunction
 
-augroup MyCustomColorsGroup
+augroup CustomColorsGroup
     autocmd!
     " autocmd ColorScheme * call MyCustomColors()
     autocmd ColorScheme * call SpellCheckHighlights()
@@ -570,11 +445,6 @@ colorscheme badwolf
 let g:badwolf_html_link_underline = 1
 let g:badwolf_css_props_highlight = 1
 
-
-" colors for flashing cursorline and cursorcolumn
-" hi CursorLine   cterm=NONE ctermbg=green ctermfg=black guibg=green guifg=black
-" hi CursorColumn NONE ctermbg=green ctermfg=black guibg=green guifg=black
-
 " query which color - what and which kind of syntax is this color? - wc
 nnoremap wc :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") ."> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
@@ -583,11 +453,10 @@ set rtp+=/usr/local/opt/fzf
 
 " ensure you have the latest version
 Plug 'junegunn/fzf', {'dir': '~/.fzf','do': './install --all'}
-Plug 'junegunn/fzf.vim' " needed for previews
+Plug 'junegunn/fzf.vim'
 
 " if you type more chars, reset the selected menu item to position 0
 " fzf --bind change:top
-
 nnoremap <silent> <Leader>e :Files<CR>
 nnoremap <silent> <Leader>r :Buffers<CR>
 nnoremap <silent> <Leader>t :Tags<CR>
@@ -604,12 +473,8 @@ nnoremap <silent> <Leader>hh :History<CR>
 nnoremap <silent> <Leader>h: :History:<CR>
 nnoremap <silent> <Leader>h/ :History/<CR>
 
-" let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline'
-" let $FZF_DEFAULT_COMMAND="rg --files --hidden"
-
 let g:fzf_buffers_jump = 0
 let g:fzf_layout = { 'down': '~50%' }
-" let g:fzf_preview_window = ''
 let g:fzf_preview_window = 'right:0%'
 
 function! s:copy_results(lines)
@@ -639,7 +504,8 @@ let g:fzf_colors =
   \ 'pointer': ['fg', 'Exception'],
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
+  \ 'header':  ['fg', 'Comment']
+\}
 
 
 " grep in vim - shows results in a split window
@@ -652,13 +518,13 @@ Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-unimpaired'
 
 " https://vimawesome.com/plugin/surround-vim
+Plug 'tpope/vim-surround'
 " ds<text object><",{,(,etc> → delete surround
 " cs for change surround,
 " ys for add surround
 " to include/exclude space use open or closing char. `(` vs `)` or `[` vs `]`
 " for visual mode just use `V`
 " the readme on the get repo is useful
-Plug 'tpope/vim-surround'
 
 " repeat commands from plugin mappings
 Plug 'tpope/vim-repeat'
@@ -667,12 +533,12 @@ Plug 'tpope/vim-repeat'
 Plug 'chrisbra/csv.vim'
 
 " vinegar
-Plug 'tpope/vim-vinegar'
-nmap <Leader>n -
-let g:netrw_winsize = -28               " absolute width of netrw window
-let g:netrw_banner = 0                  " do not display info on the top of window
-let g:netrw_liststyle = 3               " tree-view
-let g:netrw_sort_sequence = '[\/]$,*'   " sort is affecting only: directories on the top, files below
+" Plug 'tpope/vim-vinegar'
+" nmap <Leader>n -
+" let g:netrw_winsize = -28               " absolute width of netrw window
+" let g:netrw_banner = 0                  " do not display info on the top of window
+" let g:netrw_liststyle = 3               " tree-view
+" let g:netrw_sort_sequence = '[\/]$,*'   " sort is affecting only: directories on the top, files below
 " let g:netrw_browse_split = 4            " use the previous window to open file "
 
 
@@ -698,7 +564,6 @@ let g:airline_detect_spelllang=1
 let g:airline_powerline_fonts = 1
 let g:airline_skip_empty_sections = 0
 
-
 " airline extensions
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#fugitiveline#enabled = 1
@@ -708,7 +573,6 @@ let g:airline#extensions#tagbar#enabled = 0
 let g:airline#extensions#tagbar#enabled = 1
 let g:airline#extensions#tagbar#flags = 'f'
 let g:airline#extensions#virtualenv#enabled = 1
-
 
 let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['error', 'warning', 'x', 'y', 'z']]
 au User AirlineAfterInit let g:airline_section_a = airline#section#create(['maxlinenr', '%3p%%', ' ', 'mode', ' ', 'crypt', ' ', 'paste', ' ',  'spell', ' ',  'iminsert'])
@@ -740,36 +604,18 @@ let g:vim_markdown_strikethrough = 1
 
 " Plugins must be in .vimrc not in ftplugin/python.vim "
 " python linting
-" F7 checks flake8
 Plug 'nvie/vim-flake8'
 Plug 'vim-scripts/pylint.vim'
 
 "Flagging Unnecessary Whitespace
 highlight BadWhitespace ctermbg=red guibg=darkred
 
-" polyglot is a syntax highligher for millions of languages
-" polyglot seems to cause a lot of problems with html/jinja/django and
-" yaml/ansibleyaml filetype detection. can't I just 86 it?
-" Plug 'sheerun/vim-polyglot'
-
-" maybe this is screwing up filetype detection?"
-" let g:polyglot_disabled = ['ftdetect']
-
-
-let g:polyglot_disabled = ['latex', 'html']
-let g:python_highlight_all = 1
-let g:graphql_javascript_tags = []
-
 " javaScript
 Plug 'pangloss/vim-javascript'
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_flow = 1
 
-" json syntax
-" jsonc = json with comments
-" Plug 'kevinoid/vim-jsonc'
-
-" format .JSON files by using the jq cli tool
+" format .JSON files by using jq cli
 com! JQ %!jq
 
 " HTML/JINJA
@@ -777,7 +623,6 @@ Plug 'glench/vim-jinja2-syntax'
 Plug 'valloric/matchtagalways'
 " Plug 'alvan/vim-closetag'
 let g:closetag_filenames = "*.html, *.xhtml, *.phtml"
-
 
 " vagrant
 Plug 'hashivim/vim-vagrant'
@@ -787,57 +632,3 @@ Plug 'vim-scripts/SQLUtilities'
 Plug 'shmup/vim-sql-syntax'
 
 call plug#end()
-
-" map F key escape sequences
-" if has('mac') && ($TERM == 'xterm-256color' || $TERM == 'screen-256color')
-"   map <Esc>OP <F1>
-"   map <Esc>OQ <F2>
-"   map <Esc>OR <F3>
-"   map <Esc>OS <F4>
-"   map <Esc>[16~ <F5>
-"   map <Esc>[17~ <F6>
-"   map <Esc>[18~ <F7>
-"   map <Esc>[19~ <F8>
-"   map <Esc>[20~ <F9>
-"   map <Esc>[21~ <F10>
-"   map <Esc>[23~ <F11>
-"   map <Esc>[24~ <F12>
-" endif
-
-" " https://stackoverflow.com/questions/12485981/syntax-highlighting-is-not-turned-on-in-vim-when-opening-multiple-files-using-ar
-" " Enable syntax highlighting when buffers are displayed in a window through
-" " :argdo and :bufdo, which disable the Syntax autocmd event to speed up
-" " processing.
-" augroup EnableSyntaxHighlighting
-"     " Filetype processing does happen, so we can detect a buffer initially
-"     " loaded during :argdo / :bufdo through a set filetype, but missing
-"     " b:current_syntax. Also don't do this when the user explicitly turned off
-"     " syntax highlighting via :syntax off.
-"     " The following autocmd is triggered twice:
-"     " 1. During the :...do iteration, where it is inactive, because
-"     " 'eventignore' includes "Syntax". This speeds up the iteration itself.
-"     " 2. After the iteration, when the user re-enters a buffer / window that was
-"     " loaded during the iteration. Here is becomes active and enables syntax
-"     " highlighting. Since that is done buffer after buffer, the delay doesn't
-"     " matter so much.
-"     " Note: When the :...do command itself edits the window (e.g. :argdo
-"     " tabedit), the BufWinEnter event won't fire and enable the syntax when the
-"     " window is re-visited. We need to hook into WinEnter, too. Note that for
-"     " :argdo split, each window only gets syntax highlighting as it is entered.
-"     " Alternatively, we could directly activate the normally effectless :syntax
-"     " enable through :set eventignore-=Syntax, but that would also cause the
-"     " slowdown during the iteration Vim wants to avoid.
-"     " Note: Must allow nesting of autocmds so that the :syntax enable triggers
-"     " the ColorScheme event. Otherwise, some highlighting groups may not be
-"     " restored properly.
-"     autocmd! BufWinEnter,WinEnter * nested if exists('syntax_on') && ! exists('b:current_syntax') && ! empty(&l:filetype) && index(split(&eventignore, ','), 'Syntax') == -1 | syntax enable | endif
-
-"     " The above does not handle reloading via :bufdo edit!, because the
-"     " b:current_syntax variable is not cleared by that. During the :bufdo,
-"     " 'eventignore' contains "Syntax", so this can be used to detect this
-"     " situation when the file is re-read into the buffer. Due to the
-"     " 'eventignore', an immediate :syntax enable is ignored, but by clearing
-"     " b:current_syntax, the above handler will do this when the reloaded buffer
-"     " is displayed in a window again.
-"     autocmd! BufRead * if exists('syntax_on') && exists('b:current_syntax') && ! empty(&l:filetype) && index(split(&eventignore, ','), 'Syntax') != -1 | unlet! b:current_syntax | endif
-" augroup END

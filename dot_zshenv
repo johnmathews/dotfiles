@@ -81,18 +81,26 @@ export BAT_THEME="ansi-dark"
 export TERM="xterm-256color"
 
 # virtualenvwrapper
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Devel
-export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
-export PYTHON_CONFIGURE_OPTS="--enable-shared"
-export VIRTUALENVWRAPPER_WORKON_CD=1
+# export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+# export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
+# export WORKON_HOME=$HOME/.virtualenvs
+# export PROJECT_HOME=$HOME/Devel
+# export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
+# export PYTHON_CONFIGURE_OPTS="--enable-shared"
+# export VIRTUALENVWRAPPER_WORKON_CD=1
 
 # For compilers to find zlib you may need to set:
 # turn off for pyenv install
-export LDFLAGS="${LDFLAGS} -L/usr/local/opt/zlib/lib"
-export CPPFLAGS="${CPPFLAGS} -I/usr/local/opt/zlib/include"
+
+# delete these now that you're using pyenv and not virtualenvwrapper
+# export LDFLAGS="${LDFLAGS} -L/usr/local/opt/zlib/lib"
+# export CPPFLAGS="${CPPFLAGS} -I/usr/local/opt/zlib/include"
+
+# pyenv
+# -----
+export CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/bzip2/include"
+export LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/bzip2/lib"
+
 
 # go binaries - specifically KiND for testing k8s locally
 # export PATH="$(go env GOPATH)/bin:$PATH"
