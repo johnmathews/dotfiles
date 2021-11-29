@@ -2,13 +2,6 @@
 
 " :UltiSnipsEdit command opens a private snippet definition file for the current filetype.
 
-" :CocInfo is good for testing status
-" :CocConfig - opens the main config file
-" :CocList extensions
-" :CocUninstall <coc-highlight>
-" Goto definition: nmap <C-X> <Plug>(coc-definition)
-" Rename a thing across all files: nmap <leader>cn <Plug>(coc-rename)
-
 " :scriptnames to see a list of all scripts that have been sources, in order https://vi.stackexchange.com/questions/8824/in-what-order-does-vim-read-ftplugin-files-syntax-files-and-the-vimrc-when-th
 
 " ========== Global ==========
@@ -285,7 +278,8 @@ Plug 'airblade/vim-gitgutter'
 
 " When using :python or :!python, access the packages in venv
 " :VirtualEnvList
-" :VirtualEnvActivate <tab>
+" :virtualenvactivate <tab>
+normal !source /Users/jm943l/.pyenv/versions/3.8.11/envs/airflow_docker/bin/activate
 Plug 'jmcantrell/vim-virtualenv'
 
 " force quickfix to be full width
@@ -334,7 +328,7 @@ nnoremap <F2> :TagbarToggle<CR>
 
 " add python library code to tags file, useful for goto def with <C-]>
 let pyEnvLib = $VIRTUAL_ENV
-let pyEnvLib .= '/lib/python3.8/'
+" let pyEnvLib .= '/lib/python3.8/'
 
 " ======= SNIPPETS ======== "
 " Track the engine.
@@ -376,6 +370,9 @@ nnoremap <silent> <leader>ak :ALEPrevious<cr>
 " :CocInfo is good for testing status
 " :CocConfig - opens the main config file
 " :CocList extensions
+" :CocUninstall <coc-highlight>
+" Goto definition: nmap <C-X> <Plug>(coc-definition)
+" Rename a thing across all files: nmap <leader>cn <Plug>(coc-rename)
 
 " completion sources
 " https://github.com/neoclide/coc-sources
@@ -390,8 +387,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " nmap <leader>x <Plug>(coc-definition)
 nmap <C-X> <Plug>(coc-definition)
 " renames across all files
-nmap <leader>cn <Plug>(coc-rename)
-
+nmap <C-N> <Plug>(coc-rename)
 " show documentation in the floating window "
 nnoremap <leader>d :call <SID>show_documentation()<CR>
 
@@ -410,7 +406,7 @@ endfunction
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 
-" Remap <C-f> and <C-b> for scroll float windows/popups.
+" SCROLL FLOATING WINDOWS/POPUPS - <C-f> and <C-b>.
 if has('nvim-0.4.0') || has('patch-8.2.0750')
   nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
   nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
@@ -432,11 +428,11 @@ function! s:check_back_space() abort
 endfunction
 
 " Use <c-space> to trigger completion.
-if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
-else
-  inoremap <silent><expr> <c-@> coc#refresh()
-endif
+" if has('nvim')
+"   inoremap <silent><expr> <c-space> coc#refresh()
+" else
+"   inoremap <silent><expr> <c-@> coc#refresh()
+" endif
 
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin
@@ -449,13 +445,16 @@ nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 
+" JEDI IS A LANGUAGE SERVER BUT OY USUE LSP "
 " https://www.vimfromscratch.com/articles/vim-for-python/
 " Jedi is a 'language server' (see my LSP article), a separate process running in the background and analyzing your code.
 " Other clients (editors or IDEs) can connect to the server and request some information, like completion options, or 'go to definition' coordinates.
 " Basically, Jedi is an IDE as a service, without the GUI.
 " In order to use it, you need to install it with pip install jedi, and then also add a client.
 " The davidhalter/jedi Vim plugin does a good job.
-Plug 'davidhalter/jedi'
+" Plug 'davidhalter/jedi'
+
+
 Plug 'maksimr/vim-jsbeautify'
 
 " autoclose parens, brackets etc
