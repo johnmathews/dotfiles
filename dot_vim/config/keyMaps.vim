@@ -1,52 +1,15 @@
+source ~/.vim/config/functions.vim
+
 " === KEYMAPS ===================
 " ===============================
 
-
-" === COC =======================
-nnoremap <C-X> <Plug>(coc-definition)
-nnoremap <C-N> <Plug>(coc-rename)
-nnoremap <leader>d :call <SID>show_documentation()<CR>
-
-" navigate the completion list
-inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
-inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
-
-" scroll floating windows/popups 
-if has('nvim-0.4.0') || has('patch-8.2.0750')
-  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-endif
-
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Make <CR> auto-select the first completion item and notify coc.nvim to format on enter
-inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm(): "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
 " === NORMAL MODE ===============
 
-" query which color - what and which kind of syntax is this color? - wc
-nnoremap wc :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") ."> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
-nnoremap <silent> <leader>ve :e $MYVIMRC<CR>
+nnoremap <silent> <leader>ve :edit $MYVIMRC<CR>
+nnoremap <silent> <leader>vc :edit ~/.vim/coc-settings.json<CR>
+nnoremap <silent> <leader>vf :edit ~/.vim/ftplugin/<C-R>=&filetype<CR>.vim<CR>
 nnoremap <silent> <leader>vr :source $MYVIMRC<CR>
-nnoremap <leader>vf :e ~/.vim/ftplugin/<C-R>=&filetype<CR>.vim<CR>
 
 nnoremap \ /
 nnoremap \\ :nohlsearch<CR>
@@ -56,7 +19,6 @@ nnoremap * *``
 
 nnoremap <leader>lw :set nowrap!<CR>
 nnoremap <leader>ln :set relativenumber!<CR>
-
 nnoremap <leader>ss :setlocal spell!<CR>
 
 nnoremap ; :
@@ -64,31 +26,44 @@ nnoremap : ;
 
 nnoremap <C-I>ww :wa<CR>
 nnoremap <C-I>qq :qa<CR>
+nnoremap qq :bp\|bd #<CR>
+nnoremap <leader>Q :bufdo bdelete<CR>
+
+" open a file even if it doesnt exist
+nnoremap gf :edit <cfile><CR>
+
+" query which color - what and which kind of syntax is this color? - wc
+nnoremap wc :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") ."> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 " Natural cursor movement over wrapped lines
-nnoremap j gj
-nnoremap k gk
+nnoremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
+nnoremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
+
+" open the current file in the default app
+nnoremap <leader>x :!xdg-open %<CR><CR>
 
 " Split navigations
-nmap <Leader>h  <C-W><C-H>
-nmap <Leader>j  <C-W><C-J>
-nmap <Leader>k  <C-W><C-K>
-nmap <Leader>l  <C-W><C-L>
-nmap <Leader>ww  <C-W><C-W>
-nmap <Leader>wq  <C-W><C-Q>
+nmap <leader>h  <C-W><C-H>
+nmap <leader>j  <C-W><C-J>
+nmap <leader>k  <C-W><C-K>
+nmap <leader>l  <C-W><C-L>
+nmap <leader>ww  <C-W><C-W>
+nmap <leader>wq  <C-W><C-Q>
 
 " split (pane) resize
-nnoremap <C-k> :resize +2<CR>
-nnoremap <C-j> :resize -2<CR>
-nnoremap <C-h> :vertical resize +2<CR>
-nnoremap <C-l> :vertical resize -2<CR>
+nnoremap <C-K> :resize +2<CR>
+nnoremap <C-J> :resize -2<CR>
+nnoremap <C-H> :vertical resize +2<CR>
+nnoremap <C-L> :vertical resize -2<CR>
 
 " FUNCTIONS
 nnoremap <silent> cc :call ToggleQuickFix()<cr>
 
 " PLUGINS
 
-nnoremap <Leader>n :NERDTreeToggle<CR>
+nnoremap <expr> <leader>n g:NERDTree.IsOpen() ? ':NERDTreeClose<CR>' : @% == '' ? ':NERDTree<CR>' : ':NERDTreeFind<CR>'
+nnoremap <leader>N :NERDTreeFind
+
 
 "" VIM-TEST
 nnoremap <silent> t<LEADER>n :TestNearest<CR>
@@ -125,6 +100,7 @@ nnoremap <silent> <Leader>h/ :History/<CR>
 
 " === INSERT MODE ===============
 inoremap jk <ESC>
+inoremap jj <ESC>
 inoremap <C-h> <C-O>b
 inoremap <C-e> <C-o>de
 inoremap <space> <C-O>u<space>
@@ -136,3 +112,50 @@ vnoremap <C-c> "+y
 
 vnoremap ; :
 vnoremap : ;
+
+vnoremap < <gv
+vnoremap > >gv
+
+" Paste replace visual selection without copying it
+vnoremap <leader>p "_dP
+
+" maintain cursor position when yanking
+" vnoremap y myy`y
+" vnoremap Y myY`y
+
+" === COC =======================
+nnoremap <C-X> <Plug>(coc-definition)
+nnoremap <C-N> <Plug>(coc-rename)
+nnoremap <leader>d :call <SID>show_documentation()<CR>
+
+" navigate the completion list
+inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
+
+" scroll floating windows/popups
+if has('nvim-0.4.0') || has('patch-8.2.0750')
+  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+endif
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Make <CR> auto-select the first completion item and notify coc.nvim to format on enter
+inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm(): "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)

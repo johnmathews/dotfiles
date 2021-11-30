@@ -1,57 +1,23 @@
 " === PLUGINS ===================
 
-Plug 'junegunn/fzf', {'dir': '~/.fzf','do': './install --all'}
-Plug 'junegunn/fzf.vim' 
-let g:fzf_buffers_jump = 0
-let g:fzf_layout = { 'down': '~50%' }
-let g:fzf_preview_window = 'right:0%'
-let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-x': 'split',
-  \ 'ctrl-v': 'vsplit',
-  \ }
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
+source ~/.vim/config/plugins/fzf.vim
+source ~/.vim/config/plugins/badwolf.vim
 
-Plug 'sjl/badwolf'
-colorscheme badwolf
-let g:badwolf_html_link_underline = 1
-let g:badwolf_css_props_highlight = 1
 
-Plug 'glench/vim-jinja2-syntax'
-Plug 'valloric/matchtagalways'
-" Plug 'alvan/vim-closetag'
-" let g:closetag_filenames = "*.html, *.xhtml, *.phtml"
+source ~/.vim/config/plugins/jinja2-syntax.vim
+source ~/.vim/config/plugins/matchtagalways.vim
 
-Plug 'hashivim/vim-vagrant'
-Plug 'vim-scripts/SQLUtilities'
-Plug 'shmup/vim-sql-syntax'
+source ~/.vim/config/plugins/vagrant.vim
+source ~/.vim/config/plugins/sql-syntax.vim
 
-Plug 'justinmk/vim-sneak'
-let g:sneak#s_next = 1
-map f <Plug>Sneak_f
-map F <Plug>Sneak_F
-map t <Plug>Sneak_t
-map T <Plug>Sneak_T
-" rebinding s and S removes sneaks double char search. what is the benefit of this? why did you do it?
-map s <Plug>Sneak_;
-map S <Plug>Sneak_,
+source ~/.vim/config/plugins/sneak.vim
 
-" text objects - https://www.barbarianmeetscoding.com/blog/exploring-vim-plugins-improve-and-extend-your-text-objects-with-targets-vim
-Plug 'wellle/targets.vim'
-" numbers as text objects
-Plug 'MisanthropicBit/vim-numbers'
+source ~/.vim/config/plugins/nerdtree.vim
+source ~/.vim/config/plugins/polyglot.vim
+
+
+source ~/.vim/config/plugins/targets.vim
+source ~/.vim/config/plugins/numbers.vim
 
 " syntax and snippets for Dockerfile files
 Plug 'ekalinin/Dockerfile.vim'
@@ -143,7 +109,6 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'chrisbra/csv.vim'
-Plug 'scrooloose/nerdtree'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -192,12 +157,3 @@ Plug 'pangloss/vim-javascript'
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_flow = 1
 
-" POLYGLOT is a syntax highligher for millions of languages
-" polyglot seems to cause a lot of problems with html/jinja/django and
-" yaml/ansibleyaml filetype detection. can't I just 86 it?
-" Plug 'sheerun/vim-polyglot'
-" maybe this is screwing up filetype detection?"
-" let g:polyglot_disabled = ['ftdetect']
-" let g:polyglot_disabled = ['latex', 'html']
-" let g:python_highlight_all = 1
-" let g:graphql_javascript_tags = []

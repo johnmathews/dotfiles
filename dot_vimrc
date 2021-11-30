@@ -1,164 +1,63 @@
 " to make a print statement, use :echom "blah"' then :messages
-
+" you can source nested files. example: `source otherVimScriptFilePath.vim`
 " :UltiSnipsEdit command opens a private snippet definition file for the current filetype.
-
 " :scriptnames to see a list of all scripts that have been sources, in order https://vi.stackexchange.com/questions/8824/in-what-order-does-vim-read-ftplugin-files-syntax-files-and-the-vimrc-when-th
 
 " ========== Global ==========
-set nocompatible              " always put it at the top of .vimrc. effects mappings, undo, etc.
-set encoding=utf-8            " utf-8 encoding
+set nocompatible
+set hidden
+set encoding=utf-8
 set termguicolors
-set t_Co=256                  " number of colors
-set noerrorbells visualbell t_vb=     " no error bells, yes screnflash, short flash
+set t_Co=256
+set noerrorbells visualbell t_vb=
 set linespace=8
-set scrolloff=2               " minimum number of screen lines above and below the cursor
-set hidden                    " Manage multiple buffers effectively: the current buffer can be “sent” to the background without writing to disk
+set scrolloff=2
+set sidescrolloff=8
 set splitbelow
 set splitright
-
-set undofile                  " Maintain undo history between sessions
-set undodir=~/.vim/undo       " put all the undo files in this dir
-set undolevels=100000          " how many undo steps to save in a file
-
+set backspace=indent,eol,start
 set shell=zsh
 
-" https://vi.stackexchange.com/questions/2162/why-doesnt-the-backspace-key-work-in-insert-mode
-set backspace=indent,eol,start
+set expandtab
+set shiftwidth=2
+set tabstop=2
 
-filetype plugin indent on     " detection on, plugin on, indent on. To see the current status, type: :filetype
-syntax enable                " syntax highlighting
+set wildmode=longest:full,full
+set nowrap
+set list
+set listchars=tab:>\ ,trail:.
 
-" augroup forceFiletypeDetection
-"     autocmd!
-"     autocmd BufEnter * filetype detect
-" augroup END
+set signcolumn=yes
 
-" bigquery scripts should have sql syntax
-autocmd BufEnter,BufNew *.bq setl filetype=sql
+set undofile
+set undolevels=100000
+set undodir=~/.vim/.undo/,~/.vim/undo,/tmp//
+set backupdir=~/.vim/.backup/,/tmp//
+set directory=~/vim/.swp/,/tmp//
 
-"set noesckeys		       " might break stuff, should make <ESC> delay smaller
-set timeoutlen=500             " timeoutlen is used for mapping delays
-set ttimeoutlen=100            " ttimeoutlen is used for key code delays
+set timeoutlen=500
+set ttimeoutlen=100
+set mouse=a
+set nostartofline
+set number relativenumber
 
-set mouse=a                   " Enable mouse for scrolling and resizing.
-
-set nostartofline             " don't put cursor at start of line when switching buffers
-set number relativenumber     " Line numbers
-
-" ------------------------------------------
-
-" add this before plugins are loaded "
-"https://github.com/dense-analysis/ale#5iii-how-can-i-use-ale-and-cocnvim-together
-let g:ale_disable_lsp = 1
-
-" Cursor settings:
-" https://vim.fandom.com/wiki/Change_cursor_shape_in_different_modes
-"  1 -> blinking block
-"  2 -> solid block
-"  3 -> blinking underscore
-"  4 -> solid underscore
-"  5 -> blinking vertical bar
-"  6 -> solid vertical bar
-let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
-let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-
-" make a blog post or snippet
-command! -nargs=1 Ms call s:NewSnippet(<q-args>)
-command! -nargs=1 Mp call s:NewPost(<q-args>)
-
-function! s:NewSnippet(fn)
-    echom a:fn
-    execute "e " . "~/projects/websites/blog/content/articles/snippets/" . a:fn . ".md"
-endfunction
-
-function! s:NewPost(fn)
-    echom a:fn
-    execute "e " . "~/projects/websites/blog/content/articles/" . a:fn . ".md"
-endfunction
-
-" move cursor to beginning of previous word in Insert mode
-" inoremap <C-h> <C-O>b
-" delete words without leaving insert mode
-inoremap <C-e> <C-o>de
-
-" undo word by word instead of by entering/leaving insert mode
-inoremap <space> <C-O>u<space>
-
-" show how many times a search result occurs in current buffer, and index of current match
 set shortmess-=S
-" Don't pass messages to |ins-completion-menu|.
 set shortmess+=c"
 
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
-set updatetime=300""
-
-" Give more space for displaying messages.
+set updatetime=300
+set redrawtime=100000
 set cmdheight=2
 
-" detect filetype
-au BufNewFile,BufRead {.,}tmux*.local nested setf tmux
+set spelllang=en_us
+set spellfile=$HOME/.vim/spell/en.utf-8.add
+set spellsuggest+=10 " make the spell suggestions window 10 lines high not whole screen
 
-" the gutter is called the signcolumn "
-" set signcolumn=yes
-
-" ------------------------------------------
-" ------------------------------------------
-
-" unbind netrw
-" nnoremap - <NOP>
-
-"Search/Find/Highlight ======================================
-
-set incsearch  ignorecase  smartcase  hlsearch
-highlight Search guibg=purple guifg='NONE'
-highlight Search cterm=none ctermbg=green ctermfg=black
+set incsearch
+set ignorecase
+set smartcase
+set hlsearch
 
 
-nnoremap \ /
-nnoremap \\ :nohlsearch<CR>
-nnoremap // :nohlsearch<CR>
-" nnoremap # #``
-nnoremap # <NOP>
-nnoremap * *``
-
-
-" close buffers properly go to previous buffer, then delete the buffer you were just in.
-" nnoremap <Leader>bd :bp\|bd #<CR>
-" inoremap <Leader>bd :bp\|bd #<CR>
-
-
-" ========== Set leader and local leader ===================
-let mapleader="\<Space>"
-" let localleader="\\" " trying to use this for search instead
-
-" insert 1 space to the right, without leaving normal mode
-nnoremap <localleader><space> i<Space><Right><ESC>
-
-" Flash the cursor row (and column) colors are set after color scheme ========
-" nnoremap <leader>f :call Flash()<CR>
-" function! Flash()
-"     " set cursorline cursorcolumn
-"     set cursorline
-"     redraw
-"     sleep 110m
-"     set nocursorline
-" endfunction
-
-" Edit/Reload the .vimrc file
-nnoremap <silent> <leader>ve :e $MYVIMRC<CR>
-nnoremap <silent> <leader>vr :source $MYVIMRC<CR>
-nnoremap <leader>vf :e ~/.vim/ftplugin/<C-R>=&filetype<CR>.vim<CR>
-
-augroup VimReload
-    autocmd!
-    autocmd BufWritePost $MYVIMRC nested source $MYVIMRC
-augroup END
-
-
-" Yank to clipboard
-vnoremap <C-c> "+y
 if has("clipboard")
   set clipboard=unnamed " copy to the system clipboard
   if has("unnamedplus") " X11 support
@@ -166,679 +65,35 @@ if has("clipboard")
   endif
 endif
 
-" Go into NORMAL mode
-inoremap jk <ESC>
 
-" view working directory
-nnoremap <leader>pwd :cd %:p:h<CR>
-
-" toggle line wrap
-nnoremap <leader>lw :set nowrap!<CR>
-
-" toggle line numbers
-nnoremap <leader>ln :set relativenumber!<CR>
-
-" Insert current datetime
-nnoremap <leader>dt A ()<ESC>hh "=strftime("\%Y-\%m-\%d")<CR>gp
-
-" Swap : and ;
-nnoremap ; :
-nnoremap : ;
-vnoremap ; :
-vnoremap : ;
-
-" Navigation & movemement
-" save buffer if it has been changed
-" nnoremap ww :update<CR>
-
-" close Vim, but not if there are unsaved changes
-" nnoremap qa :qa<CR>
-
-" save all changes
-" i guess <C-i> is tab
-nnoremap <C-i>ww :wa<CR>
-nnoremap <C-i>ee :e<CR>
-nnoremap <C-i>qq :qa<CR>
-nnoremap qq :bp\|bd #<CR>
-" nnoremap wq :update<CR>:bp\|bd #<CR>
-
-" close buffer
-" switch buffers
-" nnoremap <silent> + :bn<CR>
-" nnoremap <silent> _ :bp<CR>
-
-" Split navigations
-nmap <Leader>h  <C-W><C-H>
-nmap <Leader>j  <C-W><C-J>
-nmap <Leader>k  <C-W><C-K>
-nmap <Leader>l  <C-W><C-L>
-nmap <Leader>ww  <C-W><C-W>
-nmap <Leader>wq  <C-W><C-Q>
-
-" split (pane) resize
-nnoremap <C-k> :resize +2<CR>
-nnoremap <C-j> :resize -2<CR>
-nnoremap <C-h> :vertical resize +2<CR>
-nnoremap <C-l> :vertical resize -2<CR>
-
-" open help in vertical split by default
-cabbrev vhelp vert help
-
-" Natural cursor movement over wrapped lines
-nnoremap j gj
-nnoremap k gk
-
-" Insert blank lines in normal mode
-nnoremap <leader>o o<ESC>k
-nnoremap <leader>O O<ESC>j
-
-"*****************************
-"========== PLUGINS ==========
-"*****************************
-
-call plug#begin('~/.vim/plugged')
-
-Plug 'justinmk/vim-sneak'
-let g:sneak#s_next = 1
-map f <Plug>Sneak_f
-map F <Plug>Sneak_F
-map t <Plug>Sneak_t
-map T <Plug>Sneak_T
-" rebinding s and S removes sneaks double char search "
-" what is the benefit of this? why did you do it?
-map s <Plug>Sneak_;
-map S <Plug>Sneak_,
-
-" https://www.barbarianmeetscoding.com/blog/exploring-vim-plugins-improve-and-extend-your-text-objects-with-targets-vim
-Plug 'wellle/targets.vim'
-
-
-" syntax and snippets for Dockerfile files
-Plug 'ekalinin/Dockerfile.vim'
-
-
-
-" numbers as text objects
-Plug 'MisanthropicBit/vim-numbers'
-
-" visualizes the Vim undo tree
-" a fork (with additional cool features) of https://docs.stevelosh.com/gundo.vim/
-Plug 'simnalamburt/vim-mundo'
-nnoremap <silent> <C-S-u> :MundoToggle<CR>
-
-" does this mess up syntax loading?
-" Plug 'tpope/vim-eunuch'
-
-"run shell commands async in vim8"
-Plug 'skywind3000/asyncrun.vim'
-let g:asyncrun_open = 10
-
-
-Plug 'airblade/vim-gitgutter'
-
-" When using :python or :!python, access the packages in venv
-" :VirtualEnvList
-" :virtualenvactivate <tab>
-normal !source /Users/jm943l/.pyenv/versions/3.8.11/envs/airflow_docker/bin/activate
-Plug 'jmcantrell/vim-virtualenv'
-
-" force quickfix to be full width
-au FileType qf wincmd J
-
-" testing - many languages and test runners
-Plug 'janko-m/vim-test'
-let test#strategy = "asyncrun_background"
-let test#python#runner = 'pytest'
-let test#python#pytest#options = '-x'
-let test#vim#term_position = "belowright"
-
-nnoremap <silent> t<LEADER>n :TestNearest<CR>
-nnoremap <silent> t<LEADER>f :TestFile<CR>
-nnoremap <silent> t<LEADER>s :TestSuite<CR>
-nnoremap <silent> t<LEADER>l :TestLast<CR>
-nnoremap <silent> t<LEADER>g :TestVisit<CR>
-
-" toggle the quickfix window
-function! ToggleQuickFix()
-  if empty(filter(getwininfo(), 'v:val.quickfix'))
-    copen 15
-    setlocal norelativenumber
-  else
-    cclose
-  endif
-endfunction
-
-nnoremap <silent> cc :call ToggleQuickFix()<cr>
-
-
-" Plug 'universal-ctags/ctags'
-" generates an index (or tag) file of language objects found in source files
-" <C-]> jump to definition
-" <C-O> jump back
-" g] see a list of multiple matches
-" <C-S-t>
-
-" (re)generate tags file in the bg
-" Plug 'ludovicchabant/vim-gutentags'
-" let g:gutentags_ctags_exclude = ['.txt', '.md', '.json', '.mypy_cache/**']
-
-" sidebar that displays the ctags-generated tags of the current file, ordered by their scope
-Plug 'majutsushi/tagbar'
-nnoremap <F2> :TagbarToggle<CR>
-
-" add python library code to tags file, useful for goto def with <C-]>
-let pyEnvLib = $VIRTUAL_ENV
-" let pyEnvLib .= '/lib/python3.8/'
-
-" ======= SNIPPETS ======== "
-" Track the engine.
-Plug 'sirver/ultisnips'
-" :UltiSnipsEdit command opens a private snippet definition file for the current filetype.
-" q: will open a window showing command mode history
-
-" Snippets are separated from the engine. Add this if you want them:
-Plug 'honza/vim-snippets'
-
-" better key bindings for UltiSnipsExpandTrigger
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-let g:UltiSnipsListSnippets = "<c-s>"
-
-" let g:UltiSnipsExpandTrigger="<tab>"
-" let g:UltiSnipsJumpForwardTrigger="<c-b>"
-" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-
-" https://www.vimfromscratch.com/articles/vim-for-python/
-" 'linting' means checking syntax for errors and patterns that could introduce bugs
-Plug 'dense-analysis/ale'
-
-" ALE completion
-let g:ale_completion_enabled = 0
-set omnifunc=ale#completion#OmniFunc
-let g:ale_completion_autoimport = 1
-
-nnoremap <leader>at :ALEToggle<CR>
-nnoremap <leader>af :ALEFix<CR>
-nnoremap <silent> <leader>aj :ALENext<cr>
-nnoremap <silent> <leader>ak :ALEPrevious<cr>
-
-
-" :CocInfo is good for testing status
-" :CocConfig - opens the main config file
-" :CocList extensions
-" :CocUninstall <coc-highlight>
-" Goto definition: nmap <C-X> <Plug>(coc-definition)
-" Rename a thing across all files: nmap <leader>cn <Plug>(coc-rename)
-
-" completion sources
-" https://github.com/neoclide/coc-sources
-" https://github.com/neoclide/coc.nvim/wiki/Completion-with-sources#completion-sources
-" to see which extensions are installed: ~/.config/coc/extensions/package.json
-
-" manage extensions
-" https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#manage-extensions-with-coclist "
-
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-" nmap <leader>x <Plug>(coc-definition)
-nmap <C-X> <Plug>(coc-definition)
-" renames across all files
-nmap <C-N> <Plug>(coc-rename)
-" show documentation in the floating window "
-nnoremap <leader>d :call <SID>show_documentation()<CR>
-
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
-  else
-    execute '!' . &keywordprg . " " . expand('<cword>')
-  endif
-endfunction
-
-" use tab and shift-tab to navigate the completion list
-inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
-inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
-
-" SCROLL FLOATING WINDOWS/POPUPS - <C-f> and <C-b>.
-if has('nvim-0.4.0') || has('patch-8.2.0750')
-  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-endif
-
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use <c-space> to trigger completion.
-" if has('nvim')
-"   inoremap <silent><expr> <c-space> coc#refresh()
-" else
-"   inoremap <silent><expr> <c-@> coc#refresh()
-" endif
-
-" Make <CR> auto-select the first completion item and notify coc.nvim to
-" format on enter, <cr> could be remapped by other vim plugin
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-" Use `[g` and `]g` to navigate diagnostics
-" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-
-" JEDI IS A LANGUAGE SERVER BUT OY USUE LSP "
-" https://www.vimfromscratch.com/articles/vim-for-python/
-" Jedi is a 'language server' (see my LSP article), a separate process running in the background and analyzing your code.
-" Other clients (editors or IDEs) can connect to the server and request some information, like completion options, or 'go to definition' coordinates.
-" Basically, Jedi is an IDE as a service, without the GUI.
-" In order to use it, you need to install it with pip install jedi, and then also add a client.
-" The davidhalter/jedi Vim plugin does a good job.
-" Plug 'davidhalter/jedi'
-
-
-Plug 'maksimr/vim-jsbeautify'
-
-" autoclose parens, brackets etc
-Plug 'townk/vim-autoclose'
-
-" sorting stuff, like python imports? used by ALE?
-Plug 'fisadev/vim-isort'
-
-" vim-tmux focus events
-" this is commented out because it doesnt play nice with neovim.coc
-" when focus is lost using alttab, `[0]` is inserted at cursor
-" Plug 'tmux-plugins/vim-tmux-focus-events'
-
-" adds vertical lines to easily show indent levels
-Plug 'yggdroot/indentline'
-
-" yaml code folding
-" B
-" Plug 'pedrohdz/vim-yaml-folds' " I don't like code folding. gimme all the info immediately
-
-" Fugitive
-Plug 'tpope/vim-fugitive'
-
-" Marks
-" https://github.com/kshenoy/vim-signature
-" m<Space> Delete all marks from the current buffer
-" m. If no mark on line, place the next available mark. Otherwise remove (first) existing mark.
-Plug 'kshenoy/vim-signature'
-
-" Latex Vimtex
-Plug 'lervag/vimtex'
-let g:tex_flavor = 'latex'
-autocmd Filetype tex set updatetime=1000
-let g:livepreview_previewer = 'open -a Preview'
-let g:tex_IgnoredWarnings =
-    \'Underfull'."\n".
-    \'Overfull'."\n".
-    \'specifier changed to'."\n".
-    \'You have requested'."\n".
-    \'Missing number, treated as zero.'."\n".
-    \'There were undefined references'."\n".
-    \'Citation %.%# undefined'."\n".
-    \'Double space found.'."\n"
-let g:Tex_IgnoreLevel = 8
-
-" Rainbow parenthesis
-let blacklist = ['html', 'md', 'wiki']
-autocmd BufWritePre * if index(blacklist, &ft) < 0 | Plug 'luochen1990/rainbow'
-let g:rainbow_active = 1
-let g:rainbow_conf = {
-    \'guifgs': ['green', 'magenta1', 'gold', 'red', 'deepskyblue'],
-    \'guis': ['bold','standout','undercurl','italic','strikethrough']
-    \}
-
-" Set color scheme.
 set background=dark
 
+filetype plugin indent on
+syntax enable
 
-function! CustomColors() abort
-    " highlight Visual     cterm=NONE ctermbg=76  ctermfg=16  gui=NONE guibg=#5fd700 guifg=#000000
-    " highlight StatusLine cterm=NONE ctermbg=231 ctermfg=160 gui=NONE guibg=#ffffff guifg=#d70000
-    " highlight Normal     cterm=NONE ctermbg=17              gui=NONE guibg=#00005f
-    " highlight NonText    cterm=NONE ctermbg=17              gui=NONE guibg=#00005f
+let mapleader="\<Space>"
 
-    " colorscheme modifications
-    highlight Comment ctermfg=cyan guifg=cyan
-    highlight pythonComment ctermfg=cyan guifg=cyan
-    " let s:bwc.lime = ['aeee00', 154] is also a nice color
-    highlight LineNr ctermfg=cyan guifg=cyan
-    highlight Visual term=reverse guibg=darkgreen
+highlight Search guibg=purple guifg='NONE'
+highlight Search cterm=none ctermbg=green ctermfg=black
+highlight BadWhitespace ctermbg=red guibg=darkred
 
-    " this makes the visual highlight color the same the cursor color  highlight! link Visual CursorLine
-    highlight nontext term=bold ctermfg=Cyan guifg=#80a0ff gui=bold
-    highlight vimLineComment term=bold ctermfg=Cyan guifg=#80a0ff gui=bold
-    " SpecialKey - use :set list to toggle visibility of EOL, CR, etc
-    highlight specialKey term=bold ctermfg=Cyan guifg=#80a0ff gui=bold
+" Cursor settings https://vim.fandom.com/wiki/Change_cursor_shape_in_different_modes
+let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
+let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
 
-endfunction
-
-" Spell check ==============================================
-" [s or ]s go to next/previous bad word
-" z=  - list of suggestions
-" zg - add word to good word list
-" zug - remove word from good word list
-" zw - add word to bad word list
-" zuw - remove word from bad word list
-set spelllang=en_us
-set spellfile=$HOME/.vim/spell/en.utf-8.add
-set spellsuggest+=10 " make the spell suggestions window 10 lines high not whole screen
-
-nnoremap <leader>ss :setlocal spell!<CR>
-nnoremap zf z=1<CR><CR>
-
-function! SpellCheckHighlights() abort
-	hi clear SpellBad
-	hi clear SpellCap
-	hi clear SpellLocal
-	hi clear SpellRare
-	hi SpellBad cterm=underline ctermfg=yellow
-	hi SpellCap cterm=underline ctermfg=red
-	hi SpellLocal cterm=underline ctermfg=blue
-	hi SpellRare cterm=underline ctermfg=gray
-endfunction
-
-augroup MyCustomColorsGroup
-    autocmd!
-    " autocmd ColorScheme * call MyCustomColors()
-    autocmd ColorScheme * call SpellCheckHighlights()
-    autocmd ColorScheme badwolf call CustomColors()
-augroup END
-
-Plug 'sjl/badwolf'
-colorscheme badwolf
-let g:badwolf_html_link_underline = 1
-let g:badwolf_css_props_highlight = 1
-
-
-" colors for flashing cursorline and cursorcolumn
-" hi CursorLine   cterm=NONE ctermbg=green ctermfg=black guibg=green guifg=black
-" hi CursorColumn NONE ctermbg=green ctermfg=black guibg=green guifg=black
-
-" query which color - what and which kind of syntax is this color? - wc
-nnoremap wc :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") ."> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+let pyEnvLib = $VIRTUAL_ENV
+" format .JSON files by using the previously installed jq cli tool
+com! JQ %!jq
 
 " fuzzy file, buffer, tag finder
 set rtp+=/usr/local/opt/fzf
 
-" ensure you have the latest version
-Plug 'junegunn/fzf', {'dir': '~/.fzf','do': './install --all'}
-Plug 'junegunn/fzf.vim' " needed for previews
-
-" if you type more chars, reset the selected menu item to position 0
-" fzf --bind change:top
-
-nnoremap <silent> <Leader>e :Files<CR>
-nnoremap <silent> <Leader>r :Buffers<CR>
-nnoremap <silent> <Leader>t :Tags<CR>
-nnoremap <silent> <Leader>f :Rg<CR>
-" nnoremap <silent> <Leader>f :Ag<CR>
-nnoremap <silent> <Leader>la :BLines<CR>
-nnoremap <silent> <Leader>ll :Lines<CR>
-nnoremap <silent> <Leader>' :Marks<CR>
-nnoremap <silent> <Leader>gh :Helptags<CR>
-nnoremap <silent> <Leader>gs :Snippets<CR>
-nnoremap <silent> <Leader>gc :Commits<CR>
-nnoremap <silent> <Leader>gbc :BCommits<CR>
-nnoremap <silent> <Leader>hh :History<CR>
-nnoremap <silent> <Leader>h: :History:<CR>
-nnoremap <silent> <Leader>h/ :History/<CR>
-
-" let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline'
-" let $FZF_DEFAULT_COMMAND="rg --files --hidden"
-
-let g:fzf_buffers_jump = 0
-let g:fzf_layout = { 'down': '~50%' }
-" let g:fzf_preview_window = ''
-let g:fzf_preview_window = 'right:0%'
-
-function! s:copy_results(lines)
-  let joined_lines = join(a:lines, "\n")
-  if len(a:lines) > 1
-    let joined_lines .= "\n"
-  endif
-  let @+ = joined_lines
-endfunction
-
-let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-x': 'split',
-  \ 'ctrl-v': 'vsplit',
-  \ 'ctrl-o': function('s:copy_results'),
-  \ }
-
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
-
-
-" grep in vim - shows results in a split window
-Plug 'mileszs/ack.vim'
-
-" session tracking
-Plug 'tpope/vim-obsession'
-
-" pairs of handy bracket mapping
-Plug 'tpope/vim-unimpaired'
-
-" https://vimawesome.com/plugin/surround-vim
-" ds<text object><",{,(,etc> → delete surround
-" cs for change surround,
-" ys for add surround
-" to include/exclude space use open or closing char. `(` vs `)` or `[` vs `]`
-" for visual mode just use `V`
-" the readme on the get repo is useful
-Plug 'tpope/vim-surround'
-
-" repeat commands from plugin mappings
-Plug 'tpope/vim-repeat'
-
-" CSV
-Plug 'chrisbra/csv.vim'
-
-" vinegar
-Plug 'tpope/vim-vinegar'
-nmap <Leader>n -
-let g:netrw_winsize = -28               " absolute width of netrw window
-let g:netrw_banner = 0                  " do not display info on the top of window
-let g:netrw_liststyle = 3               " tree-view
-let g:netrw_sort_sequence = '[\/]$,*'   " sort is affecting only: directories on the top, files below
-" let g:netrw_browse_split = 4            " use the previous window to open file "
-
-
-" nerdtree
-Plug 'scrooloose/nerdtree'
-nnoremap <Leader>n :NERDTreeToggle<CR>
-" let g:nerdtree_tabs_autoclose=1
-" let NERDTreeAutoDeleteBuffer = 1 " Automatically delete the buffer of the file you just deleted
-" let g:nerdtree_tabs_open_on_gui_startup=2 " 2 - open nerdtree only if directory was given as startup argument
-" let g:nerdtree_tabs_smart_startup_focus=2 " always focus file window after startup
-" let NERDTreeShowHidden=0
-
-" Status bars
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-let g:airline_theme='badwolf'
-
-let g:airline_detect_crypt=1
-let g:airline_detect_modified=1
-let g:airline_detect_paste=1
-let g:airline_detect_spell=1
-let g:airline_detect_spelllang=1
-let g:airline_powerline_fonts = 1
-let g:airline_skip_empty_sections = 0
-
-
-" airline extensions
-let g:airline#extensions#ale#enabled = 1
-let g:airline#extensions#fugitiveline#enabled = 1
-let g:airline#extensions#gutentags#enabled = 1
-let g:airline#extensions#searchcount#enabled = 0
-let g:airline#extensions#tagbar#enabled = 0
-let g:airline#extensions#tagbar#enabled = 1
-let g:airline#extensions#tagbar#flags = 'f'
-let g:airline#extensions#virtualenv#enabled = 1
-
-
-let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['error', 'warning', 'x', 'y', 'z']]
-au User AirlineAfterInit let g:airline_section_a = airline#section#create(['maxlinenr', '%3p%%', ' ', 'mode', ' ', 'crypt', ' ', 'paste', ' ',  'spell', ' ',  'iminsert'])
-au User AirlineAfterInit let g:airline_section_y = airline#section#create([])
-au User AirlineAfterInit let g:airline_section_z = airline#section#create(['obsession'])
-
-au User AirlineAfterInit let g:airline_symbols.maxlinenr = ''
-
-" comments
-Plug 'scrooloose/nerdcommenter'
-let g:NERDSpaceDelims = 1
-let g:NERDCompactSexyComs = 1
-let g:NERDDefaultAlign = 'left'
-let g:NERDCommentEmptyLines = 0
-let g:NERDTrimTrailingWhitespace = 1
-
-" markdown. tabular is required
-Plug 'plasticboy/vim-markdown'
-Plug 'godlygeek/tabular'
-let g:vim_markdown_fenced_languages = ['python=py']
-let g:vim_markdown_follow_anchor = 0
-let g:vim_markdown_conceal_code_blocks = 0
-let g:vim_markdown_folding_disabled = 1
-let g:vim_markdown_conceal = 0
-let g:tex_conceal = ""
-let g:vim_markdown_math = 1
-let g:vim_markdown_new_list_item_indent = 4
-let g:vim_markdown_strikethrough = 1
-
-" Plugins must be in .vimrc not in ftplugin/python.vim "
-" python linting
-" F7 checks flake8
-Plug 'nvie/vim-flake8'
-Plug 'vim-scripts/pylint.vim'
-
-"Flagging Unnecessary Whitespace
-highlight BadWhitespace ctermbg=red guibg=darkred
-
-" polyglot is a syntax highligher for millions of languages
-" polyglot seems to cause a lot of problems with html/jinja/django and
-" yaml/ansibleyaml filetype detection. can't I just 86 it?
-" Plug 'sheerun/vim-polyglot'
-
-" maybe this is screwing up filetype detection?"
-" let g:polyglot_disabled = ['ftdetect']
-
-
-let g:polyglot_disabled = ['latex', 'html']
-let g:python_highlight_all = 1
-let g:graphql_javascript_tags = []
-
-" javaScript
-Plug 'pangloss/vim-javascript'
-let g:javascript_plugin_jsdoc = 1
-let g:javascript_plugin_flow = 1
-
-" json syntax
-" jsonc = json with comments
-" Plug 'kevinoid/vim-jsonc'
-
-" format .JSON files by using the jq cli tool
-com! JQ %!jq
-
-" HTML/JINJA
-Plug 'glench/vim-jinja2-syntax'
-Plug 'valloric/matchtagalways'
-" Plug 'alvan/vim-closetag'
-let g:closetag_filenames = "*.html, *.xhtml, *.phtml"
-
-
-" vagrant
-Plug 'hashivim/vim-vagrant'
-
-" sql
-Plug 'vim-scripts/SQLUtilities'
-Plug 'shmup/vim-sql-syntax'
-
+call plug#begin('~/.vim/plugged')
+source ~/.vim/config/functions.vim
+source ~/.vim/config/plugins.vim
+source ~/.vim/config/autoCommandGroups.vim
+source ~/.vim/config/keyMaps.vim
 call plug#end()
 
-" map F key escape sequences
-" if has('mac') && ($TERM == 'xterm-256color' || $TERM == 'screen-256color')
-"   map <Esc>OP <F1>
-"   map <Esc>OQ <F2>
-"   map <Esc>OR <F3>
-"   map <Esc>OS <F4>
-"   map <Esc>[16~ <F5>
-"   map <Esc>[17~ <F6>
-"   map <Esc>[18~ <F7>
-"   map <Esc>[19~ <F8>
-"   map <Esc>[20~ <F9>
-"   map <Esc>[21~ <F10>
-"   map <Esc>[23~ <F11>
-"   map <Esc>[24~ <F12>
-" endif
-
-" " https://stackoverflow.com/questions/12485981/syntax-highlighting-is-not-turned-on-in-vim-when-opening-multiple-files-using-ar
-" " Enable syntax highlighting when buffers are displayed in a window through
-" " :argdo and :bufdo, which disable the Syntax autocmd event to speed up
-" " processing.
-" augroup EnableSyntaxHighlighting
-"     " Filetype processing does happen, so we can detect a buffer initially
-"     " loaded during :argdo / :bufdo through a set filetype, but missing
-"     " b:current_syntax. Also don't do this when the user explicitly turned off
-"     " syntax highlighting via :syntax off.
-"     " The following autocmd is triggered twice:
-"     " 1. During the :...do iteration, where it is inactive, because
-"     " 'eventignore' includes "Syntax". This speeds up the iteration itself.
-"     " 2. After the iteration, when the user re-enters a buffer / window that was
-"     " loaded during the iteration. Here is becomes active and enables syntax
-"     " highlighting. Since that is done buffer after buffer, the delay doesn't
-"     " matter so much.
-"     " Note: When the :...do command itself edits the window (e.g. :argdo
-"     " tabedit), the BufWinEnter event won't fire and enable the syntax when the
-"     " window is re-visited. We need to hook into WinEnter, too. Note that for
-"     " :argdo split, each window only gets syntax highlighting as it is entered.
-"     " Alternatively, we could directly activate the normally effectless :syntax
-"     " enable through :set eventignore-=Syntax, but that would also cause the
-"     " slowdown during the iteration Vim wants to avoid.
-"     " Note: Must allow nesting of autocmds so that the :syntax enable triggers
-"     " the ColorScheme event. Otherwise, some highlighting groups may not be
-"     " restored properly.
-"     autocmd! BufWinEnter,WinEnter * nested if exists('syntax_on') && ! exists('b:current_syntax') && ! empty(&l:filetype) && index(split(&eventignore, ','), 'Syntax') == -1 | syntax enable | endif
-
-"     " The above does not handle reloading via :bufdo edit!, because the
-"     " b:current_syntax variable is not cleared by that. During the :bufdo,
-"     " 'eventignore' contains "Syntax", so this can be used to detect this
-"     " situation when the file is re-read into the buffer. Due to the
-"     " 'eventignore', an immediate :syntax enable is ignored, but by clearing
-"     " b:current_syntax, the above handler will do this when the reloaded buffer
-"     " is displayed in a window again.
-"     autocmd! BufRead * if exists('syntax_on') && exists('b:current_syntax') && ! empty(&l:filetype) && index(split(&eventignore, ','), 'Syntax') != -1 | unlet! b:current_syntax | endif
-" augroup END
+colorscheme badwolf
