@@ -9,6 +9,7 @@ source ~/.vim/config/plugins/coc.vim
 source ~/.vim/config/plugins/csv.vim
 source ~/.vim/config/plugins/dockerfile.vim
 source ~/.vim/config/plugins/flake8.vim
+source ~/.vim/config/plugins/floatterm.vim
 source ~/.vim/config/plugins/fugitive.vim
 source ~/.vim/config/plugins/fzf.vim
 source ~/.vim/config/plugins/gitgutter.vim
@@ -36,6 +37,7 @@ source ~/.vim/config/plugins/tabular.vim
 source ~/.vim/config/plugins/tagbar.vim
 source ~/.vim/config/plugins/targets.vim
 source ~/.vim/config/plugins/test.vim
+source ~/.vim/config/plugins/textobj-xmlattr.vim
 source ~/.vim/config/plugins/ultisnips.vim
 source ~/.vim/config/plugins/unimpaired.vim
 source ~/.vim/config/plugins/vagrant.vim
