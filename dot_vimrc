@@ -90,11 +90,18 @@ com! JQ %!jq
 set rtp+=/usr/local/opt/fzf
 
 call plug#begin('~/.vim/plugged')
+
+" FUNCTIONS
 source ~/.vim/config/functions.vim
+" PLUGINS
 source ~/.vim/config/plugins.vim
+" AUTOCOMMANDS
 source ~/.vim/config/autoCommandGroups.vim
+" KEYMAPS
 source ~/.vim/config/keyMaps.vim
+" FUNCTIONS
 source ~/.vim/config/functions.vim
+
 call plug#end()
 
 colorscheme badwolf
