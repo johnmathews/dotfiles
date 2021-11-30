@@ -99,9 +99,10 @@ if [ "$(uname)" = "Darwin" ]; then
 
     # this makes the z command work
     . $(brew --prefix)/etc/profile.d/z.sh
+
     # broot cli tool - see a big dir on one screen
-    # source /Users/$USER/Library/Preferences/org.dystroy.broot/launcher/bash/br
-    source /Users/$USER/.config/broot/launcher/bash/br
+    # source /Users/$USER/.config/broot/launcher/bash/br
+    source /Users/$USER/Library/Preferences/org.dystroy.broot/launcher/bash/br
 
     # kubernetes
     source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
