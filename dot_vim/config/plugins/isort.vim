@@ -1,0 +1,1 @@
+Plug 'fisadev/vim-isort'

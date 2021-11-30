@@ -124,9 +124,9 @@ vnoremap <leader>p "_dP
 " vnoremap Y myY`y
 
 " === COC =======================
-nnoremap <C-X> <Plug>(coc-definition)
-nnoremap <C-N> <Plug>(coc-rename)
-nnoremap <leader>d :call <SID>show_documentation()<CR>
+nmap <C-X> <Plug>(coc-definition)
+nmap <C-N> <Plug>(coc-rename)
+nmap <leader>d :call <SID>show_documentation()<CR>
 
 " navigate the completion list
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"

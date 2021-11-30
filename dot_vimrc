@@ -94,6 +94,7 @@ source ~/.vim/config/functions.vim
 source ~/.vim/config/plugins.vim
 source ~/.vim/config/autoCommandGroups.vim
 source ~/.vim/config/keyMaps.vim
+source ~/.vim/config/functions.vim
 call plug#end()
 
 colorscheme badwolf
