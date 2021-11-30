@@ -1,7 +1,7 @@
 " === PLUGINS ===================
 source ~/.vim/config/plugins/ack.vim
 source ~/.vim/config/plugins/airline.vim
-source ~/.vim/config/plugins/ale.vim
+" source ~/.vim/config/plugins/ale.vim
 source ~/.vim/config/plugins/autoclose.vim
 source ~/.vim/config/plugins/ayncrun.vim
 source ~/.vim/config/plugins/badwolf.vim

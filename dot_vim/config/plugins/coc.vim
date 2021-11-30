@@ -2,6 +2,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " :CocInfo is good for testing status
 " :CocConfig - opens the main config file
 " :CocList extensions management
+" :CocUpdate
 " :CocUninstall <coc-highlight>
 " to see which extensions are installed: ~/.config/coc/extensions/package.json
 
@@ -75,20 +76,26 @@ function! s:show_documentation()
 endfunction
 
 let g:coc_global_extensions = [
+  \ 'coc-ansible',
   \ 'coc-css',
+  \ 'coc-cssmodules',
   \ 'coc-diagnostic',
   \ 'coc-emmet',
-  \ 'coc-git',
   \ 'coc-eslint',
+  \ 'coc-fzf-preview',
+  \ 'coc-git',
   \ 'coc-html',
   \ 'coc-json',
   \ 'coc-pairs',
   \ 'coc-prettier',
+  \ 'coc-pyright',
+  \ 'coc-pydocstring',
   \ 'coc-sh',
   \ 'coc-snippets',
   \ 'coc-sql',
   \ 'coc-svg',
-  \ 'https://github.com/rodrigore/coc-tailwind-intellisense',
   \ 'coc-tsserver',
+  \ 'coc-yaml',
+  \ 'https://github.com/rodrigore/coc-tailwind-intellisense',
 \ ]
 
