@@ -7,18 +7,18 @@ zmodload zsh/zprof
 #
 # ====== .zshrc ======
 # sourced in interactive shells. should set 
-# 	- aliases
-# 	- functions,
-# 	- options
-# 	- key bindings,
-# 	- etc.
+# - aliases
+# - functions,
+# - options
+# - key bindings,
+# - etc.
 
 # There are 5 startup files that zsh reads commands from:
-#     .zshenv - PATH settings go here
-#     .zprofile
-#     .zshrc
-#     .zlogin
-#     .zlogout
+# .zshenv - PATH settings go here
+# .zprofile
+# zshrc
+# .zlogin
+# .zlogout
 
 # === useful keyboard shortcuts =====
 # ctrl-A - beginning of line
@@ -36,7 +36,6 @@ fi
 
 
 plugins=(
-    git-auto-fetch
     autopep8 # completion for the pep8 tool
     # aws # some performance costs. disable if not using.
     brew # completion for brew commands, adds alias `brews`
@@ -48,6 +47,7 @@ plugins=(
     extract # `extract` any archive. `extract -r <file>` remove orig archive file
     fzf # fuzzy find
     git # adds git aliases and completions https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git/
+    git-auto-fetch
     # heroku
     # kubectl
     # minikube
@@ -65,6 +65,7 @@ VIRTUAL_ENV_DISABLE_PROMPT=0
 HYPHEN_INSENSITIVE="true"
 COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="yyyy-mm-dd"
+GIT_AUTO_FETCH_INTERVAL=60 # in seconds
 
 source $ZSH/oh-my-zsh.sh
 
