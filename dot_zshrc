@@ -9,7 +9,7 @@ fi
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/ext_jmatthews4_wayfair_com/.oh-my-zsh"
+export ZSH=".oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -77,25 +77,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(
-	git
-	autopep8 # completion for the pep8 tool
-	brew # completion for brew commands, adds alias `brews`
-	chucknorris # commands `chuck` and `chuck_cow`
-	colored-man-pages # yep
-	colorize # more syntax highlighting
-	docker
-	docker-compose
-	extract # `extract` any archive. `extract -r <file>` remove orig archive file
-	fzf # fuzzy find
-	git # adds git aliases and completions https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git/
-	pep8 # completion for pep8 python coding style
-	pip # completion for pip commands
-	vi-mode # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/vi-mode
-	zsh-autosuggestions
-	zsh-syntax-highlighting
-	# zsh-vi-mode # https://github.com/jeffreytse/zsh-vi-mode
-)
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
