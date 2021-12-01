@@ -34,6 +34,10 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+update-git-remote() git remote -v update &>/dev/null
+autoload -Uz add-zsh-hook
+add-zsh-hook chpwd update-git-remote
+
 
 plugins=(
     autopep8 # completion for the pep8 tool
