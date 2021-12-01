@@ -14,11 +14,11 @@ au FileType qf wincmd J
 
 autocmd Filetype tex set updatetime=1000
 
-augroup MyCustomColorsGroup
-    autocmd!
-    autocmd ColorScheme * call SpellCheckHighlights()
-    autocmd ColorScheme badwolf call CustomColors()
-augroup END
+" augroup MyCustomColorsGroup
+"     autocmd!
+"     autocmd ColorScheme * call SpellCheckHighlights()
+"     autocmd ColorScheme badwolf call CustomColors()
+" augroup END
 
 " airline plugin
 au User AirlineAfterInit let g:airline_section_a = airline#section#create(['maxlinenr', '%3p%%', ' ', 'mode', ' ', 'crypt', ' ', 'paste', ' ',  'spell', ' ',  'iminsert'])

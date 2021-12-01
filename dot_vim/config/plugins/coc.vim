@@ -1,5 +1,17 @@
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+function! SetupCommandAbbrs(from, to)
+  exec 'cnoreabbrev <expr> '.a:from
+        \ .' ((getcmdtype() ==# ":" && getcmdline() ==# "'.a:from.'")'
+        \ .'? ("'.a:to.'") : ("'.a:from.'"))'
+endfunction
+
+" Use :C to open coc config
+call SetupCommandAbbrs('C', 'CocConfig')
+call SetupCommandAbbrs('CD', 'CocDiagnostics')
+call SetupCommandAbbrs('CP', 'e ~/.vim/config/plugins/coc.vim')
+
+
 " \ 'coc-ansible',
 " \ 'coc-snippets',
 let g:coc_global_extensions = [
@@ -41,17 +53,6 @@ augroup CocAutoCommands
     " Update signature help on jump placeholder.
     autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
-
-
-function! SetupCommandAbbrs(from, to)
-  exec 'cnoreabbrev <expr> '.a:from
-        \ .' ((getcmdtype() ==# ":" && getcmdline() ==# "'.a:from.'")'
-        \ .'? ("'.a:to.'") : ("'.a:from.'"))'
-endfunction
-
-" Use :C to open coc config
-call SetupCommandAbbrs('C', 'CocConfig')
-call SetupCommandAbbrs('CD', 'CocDiagnostics')
 
 
 

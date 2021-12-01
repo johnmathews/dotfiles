@@ -1,10 +1,7 @@
-source ~/.vim/config/functions.vim
-
 " === KEYMAPS ===================
 " ===============================
 
 " === NORMAL MODE ===============
-
 
 nnoremap <silent> <leader>ve :edit $MYVIMRC<CR>
 nnoremap <silent> <leader>vc :edit ~/.vim/coc-settings.json<CR>
@@ -61,6 +58,7 @@ nnoremap <silent> cc :call ToggleQuickFix()<cr>
 
 " PLUGINS
 
+"" NERDTREE
 nnoremap <expr> <leader>n g:NERDTree.IsOpen() ? ':NERDTreeClose<CR>' : @% == '' ? ':NERDTree<CR>' : ':NERDTreeFind<CR>'
 nnoremap <leader>N :NERDTreeFind
 
@@ -75,10 +73,10 @@ nnoremap <silent> t<LEADER>g :TestVisit<CR>
 nnoremap <F2> :TagbarToggle<CR>
 
 "" ALE
-nnoremap <leader>at :ALEToggle<CR>
-nnoremap <leader>af :ALEFix<CR>
-nnoremap <silent> <leader>aj :ALENext<cr>
-nnoremap <silent> <leader>ak :ALEPrevious<cr>
+" nnoremap <leader>at :ALEToggle<CR>
+" nnoremap <leader>af :ALEFix<CR>
+" nnoremap <silent> <leader>aj :ALENext<cr>
+" nnoremap <silent> <leader>ak :ALEPrevious<cr>
 
 "" FZF
 nnoremap <silent> <Leader>e :Files<CR>
@@ -118,10 +116,3 @@ vnoremap > >gv
 
 " Paste replace visual selection without copying it
 vnoremap <leader>p "_dP
-
-" maintain cursor position when yanking
-" vnoremap y myy`y
-" vnoremap Y myY`y
-
-
-
