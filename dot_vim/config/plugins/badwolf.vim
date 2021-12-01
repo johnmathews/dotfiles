@@ -16,5 +16,5 @@ augroup BadwolfOverides
     autocmd ColorScheme badwolf highlight Search cterm=none ctermbg=green ctermfg=black
     autocmd ColorScheme badwolf highlight BadWhitespace ctermbg=red guibg=darkred
 
-    autocmd User PlugLoaded ++nested colorscheme badwolf
+    autocmd User PlugLoaded nested colorscheme badwolf
 augroup end
