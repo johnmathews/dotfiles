@@ -1,5 +1,6 @@
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
 let g:airline_theme='badwolf'
 let g:airline_detect_crypt=1
 let g:airline_detect_modified=1

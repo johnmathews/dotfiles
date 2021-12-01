@@ -11,5 +11,10 @@ augroup BadwolfOverides
     autocmd ColorScheme badwolf highlight nontext term=bold ctermfg=Cyan guifg=#80a0ff gui=bold
     autocmd ColorScheme badwolf highlight vimLineComment term=bold ctermfg=Cyan guifg=#80a0ff gui=bold
     autocmd ColorScheme badwolf highlight specialKey term=bold ctermfg=Cyan guifg=#80a0ff gui=bold
+
+    autocmd ColorScheme badwolf highlight Search guibg=purple guifg='NONE'
+    autocmd ColorScheme badwolf highlight Search cterm=none ctermbg=green ctermfg=black
+    autocmd ColorScheme badwolf highlight BadWhitespace ctermbg=red guibg=darkred
+
     autocmd User PlugLoaded ++nested colorscheme badwolf
 augroup end
