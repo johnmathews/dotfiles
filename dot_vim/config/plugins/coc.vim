@@ -75,8 +75,9 @@ function! s:show_documentation()
   endif
 endfunction
 
+" \ 'coc-ansible',
+" \ 'coc-snippets',
 let g:coc_global_extensions = [
-  \ 'coc-ansible',
   \ 'coc-css',
   \ 'coc-cssmodules',
   \ 'coc-diagnostic',
@@ -91,7 +92,6 @@ let g:coc_global_extensions = [
   \ 'coc-pyright',
   \ 'coc-pydocstring',
   \ 'coc-sh',
-  \ 'coc-snippets',
   \ 'coc-sql',
   \ 'coc-svg',
   \ 'coc-tsserver',
