@@ -15,7 +15,6 @@ call SetupCommandAbbrs('CC', 'CocConfig')
 call SetupCommandAbbrs('CD', 'CocDiagnostics')
 call SetupCommandAbbrs('CP', 'e ~/.vim/config/plugins/coc.vim')
 
-
 " \ 'coc-ansible',
 " \ 'coc-snippets',
 let g:coc_global_extensions = [

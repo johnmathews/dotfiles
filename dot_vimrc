@@ -38,7 +38,7 @@ set tabstop=2
 set wildmode=longest:full,full
 set nowrap
 set list
-set listchars=tab:>\ ,trail:.
+set listchars=tab:>\ ,trail:∙
 
 set undofile
 set undolevels=100000

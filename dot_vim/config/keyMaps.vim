@@ -1,15 +1,12 @@
-" === KEYMAPS ===================
-" ===============================
-
 " === NORMAL MODE ===============
 
 nnoremap <silent> <leader>ve :edit $MYVIMRC<CR>
-nnoremap <silent> <leader>vc :edit ~/.vim/coc-settings.json<CR>
 nnoremap <silent> <leader>vf :edit ~/.vim/ftplugin/<C-R>=&filetype<CR>.vim<CR>
-nnoremap <silent> <leader>vr :source $MYVIMRC<CR>
+nnoremap <silent> <leader>vr :source ~/.vimrc<CR>
+nnoremap <silent> <leader>vc :edit ~/.vim/coc-settings.json<CR>
 
-nnoremap \ /
-nnoremap \\ :nohlsearch<CR>
+call SetupCommandAbbrs('VP', 'e ~/.vim/config/plugins.vim')
+
 nnoremap // :nohlsearch<CR>
 nnoremap # <NOP>
 nnoremap * *``
@@ -21,6 +18,7 @@ nnoremap <leader>ss :setlocal spell!<CR>
 nnoremap ; :
 nnoremap : ;
 
+" close buffers, save buffers, quit
 nnoremap <C-I>ww :wa<CR>
 nnoremap <C-I>qq :qa<CR>
 nnoremap qq :bp\|bd #<CR>
@@ -99,8 +97,12 @@ nnoremap <silent> <Leader>h/ :History/<CR>
 " === INSERT MODE ===============
 inoremap jk <ESC>
 inoremap jj <ESC>
+
+"jump back one word
 inoremap <C-h> <C-O>b
+" delete the word infront of the cursor
 inoremap <C-e> <C-o>de
+" try to make each word an undo step
 inoremap <space> <C-O>u<space>
 
 
