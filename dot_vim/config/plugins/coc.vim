@@ -1,5 +1,8 @@
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+" TODO "
+" make a shortcut to toggle linting or type checking
+" let the cursor be anywhere on the row and see the error
 
 function! SetupCommandAbbrs(from, to)
   exec 'cnoreabbrev <expr> '.a:from

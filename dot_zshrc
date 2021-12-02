@@ -55,7 +55,7 @@ plugins=(
     docker-compose
     extract # `extract` any archive. `extract -r <file>` remove orig archive file
     fzf # fuzzy find
-    git # adds git aliases and completions https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git/
+    git # adds git aliases and completions
     # heroku
     # kubectl
     # minikube
