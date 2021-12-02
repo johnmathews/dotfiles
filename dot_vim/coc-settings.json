@@ -1,5 +1,5 @@
-// default schema, from https://github.com/neoclide/coc.nvim/blob/master/data/schema.json
 {
+  // default schema, from https://github.com/neoclide/coc.nvim/blob/master/data/schema.json
   "$schema": "http://json-schema.org/draft-07/schema#",
   "description": "Configuration file for coc.nvim",
   "additionalProperties": false,

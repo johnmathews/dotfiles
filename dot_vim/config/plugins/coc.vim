@@ -1,5 +1,6 @@
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+
 function! SetupCommandAbbrs(from, to)
   exec 'cnoreabbrev <expr> '.a:from
         \ .' ((getcmdtype() ==# ":" && getcmdline() ==# "'.a:from.'")'
@@ -39,19 +40,26 @@ let g:coc_global_extensions = [
   \ 'https://github.com/rodrigore/coc-tailwind-intellisense',
 \ ]
 
-" Add `:Prettier` command to format current bugger
+
+" Add `:Prettier` command to format current buffer
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
 
 augroup CocAutoCommands
     autocmd!
-    " Correct comment highlighting in jsonc format (json with comments)
-    autocmd FileType json syntax match Comment +\/\/.\+$+
+
     " Highlight the symbol and its references when holding the cursor.
     autocmd CursorHold * silent call CocActionAsync('highlight')
-    " Setup formatexpr specified filetype(s).
-    autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+
     " Update signature help on jump placeholder.
     autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+
+    " Correct comment highlighting in jsonc format (json with comments)
+    autocmd FileType json syntax match Comment +\/\/.\+$+
+
+    " Setup formatexpr specified filetype(s).
+    autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+
 augroup end
 
 
@@ -70,8 +78,10 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
+
 " Make <CR> auto-select the first completion item and notify coc.nvim to format on enter
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm(): "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.

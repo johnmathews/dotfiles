@@ -14,7 +14,7 @@ zmodload zsh/zprof
 
 
 # There are 5 startup files that zsh reads commands from:
-# .zshenv - PATH settings go here
+# .zshenv - FUNCTIONS (UNI) and environment variables go here
 # .zprofile
 # zshrc
 # .zlogin

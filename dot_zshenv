@@ -111,6 +111,8 @@ uni() {
   user=ainb-jmatthews4
   echo "Local Project Root: "$localProjectRoot
   echo "Remote Project Root: "$remoteProjectRoot
-  unison -batch -color true $localProjectRoot ssh://ext_jmatthews4_wayfair_com@ainb-jmatthews4/$remoteProjectRoot -force $localProjectRoot
+  # Including the preference `-force root` causes Unison to resolve all differences (even non-conflicting changes) in favor of root.
+  # This effectively changes Unison from a synchronizer into a mirroring utility. 
+  unison -batch -color true $localProjectRoot ssh://$host@$user//home/$host/$remoteProjectRoot -force $localProjectRoot
 }
 
