@@ -5,6 +5,7 @@ source ~/.vim/config/plugins/autoclose.vim
 source ~/.vim/config/plugins/ayncrun.vim
 source ~/.vim/config/plugins/badwolf.vim
 source ~/.vim/config/plugins/coc.vim
+source ~/.vim/config/plugins/commentary.vim
 source ~/.vim/config/plugins/csv.vim
 source ~/.vim/config/plugins/dockerfile.vim
 source ~/.vim/config/plugins/flake8.vim
