@@ -7,7 +7,7 @@ function! SetupCommandAbbrs(from, to)
 endfunction
 
 " Use :C to open coc config
-call SetupCommandAbbrs('C', 'CocConfig')
+call SetupCommandAbbrs('CC', 'CocConfig')
 call SetupCommandAbbrs('CD', 'CocDiagnostics')
 call SetupCommandAbbrs('CP', 'e ~/.vim/config/plugins/coc.vim')
 
