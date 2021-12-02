@@ -1,10 +1,9 @@
 #!/usr/bin/env zsh
-
-zmodload zsh/zprof
-
 # vim:syntax=zsh
 # vim:filetype=zsh
-#
+zmodload zsh/zprof
+
+
 # ====== .zshrc ======
 # sourced in interactive shells. should set 
 # - aliases
@@ -13,6 +12,7 @@ zmodload zsh/zprof
 # - key bindings,
 # - etc.
 
+
 # There are 5 startup files that zsh reads commands from:
 # .zshenv - PATH settings go here
 # .zprofile
@@ -20,21 +20,30 @@ zmodload zsh/zprof
 # .zlogin
 # .zlogout
 
-# === useful keyboard shortcuts =====
+
+# ========== useful keyboard shortcuts ==================
 # ctrl-A - beginning of line
 # ctrl-E - end of line
 # ctrl-W - delete previous word
 
+
+#  ======== P10K INSTANT PROMPT ========================
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block, everything else may go below.
-
-
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 
+# ========== CHEZMOI ==================================
+# omz is imported by chezmoi, disabling autoupdate prevents the omz directory getting
+# out of sync with chezmoi. It will still be updated when running `cm apply` and the cache (1 week)
+# has expired.
+DISABLE_AUTO_UPDATE="true"
+
+
+# ============= PLUGINS =============================
 plugins=(
     autopep8 # completion for the pep8 tool
     # aws # some performance costs. disable if not using.
@@ -47,7 +56,6 @@ plugins=(
     extract # `extract` any archive. `extract -r <file>` remove orig archive file
     fzf # fuzzy find
     git # adds git aliases and completions https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git/
-    git-auto-fetch
     # heroku
     # kubectl
     # minikube

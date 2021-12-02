@@ -2,15 +2,15 @@
 
 setlocal smarttab
 setlocal softtabstop=4
-setlocal noautoindent 			" if previous line is indented, don't make new line also indented
+setlocal noautoindent " if previous line is indented, don't make new line also indented
 
 setlocal tabstop=4
-setlocal shiftwidth=4 			" this is how many spaces a tab is.
+setlocal shiftwidth=4 " this is how many spaces a tab is.
 setlocal expandtab
-setlocal linebreak 							" Wrap lines at convenient points, avoid wrapping a line in the middle of a word.
+setlocal linebreak " Wrap lines at convenient points, avoid wrapping a line in the middle of a word.
 
 setlocal nowrap
-setlocal scrolloff=3							" The number of screen lines to keep above and below the cursor
+setlocal scrolloff=3 " The number of screen lines to keep above and below the cursor
 
 setlocal textwidth=80
 setlocal colorcolumn=0
@@ -32,7 +32,7 @@ setlocal nojoinspaces
 setlocal conceallevel=0
 let g:indentLine_conceallevel = 0
 
-call SpellCheckHighlights()
+" call SpellCheckHighlights()
 
 
 " CoC extensions
