@@ -43,8 +43,9 @@ set listchars=tab:>\ ,trail:.
 set undofile
 set undolevels=100000
 set undodir=~/.vim/.undo/,~/.vim/undo,/tmp//
-set backupdir=~/.vim/.backup/,/tmp//
-set directory=~/vim/.swp/,/tmp//
+set backup
+set backupdir=/tmp/,/private/tmp
+set directory=/tmp/,/private/tmp
 
 set timeoutlen=200
 set ttimeoutlen=200
