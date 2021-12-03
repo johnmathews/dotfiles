@@ -76,21 +76,6 @@ nnoremap <F2> :TagbarToggle<CR>
 " nnoremap <silent> <leader>aj :ALENext<cr>
 " nnoremap <silent> <leader>ak :ALEPrevious<cr>
 
-"" FZF
-nnoremap <silent> <Leader>e :Files<CR>
-nnoremap <silent> <Leader>r :Buffers<CR>
-nnoremap <silent> <Leader>t :Tags<CR>
-nnoremap <silent> <Leader>f :Rg<CR>
-nnoremap <silent> <Leader>la :BLines<CR>
-nnoremap <silent> <Leader>ll :Lines<CR>
-nnoremap <silent> <Leader>' :Marks<CR>
-nnoremap <silent> <Leader>gh :Helptags<CR>
-nnoremap <silent> <Leader>gs :Snippets<CR>
-nnoremap <silent> <Leader>gc :Commits<CR>
-nnoremap <silent> <Leader>gbc :BCommits<CR>
-nnoremap <silent> <Leader>hh :History<CR>
-nnoremap <silent> <Leader>h: :History:<CR>
-nnoremap <silent> <Leader>h/ :History/<CR>
 
 
 
