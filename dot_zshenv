@@ -10,99 +10,6 @@
 # to print each PATH section on its own line: tr ':' '\n' <<< "$PATH" or `echo $PATH | tr ':' '\n'`
 # The tr(anslate) utility copies the standard input to the standard output with substitution or deletion of selected characters
 
-export LC_ALL=en_US.utf-8 
-export LANG="$LC_ALL"
-export ZSH=$HOME/.oh-my-zsh
-export EDITOR=vi
-export VISUAL=vi
-
-export FZF_BASE="~/.fzf/install"
-
-export PATH="/usr/local/sbin:$PATH"
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# FZF using ripgrep
-if type rg &> /dev/null; then
-  export FZF_DEFAULT_COMMAND='rg --files'
-  export FZF_DEFAULT_OPTS='-m --height 50% --border'
-fi
-
-# ====== PATH ======
-export PATH=$HOME/bin:/usr/local/bin:$PATH:/usr/sbin
-
-if [ "$(uname)" = "Darwin" ]; then
-  # add Google Cloud Platform CLI tools to PATH
-  source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
-
-  export PATH="$HOME/.cargo/bin:$PATH"
-  source "$HOME/.cargo/env"
-fi
-
-# so that pip will install things correctly
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-export PATH="/usr/local/opt/python/libexec/bin:$PATH"
-
-# make bibtex executable
-export PATH="/usr/local/texlive/texmf-local/:$PATH"
-
-# enable `rabbitmq-server` command (cli and server scripts), installed using brew
-export PATH=$PATH:/usr/local/opt/rabbitmq/sbin
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-
-export PATH=$PATH:~/anaconda3/bin
-
-# zprof
-export PATH="/usr/local/opt/tcl-tk/bin:$PATH"
-
-
-export MANPATH="/usr/local/man:$MANPATH"
-export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
-
-# ssh
-export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# For pkg-config to find zlib you may need to set:
-export PKG_CONFIG_PATH="${PKG_CONFIG_PATH} /usr/local/opt/zlib/lib/pkgconfig"
-
-# updates PATH for the Google Cloud SDK.
-# DELETE THIS? DOESN't SEEM TO WORK if [ -f '/Users/john/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/john/google-cloud-sdk/path.zsh.inc'; fi
-
-
-# For pkg-config to find zlib you may need to set:
-export PKG_CONFIG_PATH="${PKG_CONFIG_PATH} /usr/local/opt/zlib/lib/pkgconfig"
-
-# bat configuration file location
-export BAT_CONFIG_PATH="~/.dotfiles/bat.conf"
-export BAT_THEME="ansi-dark"
-export TERM="xterm-256color"
-
-# virtualenvwrapper
-# export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-# export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
-# export WORKON_HOME=$HOME/.virtualenvs
-# export PROJECT_HOME=$HOME/Devel
-# export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
-# export PYTHON_CONFIGURE_OPTS="--enable-shared"
-# export VIRTUALENVWRAPPER_WORKON_CD=1
-
-# For compilers to find zlib you may need to set:
-# turn off for pyenv install
-export LDFLAGS="${LDFLAGS} -L/usr/local/opt/zlib/lib"
-export CPPFLAGS="${CPPFLAGS} -I/usr/local/opt/zlib/include"
-
-# go binaries - specifically KiND for testing k8s locally
-# export PATH="$(go env GOPATH)/bin:$PATH"
-
-# if system is linux, add linuxbrew to path
-if [ "$(uname)" = "Linux" ]; then
-    export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH"
-    export FZF_BASE=" /home/linuxbrew/.linuxbrew/opt/fzf/install "
-fi
-
 # Unison
 uni() {
   localProjectRoot=$(git rev-parse --show-toplevel)
@@ -116,3 +23,77 @@ uni() {
   unison -batch -color true $localProjectRoot ssh://$host@$user//home/$host/$remoteProjectRoot -force $localProjectRoot
 }
 
+export LC_ALL=en_US.utf-8 
+export LANG="$LC_ALL"
+export ZSH=$HOME/.oh-my-zsh
+
+export SSH_KEY_PATH="~/.ssh/rsa_id"
+
+export EDITOR=vi
+export VISUAL=vi
+
+export TERM="xterm-256color"
+export COLORTERM="truecolor"
+
+
+# bat configuration file location
+export BAT_CONFIG_PATH="$HOME/.bat.conf"
+
+
+# Let compilers find zlib. Turn off for pyenv install.
+export LDFLAGS="${LDFLAGS} -L/usr/local/opt/zlib/lib"
+export CPPFLAGS="${CPPFLAGS} -I/usr/local/opt/zlib/include"
+
+
+if [ "$(uname)" = "darwin" ]
+then
+  export FZF_BASE="~/.fzf/install"
+elif [ "$(uname)" = "linux" ]
+then 
+  export FZF_BASE=" /home/linuxbrew/.linuxbrew/opt/fzf/install "
+fi
+
+
+if type rg &> /dev/null; then
+  export FZF_DEFAULT_COMMAND='rg --files'
+  export FZF_DEFAULT_OPTS='-m --height 50% --border'
+fi
+
+
+# Manpath
+export MANPATH="/usr/local/man:$MANPATH"
+export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+
+
+# ====== PATH START =======================================================
+export PATH="/usr/local/sbin:$PATH"
+export PATH=$HOME/bin:/usr/local/bin:$PATH:/usr/sbin
+
+if [ "$(uname)" = "Darwin" ]; then
+  # add Google Cloud Platform CLI tools to PATH
+  source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
+
+  export PATH="$HOME/.cargo/bin:$PATH"
+  source "$HOME/.cargo/env"
+fi
+
+# pip will install things correctly
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+# bibtex executable
+export PATH="/usr/local/texlive/texmf-local/:$PATH"
+# `rabbitmq-server` installed using brew
+export PATH=$PATH:/usr/local/opt/rabbitmq/sbin
+# zprof
+export PATH="/usr/local/opt/tcl-tk/bin:$PATH"
+# go binaries
+export PATH="$(go env GOPATH)/bin:$PATH"
+# RVM - make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+
+# if system is linux, add linuxbrew to path
+if [ "$(uname)" = "Linux" ]; then
+    export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH"
+fi
+
+# ====== PATH END ============================================================
