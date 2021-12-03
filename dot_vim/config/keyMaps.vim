@@ -15,6 +15,9 @@ nnoremap <leader>lw :set nowrap!<CR>
 nnoremap <leader>ln :set relativenumber!<CR>
 nnoremap <leader>ss :setlocal spell!<CR>
 
+nnoremap o o<ESC>
+nnoremap O O<ESC>
+
 nnoremap ; :
 nnoremap : ;
 

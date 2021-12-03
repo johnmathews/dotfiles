@@ -26,14 +26,15 @@ let g:airline#extensions#tagbar#flags = 'f'
 " py3 is a builtin vim command
 " exec is a std lib py3 command to exec a file
 
-py3 << EOF
-import os
-import sys
-if 'VIRTUAL_ENV' in os.environ:
-  project_base_dir = os.environ['VIRTUAL_ENV']
-  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-  exec(open(activate_this).read(), dict(__file__=activate_this))
-EOF
+" py3 << EOF
+" import os
+" import sys
+
+" if 'VIRTUAL_ENV' in os.environ:
+"   project_base_dir = os.environ['VIRTUAL_ENV']
+"   activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+"   exec(open(activate_this).read(), dict(__file__=activate_this))
+" EOF
 
 "========== create the additioanl tags file ==========
 nnoremap <F4> :!ctags -V --exclude=.mypy_cache/** -R -f $VIRTUAL_ENV/tags  $VIRTUAL_ENV/lib/python3.8/ <CR>
@@ -67,8 +68,6 @@ else
     au! BufEnter <buffer> match ColorColumn /\%121v.*/
 endif
 
-" YouCompleteMe "
-" let b:ycm_hover = { 'command': 'GetDoc', 'syntax': &syntax }
 
 augroup PreviewAutocmds
   autocmd!

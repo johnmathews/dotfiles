@@ -10,7 +10,6 @@ function! SetupCommandAbbrs(from, to)
         \ .'? ("'.a:to.'") : ("'.a:from.'"))'
 endfunction
 
-" Use :C to open coc config
 call SetupCommandAbbrs('CC', 'CocConfig')
 call SetupCommandAbbrs('CD', 'CocDiagnostics')
 call SetupCommandAbbrs('CP', 'e ~/.vim/config/plugins/coc.vim')
@@ -110,7 +109,7 @@ function! s:show_documentation()
 endfunction
 
 " Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
+nmap <leader>cn <Plug>(coc-rename)
 
 " Formatting selected code.
 xmap <leader>fs  <Plug>(coc-format-selected)

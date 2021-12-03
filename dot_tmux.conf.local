@@ -408,6 +408,7 @@ bind p previous-window
 
 bind N switch-client -p
 bind P switch-client -n
+bind Z switch-client -l
 
 bind z last-window
 

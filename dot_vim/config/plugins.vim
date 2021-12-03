@@ -1,18 +1,19 @@
 " === PLUGINS ===================
+source ~/.vim/config/plugins/coc.vim
+source ~/.vim/config/plugins/badwolf.vim
+" source ~/.vim/config/plugins/dracula.vim
+source ~/.vim/config/plugins/commentary.vim
+" source ~/.vim/config/plugins/nerdcommenter.vim
+source ~/.vim/config/plugins/fzf.vim
 source ~/.vim/config/plugins/ack.vim
 source ~/.vim/config/plugins/airline.vim
 source ~/.vim/config/plugins/autoclose.vim
 source ~/.vim/config/plugins/ayncrun.vim
-source ~/.vim/config/plugins/coc.vim
-source ~/.vim/config/plugins/commentary.vim
 source ~/.vim/config/plugins/csv.vim
 source ~/.vim/config/plugins/dockerfile.vim
-source ~/.vim/config/plugins/badwolf.vim
-" source ~/.vim/config/plugins/dracula.vim
 source ~/.vim/config/plugins/flake8.vim
 source ~/.vim/config/plugins/floatterm.vim
 source ~/.vim/config/plugins/fugitive.vim
-source ~/.vim/config/plugins/fzf.vim
 source ~/.vim/config/plugins/gitgutter.vim
 source ~/.vim/config/plugins/indentline.vim
 source ~/.vim/config/plugins/isort.vim
@@ -22,7 +23,6 @@ source ~/.vim/config/plugins/jsbeautify.vim
 source ~/.vim/config/plugins/markdown.vim
 source ~/.vim/config/plugins/matchtagalways.vim
 source ~/.vim/config/plugins/mundo.vim
-source ~/.vim/config/plugins/nerdcommenter.vim
 source ~/.vim/config/plugins/nerdtree.vim
 source ~/.vim/config/plugins/numbers.vim
 source ~/.vim/config/plugins/obsession.vim
