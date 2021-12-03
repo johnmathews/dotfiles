@@ -23,7 +23,7 @@ let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['error', 'warning',
 
 
 " airline plugin
-au User AirlineAfterInit let g:airline_section_a = airline#section#create(['maxlinenr', '%3p%%', ' ', 'mode', ' ', 'crypt', ' ', 'paste', ' ',  'spell', ' ',  'iminsert'])
+au User AirlineAfterInit let g:airline_section_a = airline#section#create(['obsession', 'maxlinenr', '%3p%%', ' ', 'mode', ' ', 'crypt', ' ', 'paste', ' ',  'spell', ' ',  'iminsert'])
 au User AirlineAfterInit let g:airline_section_y = airline#section#create([])
-au User AirlineAfterInit let g:airline_section_z = airline#section#create(['obsession'])
+au User AirlineAfterInit let g:airline_section_z = airline#section#create([])
 au User AirlineAfterInit let g:airline_symbols.maxlinenr = ''

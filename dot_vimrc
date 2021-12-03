@@ -1,7 +1,6 @@
 " :scriptnames to see a list of all scripts that have been sources, in order https://vi.stackexchange.com/questions/8824/in-what-order-does-vim-read-ftplugin-files-syntax-files-and-the-vimrc-when-th
 
 " ========== Global ==========
-
 if has("clipboard")
   set clipboard=unnamed " copy to the system clipboard
   if has("unnamedplus") " X11 support

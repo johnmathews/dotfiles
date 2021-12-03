@@ -109,7 +109,7 @@ function! s:show_documentation()
 endfunction
 
 " Symbol renaming.
-nmap <leader>cn <Plug>(coc-rename)
+nmap <leader>rn <Plug>(coc-rename)
 
 " Formatting selected code.
 xmap <leader>fs  <Plug>(coc-format-selected)
