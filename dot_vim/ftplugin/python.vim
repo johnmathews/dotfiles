@@ -12,10 +12,13 @@ setlocal smarttab
 
 setlocal textwidth=119
 setlocal autoindent
-setlocal fileformat=unix
+" setlocal fileformat=unix
 setlocal nowrap
 
-au! BufEnter <buffer> match BadWhitespace /\s\+$/
+" augroup PreviewAutocmds
+"   autocmd!
+"   autocmd WinEnter * if &previewwindow | set syntax=python | endif
+" augroup END
 
 " airline
 let g:airline#extensions#tagbar#enabled = 1
@@ -37,16 +40,16 @@ let g:airline#extensions#tagbar#flags = 'f'
 " EOF
 
 "========== create the additioanl tags file ==========
-nnoremap <F4> :!ctags -V --exclude=.mypy_cache/** -R -f $VIRTUAL_ENV/tags  $VIRTUAL_ENV/lib/python3.8/ <CR>
+" nnoremap <F4> :!ctags -V --exclude=.mypy_cache/** -R -f $VIRTUAL_ENV/tags  $VIRTUAL_ENV/lib/python3.8/ <CR>
 
-set tags+=tags,$VIRTUAL_ENV/tags
+" set tags+=tags,$VIRTUAL_ENV/tags
 
 " ========== ALE ==========
 " can't have pylint aswell because # noqa comments throw errors otherwise
 " linters: ['flake8', 'mypy', 'pylint', 'pyright']
-let b:ale_linters = ['flake8']
-let b:ale_fixers = ['isort', 'remove_trailing_lines', 'trim_whitespace', 'autopep8']
-let b:ale_warn_about_trailing_whitespace = 1
+" let b:ale_linters = ['flake8']
+" let b:ale_fixers = ['isort', 'remove_trailing_lines', 'trim_whitespace', 'autopep8']
+" let b:ale_warn_about_trailing_whitespace = 1
 
 " ========== print variable and its value ==========
 vnoremap <buffer> <localleader>p y<esc>oprint(f"{<esc>gpa = }")<ESC>
@@ -58,18 +61,10 @@ nnoremap <buffer> <Localleader>o <esc>oprint(f"''{<esc>gpa =<CR><BS><BS><BS>}'''
 vnoremap <buffer> <localleader>l y<esc>ologger.info(f"{<esc>gpa = }")<ESC>
 nnoremap <buffer> <Localleader>l <esc>ologger.info(f"{<esc>gpa = }")<ESC>
 
-
-" ========== other stuff ==========
-nnoremap <buffer> <F5> :exec '!python3' shellescape(@%, 1)<CR>
-
-if exists('+colorcolumn')
-    setlocal colorcolumn=121
-else
-    au! BufEnter <buffer> match ColorColumn /\%121v.*/
-endif
+" if exists('+colorcolumn')
+"     setlocal colorcolumn=121
+" else
+"     au! BufEnter <buffer> match ColorColumn /\%121v.*/
+" endif
 
 
-augroup PreviewAutocmds
-  autocmd!
-  autocmd WinEnter * if &previewwindow | set syntax=python | endif
-augroup END

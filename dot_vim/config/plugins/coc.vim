@@ -15,8 +15,8 @@ call SetupCommandAbbrs('CD', 'CocDiagnostics')
 call SetupCommandAbbrs('CP', 'e ~/.vim/config/plugins/coc.vim')
 
 " \ 'coc-ansible',
-" \ 'coc-snippets',
 let g:coc_global_extensions = [
+  \ 'coc-snippets',
   \ 'coc-marketplace',
   \ 'coc-css',
   \ 'coc-cssmodules',
@@ -80,8 +80,11 @@ function! s:check_back_space() abort
 endfunction
 
 
+
 " Make <CR> auto-select the first completion item and notify coc.nvim to format on enter
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm(): "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm(): "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <silent><expr> <tab> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<TAB>"
+inoremap <silent><expr> <cr> "\<c-g>u\<CR>"
 
 
 " Use `[g` and `]g` to navigate diagnostics

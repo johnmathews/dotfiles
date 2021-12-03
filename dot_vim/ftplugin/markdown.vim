@@ -41,11 +41,11 @@ let g:indentLine_conceallevel = 0
 " * means extension is activated
 " + means extension is loaded
 " - means extension is disabled
-augroup toggleCocExtensions
-    autocmd!
-    autocmd BufWinEnter *.md let b:coc_suggest_disable = 1
-    autocmd BufLeave *.md let b:coc_suggest_disable = 0
-augroup END
+" augroup toggleCocExtensions
+"     autocmd!
+"     autocmd BufWinEnter *.md let b:coc_suggest_disable = 1
+"     autocmd BufLeave *.md let b:coc_suggest_disable = 0
+" augroup END
 
 
 " spellr - repeat the last z= correction for all matches of the replaced word in the current window
