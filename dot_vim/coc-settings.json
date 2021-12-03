@@ -1,5 +1,6 @@
 {
-  "python.formatting.provider": "autopep8",
+ "diagnostic.checkCurrentLine": true,
+  "python.formatting.provider": "autopep8", // "black"
   "python.analysis.diagnosticMode": "workspace",
   "suggest.noselect": false
 }

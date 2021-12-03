@@ -8,6 +8,7 @@ set rtp+=/usr/local/opt/fzf
 
 let g:fzf_layout = { 'up': '~90%', 'window': { 'width': 0.8, 'height': 0.8, 'yoffset':0.5, 'xoffset': 0.5 } }
 " let g:fzf_layout = { 'down': '~50%' }
+"
 let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline'
 
 
@@ -20,11 +21,11 @@ command! -bang -nargs=? -complete=dir AllFiles
     \ call fzf#run(fzf#wrap('allfiles', fzf#vim#with_preview({ 'dir': <q-args>, 'sink': 'e', 'source': 'rg --files --hidden --no-ignore' }), <bang>0))
 
 
+nnoremap <silent> <Leader>r :Buffers<CR>
+nnoremap <silent> <Leader>f :Rg<CR>
 nnoremap <silent> <Leader>e :Files<CR>
 nnoremap <leader>E :AllFiles<cr>
 
-nnoremap <silent> <Leader>f :Rg<CR>
-nnoremap <silent> <Leader>r :Buffers<CR>
 
 " nnoremap <silent> <Leader>t :Tags<CR>
 " nnoremap <silent> <Leader>la :BLines<CR>
