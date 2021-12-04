@@ -1,6 +1,7 @@
 source ~/.vim/config/general.vim
 source ~/.vim/config/autoCommandGroups.vim
 
+
 source ~/.vim/config/plugins.vim
 doautocmd User PlugLoaded
 
@@ -9,21 +10,12 @@ source ~/.vim/config/functions.vim
 
 
 
-
-
 " ============================ EXPERIMENTAL =====================================
-
-" gx is default mapped to netrw opening urls in browsers
-" leader-x is mapped to open a file in the systems default app
-let g:netrw_nogx = 1 " disable netrw's gx mapping because it doesn't work on MacOS.
-nmap gx <Plug>(openbrowser-smart-search)
-vmap gx <Plug>(openbrowser-smart-search)
 
 
 
 
 " ========================= REFERENCES AND NOTES ================================
 
-" :scriptnames to see a list of all scripts that have been sources, in order
+" :scriptnames to see an ordered list of all scripts that have been sourced.
 " https://vi.stackexchange.com/questions/8824/in-what-order-does-vim-read-ftplugin-files-syntax-files-and-the-vimrc-when-th
-

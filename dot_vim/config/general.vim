@@ -44,6 +44,7 @@ set backup
 set backupdir=/tmp/,/private/tmp
 set directory=/tmp/,/private/tmp
 
+set timeout
 set timeoutlen=300
 set ttimeoutlen=200
 set mouse=a

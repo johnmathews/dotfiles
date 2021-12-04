@@ -2,8 +2,9 @@
 
 nnoremap <silent> <leader>ve :edit $MYVIMRC<CR>
 nnoremap <silent> <leader>vf :edit ~/.vim/ftplugin/<C-R>=&filetype<CR>.vim<CR>
-nnoremap <silent> <leader>vr :source ~/.vimrc<CR>
+nnoremap <silent> <leader>vr :autocmd User VimReload<CR>
 nnoremap <silent> <leader>vc :edit ~/.vim/coc-settings.json<CR>
+
 
 call SetupCommandAbbrs('VP', 'e ~/.vim/config/plugins.vim')
 
