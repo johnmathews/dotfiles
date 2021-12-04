@@ -18,6 +18,7 @@ source ~/.vim/config/plugins/gitgutter.vim
 source ~/.vim/config/plugins/indentline.vim
 source ~/.vim/config/plugins/isort.vim
 source ~/.vim/config/plugins/javascript.vim
+source ~/.vim/config/plugins/rope.vim
 source ~/.vim/config/plugins/jinja2-syntax.vim
 source ~/.vim/config/plugins/jsbeautify.vim
 source ~/.vim/config/plugins/markdown.vim

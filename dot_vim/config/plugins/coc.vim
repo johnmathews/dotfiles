@@ -120,8 +120,12 @@ nmap <leader>fs  <Plug>(coc-format-selected)
 
 " Applying codeAction to the selected region.
 " Example: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
+" Example: `gaap` for current paragraph
+" xmap <leader>a  <Plug>(coc-codeaction-selected)
+xmap <silent>ga <Plug>(coc-codeaction-selected)
+" nmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <silent>ga <Plug>(coc-codeaction-line)
+nmap <silent>gA <Plug>(coc-codeaction)
 
 " Remap keys for applying codeAction to the current buffer.
 nmap <leader>ac  <Plug>(coc-codeaction)
