@@ -38,6 +38,7 @@ nnoremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
 nnoremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 
 " open the current file in the default app
+" gx is mapped to open a url using the open-browser plugin
 nnoremap <leader>x :!xdg-open %<CR><CR>
 
 " Split navigations

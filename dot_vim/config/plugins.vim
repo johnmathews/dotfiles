@@ -1,6 +1,8 @@
 call plug#begin('~/.vim/plugged')
 
 source ~/.vim/config/plugins/coc.vim
+
+
 " source ~/.vim/config/plugins/badwolf.vim
 source ~/.vim/config/plugins/dracula.vim
 source ~/.vim/config/plugins/nerdcommenter.vim
@@ -27,6 +29,7 @@ source ~/.vim/config/plugins/mundo.vim
 source ~/.vim/config/plugins/nerdtree.vim
 source ~/.vim/config/plugins/numbers.vim
 source ~/.vim/config/plugins/obsession.vim
+source ~/.vim/config/plugins/open-browser.vim
 source ~/.vim/config/plugins/polyglot.vim
 source ~/.vim/config/plugins/projectionist.vim
 source ~/.vim/config/plugins/pylint.vim
