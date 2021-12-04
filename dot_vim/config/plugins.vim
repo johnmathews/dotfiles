@@ -1,8 +1,8 @@
-" === PLUGINS ===================
+call plug#begin('~/.vim/plugged')
+
 source ~/.vim/config/plugins/coc.vim
 " source ~/.vim/config/plugins/badwolf.vim
 source ~/.vim/config/plugins/dracula.vim
-" source ~/.vim/config/plugins/commentary.vim
 source ~/.vim/config/plugins/nerdcommenter.vim
 source ~/.vim/config/plugins/fzf.vim
 source ~/.vim/config/plugins/ack.vim
@@ -49,3 +49,6 @@ source ~/.vim/config/plugins/virtualenv.vim
 
 let blacklist = ['html', 'md', 'wiki']
 autocmd BufWritePre * if index(blacklist, &ft) < 0 | source ~/.vim/config/plugins/rainbox.vim
+
+" *** always `call plug#end()` at the very end ***
+call plug#end()
