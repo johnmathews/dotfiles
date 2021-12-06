@@ -1,13 +1,7 @@
 
-
 source ~/.vim/config/general.vim
-
 source ~/.vim/config/autoCommandGroups.vim
-
 source ~/.vim/config/plugins.vim
-
 doautocmd User PlugLoaded
-
 source ~/.vim/config/keyMaps.vim
-
 source ~/.vim/config/functions.vim

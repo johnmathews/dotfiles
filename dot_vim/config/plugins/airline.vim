@@ -31,7 +31,7 @@ let g:airline#extensions#virtualenv#enabled = 1
 
 " airline plugin
 " see init.vim for section names, default layouts, variable names etc https://github.com/vim-airline/vim-airline/blob/master/autoload/airline/init.vim
-au User AirlineAfterInit let g:airline_section_a = airline#section#create(['obsession', 'linenr', 'maxlinenr', ' %3p%%', ' %c ', 'mode', ' ', 'crypt', ' ', 'paste', ' ',  'spell', ' ',  'iminsert'])
+au User AirlineAfterInit let g:airline_section_a = airline#section#create(['obsession', 'linenr', 'maxlinenr', '%3p%%', ' %c ', 'mode', ' ', 'crypt', ' ', 'paste', ' ',  'spell', ' ',  'iminsert'])
 " au User AirlineAfterInit let g:airline_section_y = airline#section#create([])
 au User AirlineAfterInit let g:airline_section_z = airline#section#create([])
 au User AirlineAfterInit let g:airline_symbols.maxlinenr = ''

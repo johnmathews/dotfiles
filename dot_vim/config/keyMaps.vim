@@ -8,8 +8,11 @@ call SetupCommandAbbrs('VP', 'e ~/.vim/config/plugins.vim')
 call SetupCommandAbbrs('VG', 'e ~/.vim/config/general.vim')
 call SetupCommandAbbrs('VK', 'e ~/.vim/config/keyMaps.vim')
 call SetupCommandAbbrs('VF', 'e ~/.vim/config/functions.vim')
+call SetupCommandAbbrs('VFT', 'e ~/.vim/config/plugins/floatterm.vim')
 
 nnoremap // :nohlsearch<CR>
+nnoremap `` :nohlsearch<CR>
+nnoremap ` /
 nnoremap # <NOP>
 nnoremap * *``
 
