@@ -10,6 +10,12 @@
     exact = true
     stripComponents = 1
     refreshPeriod = "168h"
+[".oh-my-zsh/custom/plugins/zsh-autosuggestions"]
+    type = "archive"
+    url = "https://github.com/zsh-users/zsh-autosuggestions"
+    exact = true
+    stripComponents = 1
+    refreshPeriod = "168h"
 [".oh-my-zsh/custom/themes/powerlevel10k"]
     type = "archive"
     url = "https://github.com/romkatv/powerlevel10k/archive/v1.15.0.tar.gz"
@@ -19,3 +25,6 @@
     type = "file"
     url = "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
     refreshPeriod = "168h"
+
+git rlone  $ZSH_CUSTOM/plugins/zsh-autosuggestions
+
