@@ -66,6 +66,7 @@ filetype plugin indent on
 syntax enable
 
 let mapleader="\<Space>"
+let maplocalleader="\\"
 let pyEnvLib = $VIRTUAL_ENV
 
 " Cursor settings https://vim.fandom.com/wiki/Change_cursor_shape_in_different_modes

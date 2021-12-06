@@ -126,7 +126,6 @@ fi
 
 # pyenv - see ~/.zprofile for PATH modifications
 eval "$(pyenv init -)"
-export VIRTUAL_ENV="something to get the current virtualenv"
 
 # colorful less
 LESSPIPE=`which src-hilite-lesspipe.sh`
