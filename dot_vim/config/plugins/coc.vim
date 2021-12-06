@@ -2,7 +2,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " TODO "
 " make a shortcut to toggle linting or type checking
-" let the cursor be anywhere on the row and see the error
 
 function! SetupCommandAbbrs(from, to)
   exec 'cnoreabbrev <expr> '.a:from
@@ -120,12 +119,8 @@ nmap <leader>fs  <Plug>(coc-format-selected)
 
 " Applying codeAction to the selected region.
 " Example: `<leader>aap` for current paragraph
-" Example: `gaap` for current paragraph
-" xmap <leader>a  <Plug>(coc-codeaction-selected)
-xmap <silent>ga <Plug>(coc-codeaction-selected)
-" nmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <silent>ga <Plug>(coc-codeaction-line)
-nmap <silent>gA <Plug>(coc-codeaction)
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
 
 " Remap keys for applying codeAction to the current buffer.
 nmap <leader>ac  <Plug>(coc-codeaction)

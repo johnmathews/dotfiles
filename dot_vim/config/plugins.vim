@@ -43,7 +43,7 @@ source ~/.vim/config/plugins/tagbar.vim
 source ~/.vim/config/plugins/targets.vim
 source ~/.vim/config/plugins/test.vim
 source ~/.vim/config/plugins/textobj-xmlattr.vim
-source ~/.vim/config/plugins/ultisnips.vim
+" source ~/.vim/config/plugins/ultisnips.vim
 source ~/.vim/config/plugins/unimpaired.vim
 source ~/.vim/config/plugins/vagrant.vim
 source ~/.vim/config/plugins/vimtex.vim
