@@ -1,5 +1,3 @@
-" === NORMAL MODE ===============
-
 nnoremap <silent> <leader>ve :edit $MYVIMRC<CR>
 nnoremap <silent> <leader>vf :edit ~/.vim/ftplugin/<C-R>=&filetype<CR>.vim<CR>
 nnoremap <silent> <leader>vr :autocmd User VimReload<CR>
@@ -7,6 +5,9 @@ nnoremap <silent> <leader>vc :edit ~/.vim/coc-settings.json<CR>
 
 
 call SetupCommandAbbrs('VP', 'e ~/.vim/config/plugins.vim')
+call SetupCommandAbbrs('VG', 'e ~/.vim/config/general.vim')
+call SetupCommandAbbrs('VK', 'e ~/.vim/config/keyMaps.vim')
+call SetupCommandAbbrs('VF', 'e ~/.vim/config/functions.vim')
 
 nnoremap // :nohlsearch<CR>
 nnoremap # <NOP>
@@ -80,8 +81,6 @@ nnoremap <F2> :TagbarToggle<CR>
 " nnoremap <leader>af :ALEFix<CR>
 " nnoremap <silent> <leader>aj :ALENext<cr>
 " nnoremap <silent> <leader>ak :ALEPrevious<cr>
-
-
 
 
 " === INSERT MODE ===============

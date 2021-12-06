@@ -14,6 +14,7 @@ augroup DraculaOverrides
     autocmd ColorScheme dracula highlight vimSynType ctermfg=blue
     autocmd ColorScheme dracula highlight vimCommand ctermfg=green
     autocmd ColorScheme dracula highlight vimOption ctermfg=cyan
-    " autocmd ColorScheme dracula highlight comment ctermfg=darkcyan
+    autocmd ColorScheme dracula highlight vimLineComment ctermfg=yellow
+    autocmd ColorScheme dracula highlight vimComment ctermfg=yellow
     autocmd User PlugLoaded ++nested colorscheme dracula
 augroup end
