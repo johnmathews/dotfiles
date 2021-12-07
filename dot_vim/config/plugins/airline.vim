@@ -25,6 +25,7 @@ let g:airline#extensions#searchcount#enabled = 0
 let g:airline#extensions#tagbar#enabled = 1
 let g:airline#extensions#tagbar#flags = 'f'
 let g:airline#extensions#coc#enabled = 1
+let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#virtualenv#enabled = 1
 " let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['error', 'warning', 'x', 'y', 'z']]
 

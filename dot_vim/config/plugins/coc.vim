@@ -1,7 +1,26 @@
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" TODO - make a shortcut to toggle linting or type checking
+" pyright needs vim-rope
+" `pip install rope` ← this might not be necessary
+" `pip install ropevim`
+Plug 'python-rope/ropevim'
 
+
+" python-mode errors on some import "
+" Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+
+
+" toggle all - <leader>lt 
+" fix buffer - <leader>ac
+" fix line - <leader>qf
+" format selected - <leader>fs
+" code action on selection - <leader>a
+
+" rename - <leader>rn
+" type definition - gy
+" implementation - gi
+" references - gr
+" definition - gd
 
 
 function! SetupCommandAbbrs(from, to)
@@ -37,6 +56,7 @@ let g:coc_global_extensions = [
   \ 'coc-git',
   \ 'coc-html',
   \ 'coc-json',
+  \ 'coc-lists',
   \ 'coc-pairs',
   \ 'coc-prettier',
   \ 'coc-pyright',
@@ -132,9 +152,9 @@ nmap <leader>fs  <Plug>(coc-format-selected)
 xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
 
-" Remap keys for applying codeAction to the current buffer.
+" Do codeAction to the current buffer.
 nmap <leader>ac  <Plug>(coc-codeaction)
-" Apply AutoFix to problem on the current line.
+" AutoFix the current line.
 nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Map function and class text objects

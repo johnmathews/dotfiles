@@ -1,6 +1,10 @@
+" set this before plugins are loaded
+" https://github.com/dense-analysis/ale#5iii-how-can-i-use-ale-and-cocnvim-together
+let g:ale_disable_lsp = 0
+
 call plug#begin('~/.vim/plugged')
 
-
+source ~/.vim/config/plugins/ale.vim
 source ~/.vim/config/plugins/coc.vim
 " source ~/.vim/config/plugins/badwolf.vim
 source ~/.vim/config/plugins/dracula.vim
@@ -19,7 +23,6 @@ source ~/.vim/config/plugins/gitgutter.vim
 source ~/.vim/config/plugins/indentline.vim
 source ~/.vim/config/plugins/isort.vim
 source ~/.vim/config/plugins/javascript.vim
-source ~/.vim/config/plugins/rope.vim
 source ~/.vim/config/plugins/jinja2-syntax.vim
 source ~/.vim/config/plugins/jsbeautify.vim
 source ~/.vim/config/plugins/markdown.vim
