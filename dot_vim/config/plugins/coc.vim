@@ -8,7 +8,7 @@ Plug 'python-rope/ropevim'
 " code action on selection - <leader>a
 " fix line - <leader>qf
 
-" rename - <leader>rn
+" rename - <leader>cn
 " type definition - gy
 " implementation - gi
 " references - gr
@@ -129,7 +129,7 @@ function! s:show_documentation()
 endfunction
 
 " Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
+nmap <leader>cn <Plug>(coc-rename)
 
 " Formatting selected code.
 xmap <leader>fs  <Plug>(coc-format-selected)
