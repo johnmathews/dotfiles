@@ -25,6 +25,9 @@ else
     au! BufEnter <buffer> match ColorColumn /\%121v.*/
 endif
 
+nnoremap <Leader>y :w<bar>:call system("yapf -i -l ".line(".")."-".line(".")." ".expand('%:p'))<CR><bar>:e<CR>
+" nnoremap <leader>y :0,$!yapf<Cr>
+
 
 " ====================== ALE ================================
 let g:ale_python_flake8_options = '--max-line-length=88'
