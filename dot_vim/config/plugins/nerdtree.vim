@@ -5,7 +5,10 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 let g:plug_window = 'noautocmd vertical topleft new'
 
-" lag
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+
+" prevent lag
 let g:NERDTreeLimitedSyntax = 1
 let g:NERDTreeHighlightCursorline = 0
 

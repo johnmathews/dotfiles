@@ -8,7 +8,8 @@ let g:ale_completion_autoimport = 1
 set omnifunc=ale#completion#OmniFunc
 
 nnoremap <silent>ai :ALEInfo<cr>
-nnoremap <leader>at :ALEToggle<CR>
+" https://github.com/dense-analysis/ale/blob/master/autoload/ale/toggle.vim
+nnoremap <leader>at :ALEToggleBuffer<CR>
 nnoremap <leader>ah :ALEHover<CR>
 nnoremap <silent>ad :ALEDetail<CR>
 nnoremap <leader>af :ALEFix<CR>
@@ -17,7 +18,7 @@ nnoremap <silent>ak :ALEPrevious<cr>
 
 augroup ALEColors
     autocmd!
-    highlight link ALEError yellow
-    highlight link ALEErrorSign yellow
-    highlight link ALEErrorSignLineNr yellow
+    autocmd User PlugLoaded ++nested highlight ALEError ctermfg=yellow guifg=yellow
+    autocmd User PlugLoaded ++nested highlight ALEErrorSign ctermfg=yellow guifg=yellow
+    autocmd User PlugLoaded ++nested highlight ALEErrorSignLineNr ctermfg=yellow guifg=yellow
 augroup end
