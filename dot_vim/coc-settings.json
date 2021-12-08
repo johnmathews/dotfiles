@@ -1,13 +1,11 @@
 {
   "diagnostic.displayByAle": false,
-  "python.linting.enabled": true,
+  "python.linting.enabled": false,
+  // "python.formating.provider": ["yapf", "autopep8"],
+  // "python.formatting.yapfArgs": []
   "pyright.enable": true,
-  "python.jediEnabled": false,
   "suggest.enablePreview": true,
   "diagnostic.checkCurrentLine": true,
   "python.analysis.diagnosticMode": "workspace",
   "suggest.noselect": false
-
-  // "python.formating.provider": ["yapf", "autopep8"],
-  // "python.formatting.yapfArgs": []
 }

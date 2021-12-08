@@ -4,9 +4,9 @@ Plug 'python-rope/ropevim'
 
 " toggle all - <leader>lt 
 " fix buffer - <leader>ac
-" fix line - <leader>qf
 " format selected - <leader>fs " THIS WILL FIX A SINGLE LINE, IF THE FIXER CAN DO IT.
 " code action on selection - <leader>a
+" fix line - <leader>qf
 
 " rename - <leader>rn
 " type definition - gy
@@ -14,25 +14,6 @@ Plug 'python-rope/ropevim'
 " references - gr
 " definition - gd
 
-
-function! SetupCommandAbbrs(from, to)
-  exec 'cnoreabbrev <expr> '.a:from
-        \ .' ((getcmdtype() ==# ":" && getcmdline() ==# "'.a:from.'")'
-        \ .'? ("'.a:to.'") : ("'.a:from.'"))'
-endfunction
-
-call SetupCommandAbbrs('CC', 'CocConfig')
-call SetupCommandAbbrs('CD', 'CocDiagnostics')
-call SetupCommandAbbrs('CP', 'e ~/.vim/config/plugins/coc.vim')
-
-function! CocToggle()
-  if g:coc_enabled
-    CocDisable
-  else
-    CocEnable
-  endif
-endfunction
-nnoremap <silent><Leader>lt :call CocToggle()<CR>
 
 " \ 'coc-ansible',
 let g:coc_global_extensions = [
@@ -83,6 +64,15 @@ augroup CocAutoCommands
     autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
 
 augroup end
+
+function! CocToggle()
+  if g:coc_enabled
+    CocDisable
+  else
+    CocEnable
+  endif
+endfunction
+nnoremap <silent><Leader>lt :call CocToggle()<CR>
 
 
 

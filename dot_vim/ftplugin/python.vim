@@ -34,7 +34,7 @@ let g:ale_warn_about_trailing_whitespace = 1
 " flake8 if pandas, else black, or maybe fapf.
 let b:ale_linters = ['flake8', 'yapf', 'black']
 " let b:ale_fixers = ['autopep8', 'autoflake', 'yapf', 'autoimport', 'reorder-python-imports', 'isort', 'remove_trailing_lines', 'trim_whitespace', 'add_blank_lines_for_python_control_statements']
-let b:ale_fixers = ['yapf', 'isort', 'add_blank_lines_for_python_control_statements', 'remove_trailing_lines', 'trim_whitespace']
+let b:ale_fixers = ['yapf', 'isort', 'autoimport', 'add_blank_lines_for_python_control_statements', 'remove_trailing_lines', 'trim_whitespace']
 
 " -------------- VIRTUAL_ENV ACTIVATION ================
 py3 << EOF

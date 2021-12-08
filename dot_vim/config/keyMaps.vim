@@ -4,11 +4,26 @@ nnoremap <silent> <leader>vr :autocmd User VimReload<CR>
 nnoremap <silent> <leader>vc :edit ~/.vim/coc-settings.json<CR>
 
 
-call SetupCommandAbbrs('VP', 'e ~/.vim/config/plugins.vim')
+function! SetupCommandAbbrs(from, to)
+  exec 'cnoreabbrev <expr> '.a:from
+        \ .' ((getcmdtype() ==# ":" && getcmdline() ==# "'.a:from.'")'
+        \ .'? ("'.a:to.'") : ("'.a:from.'"))'
+endfunction
+
 call SetupCommandAbbrs('VG', 'e ~/.vim/config/general.vim')
 call SetupCommandAbbrs('VK', 'e ~/.vim/config/keyMaps.vim')
 call SetupCommandAbbrs('VF', 'e ~/.vim/config/functions.vim')
+
+call SetupCommandAbbrs('VP', 'e ~/.vim/config/plugins.vim')
 call SetupCommandAbbrs('VFT', 'e ~/.vim/config/plugins/floatterm.vim')
+
+call SetupCommandAbbrs('AP', 'e ~/.vim/config/plugins/ale.vim')
+
+call SetupCommandAbbrs('CP', 'e ~/.vim/config/plugins/coc.vim')
+call SetupCommandAbbrs('CC', 'CocConfig')
+call SetupCommandAbbrs('CD', 'CocDiagnostics')
+
+
 
 nnoremap // :nohlsearch<CR>
 nnoremap `` :nohlsearch<CR>
