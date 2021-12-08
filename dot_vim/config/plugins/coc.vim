@@ -2,7 +2,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'python-rope/ropevim'
 
 
-" toggle all - <leader>lt 
+" toggle all - <leader>lt
 " fix buffer - <leader>ac
 " format selected - <leader>fs " THIS WILL FIX A SINGLE LINE, IF THE FIXER CAN DO IT.
 " code action on selection - <leader>a
@@ -44,26 +44,32 @@ let g:coc_global_extensions = [
 \ ]
 
 
-" Add `:Prettier` command to format current buffer
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
+augroup toggleCocExtensions
+    autocmd!
+    autocmd BufWinEnter *.md execute "silent! CocDisable"
+    autocmd BufLeave *.md execute "silent! CocEnable"
+    " autocmd BufEnter *.md call CocActionAsync('deactivateExtension', 'coc-tag')
+    " autocmd BufEnter *.md call CocActionAsync('deactivateExtension', 'coc-snippets')
+    " autocmd BufLeave *.md call CocActionAsync('activeExtension', 'coc-tag')
+    " autocmd BufLeave *.md call CocActionAsync('activeExtension', 'coc-snippets')
+augroup END
 
 
 augroup CocAutoCommands
     autocmd!
-
     " Highlight the symbol and its references when holding the cursor.
     autocmd CursorHold * silent call CocActionAsync('highlight')
-
     " Update signature help on jump placeholder.
     autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-
     " Correct comment highlighting in jsonc format (json with comments)
     autocmd FileType json syntax match Comment +\/\/.\+$+
-
     " Setup formatexpr specified filetype(s).
     autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-
 augroup end
+
+
+" Add `:Prettier` command to format current buffer
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 function! CocToggle()
   if g:coc_enabled

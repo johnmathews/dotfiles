@@ -37,17 +37,11 @@ syn match markdownError "\w\@<=\w\@="
 let g:rainbow_active = 0
 
 
-" CoC extensions
-" CocList extensions
-" ? means invalid extension
-" * means extension is activated
-" + means extension is loaded
-" - means extension is disabled
-" augroup toggleCocExtensions
-"     autocmd!
-"     autocmd BufWinEnter *.md let b:coc_suggest_disable = 1
-"     autocmd BufLeave *.md let b:coc_suggest_disable = 0
-" augroup END
+let b:ale_fixers = ['remove_trailing_lines', 'trim_whitespace_except_double']
+let b:ale_warn_about_trailing_whitespace = 1
+
+" select some text and make it a hyperlink
+vnoremap ml "lxa[(F["lpf("lp
 
 
 " format paragraph
@@ -55,14 +49,6 @@ let g:rainbow_active = 0
 command! FormatParagraph normal! gwip
 nnoremap <leader>fp :FormatParagraph<CR>
 vnoremap <leader>fp gw
-
-
-" let b:ale_fixers = ['remove_trailing_lines', 'trim_whitespace_except_double']
-" let b:ale_warn_about_trailing_whitespace = 1
-
-" select some text and make it a hyperlink
-vnoremap ml "lxa[(F["lpf("lp
-
 
 " make  row Tile Case
 nnoremap <buffer> <leader>mt :s/\<./\u&/g<bar>:nohlsearch<bar><esc><C-O>

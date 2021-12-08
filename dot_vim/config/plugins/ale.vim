@@ -14,3 +14,10 @@ nnoremap <silent>ad :ALEDetail<CR>
 nnoremap <leader>af :ALEFix<CR>
 nnoremap <silent>aj :ALENext<cr>
 nnoremap <silent>ak :ALEPrevious<cr>
+
+augroup ALEColors
+    autocmd!
+    highlight link ALEError yellow
+    highlight link ALEErrorSign yellow
+    highlight link ALEErrorSignLineNr yellow
+augroup end

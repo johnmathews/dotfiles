@@ -42,7 +42,6 @@ source ~/.vim/config/plugins/pylint.vim
 source ~/.vim/config/plugins/repeat.vim
 source ~/.vim/config/plugins/signature.vim
 source ~/.vim/config/plugins/sneak.vim
-source ~/.vim/config/plugins/snippets.vim
 source ~/.vim/config/plugins/sql-syntax.vim
 source ~/.vim/config/plugins/surround.vim
 source ~/.vim/config/plugins/tabular.vim
@@ -50,7 +49,7 @@ source ~/.vim/config/plugins/tagbar.vim
 source ~/.vim/config/plugins/targets.vim
 source ~/.vim/config/plugins/test.vim
 source ~/.vim/config/plugins/textobj-xmlattr.vim
-" source ~/.vim/config/plugins/ultisnips.vim
+source ~/.vim/config/plugins/ultisnips.vim
 source ~/.vim/config/plugins/unimpaired.vim
 source ~/.vim/config/plugins/vagrant.vim
 source ~/.vim/config/plugins/vimtex.vim

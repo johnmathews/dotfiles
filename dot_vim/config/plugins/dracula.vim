@@ -1,10 +1,6 @@
 Plug 'dracula/vim', { 'as': 'dracula' }
 let g:dracula_italic = 0
 
-" this is a comment that is very very long this is a comment that is very very lonthis is
-" a comment that is very very lonthis is a comment that is very very longgggthis is a 
-" comment that is very very long
-
 " :so $VIMRUNTIME/syntax/colortest.vim - will show all the colors
 augroup DraculaOverrides
     autocmd!
@@ -17,4 +13,6 @@ augroup DraculaOverrides
     autocmd ColorScheme dracula highlight vimLineComment ctermfg=yellow
     autocmd ColorScheme dracula highlight vimComment ctermfg=yellow
     autocmd User PlugLoaded ++nested colorscheme dracula
+    autocmd User PlugLoaded ++nested highlight LineNr ctermfg=lightyellow guifg=lightyellow
+    "white lightcyan lightgray lightgreen lightyellow"
 augroup end
