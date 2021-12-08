@@ -1,19 +1,11 @@
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-" pyright needs vim-rope
-" `pip install rope` ← this might not be necessary
-" `pip install ropevim`
 Plug 'python-rope/ropevim'
-
-
-" python-mode errors on some import "
-" Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 
 
 " toggle all - <leader>lt 
 " fix buffer - <leader>ac
 " fix line - <leader>qf
-" format selected - <leader>fs
+" format selected - <leader>fs " THIS WILL FIX A SINGLE LINE, IF THE FIXER CAN DO IT.
 " code action on selection - <leader>a
 
 " rename - <leader>rn

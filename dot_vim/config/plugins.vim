@@ -1,6 +1,10 @@
 " set this before plugins are loaded
 " https://github.com/dense-analysis/ale#5iii-how-can-i-use-ale-and-cocnvim-together
 let g:ale_disable_lsp = 0
+let g:ale_hover_to_floating_preview=1
+let g:ale_floating_preview=1
+let g:ale_hover_cursor=1
+let g:ale_set_balloons=1
 
 call plug#begin('~/.vim/plugged')
 
@@ -51,9 +55,9 @@ source ~/.vim/config/plugins/unimpaired.vim
 source ~/.vim/config/plugins/vagrant.vim
 source ~/.vim/config/plugins/vimtex.vim
 source ~/.vim/config/plugins/virtualenv.vim
+source ~/.vim/config/plugins/yapf.vim
 
 let blacklist = ['html', 'md', 'wiki']
 autocmd BufWritePre * if index(blacklist, &ft) < 0 | source ~/.vim/config/plugins/rainbox.vim
 
-" *** always `call plug#end()` at the very end ***
 call plug#end()

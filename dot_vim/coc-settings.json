@@ -1,27 +1,13 @@
 {
-  "diagnostic.displayByAle": true,
-  // "pyright.enable": true,
-  // "python.jediEnabled": false,
+  "diagnostic.displayByAle": false,
+  "python.linting.enabled": true,
+  "pyright.enable": true,
+  "python.jediEnabled": false,
   "suggest.enablePreview": true,
   "diagnostic.checkCurrentLine": true,
   "python.analysis.diagnosticMode": "workspace",
   "suggest.noselect": false
 
-  // "python.formatting.provider": "autopep8",
-  // "coc.preferences.formatOnType": true,
-  // "coc.preferences.formatOnSaveFileTypes": ["py"],
-
-  // "python.linting.enabled": true,
-  // "python.linting.flake8Enabled": true,
-  // "python.linting.flake8Args": ["--max-line-length=80"],
-  // "python.linting.pylintEnabled": true,
-  // "python.linting.pylintUseMinimalCheckers": false,
-
-  // https://github.com/deppen8/pandas-vet
-  // https://pythonrepo.com/repo/fannheyward-coc-pyright-python-linters-style-checkers
-  // "python.linting.enabled": true,
-  // "python.linting.pylintUseMinimalCheckers": false,
-  // "python.linting.pylintEnabled": true,
-  // "python.linting.pylintPath":"~/opt/miniconda3/envs/INTELenv/bin/pylint",
-  // "python.pythonPath": ""
+  // "python.formating.provider": ["yapf", "autopep8"],
+  // "python.formatting.yapfArgs": []
 }

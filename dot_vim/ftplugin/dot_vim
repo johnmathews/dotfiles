@@ -1,0 +1,1 @@
+echom "ftplugin/.vim has been loaded. therefore the filetype must have been detected"
