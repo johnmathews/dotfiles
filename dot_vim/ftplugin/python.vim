@@ -25,7 +25,9 @@ else
     au! BufEnter <buffer> match ColorColumn /\%121v.*/
 endif
 
-nnoremap <Leader>y :w<bar>:call system("yapf -i -l ".line(".")."-".line(".")." ".expand('%:p'))<CR><bar>:e<CR>
+" nnoremap <Leader>y :w<bar>:call system("yapf -i -l ".line(".")."-".line(".")." ".expand('%:p'))<CR><bar>:e<CR>
+nnoremap <Leader>y <ESC>V:!yapf<CR>
+xnoremap <leader>y :!yapf<CR>
 " nnoremap <leader>y :0,$!yapf<Cr>
 
 
@@ -34,8 +36,7 @@ let g:ale_python_flake8_options = '--max-line-length=88'
 let g:ale_warn_about_trailing_whitespace = 1
 
 " linters: ['flake8', 'mypy', 'pylint', 'pyright']
-" flake8 if pandas, else black, or maybe fapf.
-let b:ale_linters = ['flake8', 'yapf', 'black']
+let b:ale_linters = ['flake8', 'yapf']
 " let b:ale_fixers = ['autopep8', 'autoflake', 'yapf', 'autoimport', 'reorder-python-imports', 'isort', 'remove_trailing_lines', 'trim_whitespace', 'add_blank_lines_for_python_control_statements']
 let b:ale_fixers = ['yapf', 'isort', 'autoimport', 'add_blank_lines_for_python_control_statements', 'remove_trailing_lines', 'trim_whitespace']
 
@@ -46,6 +47,7 @@ import sys
 
 if 'VIRTUAL_ENV' in os.environ:
   print("VIRTUAL_ENV is found!")
+  print(f"VIRTUAL_ENV is {os.environ['VIRTUAL_ENV']}")
 
   project_base_dir = os.environ['VIRTUAL_ENV']
   print(f"{project_base_dir =}")
