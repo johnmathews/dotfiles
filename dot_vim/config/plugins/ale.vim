@@ -25,7 +25,10 @@ augroup ALEColors
     autocmd ColorScheme dracula highlight ALEErrorSign ctermfg=yellow guifg=yellow
     autocmd ColorScheme dracula highlight clear ALEWarningSign
     autocmd ColorScheme dracula highlight ALEWarningSign ctermfg=yellow guifg=darkyellow
-
-    " autocmd User PlugLoaded ++nested highlight ALEError ctermfg=yellow guifg=yellow
-    " autocmd User PlugLoaded ++nested highlight ALEErrorSignLineNr ctermfg=yellow guifg=yellow
+    autocmd ColorScheme dracula highlight clear ALEWarning
+    autocmd ColorScheme dracula highlight ALEWarning ctermfg=yellow guifg=yellow
+    autocmd ColorScheme dracula highlight clear ALEError
+    autocmd ColorScheme dracula highlight ALEError ctermfg=yellow guifg=yellow
+    autocmd ColorScheme dracula highlight clear ALEErrorSignLineNr
+    autocmd ColorScheme dracula highlight ALEErrorSignLineNr ctermfg=yellow guifg=yellow
 augroup end
