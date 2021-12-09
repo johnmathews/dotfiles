@@ -1,7 +1,10 @@
+" keybinds for specific plugins are in the plugin file
+
 nnoremap <silent> <leader>ve :edit $MYVIMRC<CR>
 nnoremap <silent> <leader>vf :edit ~/.vim/ftplugin/<C-R>=&filetype<CR>.vim<CR>
 nnoremap <silent> <leader>vr :autocmd User VimReload<CR>
 nnoremap <silent> <leader>vc :edit ~/.vim/coc-settings.json<CR>
+
 
 
 function! SetupCommandAbbrs(from, to)
@@ -25,6 +28,9 @@ call SetupCommandAbbrs('CD', 'CocDiagnostics')
 
 
 
+
+
+
 nnoremap // :nohlsearch<CR>
 nnoremap `` :nohlsearch<CR>
 nnoremap ` /
@@ -41,17 +47,33 @@ nnoremap O O<ESC>
 nnoremap ; :
 nnoremap : ;
 
-" close buffers, save buffers, quit
+
+
+
+
+" save everything
 nnoremap <C-I>ww :wa<CR>
-nnoremap <C-I>qq :qa<CR>
+
+" quit everything
+nnoremap <C-I>qq :FloatermKill!<CR><BAR>:qa<CR>
+
+" close a buffer gracefully
 nnoremap qq :bp\|bd #<CR>
+
+" delete all buffers. make a blank slate.
 nnoremap <leader>Q :bufdo bdelete<CR>
 
 " open a file even if it doesnt exist
 nnoremap gf :edit <cfile><CR>
 
+
+
+
 " query which color - what and which kind of syntax is this color? - wc
 nnoremap wc :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") ."> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
+
+
 
 " Natural cursor movement over wrapped lines
 nnoremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
@@ -78,27 +100,6 @@ nnoremap <C-L> :vertical resize -2<CR>
 " FUNCTIONS
 nnoremap <silent> cc :call ToggleQuickFix()<cr>
 
-" PLUGINS
-
-"" NERDTREE
-nnoremap <expr> <leader>n g:NERDTree.IsOpen() ? ':NERDTreeClose<CR>' : @% == '' ? ':NERDTree<CR>' : ':NERDTreeFind<CR>'
-nnoremap <leader>N :NERDTreeFind
-
-
-"" VIM-TEST
-nnoremap <silent> t<LEADER>n :TestNearest<CR>
-nnoremap <silent> t<LEADER>f :TestFile<CR>
-nnoremap <silent> t<LEADER>s :TestSuite<CR>
-nnoremap <silent> t<LEADER>l :TestLast<CR>
-nnoremap <silent> t<LEADER>g :TestVisit<CR>
-
-nnoremap <F2> :TagbarToggle<CR>
-
-"" ALE
-" nnoremap <leader>at :ALEToggle<CR>
-" nnoremap <leader>af :ALEFix<CR>
-" nnoremap <silent> <leader>aj :ALENext<cr>
-" nnoremap <silent> <leader>ak :ALEPrevious<cr>
 
 
 " === INSERT MODE ===============
@@ -111,6 +112,7 @@ inoremap <C-h> <C-O>b
 inoremap <C-e> <C-o>de
 " try to make each word an undo step
 inoremap <space> <C-O>u<space>
+
 
 
 " === VISUAL MODE ==============

@@ -3,6 +3,9 @@ Plug 'dense-analysis/ale'
 
 let g:ale_fix_on_save = 0
 
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '--'
+
 let g:ale_completion_enabled = 1
 let g:ale_completion_autoimport = 1
 set omnifunc=ale#completion#OmniFunc
@@ -18,7 +21,11 @@ nnoremap <silent>ak :ALEPrevious<cr>
 
 augroup ALEColors
     autocmd!
-    autocmd User PlugLoaded ++nested highlight ALEError ctermfg=yellow guifg=yellow
-    autocmd User PlugLoaded ++nested highlight ALEErrorSign ctermfg=yellow guifg=yellow
-    autocmd User PlugLoaded ++nested highlight ALEErrorSignLineNr ctermfg=yellow guifg=yellow
+    autocmd ColorScheme dracula highlight clear ALEErrorSign
+    autocmd ColorScheme dracula highlight ALEErrorSign ctermfg=yellow guifg=yellow
+    autocmd ColorScheme dracula highlight clear ALEWarningSign
+    autocmd ColorScheme dracula highlight ALEWarningSign ctermfg=yellow guifg=darkyellow
+
+    " autocmd User PlugLoaded ++nested highlight ALEError ctermfg=yellow guifg=yellow
+    " autocmd User PlugLoaded ++nested highlight ALEErrorSignLineNr ctermfg=yellow guifg=yellow
 augroup end
