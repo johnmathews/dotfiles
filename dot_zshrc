@@ -176,4 +176,8 @@ HISTDB_TABULATE_CMD=(sed -e $'s/\x1f/\t/g')
 source $HOME/.oh-my-zsh/custom/plugins/zsh-histdb/sqlite-history.zsh
 autoload -Uz add-zsh-hook
 
+# https://direnv.net/docs/hook.html
+# https://github.com/direnv/direnv/wiki
+eval "$(direnv hook zsh)"
+
 # zprof

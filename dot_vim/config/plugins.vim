@@ -56,6 +56,10 @@ source ~/.vim/config/plugins/vimtex.vim
 source ~/.vim/config/plugins/virtualenv.vim
 source ~/.vim/config/plugins/yapf.vim
 
+if has("nvim")
+    source ~/.vim/config/plugins/treesitter.vim
+endif
+
 let blacklist = ['html', 'md', 'wiki']
 autocmd BufWritePre * if index(blacklist, &ft) < 0 | source ~/.vim/config/plugins/rainbox.vim
 

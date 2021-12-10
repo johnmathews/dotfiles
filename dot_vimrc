@@ -5,3 +5,4 @@ source ~/.vim/config/plugins.vim
 doautocmd User PlugLoaded
 source ~/.vim/config/keyMaps.vim
 source ~/.vim/config/functions.vim
+

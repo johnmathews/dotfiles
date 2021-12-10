@@ -2,10 +2,10 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'python-rope/ropevim'
 
 
+" code action on selection - <leader>a
 " toggle all - <leader>lt
 " fix buffer - <leader>ac
 " format selected - <leader>fs " THIS WILL FIX A SINGLE LINE, IF THE FIXER CAN DO IT.
-" code action on selection - <leader>a
 " fix line - <leader>qf
 
 " rename - <leader>cn
