@@ -11,6 +11,10 @@
 # The tr(anslate) utility copies the standard input to the standard output with substitution or deletion of selected characters
 
 # Unison
+# uni automates one-way unison syncing from my local laptop onto a remove dev machine. it requires that the project be a git repository 
+# so that it can find the project root (when the .git dir is) and that a file `.remoteprojectroot` exists in the project's root directory.
+# `.remoteprojectroot` should contain the location of the projects root directory on the remote machine. The intention is that this helper
+# function makes it impossible to put the files in the wrong place, or clobber the wrong project.
 uni() {
   localProjectRoot=$(git rev-parse --show-toplevel)
   remoteProjectRoot=$(cat $localProjectRoot/.remoteprojectroot)
@@ -24,9 +28,15 @@ uni() {
 }
 
 
-psu() {
+# direnv
+# pvp (python, virtualenv and packages) automates creation of direnv's `.envrc` file. call it with arguments for pyenv version and virtual
+# environment name. e.g `ppv 3.10.0 foo`. It creates an `.envrc` file in the current directory. In addition to the snippets found in the 
+# documentation for pyenv virtualenv, I've added a script to check if certain python modules are installed, and install them if they're not.
+# This script is stored in ~/.config/my_custom_stuff
+ppv() {
   source ~/.config/my_custom_stuff/pip_install_if_required.sh
   FILE=.envrc
+  MODULES='"pynvim" "rope" "ropevim"'
 
   awk '{$1=$1};1' > $FILE <<EOM
     # -*- mode: sh; -*-
@@ -43,8 +53,8 @@ psu() {
     # activate it
     layout activate \${pvenv}
 
-    declare -a modules=("pynvim" "rope" "ropevim")
-    echo "checking for required python modules..."
+    declare -a modules=($MODULES)
+    echo "checking modules: \${modules[*]}"
     for i in "\${modules[@]}"
     do
        pip_install_if_required \$i

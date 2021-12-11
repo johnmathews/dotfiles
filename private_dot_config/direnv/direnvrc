@@ -31,7 +31,6 @@ layout_activate() {
 # note: it is simple and doesn't handle cases when a module is installed but returns 
 # a non standard message on import.
 pip_install_if_required() {
-  echo "*** checking $1"
   python -c "import $1" 2> /dev/null 1> /dev/null
   # check the exit code of previous command. if exit code is 1 then the module doesnt exist, so install it.
   if [ $? -eq 1 ]
@@ -40,10 +39,6 @@ pip_install_if_required() {
     if [ $? -eq 0 ]
     then
       echo "*** installed $1"
-    # else
-      # echo "*** failed to install $1"
     fi
-  # else
-    # echo "*** $1 is already installed"
   fi
 }
