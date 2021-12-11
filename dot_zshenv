@@ -23,6 +23,37 @@ uni() {
   unison -batch -color true $localProjectRoot ssh://$host@$user//home/$host/$remoteProjectRoot -force $localProjectRoot
 }
 
+
+psu() {
+  source ~/.config/my_custom_stuff/pip_install_if_required.sh
+  FILE=.envrc
+
+  awk '{$1=$1};1' > $FILE <<EOM
+    # -*- mode: sh; -*-
+    # (rootdir)/.envrc : direnv configuration file
+    # see https://direnv.net/
+    # pyversion=\$(head .python-version)
+    # pvenv=\$(head     .python-virtualenv)
+    pyversion=$1
+    pvenv=$2
+
+    use python \${pyversion}
+    # Create the virtualenv if not yet done
+    layout virtualenv \${pyversion} \${pvenv}
+    # activate it
+    layout activate \${pvenv}
+
+    declare -a modules=("pynvim" "rope" "ropevim")
+    echo "checking for required python modules..."
+    for i in "\${modules[@]}"
+    do
+       pip_install_if_required \$i
+    done
+EOM
+  
+}
+
+
 export LC_ALL=en_US.utf-8 
 export LANG="$LC_ALL"
 export ZSH=$HOME/.oh-my-zsh

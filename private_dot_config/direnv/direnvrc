@@ -6,6 +6,7 @@ use_python() {
     fi
 }
 
+
 layout_virtualenv() {
     local pyversion=$1
     local pvenv=$2
@@ -15,8 +16,34 @@ layout_virtualenv() {
     pyenv local --unset
 }
 
+
 layout_activate() {
     if [ -n "$(which pyenv)" ]; then
         source $(pyenv root)/versions/$1/bin/activate
     fi
+}
+
+
+# ================ MY STUFF =============================
+
+# pip_install_if_required is called by psu which is definied in ~/.zshenv
+# it checks if a python modules is already present, and installs it if it isnt
+# note: it is simple and doesn't handle cases when a module is installed but returns 
+# a non standard message on import.
+pip_install_if_required() {
+  echo "*** checking $1"
+  python -c "import $1" 2> /dev/null 1> /dev/null
+  # check the exit code of previous command. if exit code is 1 then the module doesnt exist, so install it.
+  if [ $? -eq 1 ]
+  then 
+    python -m pip install "$1" > /dev/null 2>&1
+    if [ $? -eq 0 ]
+    then
+      echo "*** installed $1"
+    # else
+      # echo "*** failed to install $1"
+    fi
+  # else
+    # echo "*** $1 is already installed"
+  fi
 }
