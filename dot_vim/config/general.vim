@@ -31,7 +31,14 @@ set listchars=tab:>\ ,trail:∙
 
 set undofile
 set undolevels=100000
-set undodir=~/.vim/.undo/,~/.vim/undo,/tmp//
+
+if has("nvim")
+  set undodir=~/.vim/.nvim-undo/,~/.vim/nvim-undo,/tmp//
+else
+  set undodir=~/.vim/.undo/,~/.vim/undo,/tmp//
+endif
+
+set undodir=~/.vim/.nvim-undo/,~/.vim/nvim-undo,/tmp//
 set backup
 set backupdir=/tmp/,/private/tmp
 set directory=/tmp/,/private/tmp

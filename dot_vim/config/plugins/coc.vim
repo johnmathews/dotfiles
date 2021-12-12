@@ -16,8 +16,8 @@ Plug 'python-rope/ropevim'
 
 
 " \ 'coc-ansible',
+" \ 'coc-snippets',
 let g:coc_global_extensions = [
-  \ 'coc-snippets',
   \ 'coc-marketplace',
   \ 'coc-css',
   \ 'coc-cssmodules',

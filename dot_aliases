@@ -70,10 +70,6 @@ alias chrome="Google\ Chrome"
 # Jupyter notebook
 alias jn="jupyter notebook"
 
-# Pelican Shortcuts
-alias pub="pelican content -s publishconf.py"
-alias post="python make_post.py"
-
 alias pip="python -m pip"
 # python 3 is default
 #alias pip2="pip"

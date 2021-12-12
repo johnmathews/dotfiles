@@ -39,6 +39,7 @@ source ~/.vim/config/plugins/open-browser.vim
 source ~/.vim/config/plugins/polyglot.vim
 source ~/.vim/config/plugins/projectionist.vim
 source ~/.vim/config/plugins/pylint.vim
+" source ~/.vim/config/plugins/python-mode.vim
 source ~/.vim/config/plugins/repeat.vim
 source ~/.vim/config/plugins/signature.vim
 source ~/.vim/config/plugins/sneak.vim
@@ -56,11 +57,12 @@ source ~/.vim/config/plugins/vimtex.vim
 source ~/.vim/config/plugins/virtualenv.vim
 source ~/.vim/config/plugins/yapf.vim
 
-if has("nvim")
-    source ~/.vim/config/plugins/treesitter.vim
-endif
+" if has("nvim")
+"     source ~/.vim/config/plugins/treesitter.vim
+" endif
 
 let blacklist = ['html', 'md', 'wiki']
 autocmd BufWritePre * if index(blacklist, &ft) < 0 | source ~/.vim/config/plugins/rainbox.vim
 
 call plug#end()
+

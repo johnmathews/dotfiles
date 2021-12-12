@@ -59,21 +59,21 @@ let b:ale_linters = ['flake8', 'yapf']
 let b:ale_fixers = ['yapf', 'isort', 'autoimport', 'add_blank_lines_for_python_control_statements', 'remove_trailing_lines', 'trim_whitespace']
 
 " -------------- VIRTUAL_ENV ACTIVATION ================
-py3 << EOF
-import os
-import sys
+" py3 << EOF
+" import os
+" import sys
 
-if 'VIRTUAL_ENV' in os.environ:
-  print("VIRTUAL_ENV is found!")
-  print(f"VIRTUAL_ENV is {os.environ['VIRTUAL_ENV']}")
+" if 'VIRTUAL_ENV' in os.environ:
+"   print("message from plugin/python.vim")
+"   print(f"VIRTUAL_ENV is {os.environ['VIRTUAL_ENV']}")
 
-  project_base_dir = os.environ['VIRTUAL_ENV']
-  print(f"{project_base_dir =}")
+"   project_base_dir = os.environ['VIRTUAL_ENV']
+"   print(f"{project_base_dir =}")
 
-  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+"   activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
 
-  exec(open(activate_this).read(), dict(__file__=activate_this))
-EOF
+"   exec(open(activate_this).read(), dict(__file__=activate_this))
+" EOF
 
 " ============ AIRLINE ================================
 let g:airline#extensions#tagbar#enabled = 1

@@ -25,12 +25,16 @@ set -g status-interval 10     								# redraw status line every 10 seconds
 #set -ga terminal-overrides "*:kUP3=\e[1;9A,*:kDN3=\e[1;9B,*:kRIT3=\e[1;9C,*:kLFT3=\e[1;9D"
 
 
+#nvim :checkhealth told me to add this line
+set-option -sa terminal-overrides ',xterm-256color:RGB'
+
+
 # -- windows & pane creation ---------------------------------------------------
 
 # new window retains current path, possible values are:
 #   - true
 #   - false (default)
-tmux_conf_new_window_retain_current_path=false
+tmux_conf_new_window_retain_current_path=true
 
 # new pane retains current path, possible values are:
 #   - true (default)
@@ -53,7 +57,7 @@ tmux_conf_new_session_prompt=true
 # RGB 24-bit colour support (tmux >= 2.2), possible values are:
 #  - true
 #  - false (default)
-tmux_conf_24b_colour=false
+tmux_conf_24b_colour=true
 
 # Dracula Color Pallette
 white='#f8f8f2'
