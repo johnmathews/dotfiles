@@ -2,8 +2,8 @@
 " the plugins interfere with each other so just turn this off
 " and use the coc extension
 
-Plug 'sirver/ultisnips', { 'for': ['markdown', 'md'] }
 Plug 'honza/vim-snippets'
+Plug 'sirver/ultisnips', { 'for': ['markdown', 'md'] }
 
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"

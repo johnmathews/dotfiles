@@ -1,6 +1,6 @@
 # ====== .zshenv ======
 # ENVIRONMENT VARIABLES
-# $PATH
+# for example $PATH
 # should be set in this file..
 #
 # sourced on all invocations of the shell, unless the -f option is set.
@@ -107,20 +107,30 @@ export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
 
 # ====== PATH START =======================================================
-export PATH="/usr/local/sbin:$PATH"
+# PATH is created in reverse order, so the first path in the path list was created last, and vice versa.
+ 
+
+# PATH ambiguities in subshells (like when calling python from inside vim) are typically  caused by your shell config overriding
+# the PATH previously set by the virtualenv. Either prevent them from doing so, or use this workaround:
+# https://vi.stackexchange.com/questions/7644/use-vim-with-virtualenv/7654#7654
+if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
+  source "${VIRTUAL_ENV}/bin/activate"
+fi
+
+export PATH=/usr/local/sbin:$PATH
 export PATH=$HOME/bin:/usr/local/bin:$PATH:/usr/sbin
 
 if [ "$(uname)" = "Darwin" ]; then
   # add Google Cloud Platform CLI tools to PATH
   source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
 
-  export PATH="$HOME/.cargo/bin:$PATH"
+  export PATH=$HOME/.cargo/bin:$PATH
   source "$HOME/.cargo/env"
 fi
 
 # pip will install things correctly
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+# export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 # bibtex executable
 export PATH="/usr/local/texlive/texmf-local/:$PATH"
 # `rabbitmq-server` installed using brew
@@ -136,5 +146,3 @@ export PATH="$PATH:$HOME/.rvm/bin"
 if [ "$(uname)" = "Linux" ]; then
     export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH"
 fi
-
-# ====== PATH END ============================================================

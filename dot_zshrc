@@ -3,23 +3,19 @@
 # vim:filetype=zsh
 zmodload zsh/zprof
 
-
-# ====== .zshrc ======
-# sourced in interactive shells. should set 
-# - aliases
-# - functions,
-# - options
-# - key bindings,
-# - etc.
-
-
 # There are 5 startup files that zsh reads commands from:
 # .zshenv - FUNCTIONS (UNI) and environment variables go here
 # .zprofile
-# zshrc
+# .zshrc
 # .zlogin
 # .zlogout
 
+# functions -> .zshenv
+# environment variables -> .zshenv
+# PATH -> .zshenv
+# options -> .zshrc (here)
+# key bindings -> .zshrc (here)
+# aliases -> .aliases
 
 # ========== useful keyboard shortcuts ==================
 # ctrl-A - beginning of line
@@ -83,9 +79,9 @@ source $ZSH/oh-my-zsh.sh
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs, plugins, and themes.
-# Aliases can be placed here, though oh-my-zsh users are encouraged to define aliases 
+# Aliases can be placed here, though oh-my-zsh users are encouraged to define aliases
 # within the ZSH_CUSTOM folder.
-source ~/.aliases 
+source ~/.aliases
 
 # source ~/.fzf.zsh if it exists
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -112,8 +108,8 @@ if [ "$(uname)" = "Darwin" ]; then
     . $(brew --prefix)/etc/profile.d/z.sh
 
     # broot cli tool - see a big dir on one screen
-    [[ ! -f /Users/$USER/.config/broot/launcher/bash/br ]] || source /Users/$USER/.config/broot/launcher/bash/br 
-    [[ ! -f /Users/$USER/Library/Preferences/org.dystroy.broot/launcher/bash/br ]] || source /Users/$USER/Library/Preferences/org.dystroy.broot/launcher/bash/br 
+    [[ ! -f /Users/$USER/.config/broot/launcher/bash/br ]] || source /Users/$USER/.config/broot/launcher/bash/br
+    [[ ! -f /Users/$USER/Library/Preferences/org.dystroy.broot/launcher/bash/br ]] || source /Users/$USER/Library/Preferences/org.dystroy.broot/launcher/bash/br
 
     # kubernetes
     source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
