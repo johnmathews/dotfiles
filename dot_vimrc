@@ -1,4 +1,3 @@
-
 source ~/.vim/config/general.vim
 source ~/.vim/config/autoCommandGroups.vim
 source ~/.vim/config/plugins.vim
