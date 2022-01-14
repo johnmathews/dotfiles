@@ -1,5 +1,7 @@
 # Vim not vi so that macvim compile options are used (for vimwiki links)
-alias vi="vim"
+alias vio="/usr/local/bin/vi"
+alias vi="nvim"
+alias vim="vim"
 
 # open vim in read only mode
 # alias ri="vim -R"
@@ -23,15 +25,6 @@ alias host='echo $fg_bold[blue] $bg[black]"$USER@$(hostname)"'
 # open a file using MacVim
 alias edit="open -a MacVim.app $1"
 
-
-# games
-alias tetris="emacs -q --no-splash -f tetris"
-alias doctor="emacs -q --no-splash -f doctor"
-alias dunnet="emacs -q --no-splash -f dunnet"
-alias life="emacs -q --no-splash -f life"
-alias pong="emacs -q --no-splash -f pong"
-alias snake="emacs -q --no-splash -f snake"
-alias solitaire="emacs -q --no-splash -f solitaire"
 
 alias wtf="wtfutil"
 
@@ -70,16 +63,12 @@ alias chrome="Google\ Chrome"
 # Jupyter notebook
 alias jn="jupyter notebook"
 
-# Pelican Shortcuts
-alias pub="pelican content -s publishconf.py"
-alias post="python make_post.py"
-
-alias pip="python -m pip"
+alias pip="python3 -m pip"
 # python 3 is default
-#alias pip2="pip"
-#alias pip="pip3"
-#alias python2="python"
-#alias python="python3"
+alias pip2="pip"
+# alias pip="pip3"
+alias python2="python"
+alias python="python3"
 
 
 alias l="echo 'detailed listing of files and dirs excluding hidden files:'; exa -lh --git --group-directories-first"
