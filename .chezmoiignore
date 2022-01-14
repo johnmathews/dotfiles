@@ -1,2 +1,3 @@
-Session.vim
-.DS_Store
+**/Session.vim
+**/.DS_Store
+~/.config/nvim/plugin/packer_compiled.lua

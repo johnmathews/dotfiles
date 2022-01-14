@@ -10,6 +10,15 @@
 # to print each PATH section on its own line: tr ':' '\n' <<< "$PATH" or `echo $PATH | tr ':' '\n'`
 # The tr(anslate) utility copies the standard input to the standard output with substitution or deletion of selected characters
 
+
+# this activates a python virtualenv when a subshell is created by e.g vim
+# https://vi.stackexchange.com/a/7654
+if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
+  # echo "1. activating virtualenv: ${VIRTUAL_ENV}"
+  # echo "2. sourcing ${VIRTUAL_ENV}/bin/activate"
+  source "${VIRTUAL_ENV}/bin/activate"
+fi
+
 # Unison
 uni() {
   localProjectRoot=$(git rev-parse --show-toplevel)
@@ -36,7 +45,6 @@ export VISUAL=nvim
 # export TERM="xterm-256color"
 # export COLORTERM="truecolor"
 
-
 # bat configuration file location
 export BAT_CONFIG_PATH="$HOME/.bat.conf"
 
@@ -61,14 +69,12 @@ if type rg &> /dev/null; then
 fi
 
 
-# Manpath
 export MANPATH="/usr/local/man:$MANPATH"
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
 
-# ====== PATH START =======================================================
 export PATH="/usr/local/sbin:$PATH"
-export PATH=$HOME/bin:/usr/local/bin:$PATH:/usr/sbin
+export PATH=$PATH:$HOME/bin:/usr/local/bin:/usr/sbin
 
 if [ "$(uname)" = "Darwin" ]; then
   # add Google Cloud Platform CLI tools to PATH
@@ -80,7 +86,7 @@ fi
 
 # pip will install things correctly
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+# export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 # bibtex executable
 export PATH="/usr/local/texlive/texmf-local/:$PATH"
 # `rabbitmq-server` installed using brew
@@ -96,5 +102,3 @@ export PATH="$PATH:$HOME/.rvm/bin"
 if [ "$(uname)" = "Linux" ]; then
     export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH"
 fi
-
-# ====== PATH END ============================================================
