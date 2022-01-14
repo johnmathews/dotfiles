@@ -38,7 +38,6 @@ else
   set undodir=~/.vim/.undo/,~/.vim/undo,/tmp//
 endif
 
-set undodir=~/.vim/.nvim-undo/,~/.vim/nvim-undo,/tmp//
 set backup
 set backupdir=/tmp/,/private/tmp
 set directory=/tmp/,/private/tmp
@@ -71,6 +70,7 @@ set background=dark
 
 filetype plugin indent on
 syntax enable
+syntax on
 
 let mapleader="\<Space>"
 let maplocalleader="\\"

@@ -1,6 +1,6 @@
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'python-rope/ropevim'
-
+Plug 'antoinemadec/coc-fzf'
 
 " code action on selection - <leader>a
 " toggle all - <leader>lt

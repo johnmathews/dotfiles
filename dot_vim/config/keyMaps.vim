@@ -66,14 +66,8 @@ nnoremap <leader>Q :bufdo bdelete<CR>
 " open a file even if it doesnt exist
 nnoremap gf :edit <cfile><CR>
 
-
-
-
 " query which color - what and which kind of syntax is this color? - wc
 nnoremap wc :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") ."> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
-
-
-
 
 " Natural cursor movement over wrapped lines
 nnoremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')

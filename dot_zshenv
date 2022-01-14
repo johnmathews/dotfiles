@@ -34,9 +34,10 @@ uni() {
 # documentation for pyenv virtualenv, I've added a script to check if certain python modules are installed, and install them if they're not.
 # This script is stored in ~/.config/my_custom_stuff
 ppv() {
-  source ~/.config/my_custom_stuff/pip_install_if_required.sh
+  # source ~/.config/my_custom_stuff/pip_install_if_required.sh
   FILE=.envrc
-  MODULES='"pynvim" "rope" "ropevim"'
+  # MODULES='"pynvim" "rope" "ropevim"'
+  MODULES='"pynvim"'
 
   awk '{$1=$1};1' > $FILE <<EOM
     # -*- mode: sh; -*-
@@ -53,12 +54,12 @@ ppv() {
     # activate it
     layout activate \${pvenv}
 
-    declare -a modules=($MODULES)
-    echo "checking modules: \${modules[*]}"
-    for i in "\${modules[@]}"
-    do
-       pip_install_if_required \$i
-    done
+    # declare -a modules=($MODULES)
+    # echo "checking modules: \${modules[*]}"
+    # for i in "\${modules[@]}"
+    # do
+    #   pip_install_if_required \$i
+    # done
 EOM
   
 }
@@ -117,9 +118,6 @@ if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
   source "${VIRTUAL_ENV}/bin/activate"
 fi
 
-export PATH=/usr/local/sbin:$PATH
-export PATH=$HOME/bin:/usr/local/bin:$PATH:/usr/sbin
-
 if [ "$(uname)" = "Darwin" ]; then
   # add Google Cloud Platform CLI tools to PATH
   source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
@@ -141,6 +139,9 @@ export PATH="/usr/local/opt/tcl-tk/bin:$PATH"
 export PATH="$(go env GOPATH)/bin:$PATH"
 # RVM - make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
+export PATH=/usr/local/sbin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH:/usr/sbin
 
 # if system is linux, add linuxbrew to path
 if [ "$(uname)" = "Linux" ]; then
