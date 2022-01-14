@@ -35,7 +35,8 @@ nnoremap // :nohlsearch<CR>
 nnoremap `` :nohlsearch<CR>
 nnoremap ` /
 nnoremap # <NOP>
-nnoremap * *``
+" nnoremap * *``
+nnoremap <silent> * :execute "normal! *N"<cr>
 
 nnoremap <leader>lw :set nowrap!<CR>
 nnoremap <leader>ln :set relativenumber!<CR>

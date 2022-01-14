@@ -47,7 +47,7 @@ return packer.startup({function(use)
   use {"goolord/alpha-nvim", config=get_config("alpha")}
 
   use "Mofiqul/dracula.nvim"
-  use {"mileszs/ack.vim", config=get_config("ack")}
+  -- use {"mileszs/ack.vim", config=get_config("ack")}
 
   use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons', config=get_config('bufferline')}
 
