@@ -1,12 +1,4 @@
-echo 'start ~/.bashrc'
-
-if test -t 1; then
-exec zsh
-echo "exec'ed zsh"
-fi
-
 [ -n "$PS1" ] && source ~/.bash_profile;
-
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
@@ -18,15 +10,11 @@ export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 
-echo "$PATH"
-
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
 # better bash history - https://sanctum.geek.nz/arabesque/better-bash-history/
 # append history rather than overwrite
 shopt -s histappend
-
-echo "flag1 in .bashrc"
 
 
 # allow a larger history file
@@ -42,14 +30,8 @@ shopt -s cmdhist
 # store history immediatly, dont wait for the session to end before writing history
 PROMPT_COMMAND='history -a'
 
-source ~/.bashrc.virtualenvwrapper
 source /Users/john/Library/Preferences/org.dystroy.broot/launcher/bash/br
 
 source "$HOME/.cargo/env"
 
 . "$(brew --prefix)/etc/profile.d/z.sh"
-
-echo 'end ~/.bashrc'
-
-source /Users/jm943l/.config/broot/launcher/bash/br
-. "$HOME/.cargo/env"
