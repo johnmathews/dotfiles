@@ -18,26 +18,26 @@ local function footer()
   local total_plugins = #vim.tbl_keys(packer_plugins)
   local datetime = os.date(" %d-%m-%Y   %H:%M:%S")
   return datetime
-  .. "   "
-  .. total_plugins
-  .. " plugins"
-  .. "   v"
-  .. vim.version().major
-  .. "."
-  .. vim.version().minor
-  .. "."
-  .. vim.version().patch
+  .. "   " .. total_plugins .. " plugins"
+  .. "   v" .. vim.version().major .. "." .. vim.version().minor .. "." .. vim.version().patch
 end
 
 dashboard.section.header.val = {
-[[  $$$$$\ $$\      $$\]],
-[[   \__$$ |$$$\    $$$ |]],
-[[      $$ |$$$$\  $$$$ |]],
-[[      $$ |$$\$$\$$ $$ |]],
-[[$$\   $$ |$$ \$$$  $$ |]],
-[[$$ |  $$ |$$ |\$  /$$ |]],
-[[\$$$$$$  |$$ | \_/ $$ |]],
-[[ \______/ \__|     \__}]],
+[[                       ]],
+[[                       ]],
+[[                       ]],
+[[                       ]],
+[[  @@@@@\ @@\      @@\  ]],
+[[   \__@@ |@@@\    @@@ |]],
+[[      @@ |@@@@\  @@@@ |]],
+[[      @@ |@@\@@\@@ @@ |]],
+[[@@\   @@ |@@ \@@@  @@ |]],
+[[@@ |  @@ |@@ |\@  /@@ |]],
+[[\@@@@@@  |@@ | \_/ @@ |]],
+[[ \______/ \__|     \__|]],
+[[                       ]],
+[[                       ]],
+[[                       ]]
 }
 
 dashboard.section.header.opts.hl = pick_color()
@@ -51,16 +51,6 @@ dashboard.section.buttons.val = {
   dashboard.button("c", "  Configuration", ":e ~/.config/nvim/init.lua <CR>"),
   dashboard.button("q", "  Quit Neovim", ":qa<CR>"),
 }
--- dashboard.section.buttons.val = {
---   button("<Leader>f", "  File Explorer"),
---   button("<Leader>p", "  Find file"),
---   button("<Leader>g", "  Find word"),
---   button("<Leader>1", "  Open session"),
---   button("<Leader>n", "  New file"),
---   button("<Leader>v", "  Config"),
---   button("<Leader>u", "  Update plugins"),
---   button("q", "  Quit", "<Cmd>qa<CR>"),
--- }
 
 dashboard.section.footer.val = footer()
 dashboard.section.footer.opts.hl = "Constant"

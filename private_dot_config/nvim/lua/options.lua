@@ -2,7 +2,8 @@ local options = {
   encoding = "utf-8", -- Set default encoding to UTF-8
   hidden = true, -- Enable background buffers
   clipboard = "unnamedplus",
-  termguicolors = true, -- You will have bad experience for diagnostic messages when it's default 4000.
+  termguicolors = true, -- required for bufferline
+
   linespace = 8,
   scrolloff = 2,
   sidescrolloff = 8,
@@ -20,7 +21,6 @@ local options = {
 
   undofile = true,
   undolevels = 10000,
-  -- undodir = vim.fn.stdpath("config") .. "/undo",
 
   backup = true,
   backupdir = "/tmp/,/private/tmp",

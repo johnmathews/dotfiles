@@ -102,9 +102,11 @@ return packer.startup({function(use)
   use {"voldikss/vim-floaterm", config=get_config("floaterm")}
   use "tpope/vim-fugitive"
   use "airblade/vim-gitgutter"
-  use "yggdroot/indentline"
-
-  use {"pangloss/vim-javascript", config=get_config("javascript")}
+  use {
+    "yggdroot/indentline",
+    config=get_config("indentline"),
+    ft={'lua', 'python', 'sql', 'javascript', 'html', 'css'}
+  }
   use "glench/vim-jinja2-syntax"
   use "maksimr/vim-jsbeautify"
   use {"plasticboy/vim-markdown", config=get_config("markdown")}
@@ -136,8 +138,21 @@ return packer.startup({function(use)
   use 'google/yapf'
   use "valloric/matchtagalways"
 
-  use {"junegunn/fzf", dir="~/.fzf", run="./install --all"}
-  use {"junegunn/fzf.vim", config=get_config("fzf")}
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = { {'nvim-lua/plenary.nvim'} },
+    config=get_config("telescope")
+  }
+  use {
+    'nvim-telescope/telescope-media-files.nvim',
+    requires={
+      'nvim-lua/popup.nvim',
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim'
+    },
+  }
+  -- use {"junegunn/fzf", dir="~/.fzf", run="./install --all"}
+  -- use {"junegunn/fzf.vim", config=get_config("fzf")}
 
   use {"scrooloose/nerdtree",
   requires={

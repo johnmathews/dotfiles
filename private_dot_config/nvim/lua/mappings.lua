@@ -1,23 +1,46 @@
 local map = vim.api.nvim_set_keymap
-default_options = {noremap = true, silent = true}
-expr_options = {noremap = true, expr = true, silent = true}
+local default_options = {noremap = true, silent = true}
+local expr_options = {noremap = true, expr = true, silent = true}
 
--- map the leader key
-vim.api.nvim_set_keymap("n", "<Space>", "<NOP>", default_options)
+--Remap space as leader key
+map("n", "<Space>", "<NOP>", default_options)
 vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
+
+-- Modes
+--   normal_mode = "n",
+--   insert_mode = "i",
+--   visual_mode = "v",
+--   visual_block_mode = "x",
+--   term_mode = "t",
+--   command_mode = "c",
 
 map("n", "<leader>ve", ":edit $MYVIMRC<CR>", default_options)
 map("n", "<leader>vf", ":edit ~/.config/nvim/ftplugin/<C-R>=&filetype<CR>.vim<CR>", default_options)
 map("n", "<leader>vr", ":autocmd User VimReload<CR>", default_options)
-map("n", "<leader>vc", ":edit ~/.vim/coc-settings.json<CR>", default_options)
 
--- map the leader key
-vim.api.nvim_set_keymap("n", "<Space>", "<NOP>", default_options)
-vim.g.mapleader = " "
 
--- Deal with visual line wraps
-map("n", "k", "v:count == 0 ? 'gk' : 'k'", expr_options)
+-- Telescope
+-- map("n", "<leader>f", "<cmd> Telescope live_grep<cr>", default_options)
+map("n", "<leader>ff", ":Telescope live_grep <CR>", default_options)
+map("n", "<leader>r", ":Telescope buffers<cr>", default_options)
+map("n", "<leader>e", ":Telescope find_files<cr>", default_options)
+
+-- BUFFERLINE
+
+-- These commands will navigate through buffers in order regardless of which mode you are using
+-- e.g. if you change the order of buffers :bnext and :bprevious will not respect the custom ordering
+map("n", "[b", ":BufferLineCyclePrev<CR>", default_options)
+map("n", "]b", ":BufferLineCycleNext<CR>", default_options)
+
+-- These commands will sort buffers by directory, language, or a custom criteria
+map("n", "be", ":BufferLineSortByExtension<CR>", default_options)
+map("n", "bd", ":BufferLineSortByDirectory<CR>", default_options)
+
+
+-- Natural cursor movement over wrapped lines
 map("n", "j", "v:count == 0 ? 'gj' : 'j'", expr_options)
+map("n", "k", "v:count == 0 ? 'gk' : 'k'", expr_options)
 
 -- better indenting
 map("v", "<", "<gv", default_options)
@@ -25,16 +48,17 @@ map("v", ">", ">gv", default_options)
 
 -- paste over currently selected text without yanking it
 map("v", "p", "\"_dP", default_options)
+-- map("v", "p", "_dp", default_options)
 
 -- Tab switch buffer
 -- map("n", "<TAB>", ":bnext<CR>", default_options)
 -- map("n", "<S-TAB>", ":bprevious<CR>", default_options)
 
 -- Searching
-map("n", "//", ":nohlsearch<CR>", default_options)
+-- map("n", "//", ":nohlsearch<CR>", default_options)
 map("n", "``", ":nohlsearch<CR>", default_options)
 map("n", "`", "/", default_options)
-map("n", "#", "<NOP>", default_options)
+-- map("n", "#", "<NOP>", default_options)
 map("n", "*", "*``", default_options)
 
 
@@ -48,6 +72,8 @@ map("n", "O", "O<ESC>", default_options)
 
 map("n", ";", ":", default_options)
 map("n", ":", ";", default_options)
+map("v", ";", ":", default_options)
+map("v", ":", ";", default_options)
 
 map("n", "<C-I>ww", ":wa<CR>", default_options)
 --map("n", "<C-I>qq", ":FloatermKill!<CR><BAR>:qa<CR>", default_options)
@@ -58,13 +84,6 @@ map("n", "gf", ":edit <cfile><CR>", default_options)
 
 -- query which color - what and which kind of syntax is this color? - wc
 map("n", "wc", ":echo 'hi<' . synIDattr(synID(line('.'),col('.'),1),'name') . '> trans<' . synIDattr(synID(line('.'),col('.'),0),'name') .'> lo<' . synIDattr(synIDtrans(synID(line('.'),col('.'),1)),'name') . '>'<CR>", default_options)
-
-
--- Natural cursor movement over wrapped lines
-map("n", "j", "v:count == 0 ? 'gj' : 'j'", expr_options)
-map("n", "k", "v:count == 0 ? 'gk' : 'k'", expr_options)
-
-
 
 -- open the current file in the default app
 -- gx is mapped to open a url using the open-browser plugin
@@ -99,15 +118,3 @@ map("i", "<C-e>", "<C-o>de", default_options)
 -- try to make each word an undo step
 -- map("i", "<SPACE>", "<C-o>u<SPACE>", default_options)
 
------ VISUAL MODE --------------
--- Yank to clipboard
-map("v", "<C-c>", "+y", default_options)
-
-map("v", ";", ":", default_options)
-map("v", ":", ";", default_options)
-
-map("v", "<", "<gv", default_options)
-map("v", ">", ">gv", default_options)
-
--- Paste replace visual selection without copying it
-map("v", "<LEADER>p", "_dp", default_options)
