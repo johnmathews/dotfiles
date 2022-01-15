@@ -1,12 +1,3 @@
-local map = vim.api.nvim_set_keymap
-local default_options = {noremap = true, silent = true}
-local expr_options = {noremap = true, expr = true, silent = true}
-
---Remap space as leader key
-map("n", "<Space>", "<NOP>", default_options)
-vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
-
 -- Modes
 --   normal_mode = "n",
 --   insert_mode = "i",
@@ -15,19 +6,26 @@ vim.g.maplocalleader = "\\"
 --   term_mode = "t",
 --   command_mode = "c",
 
+local map = vim.api.nvim_set_keymap
+local default_options = {noremap = true, silent = true}
+local expr_options = {noremap = true, expr = true, silent = true}
+
+--Remap space as leader key
+map("n", "<Space>", "<Nop>", default_options)
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
+
 map("n", "<leader>ve", ":edit $MYVIMRC<CR>", default_options)
 map("n", "<leader>vf", ":edit ~/.config/nvim/ftplugin/<C-R>=&filetype<CR>.vim<CR>", default_options)
 map("n", "<leader>vr", ":autocmd User VimReload<CR>", default_options)
 
 
 -- Telescope
--- map("n", "<leader>f", "<cmd> Telescope live_grep<cr>", default_options)
 map("n", "<leader>ff", ":Telescope live_grep <CR>", default_options)
 map("n", "<leader>r", ":Telescope buffers<cr>", default_options)
 map("n", "<leader>e", ":Telescope find_files<cr>", default_options)
 
--- BUFFERLINE
-
+-- Bufferline
 -- These commands will navigate through buffers in order regardless of which mode you are using
 -- e.g. if you change the order of buffers :bnext and :bprevious will not respect the custom ordering
 map("n", "[b", ":BufferLineCyclePrev<CR>", default_options)
@@ -50,15 +48,9 @@ map("v", ">", ">gv", default_options)
 map("v", "p", "\"_dP", default_options)
 -- map("v", "p", "_dp", default_options)
 
--- Tab switch buffer
--- map("n", "<TAB>", ":bnext<CR>", default_options)
--- map("n", "<S-TAB>", ":bprevious<CR>", default_options)
-
 -- Searching
--- map("n", "//", ":nohlsearch<CR>", default_options)
-map("n", "``", ":nohlsearch<CR>", default_options)
 map("n", "`", "/", default_options)
--- map("n", "#", "<NOP>", default_options)
+map("n", "``", ":nohlsearch<CR>", default_options)
 map("n", "*", "*``", default_options)
 
 
