@@ -40,16 +40,19 @@ end
 -- Install your plugins here
 return packer.startup({function(use)
   use "wbthomason/packer.nvim"
-
+  use 'lewis6991/impatient.nvim'
+  use "Mofiqul/dracula.nvim"
   use "nvim-lua/plenary.nvim"
   use "nvim-lua/popup.nvim"
-
   use {"goolord/alpha-nvim", config=get_config("alpha")}
-
-  use "Mofiqul/dracula.nvim"
-  -- use {"mileszs/ack.vim", config=get_config("ack")}
-
   use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons', config=get_config('bufferline')}
+
+  -- https://github.com/dstein64/vim-startuptime
+  -- https://www.reddit.com/r/neovim/comments/pgpnnm/how_fast_your_neovim_startup/
+  -- :StartupTime
+  use 'dstein64/vim-startuptime'
+
+
 
   use {
     'nvim-lualine/lualine.nvim',
@@ -57,7 +60,6 @@ return packer.startup({function(use)
     config=get_config("lualine")
   }
 
-  require("plugins.lsp")
   use {
     'neovim/nvim-lspconfig',
     -- config=get_config("lsp")
@@ -90,7 +92,11 @@ return packer.startup({function(use)
   use {
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
-    config=get_config("treesitter")
+    config=get_config("treesitter"),
+    requires = {
+      'nvim-treesitter/playground'
+    }
+
   }
   use {"p00f/nvim-ts-rainbow", config=get_config("rainbow")}
 
@@ -132,9 +138,8 @@ return packer.startup({function(use)
   use 'tpope/vim-unimpaired'
   use 'hashivim/vim-vagrant'
   use {'lervag/vimtex', config=get_config("vimtex")}
-  use 'jmcantrell/vim-virtualenv'
   use 'google/yapf'
-  use "valloric/matchtagalways"
+  use {"valloric/matchtagalways", ft={'html', 'css'}}
 
   -- Telescope
   use {
@@ -185,12 +190,14 @@ if PACKER_BOOTSTRAP then
 end
 end,
 config = {
+  compile_path = vim.fn.stdpath('config')..'/lua/packer_compiled.lua',
   display = {
     open_fn = require("packer.util").float,
   },
   profile = {
-    enable = true,
-    threshold = 1, -- the amount in ms that a plugins load time must be over for it to be included in the profile
+    -- PackerCompile profile=true then reopen nvim and run :PackerProfile
+    enable = false,
+    threshold = 0.1, -- the amount in ms that a plugins load time must be over for it to be included in the profile
   },
 },
 })

@@ -67,7 +67,7 @@ alias pip="python3 -m pip"
 # python 3 is default
 alias pip2="pip"
 # alias pip="pip3"
-alias python2="python"
+# alias python2="python"
 alias python="python3"
 
 
