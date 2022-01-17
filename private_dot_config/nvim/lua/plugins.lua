@@ -60,13 +60,10 @@ return packer.startup({function(use)
     config=get_config("lualine")
   }
 
-  use {
-    'neovim/nvim-lspconfig',
-    -- config=get_config("lsp")
-  }
+  use { 'neovim/nvim-lspconfig' }
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
   use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
-  use {"jose-elias-alvarez/null-ls.nvim"} -- for formatters and linters
+  use {"jose-elias-alvarez/null-ls.nvim"} -- for formatters and linters and code actions
   use {"onsails/lspkind-nvim", requires = {{"famiu/bufdelete.nvim"}}}
   use {"ray-x/lsp_signature.nvim", requires = {{"neovim/nvim-lspconfig"}}}
 

@@ -4,17 +4,35 @@ if not null_ls_status_ok then
   return
 end
 
--- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
+-- SOURCES
 local formatting = null_ls.builtins.formatting
--- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
 local diagnostics = null_ls.builtins.diagnostics
+local actions = null_ls.builtins.code_actions
+local hover = null_ls.builtins.hover
+local completion = null_ls.builtins.completion
 
 null_ls.setup({
   debug = false,
   sources = {
-    formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } }),
+    -- general
+    -- actions.refactoring,
+    -- actions.gitsigns,
+    completion.tags,
+    completion.luasnip,
+    completion.spell,
+    hover.dictionary,
+
+    -- python
+    diagnostics.flake8.with({ extra_args = {"--max-line-length=120"} }),
+    formatting.autopep8,
+    formatting.reorder_python_imports,
+    formatting.yapf,
     formatting.black.with({ extra_args = { "--fast" } }),
-    formatting.stylua,
-    diagnostics.flake8
+
+    -- javascript
+    formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } }),
+
+    -- lua
+    formatting.stylua.with({ extra_args = { "--indent-type=Spaces", "--indent-width=2" } }),
   },
 })
