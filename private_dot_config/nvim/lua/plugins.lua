@@ -128,9 +128,7 @@ return packer.startup({function(use)
   use {'kana/vim-textobj-user', requires={"whatyouhide/vim-textobj-xmlattr"}}
 
   --use {'sirver/ultisnips', for=['markdown', 'md'], requires={'honza/vim-snippets'}, config=get_config('ultisnips')}
-  -- use {"sheerun/vim-polyglot", config=get_config("polyglot")}
-  --use "fisadev/vim-isort"
-  --
+
   use 'tpope/vim-unimpaired'
   use 'hashivim/vim-vagrant'
   use {'lervag/vimtex', config=get_config("vimtex")}
@@ -138,22 +136,15 @@ return packer.startup({function(use)
   use 'google/yapf'
   use "valloric/matchtagalways"
 
+  -- Telescope
   use {
     'nvim-telescope/telescope.nvim',
     requires = { {'nvim-lua/plenary.nvim'} },
     config=get_config("telescope")
   }
-  use {
-    'nvim-telescope/telescope-media-files.nvim',
-    requires={
-      'nvim-lua/popup.nvim',
-      'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope.nvim'
-    },
-  }
-  -- use {"junegunn/fzf", dir="~/.fzf", run="./install --all"}
-  -- use {"junegunn/fzf.vim", config=get_config("fzf")}
+  use 'nvim-telescope/telescope-fzy-native.nvim'
 
+  -- Nerdtree
   use {"scrooloose/nerdtree",
   requires={
     'Xuyuanp/nerdtree-git-plugin',
