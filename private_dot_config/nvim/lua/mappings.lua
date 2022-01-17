@@ -21,12 +21,12 @@ map("n", "<leader>vr", ":autocmd User VimReload<CR>", default_options)
 
 
 -- Telescope
-map("n", "<leader>pe", ":Telescope find_files<cr>", default_options)
-map("n", "<leader>pr", ":Telescope buffers<cr>", default_options)
-map("n", "<leader>pf", ":Telescope live_grep <CR>", default_options)
+map("n", "<C-I>e", ":Telescope find_files<cr>", default_options)
+map("n", "<C-I>r", ":Telescope buffers<cr>", default_options)
+map("n", "<C-I>f", ":Telescope live_grep <CR>", default_options)
 
-map("n", "<leader>pg", ":Telescope git_files<cr>", default_options)
-map("n", "<leader>ph", ":Telescope help_tags<cr>", default_options)
+map("n", "<C-I>g", ":Telescope git_files<cr>", default_options)
+map("n", "<C-I>h", ":Telescope help_tags<cr>", default_options)
 
 -- map("n", "<leader>pw", ":lua require(\"telescope.builtin\").grep_string({search=vim.fn.expand(\"<cword>\")})<CR>", default_options)
 -- map("n", "<leader>ps", ":lua require(\"telescope.builtin\").grep_string({ search = vim.fn.input(\"Grep For > \")})<CR>", default_options)

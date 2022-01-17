@@ -5,6 +5,7 @@ end
 
 local actions = require "telescope.actions"
 local previewers = require("telescope.previewers")
+local builtin = require("telescope.builtin")
 
 local Job = require("plenary.job")
 
@@ -27,7 +28,8 @@ local new_maker = function(filepath, bufnr, opts)
   }):sync()
 end
 
-telescope.load_extension('fzy_native')
+telescope.load_extension('fzf')
+
 telescope.setup {
   defaults = {
     prompt_prefix = " ",
@@ -109,18 +111,22 @@ telescope.setup {
     },
   },
   extensions = {
-    fzy_native = {
-      override_generic_sorter = false,
-      override_file_sorter = true,
+    fzf = {
+      fuzzy = true,                    -- false will only do exact matching
+      override_generic_sorter = true,  -- override the generic sorter
+      override_file_sorter = true,     -- override the file sorter
+      case_mode = "smart_case",        -- or "ignore_case" or "respect_case". default case_mode is "smart_case"
     },
-  },
-  pickers = {
-    -- Default configuration for builtin pickers goes here:
-    -- picker_name = {
-    --   picker_config_key = value,
-    --   ...
-    -- }
-    -- Now the picker_config_key will be applied every time you call this
-    -- builtin picker
+    pickers = {
+      -- builtin.buffers({
+      --   sort_lastused = true,
+      -- }),
+      -- builtin.treesitter(),
+      -- builtin.find_files(),
+      -- builtin.tags(),
+      -- builtin.current_buffer_tags(),
+      -- builtin.git_files(),
+
+    },
   },
 }
