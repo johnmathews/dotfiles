@@ -135,7 +135,7 @@ return packer.startup({function(use)
   use 'tpope/vim-unimpaired'
   use 'hashivim/vim-vagrant'
   use {'lervag/vimtex', config=get_config("vimtex")}
-  use 'google/yapf'
+
   use {"valloric/matchtagalways", ft={'html', 'css'}}
 
   -- Telescope
