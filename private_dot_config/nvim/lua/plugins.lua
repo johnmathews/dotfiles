@@ -46,6 +46,7 @@ return packer.startup({function(use)
   use "nvim-lua/popup.nvim"
   use {"goolord/alpha-nvim", config=get_config("alpha")}
   use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons', config=get_config('bufferline')}
+  use 'kana/vim-arpeggio'
 
   -- https://github.com/dstein64/vim-startuptime
   -- https://www.reddit.com/r/neovim/comments/pgpnnm/how_fast_your_neovim_startup/
@@ -64,8 +65,8 @@ return packer.startup({function(use)
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
   use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
   use {"jose-elias-alvarez/null-ls.nvim"} -- for formatters and linters and code actions
-  use {"onsails/lspkind-nvim", requires = {{"famiu/bufdelete.nvim"}}}
-  use {"ray-x/lsp_signature.nvim", requires = {{"neovim/nvim-lspconfig"}}}
+  use {"onsails/lspkind-nvim", requires = "famiu/bufdelete.nvim"}
+  use {"ray-x/lsp_signature.nvim", requires = "neovim/nvim-lspconfig" }
 
   use {
     "hrsh7th/nvim-cmp",

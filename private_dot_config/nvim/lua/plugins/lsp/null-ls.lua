@@ -24,7 +24,7 @@ null_ls.setup({
 
 		-- python
 		diagnostics.flake8.with({ extra_args = { "--max-line-length=120" } }),
-    formatting.yapf.with({extra_args = {"column_limit=120"} }),
+    formatting.yapf.with({extra_args = {"column_limit=120", "based_on_style=pep8"} }),
 		formatting.isort,
 
 		-- javascript

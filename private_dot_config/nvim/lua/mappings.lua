@@ -19,6 +19,7 @@ map("n", "<leader>ve", ":edit $MYVIMRC<CR>", default_options)
 map("n", "<leader>vf", ":edit ~/.config/nvim/ftplugin/<C-R>=&filetype<CR>.vim<CR>", default_options)
 map("n", "<leader>vr", ":autocmd User VimReload<CR>", default_options)
 
+vim.cmd([[call arpeggio#map('i', '', 0, 'jk', '<Esc>')]])
 
 -- Telescope
 map("n", "<C-I>e", ":Telescope find_files<cr>", default_options)

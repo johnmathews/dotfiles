@@ -7,6 +7,4 @@ require("functions")
 require("plugins.lsp")
 require("plugins")
 
-vim.cmd[[colorscheme dracula]]
-
-
+vim.cmd([[colorscheme dracula]])
