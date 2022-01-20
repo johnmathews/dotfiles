@@ -4,3 +4,6 @@ tags
 **/.DS_Store
 **/*~
 Session.vim
+dot_ds_store
+packer_compiled.lua
+
