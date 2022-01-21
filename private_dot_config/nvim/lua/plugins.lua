@@ -26,8 +26,8 @@ augroup end
 -- Use a protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
-	print("*** Unable to require packer")
-	vim.notify("notifying you that packer is not found")
+	print("Packer not found")
+	vim.notify("Packer not found")
 	return
 end
 
@@ -45,9 +45,27 @@ return packer.startup({
 		use("Mofiqul/dracula.nvim")
 		use("nvim-lua/plenary.nvim")
 		use("nvim-lua/popup.nvim")
-		use({ "goolord/alpha-nvim", config = get_config("alpha") })
-		use({ "akinsho/bufferline.nvim", requires = "kyazdani42/nvim-web-devicons", config = get_config("bufferline") })
-		use("kana/vim-arpeggio")
+		use({
+			"goolord/alpha-nvim",
+			config = function()
+				require("plugins.alpha")
+			end,
+		})
+		use({
+			"akinsho/bufferline.nvim",
+			requires = "kyazdani42/nvim-web-devicons",
+			config = function()
+				require("plugins.bufferline")
+			end,
+		})
+
+		use({
+			"L3MON4D3/LuaSnip",
+			requires = "rafamadriz/friendly-snippets",
+			config = function()
+				require("plugins.luasnip")
+			end,
+		})
 
 		-- https://github.com/dstein64/vim-startuptime
 		-- https://www.reddit.com/r/neovim/comments/pgpnnm/how_fast_your_neovim_startup/
@@ -91,15 +109,9 @@ return packer.startup({
 				"hrsh7th/cmp-calc",
 				"hrsh7th/cmp-emoji",
 			},
-			config = get_config("cmp"),
-		})
-
-		use({
-			"L3MON4D3/LuaSnip",
-			requires = {
-				"rafamadriz/friendly-snippets",
-			},
-			config = get_config("luasnip"),
+			config = function()
+				require("plugins.cmp")
+			end,
 		})
 
 		use({
@@ -166,14 +178,23 @@ return packer.startup({
 
 		-- Nerdtree
 		use({
-			"scrooloose/nerdtree",
+			"kyazdani42/nvim-tree.lua",
 			requires = {
-				"Xuyuanp/nerdtree-git-plugin",
-				"ryanoasis/vim-devicons",
-				"tiagofumo/vim-nerdtree-syntax-highlight",
+				"kyazdani42/nvim-web-devicons", -- optional, for file icon
 			},
-			config = get_config("nerdtree"),
+			config = function()
+				require("nvim-tree").setup({})
+			end,
 		})
+		-- use({
+		--   "scrooloose/nerdtree",
+		--   requires = {
+		--     "Xuyuanp/nerdtree-git-plugin",
+		--     "ryanoasis/vim-devicons",
+		--     "tiagofumo/vim-nerdtree-syntax-highlight",
+		--   },
+		--   config = get_config("nerdtree"),
+		-- })
 
 		use({ "scrooloose/nerdcommenter", config = get_config("nerdcommenter") })
 
@@ -199,7 +220,6 @@ return packer.startup({
 		--   },
 		--   config=get_config("rainbow")
 		-- }
-
 		-- Put this at the end after all plugins
 		if PACKER_BOOTSTRAP then
 			require("packer").sync()
