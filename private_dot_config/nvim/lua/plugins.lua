@@ -10,7 +10,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
 		"https://github.com/wbthomason/packer.nvim",
 		install_path,
 	})
-	print("Installing packer close and reopen Neovim...")
+	print("Installing packer. Restart Neovim...")
 	vim.cmd([[packadd packer.nvim]])
 end
 
@@ -104,6 +104,7 @@ return packer.startup({
 				"nvim-treesitter/playground",
 			},
 		})
+
 		use({
 			"p00f/nvim-ts-rainbow",
 			config = function()
@@ -217,13 +218,12 @@ return packer.startup({
 
 		use({ "scrooloose/nerdcommenter", config = function() require("plugins.nerdcommenter") end })
 
-		-- Put this at the end after all plugins
 		if PACKER_BOOTSTRAP then
 			require("packer").sync()
 		end
 	end,
 	config = {
-		compile_path = vim.fn.stdpath("config") .. "/lua/packer_compiled.lua",
+		compile_path = vim.fn.stdpath("config") .. "/plugin/packer_compiled.lua",
 		display = {
 			open_fn = require("packer.util").float,
 		},

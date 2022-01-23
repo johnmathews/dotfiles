@@ -109,8 +109,7 @@ map("n", "<C-L>", ":vertical resize -2<CR>", default_options)
 map("n", "cc", ":call ToggleQuickFix()<CR>", default_options)
 
 ----- INSERT MODE ---------------
--- map("i", "jk", "<ESC>", default_options)
-map("i", "jj", "<ESC>", default_options)
+map("i", "jk", "<ESC>", default_options)
 
 --jump back one word
 map("i", "<C-h>", "<C-o>b", default_options)

@@ -15,14 +15,6 @@ local dynamicn = luasnip.dynamic_node
 return {
   all = {
     snip({
-      trig = "asd",
-      namr = "asd namr",
-      dscr = "asd desc",
-    }, {
-      text "SDASDasdASD",
-      insert(0),
-    }),
-    snip({
       trig = "signature",
       namr = "Signature",
       dscr = "Name and Surname",
