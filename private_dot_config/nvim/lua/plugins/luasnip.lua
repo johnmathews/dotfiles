@@ -1,18 +1,34 @@
-local snip_status_ok, ls = pcall(require, "luasnip")
+local snip_status_ok, luasnip = pcall(require, "luasnip")
 if not snip_status_ok then
-  print("luasnip not found")
   return
 end
 
 
-ls.config.set_config {
-  history = true,
-  -- treesitter-hl has 100, use something higher (default is 200).
-  ext_base_prio = 200,
-  -- minimal increase in priority.
-  ext_prio_increase = 1,
-  enable_autosnippets = false,
-  store_selection_keys = "<c-s>",
-}
+local snip = luasnip.snippet
+local node = luasnip.snippet_node
+local text = luasnip.text_node
+local insert = luasnip.insert_node
+local func = luasnip.function_node
+local choice = luasnip.choice_node
+local dynamicn = luasnip.dynamic_node
 
-ls.snippets = require("snippets/snippets")
+return {
+  all = {
+    snip({
+      trig = "asd",
+      namr = "asd namr",
+      dscr = "asd desc",
+    }, {
+      text "SDASDasdASD",
+      insert(0),
+    }),
+    snip({
+      trig = "signature",
+      namr = "Signature",
+      dscr = "Name and Surname",
+    }, {
+      text "Sergei Bulavintsev",
+      insert(0),
+    }),
+  },
+}

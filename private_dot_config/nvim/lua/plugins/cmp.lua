@@ -8,6 +8,7 @@ if not snip_status_ok then
   return
 end
 
+luasnip.snippets = require("plugins.luasnip")
 require("luasnip/loaders/from_vscode").lazy_load()
 
 local check_backspace = function()
@@ -15,7 +16,6 @@ local check_backspace = function()
   return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
 end
 
---   פּ ﯟ   some other good icons
 local kind_icons = {
   Text = "",
   Method = "m",
@@ -43,7 +43,6 @@ local kind_icons = {
   Operator = "",
   TypeParameter = "",
 }
--- find more here: https://www.nerdfonts.com/cheat-sheet
 
 cmp.setup {
   snippet = {
@@ -52,12 +51,12 @@ cmp.setup {
     end,
   },
   mapping = {
-    ["<C-j>"] = cmp.mapping.select_next_item(),
     ["<C-k>"] = cmp.mapping.select_prev_item(),
+    ["<C-j>"] = cmp.mapping.select_next_item(),
     ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
     ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
     ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-    ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+    -- ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
     ["<C-e>"] = cmp.mapping {
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),
@@ -67,8 +66,7 @@ cmp.setup {
     ["<CR>"] = cmp.mapping.confirm { select = true },
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
-        -- cmp.select_next_item() -- TODO change this to select like CR row above
-        cmp.mapping.confirm { select = true }
+        cmp.select_next_item()
       elseif luasnip.expandable() then
         luasnip.expand()
       elseif luasnip.expand_or_jumpable() then
@@ -98,34 +96,55 @@ cmp.setup {
   formatting = {
     fields = { "kind", "abbr", "menu" },
     format = function(entry, vim_item)
-      vim_item.kind = string.format("%s", kind_icons[vim_item.kind]) -- just the icons, not the names
+      -- Kind icons
+      vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
+
+      if entry.source.name == "cmp_tabnine" then
+        -- if entry.completion_item.data ~= nil and entry.completion_item.data.detail ~= nil then
+          -- menu = entry.completion_item.data.detail .. " " .. menu
+        -- end
+        vim_item.kind = " "
+      end
       -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
+      -- NOTE: order matters
       vim_item.menu = ({
-        luasnip = "[Snippet]",
-        nvim_lsp = "[LSP]",
-        nvim_lua = "[NVIM_LUA]",
-        buffer = "[Buffer]",
-        path = "[Path]",
+        -- nvim_lsp = "[LSP]",
+        -- nvim_lua = "[Nvim]",
+        -- luasnip = "[Snippet]",
+        -- buffer = "[Buffer]",
+        -- path = "[Path]",
+        -- emoji = "[Emoji]",
+
+        nvim_lsp = "",
+        nvim_lua = "",
+        luasnip = "",
+        buffer = "",
+        path = "",
+        emoji = "",
       })[entry.source.name]
       return vim_item
     end,
   },
   sources = {
-    { name = "luasnip" },
     { name = "nvim_lsp" },
     { name = "nvim_lua" },
+    { name = "luasnip" },
     { name = "buffer" },
+    { name = "cmp_tabnine" },
     { name = "path" },
+    { name = "emoji" },
   },
   confirm_opts = {
     behavior = cmp.ConfirmBehavior.Replace,
     select = false,
   },
-  documentation = {
-    border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-  },
+  documentation = false,
+  -- documentation = {
+  -- 	border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+  -- },
   experimental = {
     ghost_text = true,
     native_menu = false,
   },
 }
+

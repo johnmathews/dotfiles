@@ -1,5 +1,6 @@
 local snip_status_ok, ls = pcall(require, "luasnip")
 if not snip_status_ok then
+  print("luasnip not found")
   return
 else
   print("luasnip found")
