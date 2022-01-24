@@ -1,41 +1,247 @@
-local snip_status_ok, luasnip = pcall(require, "luasnip")
+local snip_status_ok, ls = pcall(require, "luasnip")
 if not snip_status_ok then
 	return
 end
 
-local snip = luasnip.snippet
-local node = luasnip.snippet_node
-local text = luasnip.text_node
-local insert = luasnip.insert_node
-local func = luasnip.function_node
-local choice = luasnip.choice_node
-local dynamicn = luasnip.dynamic_node
+local s = ls.snippet
+local sn = ls.snippet_node
+local t = ls.text_node
+local i = ls.insert_node
+local f = ls.function_node
+local c = ls.choice_node
+local d = ls.dynamic_node
+local r = ls.restore_node
+local l = require("luasnip.extras").lambda
+local rep = require("luasnip.extras").rep
+local p = require("luasnip.extras").partial
+local m = require("luasnip.extras").match
+local n = require("luasnip.extras").nonempty
+local dl = require("luasnip.extras").dynamic_lambda
+local fmt = require("luasnip.extras.fmt").fmt
+local fmta = require("luasnip.extras.fmt").fmta
+local types = require("luasnip.util.types")
+local conds = require("luasnip.extras.expand_conditions")
+
 
 return {
-	all = {
-		snip({
-			trig = "signature",
-			namr = "Signature",
-			dscr = "Name and Surname",
-		}, {
-			text("Sergei Bulavintsev"),
-			insert(0),
-		}),
-	},
+	all = {},
 	markdown = {
-		snip({
+
+		s("nbdata", {
+			t({ "Title: " }),
+			i(1),
+			t({ "", "Slug: " }),
+			i(2),
+			t({ "", "Date: " }),
+			i(3),
+			t({ "", "Category: Techincal/Data " }),
+			t({ "", "Tags: " }),
+			i(4),
+			t({ "", "" , "", "[comment]: # (The summary needs to be blank and there needs to be 2 blank lines below, I think.)"}),
+		}),
+
+
+		s("snip", {
+			t({ "Title: " }),
+			i(1),
+			t({ "", "Slug: " }),
+			i(2),
+			t({ "", "Date: " }),
+			i(3),
+			t({ "", "Category: snippet " }),
+			t({ "", "Tags: " }),
+			i(4),
+			t({ "", "", "" }),
+		}),
+
+
+		s("meta", {
+			t({ "Title: " }),
+			i(1),
+			t({ "", "Slug: " }),
+			i(2),
+			t({ "", "Date: " }),
+			i(3),
+			t({ "", "Category: " }),
+			i(4),
+			t({ "", "Tags: " }),
+			i(5),
+			t({ "", "", "" }),
+		}),
+
+		s({
+			dscr = "links to an internal page",
+			name = "article link link",
+			trig = "il",
+		}, {
+			t({ "[" }),
+			i(1, "<text>"),
+			t({ "]({filename}/articles/" }),
+			i(2, "<text>"),
+			t({ ".md) " }),
+		}),
+
+		s({
+			dscr = "download a link",
+			name = "download link",
+			trig = "li",
+		}, {
+			t({ "[" }),
+			i(1, "<text>"),
+			t({ "](" }),
+			i(2, "<text>"),
+			t({ ") " }),
+		}),
+
+		s({
+			dscr = "download a file",
+			name = "file download",
+			trig = "dl",
+		}, {
+			t({ "[" }),
+			i(1, "<text>"),
+			t({ "]({attach}/documents/" }),
+			i(2, "<text>"),
+			t({ ") " }),
+		}),
+
+		s({
+			dscr = "download a big (100mb+) file",
+			name = "download from bucket",
+			trig = "dlb",
+		}, {
+			t({ "[" }),
+			i(1, "<text>"),
+			t({ "](https://us-east1-johnmathews-website.cloudfunctions.net/download?obj=" }),
+			i(2, "<text>"),
+			t({ ") " }),
+		}),
+
+		s({
+			namr = "link to bucket",
+			dscr = "link to bucket",
+			trig = "bu",
+		}, {
+			t({ "[archive](https://us-east1-johnmathews-website.cloudfunctions.net/download?obj=movies/" }),
+			i(1, "<text>"),
+			t({ ".mp4) " }),
+		}),
+
+		s({
+			namr = "image embed",
+			dscr = "embed an image",
+			trig = "im",
+		}, {
+			t({ "![" }),
+			i(1, "<text>"),
+			t({ "]({static}/images/" }),
+			i(2, "<text>"),
+			t({ "){: .image-process-article-inline-image loading='lazy'} " }),
+		}),
+
+		s({
+			namr = "image link",
+			dscr = "insert a clickable image",
+			trig = "ci",
+		}, {
+			t({ "[![" }),
+			i(1, "<text>"),
+			t({ "]({static}/images/" }),
+			i(2, "<text>"),
+			t({ "){: .image-process-article-inline-image loading='lazy'}]({static}/images/ " }),
+			i(3, "<text>"),
+			t({ '"' }),
+		}),
+
+		s({
+			namr = "superscript",
+			dscr = "superscript text",
+			trig = "sup",
+		}, {
+			t({ "$^" }),
+			i(1, "<text>"),
+			t({ "$ " }),
+		}),
+
+		s({
+			namr = "bible verse",
+			dscr = "highlighted bible verse with superscript",
+			trig = "ver",
+		}, {
+			t({ "$^" }),
+			i(1, "verse number"),
+			t({ "$<mark>" }),
+			i(2, "text here"),
+			t({ "</mark> " }),
+		}),
+
+		s({
+			namr = "highlight",
+			dscr = "highlighted (marked) text tag",
+			trig = "ma",
+		}, {
+			t({ "<mark>" }),
+			i(1, "text here"),
+			t({ "</mark> " }),
+		}),
+
+		s({
+			namr = "comment",
+			dscr = "comment text",
+			trig = "com",
+		}, {
+			t({ "", "[comment]: # (" }),
+			i(1),
+			t({ ") " }),
+		}),
+
+		s({
 			namr = "Technical Categories",
 			dscr = "Blog - technical categories for blog posts",
 			trig = "tech",
 		}, {
-			text("Technical/Developer Tools,Data,Web,Other,Cryptocurrencies,Engineering"),
+			t("Technical/Developer Tools,Data,Web,Other,Cryptocurrencies,Engineering"),
 		}),
-		snip({
+
+		s({
 			namr = "Non-technical Categories",
 			dscr = "Blog - non-technical categories for blog posts",
 			trig = "non",
 		}, {
-			text("Non-technical/Other,Social,Learning,Journal,Entrepreneurship,Photographs"),
+			t("Non-technical/Other,Social,Learning,Journal,Entrepreneurship,Photographs"),
+		}),
+
+		s(
+			{
+				namr = "footnote",
+				dscr = "insert a footnote",
+				trig = "ref",
+			},
+			fmt("[ref]{}[/ref]", {
+				i(1, "<text>"),
+			})
+		),
+
+		s({
+			namr = "youtube movie",
+			dscr = "responsive youtube embed",
+			trig = "yt",
+		}, {
+			t({
+				'<div class="relative mt-3" style="padding-top: 56.25%">',
+				"   <iframe",
+				'    loading="lazy"',
+				'    class="absolute inset-0 w-full h-full"',
+				'    src="https://youtube.com/embed/',
+			}),
+			i(1, "<URL>"),
+			t({
+				'"',
+				'    frameborder="0"',
+				'    allow="autoplay; encrypted-media" allowfullscreen >',
+				"  </iframe>",
+				"</div>",
+			}),
 		}),
 	},
 }
