@@ -22,50 +22,72 @@ local fmta = require("luasnip.extras.fmt").fmta
 local types = require("luasnip.util.types")
 local conds = require("luasnip.extras.expand_conditions")
 
+local date = function()
+	return { os.date("%Y-%m-%d") }
+end
+
+local slugify = function(args, snip)
+	local text = args[1][1]
+	text = string.lower(text)
+	text = string.gsub(text, "[%p%c]", "")
+	text = string.gsub(text, "[%s]", "-")
+	return text
+end
 
 return {
 	all = {},
 	markdown = {
 
+		s({
+			trig = "date",
+			namr = "Date",
+			dscr = "Date in the form of YYYY-MM-DD",
+		}, {
+			f(date, {}),
+		}),
+
 		s("nbdata", {
 			t({ "Title: " }),
 			i(1),
 			t({ "", "Slug: " }),
-			i(2),
+      f(slugify, {1}),
 			t({ "", "Date: " }),
-			i(3),
+			f(date, {}),
 			t({ "", "Category: Techincal/Data " }),
 			t({ "", "Tags: " }),
-			i(4),
-			t({ "", "" , "", "[comment]: # (The summary needs to be blank and there needs to be 2 blank lines below, I think.)"}),
+			i(2),
+			t({
+				"",
+				"",
+				"",
+				"[comment]: # (The summary needs to be blank and there needs to be 2 blank lines below, I think.)",
+			}),
 		}),
-
 
 		s("snip", {
 			t({ "Title: " }),
 			i(1),
 			t({ "", "Slug: " }),
-			i(2),
+      f(slugify, {1}),
 			t({ "", "Date: " }),
-			i(3),
+			f(date, {}),
 			t({ "", "Category: snippet " }),
 			t({ "", "Tags: " }),
-			i(4),
+			i(2),
 			t({ "", "", "" }),
 		}),
-
 
 		s("meta", {
 			t({ "Title: " }),
 			i(1),
 			t({ "", "Slug: " }),
-			i(2),
+      f(slugify, {1}),
 			t({ "", "Date: " }),
-			i(3),
+			f(date, {}),
 			t({ "", "Category: " }),
-			i(4),
+			i(2),
 			t({ "", "Tags: " }),
-			i(5),
+			i(3),
 			t({ "", "", "" }),
 		}),
 
