@@ -9,10 +9,10 @@ local i = ls.insert_node
 local f = ls.function_node
 local fmt = require("luasnip.extras.fmt").fmt
 
-local sn = ls.snippet_node
 local c = ls.choice_node
-local r = ls.restore_node
--- local d = ls.dynamic_node
+local d = ls.dynamic_node
+-- local sn = ls.snippet_node
+-- local r = ls.restore_node
 -- local l = require("luasnip.extras").lambda
 -- local rep = require("luasnip.extras").rep
 -- local p = require("luasnip.extras").partial
@@ -31,27 +31,34 @@ local slugify = function(args, _)
 	local text = args[1][1]
 	text = string.lower(text)
 	text = string.gsub(text, "[%p%c]", "")
+	text = string.gsub(text, "^%s*(.-)%s*$", "%1")
 	text = string.gsub(text, "[%s]", "-")
 	return text
 end
 
+local catChooser = function(args, snip, table)
+  if args[1][1] == "Technical/" then
+    return c(3, {
+      t("Developer Tools"),
+      t("Data"),
+      t("Web"),
+      t("Other"),
+      t("Cryptocurrencies"),
+      t("Engineering"),
+    })
+  else
+    return c(3, {
+      t("Photographs"),
+      t("Entrepreneurship"),
+      t("Journal"),
+      t("Learning"),
+      t("Social"),
+      t("Other"),
+    })
+  end
+end
+
 return {
-
-	s("test", {
-		t("Hello World"),
-		c(1, {
-			t("choice1"),
-			t("choice2"),
-		}),
-	}),
-
-	s(
-		"sn",
-		sn(1, {
-			t("basically just text "),
-			i(1, "And an insertNode."),
-		})
-	),
 
 	s("meta", {
 		t({ "Title: " }),
@@ -65,8 +72,9 @@ return {
 			t("Technical/"),
 			t("Non-technical/"),
 		}),
+		d(3, catChooser, {2}),
 		t({ "", "Tags: " }),
-		i(3),
+		i(0),
 		t({ "", "", "" }),
 	}),
 
