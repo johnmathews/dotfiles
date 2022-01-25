@@ -99,10 +99,10 @@ cmp.setup({
 		}),
 	},
 	formatting = {
-		fields = { "kind", "abbr" },
-		-- fields = { "kind", "abbr", "menu" },
+    fields = { "kind", "abbr", "menu" },
 		format = function(entry, vim_item)
 			vim_item.kind = string.format("%s ", kind_icons[vim_item.kind])
+      vim_item.menu = ({})[entry.source.name]
 			-- vim_item.menu = ({
       --   -- luasnip = "[Snippet]",
       --   nvim_lsp = "[LSP]",
