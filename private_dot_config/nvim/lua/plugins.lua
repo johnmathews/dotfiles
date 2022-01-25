@@ -32,22 +32,11 @@ return packer.startup({
 	function(use)
 		use("wbthomason/packer.nvim")
 		use("lewis6991/impatient.nvim")
-		use("Mofiqul/dracula.nvim")
+
 		use("nvim-lua/plenary.nvim")
 		use("nvim-lua/popup.nvim")
-		use({
-			"goolord/alpha-nvim",
-			config = function()
-				require("plugins.alpha")
-			end,
-		})
-		use({
-			"akinsho/bufferline.nvim",
-			requires = "kyazdani42/nvim-web-devicons",
-			config = function()
-				require("plugins.bufferline")
-			end,
-		})
+
+		use("Mofiqul/dracula.nvim")
 
 		use("dstein64/vim-startuptime")
 
@@ -59,12 +48,45 @@ return packer.startup({
 		})
 
 		use({
+			"goolord/alpha-nvim",
+			config = function()
+				require("plugins.alpha")
+			end,
+		})
+
+		use({
+			"akinsho/bufferline.nvim",
+			requires = "kyazdani42/nvim-web-devicons",
+			config = function()
+				require("plugins.bufferline")
+			end,
+		})
+
+		use({
 			"nvim-lualine/lualine.nvim",
 			requires = { "kyazdani42/nvim-web-devicons", opt = true },
 			config = function()
 				require("plugins.lualine")
 			end,
 		})
+
+		use({
+			"numToStr/Comment.nvim",
+			requires = {
+				"nvim-treesitter/nvim-treesitter",
+				"JoosepAlviste/nvim-ts-context-commentstring",
+			},
+			config = function()
+				require("plugins.comment")
+			end,
+		})
+
+		-- use({
+		--   "scrooloose/nerdcommenter",
+		--   config = function()
+		--     require("plugins.nerdcommenter")
+		--   end,
+		-- })
 
 		use({ "neovim/nvim-lspconfig" })
 		use({ "williamboman/nvim-lsp-installer" }) -- simple to use language server installer
@@ -201,7 +223,9 @@ return packer.startup({
 		use({
 			"nvim-telescope/telescope.nvim",
 			requires = { { "nvim-lua/plenary.nvim" } },
-			config = function() require("plugins.telescope") end,
+			config = function()
+				require("plugins.telescope")
+			end,
 		})
 		use({
 			"nvim-telescope/telescope-fzf-native.nvim",
@@ -215,8 +239,6 @@ return packer.startup({
 			},
 		})
 		require("plugins.nvim-tree")
-
-		use({ "scrooloose/nerdcommenter", config = function() require("plugins.nerdcommenter") end })
 
 		if PACKER_BOOTSTRAP then
 			require("packer").sync()

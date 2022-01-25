@@ -7,10 +7,17 @@ require'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained",
   sync_install = false,
   ignore_install = {},
+  autopairs = {
+    enable = true
+  },
+  context_commentstring = {
+    enable = true,
+    enable_autocmd = false,
+  },
   highlight = {
     enable = true,
     disable = { "" },
-    additional_vim_regex_highlighting = false,
+    additional_vim_regex_highlighting = true,
   },
   indent = {
     enable = true,
