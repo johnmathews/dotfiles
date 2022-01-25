@@ -9,10 +9,10 @@ local i = ls.insert_node
 local f = ls.function_node
 local fmt = require("luasnip.extras.fmt").fmt
 
--- local sn = ls.snippet_node
--- local c = ls.choice_node
+local sn = ls.snippet_node
+local c = ls.choice_node
+local r = ls.restore_node
 -- local d = ls.dynamic_node
--- local r = ls.restore_node
 -- local l = require("luasnip.extras").lambda
 -- local rep = require("luasnip.extras").rep
 -- local p = require("luasnip.extras").partial
@@ -36,12 +36,51 @@ local slugify = function(args, _)
 end
 
 return {
-	s({
-		trig = "date",
-		namr = "Date",
-		dscr = "Date in the form of YYYY-MM-DD",
-	}, {
+
+	s("test", {
+		t("Hello World"),
+		c(1, {
+			t("choice1"),
+			t("choice2"),
+		}),
+	}),
+
+	s(
+		"sn",
+		sn(1, {
+			t("basically just text "),
+			i(1, "And an insertNode."),
+		})
+	),
+
+	s("meta", {
+		t({ "Title: " }),
+		i(1),
+		t({ "", "Slug: " }),
+		f(slugify, { 1 }),
+		t({ "", "Date: " }),
 		f(date, {}),
+		t({ "", "Category: " }),
+		c(2, {
+			t("Technical/"),
+			t("Non-technical/"),
+		}),
+		t({ "", "Tags: " }),
+		i(3),
+		t({ "", "", "" }),
+	}),
+
+	s("snip", {
+		t({ "Title: " }),
+		i(1),
+		t({ "", "Slug: " }),
+		f(slugify, { 1 }),
+		t({ "", "Date: " }),
+		f(date, {}),
+		t({ "", "Category: snippet " }),
+		t({ "", "Tags: " }),
+		i(2),
+		t({ "", "", "" }),
 	}),
 
 	s("nbdata", {
@@ -60,33 +99,6 @@ return {
 			"",
 			"[comment]: # (The summary needs to be blank and there needs to be 2 blank lines below, I think.)",
 		}),
-	}),
-
-	s("snip", {
-		t({ "Title: " }),
-		i(1),
-		t({ "", "Slug: " }),
-		f(slugify, { 1 }),
-		t({ "", "Date: " }),
-		f(date, {}),
-		t({ "", "Category: snippet " }),
-		t({ "", "Tags: " }),
-		i(2),
-		t({ "", "", "" }),
-	}),
-
-	s("meta", {
-		t({ "Title: " }),
-		i(1),
-		t({ "", "Slug: " }),
-		f(slugify, { 1 }),
-		t({ "", "Date: " }),
-		f(date, {}),
-		t({ "", "Category: " }),
-		i(2),
-		t({ "", "Tags: " }),
-		i(3),
-		t({ "", "", "" }),
 	}),
 
 	s({

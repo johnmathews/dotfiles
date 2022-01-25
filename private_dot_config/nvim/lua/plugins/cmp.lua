@@ -13,8 +13,8 @@ if not snip_status_ok then
 	return
 end
 
-require("luasnip/loaders/from_vscode").lazy_load()
 luasnip.snippets = require("plugins.luasnip")
+require("luasnip/loaders/from_vscode").lazy_load()
 
 local check_backspace = function()
 	local col = vim.fn.col(".") - 1
@@ -72,7 +72,6 @@ cmp.setup({
 		["<Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.confirm({ select = true })
-        -- cmp.complete()
 			elseif luasnip.expandable() then
 				luasnip.expand()
 			elseif luasnip.expand_or_jumpable() then
@@ -100,32 +99,26 @@ cmp.setup({
 		}),
 	},
 	formatting = {
-		fields = { "kind", "abbr", "menu" },
+		fields = { "kind", "abbr" },
+		-- fields = { "kind", "abbr", "menu" },
 		format = function(entry, vim_item)
-			vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-			if entry.source.name == "cmp_tabnine" then
-				-- if entry.completion_item.data ~= nil and entry.completion_item.data.detail ~= nil then
-				-- menu = entry.completion_item.data.detail .. " " .. menu
-				-- end
-				vim_item.kind = " "
-			end
-			vim_item.menu = ({
-        nvim_lsp = "[LSP]",
-        nvim_lua = "[Nvim]",
-        luasnip = "[Snippet]",
-        buffer = "[Buffer]",
-        path = "[Path]",
-        emoji = "[Emoji]",
-			})[entry.source.name]
+			vim_item.kind = string.format("%s ", kind_icons[vim_item.kind])
+			-- vim_item.menu = ({
+      --   -- luasnip = "[Snippet]",
+      --   nvim_lsp = "[LSP]",
+      --   nvim_lua = "[Nvim]",
+      --   buffer = "[Buffer]",
+      --   path = "[Path]",
+      --   emoji = "[Emoji]",
+			-- })[entry.source.name]
 			return vim_item
 		end,
 	},
 	sources = {
-		{ name = "luasnip" },
+		-- { name = "luasnip" },
 		{ name = "nvim_lsp" },
-		{ name = "nvim_lua" },
+    { name = "nvim_lua" },
 		{ name = "buffer" },
-		{ name = "cmp_tabnine" },
 		{ name = "path" },
 		{ name = "emoji" },
 	},

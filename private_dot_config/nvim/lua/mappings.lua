@@ -117,3 +117,11 @@ map("i", "<C-h>", "<C-o>b", default_options)
 map("i", "<C-e>", "<C-o>de", default_options)
 -- try to make each word an undo step
 -- map("i", "<SPACE>", "<C-o>u<SPACE>", default_options)
+
+-- Luasnip
+vim.cmd([[
+  imap <silent><expr> <C-h> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-h>'
+  smap <silent><expr> <C-h> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-h>'
+]])
+
+
