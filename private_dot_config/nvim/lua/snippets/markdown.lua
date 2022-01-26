@@ -37,30 +37,73 @@ local slugify = function(args, _)
 end
 
 local catChooser = function(args, snip, table)
-  if args[1][1] == "Technical/" then
-    return c(3, {
-      t("Developer Tools"),
-      t("Data"),
-      t("Web"),
-      t("Other"),
-      t("Cryptocurrencies"),
-      t("Engineering"),
-    })
-  else
-    return c(3, {
-      t("Photographs"),
-      t("Entrepreneurship"),
-      t("Journal"),
-      t("Learning"),
-      t("Social"),
-      t("Other"),
-    })
-  end
+	if args[1][1] == "Technical/" then
+		return c(3, {
+			t("Developer Tools"),
+			t("Data"),
+			t("Web"),
+			t("Other"),
+			t("Cryptocurrencies"),
+			t("Engineering"),
+		})
+	else
+		return c(3, {
+			t("Photographs"),
+			t("Entrepreneurship"),
+			t("Journal"),
+			t("Learning"),
+			t("Social"),
+			t("Other"),
+		})
+	end
 end
 
 return {
-
 	s("meta", {
+		t({ "Title: " }),
+		i(1),
+		t({ "", "Slug: " }),
+		f(slugify, { 1 }),
+		t({ "", "Date: " }),
+		f(date, {}),
+		t({ "", "Category: " }),
+		c(2, {
+			{
+				-- put an insertNode here so it's possible
+				-- to change the outer choice.
+				-- (without it, the cursor would always jump
+				-- directly into the inner choiceNode).
+				i(1),
+				t("Technical/"),
+				c(2, {
+					t("Developer Tools"),
+					t("Data"),
+					t("Web"),
+					t("Other"),
+					t("Cryptocurrencies"),
+					t("Engineering"),
+				}),
+			},
+			{
+				i(1),
+				t("Non-technical/"),
+				c(2, {
+					t("Photographs"),
+					t("Entrepreneurship"),
+					t("Journal"),
+					t("Learning"),
+					t("Social"),
+					t("Other"),
+				}),
+			},
+		}),
+		t({ "", "Tags: " }),
+		i(0),
+		t({ "", "", "" }),
+	}),
+
+  -- my original effort
+	s("meta2", {
 		t({ "Title: " }),
 		i(1),
 		t({ "", "Slug: " }),
@@ -72,7 +115,7 @@ return {
 			t("Technical/"),
 			t("Non-technical/"),
 		}),
-		d(3, catChooser, {2}),
+		d(3, catChooser, { 2 }),
 		t({ "", "Tags: " }),
 		i(4),
 		t({ "", "", "" }),
