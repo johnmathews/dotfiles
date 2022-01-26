@@ -73,8 +73,6 @@ local options = {
 
 	smartindent = true, -- Insert indents automatically
 	guicursor = "n-v-c-sm:block-blinkwait50-blinkon50-blinkoff50,i-ci-ve:ver25-Cursor-blinkon100-blinkoff100,r-cr-o:hor20",
-
-  -- formatoptions = "l"
 }
 
 vim.cmd("au TextYankPost * lua vim.highlight.on_yank {on_visual = true}")

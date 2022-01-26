@@ -75,6 +75,7 @@ map("v", ":", ";", default_options)
 map("n", "<C-I>ww", ":wa<CR>", default_options)
 --map("n", "<C-I>qq", ":FloatermKill!<CR><BAR>:qa<CR>", default_options)
 map("n", "<C-I>qq", ":qa<CR>", default_options)
+map("n", "<C-I>qo", ":%bd|e#<CR>", default_options) -- close other buffers
 map("n", "qq", ":bp|bd #<CR>", default_options)
 map("n", "<leader>Q", ":bufdo bdelete<CR>", default_options)
 map("n", "gf", ":edit <cfile><CR>", default_options)

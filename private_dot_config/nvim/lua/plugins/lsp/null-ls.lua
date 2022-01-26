@@ -1,13 +1,13 @@
 local null_ls_status_ok, null_ls = pcall(require, "null-ls")
 if not null_ls_status_ok then
-	print("*** null-ls not found")
+	print("null-ls not found")
 	return
 end
 
 -- SOURCES
 local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
-local actions = null_ls.builtins.code_actions
+-- local actions = null_ls.builtins.code_actions
 local hover = null_ls.builtins.hover
 local completion = null_ls.builtins.completion
 
@@ -24,7 +24,7 @@ null_ls.setup({
 
 		-- python
 		diagnostics.flake8.with({ extra_args = { "--max-line-length=120" } }),
-    formatting.yapf.with({extra_args = {"column_limit=120", "based_on_style=pep8"} }),
+		formatting.yapf.with({ extra_args = { "column_limit=120", "based_on_style=pep8" } }),
 		formatting.isort,
 
 		-- javascript
