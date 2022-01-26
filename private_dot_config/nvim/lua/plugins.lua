@@ -96,7 +96,7 @@ return packer.startup({
 		--   end,
 		-- })
 
-		-- use({ "neovim/nvim-lspconfig" })
+		use({ "neovim/nvim-lspconfig" })
 		use({ "williamboman/nvim-lsp-installer" }) -- simple to use language server installer
 		use({ "tamago324/nlsp-settings.nvim" }) -- language server settings defined in json for
 		use({ "jose-elias-alvarez/null-ls.nvim" }) -- for formatters and linters and code actions
