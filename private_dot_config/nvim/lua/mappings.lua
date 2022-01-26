@@ -33,6 +33,11 @@ map("n", "<C-I>h", ":Telescope help_tags<cr>", default_options)
 -- nvim-tree
 map("n", "<Leader>n", ":NvimTreeToggle<cr>", default_options)
 
+-- comment
+-- https://github.com/numToStr/Comment.nvim/issues/17#issuecomment-939410954
+map("v", "gci", ":normal gcc<cr>", default_options)
+
+
 -- Bufferline
 -- These commands will navigate through buffers in order regardless of which mode you are using
 -- e.g. if you change the order of buffers :bnext and :bprevious will not respect the custom ordering
