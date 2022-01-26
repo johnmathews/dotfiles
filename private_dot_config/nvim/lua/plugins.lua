@@ -36,7 +36,16 @@ return packer.startup({
 		use("nvim-lua/plenary.nvim")
 		use("nvim-lua/popup.nvim")
 
+		-- COLORSCHEMES
 		use("Mofiqul/dracula.nvim")
+		use("sainnhe/sonokai")
+		use("glepnir/zephyr-nvim")
+		use({
+			"tanvirtin/monokai.nvim",
+			config = function()
+				require("plugins.monokai")
+			end,
+		})
 
 		use("dstein64/vim-startuptime")
 
@@ -80,7 +89,6 @@ return packer.startup({
 				require("plugins.comment")
 			end,
 		})
-
 		-- use({
 		--   "scrooloose/nerdcommenter",
 		--   config = function()
@@ -94,6 +102,7 @@ return packer.startup({
 		use({ "jose-elias-alvarez/null-ls.nvim" }) -- for formatters and linters and code actions
 		use({ "onsails/lspkind-nvim", requires = "famiu/bufdelete.nvim" })
 		use({ "ray-x/lsp_signature.nvim", requires = "neovim/nvim-lspconfig" })
+		use({ "WhoIsSethDaniel/toggle-lsp-diagnostics.nvim" })
 
 		use({
 			"hrsh7th/nvim-cmp",
@@ -104,9 +113,9 @@ return packer.startup({
 				"hrsh7th/cmp-path",
 				"hrsh7th/cmp-cmdline",
 				"saadparwaiz1/cmp_luasnip",
-				"f3fora/cmp-spell",
-				"hrsh7th/cmp-calc",
-				"hrsh7th/cmp-emoji",
+				-- "f3fora/cmp-spell",
+				-- "hrsh7th/cmp-calc",
+				-- "hrsh7th/cmp-emoji",
 			},
 			config = function()
 				require("plugins.cmp")
@@ -218,7 +227,13 @@ return packer.startup({
 			end,
 		})
 
-		use({ "valloric/matchtagalways", ft = { "html", "css" } })
+		-- use({ "valloric/matchtagalways" })
+		use({
+			"windwp/nvim-autopairs",
+			config = function()
+				require("plugins.autopairs")
+			end,
+		})
 
 		use({
 			"nvim-telescope/telescope.nvim",
