@@ -18,5 +18,3 @@ local colorshemePicker = function()
 end
 
 colorshemePicker()
-
-
