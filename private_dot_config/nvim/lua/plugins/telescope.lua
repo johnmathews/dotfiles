@@ -31,6 +31,7 @@ local new_maker = function(filepath, bufnr, opts)
 end
 
 telescope.load_extension("fzf")
+telescope.load_extension('projects')
 
 telescope.setup({
 	defaults = {

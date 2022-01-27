@@ -24,6 +24,7 @@ map("n", "<leader>vr", ":source $MYVIMRC<CR>|:autocmd User VimReload<CR>", defau
 map("n", "<C-I>f", ":Telescope find_files<CR>", default_options)
 map("n", "<C-I>r", ":Telescope buffers<CR>", default_options)
 map("n", "<C-I>e", ":Telescope live_grep<CR>", default_options)
+map("n", "<C-I>p", ":Telescope projects<CR>", default_options)
 
 map("n", "<C-I>g", ":Telescope git_files<cr>", default_options)
 map("n", "<C-I>h", ":Telescope help_tags<cr>", default_options)

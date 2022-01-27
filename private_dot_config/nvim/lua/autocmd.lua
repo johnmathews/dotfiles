@@ -43,4 +43,3 @@ vim.cmd([[
       autocmd BufEnter * nested source $MYVIMRC
   augroup END
 ]])
-
