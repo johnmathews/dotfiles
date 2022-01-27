@@ -13,6 +13,8 @@ local tree_cb = nvim_tree_config.nvim_tree_callback
 
 vim.g.nvim_tree_respect_buf_cwd = 1
 
+vim.cmd("let g:nvim_tree_width = 40")
+
 -- following options are the default
 -- each of these are documented in `:help nvim-tree.OPTION_NAME`
 vim.g.nvim_tree_icons = {
@@ -41,7 +43,7 @@ vim.g.nvim_tree_icons = {
 nvim_tree.setup {
   disable_netrw = true,
   hijack_netrw = true,
-  open_on_setup = false,
+  open_on_setup = true,
   ignore_ft_on_setup = {
     "startify",
     "dashboard",
@@ -49,7 +51,7 @@ nvim_tree.setup {
   },
   auto_close = true,
   open_on_tab = false,
-  hijack_cursor = false,
+  hijack_cursor = true,
   update_cwd = true,
   update_to_buf_dir = {
     enable = true,
@@ -65,7 +67,7 @@ nvim_tree.setup {
     },
   },
   update_focused_file = {
-    enable = true,
+    enable = false,
     update_cwd = true,
     ignore_list = {},
   },

@@ -1,5 +1,5 @@
 -- this lets you do `gf` on e.g.: "plugins/monokai.lua"
-vim.cmd "set path+=~/.config/nvim/lua/plugins/"
+vim.cmd("set path+=~/.config/nvim/lua/plugins/")
 
 local fn = vim.fn
 
@@ -63,6 +63,13 @@ return packer.startup({
 			"goolord/alpha-nvim",
 			config = function()
 				require("plugins.alpha")
+			end,
+		})
+
+		use({
+			"ahmedkhalf/project.nvim",
+			config = function()
+        require("plugins.project")
 			end,
 		})
 
