@@ -26,6 +26,8 @@ set -g status-interval 10     								# redraw status line every 10 seconds
 
 set-option -sa terminal-overrides ',xterm-256color:RGB'
 
+# https://github.com/neovim/neovim/issues/3461
+# set -g default-terminal "rxvt-unicode-256color"
 
 # -- windows & pane creation ---------------------------------------------------
 

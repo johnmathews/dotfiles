@@ -17,12 +17,13 @@ vim.g.maplocalleader = "\\"
 
 map("n", "<leader>ve", ":edit $MYVIMRC<CR>", default_options)
 map("n", "<leader>vf", ":edit ~/.config/nvim/ftplugin/<C-R>=&filetype<CR>.vim<CR>", default_options)
-map("n", "<leader>vr", ":autocmd User VimReload<CR>", default_options)
+map("n", "<leader>vr", ":source $MYVIMRC<CR>|:autocmd User VimReload<CR>", default_options)
 
 -- Telescope
-map("n", "<C-I>e", ":Telescope find_files<cr>", default_options)
-map("n", "<C-I>r", ":Telescope buffers<cr>", default_options)
-map("n", "<C-I>f", ":Telescope live_grep <CR>", default_options)
+-- tab V S A are taken by toggle-lsp plugin
+map("n", "<C-I>f", ":Telescope find_files<CR>", default_options)
+map("n", "<C-I>r", ":Telescope buffers<CR>", default_options)
+map("n", "<C-I>e", ":Telescope live_grep<CR>", default_options)
 
 map("n", "<C-I>g", ":Telescope git_files<cr>", default_options)
 map("n", "<C-I>h", ":Telescope help_tags<cr>", default_options)
@@ -36,7 +37,6 @@ map("n", "<Leader>n", ":NvimTreeToggle<cr>", default_options)
 -- comment
 -- https://github.com/numToStr/Comment.nvim/issues/17#issuecomment-939410954
 map("v", "gci", ":normal gcc<cr>", default_options)
-
 
 -- Bufferline
 -- These commands will navigate through buffers in order regardless of which mode you are using
@@ -129,5 +129,3 @@ vim.cmd([[
   imap <silent><expr> <C-h> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-h>'
   smap <silent><expr> <C-h> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-h>'
 ]])
-
-

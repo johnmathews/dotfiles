@@ -1,3 +1,6 @@
+-- this lets you do `gf` on e.g.: "plugins/monokai.lua"
+vim.cmd "set path+=~/.config/nvim/lua/plugins/"
+
 local fn = vim.fn
 
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
@@ -193,7 +196,14 @@ return packer.startup({
 		use("tpope/vim-projectionist")
 		use("vim-scripts/pylint.vim")
 		use("tpope/vim-repeat")
-		use("kshenoy/vim-signature")
+
+		use({
+			"chentau/marks.nvim",
+			config = function()
+				require("plugins.marks")
+			end,
+		})
+
 		use({
 			"justinmk/vim-sneak",
 			config = function()

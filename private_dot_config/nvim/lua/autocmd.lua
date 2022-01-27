@@ -1,13 +1,10 @@
--- Prevent new line to also start with a comment
-vim.api.nvim_exec(
-	[[
-  augroup NewLineComment
+vim.api.nvim_exec([[
+  augroup foo
     au!
     autocmd BufEnter * set formatoptions=jql
+    autocmd BufEnter * if &syntax == '' | :filetype detect | endif
   augroup END
-  ]],
-	false
-)
+  ]], false)
 
 -- highlight on yank
 vim.cmd([[
@@ -45,13 +42,3 @@ vim.cmd([[
   augroup END
 ]])
 
--- ==========================================================================================================
--- https://superuser.com/questions/1225943/detect-language-of-new-files-in-vim-refresh-syntax-highlightin
-
--- 2021-12-04:
--- I don't know why, but after reloading vimrc, subsequent buffers don't have a filetype
--- and therefore don't have syntax highlighting. This solves that to reproduce: 1. open vim, 2. open
--- ~/.vimrc 3. reload vimcrc 4. open another .vim file (:VP)"
-vim.cmd([[
-  autocmd BufEnter * if &syntax == '' | :filetype detect | endif
-]])
