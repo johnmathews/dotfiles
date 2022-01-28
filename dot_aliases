@@ -1,7 +1,6 @@
 # Vim not vi so that macvim compile options are used (for vimwiki links)
 alias vio="/usr/local/bin/vi"
 alias vi="nvim"
-alias vim="vim"
 
 # open vim in read only mode
 # alias ri="vim -R"
