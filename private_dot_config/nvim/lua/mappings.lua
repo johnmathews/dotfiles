@@ -33,7 +33,7 @@ map("n", "<C-I>h", ":Telescope help_tags<cr>", default_options)
 -- map("n", "<leader>ps", ":lua require(\"telescope.builtin\").grep_string({ search = vim.fn.input(\"Grep For > \")})<CR>", default_options)
 
 -- nvim-tree
-map("n", "<Leader>n", ":NvimTreeToggle<cr>", default_options)
+map("n", "<Leader>n", ":NvimTreeFindFileToggle<cr>", default_options)
 
 -- comment
 -- https://github.com/numToStr/Comment.nvim/issues/17#issuecomment-939410954

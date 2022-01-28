@@ -45,9 +45,9 @@ nvim_tree.setup {
   hijack_netrw = true,
   open_on_setup = true,
   ignore_ft_on_setup = {
-    "startify",
-    "dashboard",
-    "alpha",
+    -- "startify",
+    -- "dashboard",
+    -- "alpha",
   },
   auto_close = true,
   open_on_tab = false,
@@ -76,7 +76,7 @@ nvim_tree.setup {
     args = {},
   },
   filters = {
-    dotfiles = false,
+    dotfiles = true,
     custom = {},
   },
   git = {

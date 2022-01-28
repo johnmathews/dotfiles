@@ -1,17 +1,14 @@
-local function current_col()
+function Current_col()
 	local _, column = unpack(vim.api.nvim_win_get_cursor(0))
 	return column + 1
 end
 
 
-local function row_max_row()
+function Row_max_row()
 	local row, _ = unpack(vim.api.nvim_win_get_cursor(0))
 	local max_row = vim.api.nvim_buf_line_count(0)
 	return row .. "/" .. max_row
 end
-
-current_col()
-row_max_row()
 
 require("lualine").setup({
 	options = {
@@ -23,7 +20,7 @@ require("lualine").setup({
 		always_divide_middle = true,
 	},
 	sections = {
-		lualine_a = { '%{ObsessionStatus("$", "!$")}', "progress", "row_max_row()", "current_col()", "mode" },
+		lualine_a = { '%{ObsessionStatus("$", "!$")}', "progress", "Row_max_row()", "Current_col()", "mode" },
 		lualine_b = { "branch", "diff", "diagnostics" },
 		lualine_c = { "filename" },
 		lualine_x = { "encoding", "fileformat", "filetype" },
