@@ -11,7 +11,7 @@ setlocal nowrap
 setlocal scrolloff=3 " The number of screen lines to keep above and below the cursor
 
 setlocal textwidth=80
-setlocal colorcolumn=0
+setlocal colorcolumn=81
 highlight ColorColumn ctermbg=red ctermfg=red guifg=red guibg=darkcyan
 
 " add text width to autoformat options

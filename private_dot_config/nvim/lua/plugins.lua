@@ -44,7 +44,7 @@ return packer.startup({
 		use("sainnhe/sonokai")
 		use("glepnir/zephyr-nvim")
 		use({
-			"tanvirtin/monokai.nvim",
+			"johnmathews/monokai.nvim",
 			config = function()
 				require("plugins.monokai")
 			end,

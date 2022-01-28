@@ -116,7 +116,8 @@ telescope.setup({
 	pickers = {
 		-- builtin.buffers({
 		--   sort_lastused = true,
-		-- }),
+    --     sort_mru = true,
+    --   }),
 		-- builtin.treesitter(),
 		-- builtin.find_files(),
 		-- builtin.tags(),

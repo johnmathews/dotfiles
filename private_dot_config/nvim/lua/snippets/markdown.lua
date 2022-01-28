@@ -98,8 +98,9 @@ return {
 			},
 		}),
 		t({ "", "Tags: " }),
-		i(0),
+		i(3),
 		t({ "", "", "" }),
+		i(0),
 	}),
 
   -- my original effort
