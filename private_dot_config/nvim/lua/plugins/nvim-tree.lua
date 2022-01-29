@@ -1,4 +1,3 @@
-
 local status_ok, nvim_tree = pcall(require, "nvim-tree")
 if not status_ok then
   return
@@ -11,7 +10,7 @@ end
 
 local tree_cb = nvim_tree_config.nvim_tree_callback
 
-vim.g.nvim_tree_respect_buf_cwd = 1
+-- vim.g.nvim_tree_respect_buf_cwd = 1
 
 vim.cmd("let g:nvim_tree_width = 40")
 

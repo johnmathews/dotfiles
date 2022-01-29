@@ -99,18 +99,10 @@ map(
 map("n", "<leader>x", ":!xdg-open %<CR><CR>", default_options)
 
 -- Split navigations
-map("n", "<leader>h", "<C-W><C-H>", default_options)
-map("n", "<leader>j", "<C-W><C-J>", default_options)
-map("n", "<leader>k", "<C-W><C-K>", default_options)
-map("n", "<leader>l", "<C-W><C-L>", default_options)
-map("n", "<leader>ww", "<C-W><C-W>", default_options)
-map("n", "<leader>wq", "<C-W><C-Q>", default_options)
-
--- split (pane) resize
-map("n", "<C-K>", ":resize +2<CR>", default_options)
-map("n", "<C-J>", ":resize -2<CR>", default_options)
-map("n", "<C-H>", ":vertical resize +2<CR>", default_options)
-map("n", "<C-L>", ":vertical resize -2<CR>", default_options)
+map("n", "<C-H>", "<C-W><C-H>", default_options)
+map("n", "<C-J>", "<C-W><C-J>", default_options)
+map("n", "<C-K>", "<C-W><C-K>", default_options)
+map("n", "<C-L>", "<C-W><C-L>", default_options)
 
 -- FUNCTIONS
 map("n", "cc", ":call ToggleQuickFix()<CR>", default_options)

@@ -18,10 +18,10 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 vim.cmd([[
-augroup packer_user_config
-autocmd!
-autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-augroup end
+  augroup packer_user_config
+  autocmd!
+  autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+  augroup end
 ]])
 
 local status_ok, packer = pcall(require, "packer")
@@ -69,7 +69,16 @@ return packer.startup({
 		use({
 			"ahmedkhalf/project.nvim",
 			config = function()
-        require("plugins.project")
+				require("plugins.project")
+			end,
+		})
+
+		use("tpope/vim-obsession")
+
+		use({
+			"simeji/winresizer",
+			config = function()
+				vim.cmd([[let g:winresizer_keycode_finish=9 ]])
 			end,
 		})
 
@@ -154,30 +163,31 @@ return packer.startup({
 		})
 
 		use("townk/vim-autoclose")
+
 		use({
 			"skywind3000/asyncrun.vim",
 			config = function()
 				require("plugins.asyncrun")
 			end,
 		})
+
 		use("chrisbra/csv.vim")
+
 		use("ekalinin/Dockerfile.vim")
+
 		use("nvie/vim-flake8")
+
 		use({
 			"voldikss/vim-floaterm",
 			config = function()
 				require("plugins.floaterm")
 			end,
 		})
+
 		use("tpope/vim-fugitive")
+
 		use("airblade/vim-gitgutter")
-		use({
-			"yggdroot/indentline",
-			config = function()
-				require("plugins.indentline")
-			end,
-			ft = { "lua", "python", "sql", "javascript", "html", "css" },
-		})
+
 		use("glench/vim-jinja2-syntax")
 		use("maksimr/vim-jsbeautify")
 		use({
@@ -193,7 +203,7 @@ return packer.startup({
 			end,
 		})
 		use("MisanthropicBit/vim-numbers")
-		use("tpope/vim-obsession")
+
 		use({
 			"tyru/open-browser.vim",
 			config = function()

@@ -3,6 +3,7 @@ vim.cmd("let g:python3_host_prog = expand('~/.pyenv/versions/3.10.0/envs/nvim/bi
 require("options")
 require("plugins.lsp")
 require("plugins")
+
 require("functions")
 require("mappings")
 require("autocmd")
