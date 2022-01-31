@@ -12,7 +12,7 @@ setlocal scrolloff=3 " The number of screen lines to keep above and below the cu
 
 setlocal textwidth=80
 setlocal colorcolumn=81
-highlight ColorColumn ctermbg=red ctermfg=red guifg=red guibg=darkcyan
+" highlight ColorColumn ctermbg=red ctermfg=red guifg=red guibg=darkcyan
 
 " add text width to autoformat options
 " setlocal formatoptions+=t

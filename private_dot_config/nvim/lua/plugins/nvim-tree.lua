@@ -39,6 +39,8 @@ vim.g.nvim_tree_icons = {
   },
 }
 
+vim.g.nvim_tree_highlight_opened_files = 3
+
 nvim_tree.setup {
   disable_netrw = true,
   hijack_netrw = true,
@@ -57,7 +59,7 @@ nvim_tree.setup {
     auto_open = true,
   },
   diagnostics = {
-    enable = true,
+    enable = false,
     icons = {
       hint = "",
       info = "",
