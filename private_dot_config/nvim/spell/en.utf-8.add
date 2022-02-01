@@ -6,3 +6,7 @@ Haarlem
 Tmux
 iTerm2
 config
+Direnv
+direnv
+subshell
+cli
