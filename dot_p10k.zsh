@@ -41,7 +41,7 @@
     vi_mode                 # vi mode (you don't need this if you've enabled prompt_char)
     # os_icon               # os identifier
     dir                     # current directory
-    virtual_env_name
+    # virtual_env_name
     vcs                     # git status
     # =========================[ Line #2 ]=========================
     newline                 # \n
@@ -59,6 +59,7 @@
     background_jobs         # presence of background jobs
     direnv                  # direnv status (https://direnv.net/)
     virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
+    # virtual_env_version
     asdf                    # asdf version manager (https://github.com/asdf-vm/asdf)
     anaconda                # conda environment (https://conda.io/)
     pyenv                   # python environment (https://github.com/pyenv/pyenv)
@@ -1418,7 +1419,14 @@
 
   function prompt_virtual_env_name(){
     if [ ! -z "$VIRTUAL_ENV" ]; then
-      p10k segment -f 208 -t ${VIRTUAL_ENV##*/}
+      p10k segment -f 0 -b 083 -t ${VIRTUAL_ENV##*/}
+    fi
+  }
+
+  function prompt_virtual_env_version(){
+    if [ ! -z "$VIRTUAL_ENV" ]; then
+      local text = echo $(python -V)
+      p10k segment -f 0 -b 083 -t $text
     fi
   }
 
