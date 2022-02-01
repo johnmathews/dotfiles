@@ -11,3 +11,5 @@ direnv
 subshell
 cli
 TailwindCSS
+pyenv
+virtualenv
