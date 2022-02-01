@@ -1,7 +1,7 @@
 vim.api.nvim_exec([[
   augroup foo
     au!
-    "autocmd BufEnter * set formatoptions=jqlt
+    autocmd BufEnter * set formatoptions=jqlt
     autocmd BufEnter * if &syntax == '' | :filetype detect | endif
   augroup END
   ]], false)

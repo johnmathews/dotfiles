@@ -9,9 +9,9 @@ set textwidth=0 " don't insert linebreaks in newly entered text
 
 setlocal autoindent
 setlocal cindent
-setlocal tabstop=4
-setlocal shiftwidth=4
-setlocal softtabstop=4
+setlocal tabstop=2
+setlocal shiftwidth=2
+setlocal softtabstop=2
 setlocal expandtab
 
 setlocal colorcolumn=0
