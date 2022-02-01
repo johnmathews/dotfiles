@@ -39,9 +39,9 @@
     time
     command_execution_time  # duration of the last command
     vi_mode                 # vi mode (you don't need this if you've enabled prompt_char)
-    # virtualenv
     # os_icon               # os identifier
     dir                     # current directory
+    virtual_env_name
     vcs                     # git status
     # =========================[ Line #2 ]=========================
     newline                 # \n
@@ -58,8 +58,8 @@
     # command_execution_time  # duration of the last command
     background_jobs         # presence of background jobs
     direnv                  # direnv status (https://direnv.net/)
-    asdf                    # asdf version manager (https://github.com/asdf-vm/asdf)
     virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
+    asdf                    # asdf version manager (https://github.com/asdf-vm/asdf)
     anaconda                # conda environment (https://conda.io/)
     pyenv                   # python environment (https://github.com/pyenv/pyenv)
     goenv                   # go environment (https://github.com/syndbg/goenv)
@@ -1414,6 +1414,12 @@
   # Type `p10k help segment` for documentation and a more sophisticated example.
   function prompt_example() {
     p10k segment -b 1 -f 3 -i '⭐' -t 'hello, %n'
+  }
+
+  function prompt_virtual_env_name(){
+    if [ ! -z "$VIRTUAL_ENV" ]; then
+      p10k segment -f 208 -t ${VIRTUAL_ENV##*/}
+    fi
   }
 
   # User-defined prompt segments may optionally provide an instant_prompt_* function. Its job

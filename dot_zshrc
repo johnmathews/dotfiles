@@ -178,5 +178,6 @@ autoload -Uz add-zsh-hook
 # https://direnv.net/docs/hook.html
 # https://github.com/direnv/direnv/wiki
 eval "$(direnv hook zsh)"
+export DIRENV_LOG_FORMAT=
 
 # zprof
