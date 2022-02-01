@@ -194,8 +194,9 @@ return packer.startup({
 
 		use("airblade/vim-gitgutter")
 
-		use("glench/vim-jinja2-syntax")
-		use("maksimr/vim-jsbeautify")
+		-- use("glench/vim-jinja2-syntax")
+		-- use("maksimr/vim-jsbeautify")
+
 		use({
 			"plasticboy/vim-markdown",
 			config = function()
