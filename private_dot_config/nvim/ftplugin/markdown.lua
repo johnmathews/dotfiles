@@ -5,7 +5,6 @@ end
 
 cmp.setup.buffer({
 	sources = {
-		{ name = "luasnip" },
 		{ name = "path" },
 		{ name = "emoji" },
 	},

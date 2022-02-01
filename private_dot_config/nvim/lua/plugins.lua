@@ -178,17 +178,11 @@ return packer.startup({
 		use("nvie/vim-flake8")
 
 		use({
-			"akinsho/toggleterm.nvim",
+			"voldikss/vim-floaterm",
 			config = function()
-				require("plugins.toggleterm")
+				require("plugins.floaterm")
 			end,
 		})
-		-- use({
-		-- 	"voldikss/vim-floaterm",
-		-- 	config = function()
-		-- 		require("plugins.floaterm")
-		-- 	end,
-		-- })
 
 		use("tpope/vim-fugitive")
 

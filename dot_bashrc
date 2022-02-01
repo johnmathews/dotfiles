@@ -35,5 +35,3 @@ source /Users/john/Library/Preferences/org.dystroy.broot/launcher/bash/br
 source "$HOME/.cargo/env"
 
 . "$(brew --prefix)/etc/profile.d/z.sh"
-
-eval "$(direnv hook bash)"
