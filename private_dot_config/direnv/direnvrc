@@ -1,3 +1,9 @@
+#!/bin/bash
+
+timestamp() {
+  date +"%T" # current time
+}
+
 use_python() {
     if [ -n "$(which pyenv)" ]; then
         local pyversion=$1
@@ -8,6 +14,7 @@ use_python() {
 layout_virtualenv() {
     local pyversion=$1
     local pvenv=$2
+
     if [ -n "$(which pyenv virtualenv)" ]; then
         pyenv virtualenv --force --quiet ${pyversion} ${pvenv}
     fi
