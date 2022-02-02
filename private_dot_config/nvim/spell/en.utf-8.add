@@ -13,3 +13,5 @@ cli
 TailwindCSS
 pyenv
 virtualenv
+Webpack
+Netlify

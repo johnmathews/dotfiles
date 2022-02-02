@@ -8,7 +8,7 @@ end
 local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
 -- local actions = null_ls.builtins.code_actions
-local hover = null_ls.builtins.hover
+-- local hover = null_ls.builtins.hover
 local completion = null_ls.builtins.completion
 
 null_ls.setup({
@@ -19,8 +19,8 @@ null_ls.setup({
 		-- actions.gitsigns,
 		completion.tags,
 		completion.luasnip,
-		completion.spell,
-		hover.dictionary,
+		-- completion.spell,
+		-- hover.dictionary,
 
 		-- python
 		diagnostics.flake8.with({ extra_args = { "--max-line-length=120" } }),
