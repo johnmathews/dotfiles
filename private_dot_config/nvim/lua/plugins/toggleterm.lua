@@ -28,7 +28,7 @@ toggleterm.setup{
   open_mapping = [[<C-I>t]],
   insert_mappings = false, -- whether or not the open mapping applies in insert mode
   terminal_mappings = true, -- whether or not the open mapping applies in the opened terminals
-  start_in_insert = false,
+  start_in_insert = true, -- open a terminal window in normal mode or insert mode
 
   -- on_open = fun(t: Terminal), -- function to run when the terminal opens
   -- on_close = fun(t: Terminal), -- function to run when the terminal closes
