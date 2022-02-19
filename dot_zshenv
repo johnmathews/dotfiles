@@ -13,7 +13,8 @@
 
 # Unison
 uni() {
-  localProjectRoot=$(git rev-parse --show-toplevel)
+  localGitDir=$(git rev-parse --absolute-git-dir)
+  localProjectRoot=$(dirname $localGitDir)
   remoteProjectRoot=$(cat $localProjectRoot/.remoteprojectroot)
   host=ext_jmatthews4_wayfair_com
   user=ainb-jmatthews4
