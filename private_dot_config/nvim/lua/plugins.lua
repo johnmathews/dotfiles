@@ -286,8 +286,10 @@ return packer.startup({
 			requires = {
 				"kyazdani42/nvim-web-devicons",
 			},
+			config = function()
+				require("plugins.nvim-tree")
+			end,
 		})
-		require("plugins.nvim-tree")
 
 		if PACKER_BOOTSTRAP then
 			require("packer").sync()
