@@ -69,7 +69,7 @@ nvim_tree.setup {
   },
   update_focused_file = {
     enable = false,
-    update_cwd = true,
+    update_cwd = false,
     ignore_list = {},
   },
   system_open = {
@@ -86,7 +86,7 @@ nvim_tree.setup {
     timeout = 500,
   },
   view = {
-    width = 35,
+    width = 30,
     height = 30,
     hide_root_folder = false,
     side = "left",
@@ -110,7 +110,7 @@ nvim_tree.setup {
   quit_on_open = 0,
   git_hl = 1,
   disable_window_picker = 0,
-  root_folder_modifier = ":~",
+  root_folder_modifier = ":t",
   show_icons = {
     git = 1,
     folders = 1,
