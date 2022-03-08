@@ -13,8 +13,15 @@
 
 # Unison
 uni() {
+
   localGitDir=$(git rev-parse --absolute-git-dir)
   localProjectRoot=$(dirname $localGitDir)
+
+  if [ ! -f $localProjectRoot/.remoteprojectroot ]; then
+      echo "File .remoteprojectroot does not exist in $localProjectRoot!"
+      exit 2
+  fi
+
   remoteProjectRoot=$(cat $localProjectRoot/.remoteprojectroot)
   host=ext_jmatthews4_wayfair_com
   user=ainb-jmatthews4

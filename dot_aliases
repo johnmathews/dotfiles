@@ -1,3 +1,7 @@
+
+# Gcloud data developer vm ssh with tunneling
+alias sshddn="gcloud compute ssh ainb-jmatthews4-default --zone us-central1-a --project=wf-gcp-us-ae-dsops-exp --tunnel-through-iap --ssh-flag='-L 8081:localhost:8181'"
+
 # Vim not vi so that macvim compile options are used (for vimwiki links)
 alias vio="/usr/local/bin/vi"
 alias vi="nvim"
