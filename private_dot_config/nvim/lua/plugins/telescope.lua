@@ -114,15 +114,15 @@ telescope.setup({
 		},
 	},
 	pickers = {
-		builtin.buffers({
-		  sort_lastused = true,
-        sort_mru = true,
-      }),
+		-- builtin.buffers({
+		--   sort_lastused = true,
+    --     sort_mru = true,
+    --   }),
 		-- builtin.treesitter(),
 		-- builtin.find_files(),
 		-- builtin.tags(),
 		-- builtin.current_buffer_tags(),
-		builtin.git_files(),
+		-- builtin.git_files(),
 	},
 	extensions = {
 		fzf = {

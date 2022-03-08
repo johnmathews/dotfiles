@@ -69,7 +69,7 @@ nvim_tree.setup {
   },
   update_focused_file = {
     enable = false,
-    update_cwd = false,
+    update_cwd = true,
     ignore_list = {},
   },
   system_open = {
@@ -86,7 +86,7 @@ nvim_tree.setup {
     timeout = 500,
   },
   view = {
-    width = 30,
+    width = 35,
     height = 30,
     hide_root_folder = false,
     side = "left",
@@ -97,7 +97,7 @@ nvim_tree.setup {
         { key = { "l", "<CR>", "o" }, action = "edit" },
         { key = "h", action = "close_node" },
         { key = "v", action = "vsplit" },
-        { key = "<Tab>", action = nil },
+        { key = "<Tab>", action = "" }
       },
     },
     number = false,
@@ -110,7 +110,7 @@ nvim_tree.setup {
   quit_on_open = 0,
   git_hl = 1,
   disable_window_picker = 0,
-  root_folder_modifier = ":t",
+  root_folder_modifier = ":~",
   show_icons = {
     git = 1,
     folders = 1,

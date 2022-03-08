@@ -13,6 +13,7 @@
 
 # Unison
 uni() {
+
   localGitDir=$(git rev-parse --absolute-git-dir)
   localProjectRoot=$(dirname $localGitDir)
 

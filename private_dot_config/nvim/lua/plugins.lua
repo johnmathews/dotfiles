@@ -276,6 +276,7 @@ return packer.startup({
 				require("plugins.telescope")
 			end,
 		})
+
 		use({
 			"nvim-telescope/telescope-fzf-native.nvim",
 			run = "make",
@@ -290,6 +291,7 @@ return packer.startup({
 				require("plugins.nvim-tree")
 			end,
 		})
+
 
 		if PACKER_BOOTSTRAP then
 			require("packer").sync()
