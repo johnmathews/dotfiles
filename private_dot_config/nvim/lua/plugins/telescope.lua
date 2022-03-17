@@ -19,6 +19,8 @@ map("n", "<C-I>h", ":Telescope help_tags<cr>", default_options)
 -- map("n", "<leader>pw", ":lua require(\"telescope.builtin\").grep_string({search=vim.fn.expand(\"<cword>\")})<CR>", default_options)
 -- map("n", "<leader>ps", ":lua require(\"telescope.builtin\").grep_string({ search = vim.fn.input(\"Grep For > \")})<CR>", default_options)
 
+telescope.load_extension('projects')
+
 local actions = require("telescope.actions")
 
 telescope.setup {

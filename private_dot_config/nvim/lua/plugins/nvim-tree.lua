@@ -10,7 +10,8 @@ end
 
 local tree_cb = nvim_tree_config.nvim_tree_callback
 
--- vim.g.nvim_tree_respect_buf_cwd = 1
+-- https://github.com/ahmedkhalf/project.nvim
+vim.g.nvim_tree_respect_buf_cwd = 1
 
 vim.cmd("let g:nvim_tree_width = 40")
 
@@ -74,8 +75,8 @@ nvim_tree.setup {
     },
   },
   update_focused_file = {
-    enable = false,
-    update_cwd = false,
+    enable = true,
+    update_cwd = true,
     ignore_list = {},
   },
   system_open = {
