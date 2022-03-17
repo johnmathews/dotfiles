@@ -14,6 +14,12 @@ local tree_cb = nvim_tree_config.nvim_tree_callback
 
 vim.cmd("let g:nvim_tree_width = 40")
 
+
+local map = vim.api.nvim_set_keymap
+local default_options = { noremap = true, silent = true }
+map("n", "<Leader>n", ":NvimTreeFindFileToggle<cr>", default_options)
+
+
 -- following options are the default
 -- each of these are documented in `:help nvim-tree.OPTION_NAME`
 vim.g.nvim_tree_icons = {

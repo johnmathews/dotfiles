@@ -271,15 +271,18 @@ return packer.startup({
 
 		use({
 			"nvim-telescope/telescope.nvim",
-			requires = { { "nvim-lua/plenary.nvim" } },
+			requires = {
+				"nvim-lua/plenary.nvim",
+				"BurntSushi/ripgrep",
+			},
 			config = function()
 				require("plugins.telescope")
 			end,
 		})
-		use({
-			"nvim-telescope/telescope-fzf-native.nvim",
-			run = "make",
-		})
+		-- use({
+		-- 	"nvim-telescope/telescope-fzf-native.nvim",
+		-- 	run = "make",
+		-- })
 
 		use({
 			"kyazdani42/nvim-tree.lua",

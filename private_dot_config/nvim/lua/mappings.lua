@@ -19,21 +19,6 @@ map("n", "<leader>ve", ":edit $MYVIMRC<CR>", default_options)
 map("n", "<leader>vf", ":edit ~/.config/nvim/ftplugin/<C-R>=&filetype<CR>.vim<CR>", default_options)
 map("n", "<leader>vr", ":source $MYVIMRC<CR>|:autocmd User VimReload<CR>", default_options)
 
--- Telescope
--- tab V S A are taken by toggle-lsp plugin
-map("n", "<C-I>f", ":Telescope find_files<CR>", default_options)
-map("n", "<C-I>r", ":Telescope buffers<CR>", default_options)
-map("n", "<C-I>e", ":Telescope live_grep<CR>", default_options)
-map("n", "<C-I>p", ":Telescope projects<CR>", default_options)
-
-map("n", "<C-I>g", ":Telescope git_files<cr>", default_options)
-map("n", "<C-I>h", ":Telescope help_tags<cr>", default_options)
-
--- map("n", "<leader>pw", ":lua require(\"telescope.builtin\").grep_string({search=vim.fn.expand(\"<cword>\")})<CR>", default_options)
--- map("n", "<leader>ps", ":lua require(\"telescope.builtin\").grep_string({ search = vim.fn.input(\"Grep For > \")})<CR>", default_options)
-
--- nvim-tree
-map("n", "<Leader>n", ":NvimTreeFindFileToggle<cr>", default_options)
 
 -- comment
 -- https://github.com/numToStr/Comment.nvim/issues/17#issuecomment-939410954
