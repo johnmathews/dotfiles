@@ -24,12 +24,6 @@ map("n", "<leader>vr", ":source $MYVIMRC<CR>|:autocmd User VimReload<CR>", defau
 -- https://github.com/numToStr/Comment.nvim/issues/17#issuecomment-939410954
 map("v", "gci", ":normal gcc<cr>", default_options)
 
--- Bufferline
--- These commands will navigate through buffers in order regardless of which mode you are using
--- e.g. if you change the order of buffers :bnext and :bprevious will not respect the custom ordering
-map("n", "[b", ":BufferLineCyclePrev<CR>", default_options)
-map("n", "]b", ":BufferLineCycleNext<CR>", default_options)
-
 -- These commands will sort buffers by directory, language, or a custom criteria
 map("n", "be", ":BufferLineSortByExtension<CR>", default_options)
 map("n", "bd", ":BufferLineSortByDirectory<CR>", default_options)
