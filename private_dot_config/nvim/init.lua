@@ -4,6 +4,7 @@ require("options")
 require("plugins.lsp")
 require("plugins")
 
+
 require("functions")
 require("mappings")
 require("autocmd")

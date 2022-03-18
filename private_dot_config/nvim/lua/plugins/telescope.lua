@@ -3,18 +3,48 @@ if not status_ok then
 	return
 end
 
-
 local map = vim.api.nvim_set_keymap
 local default_options = { noremap = true, silent = true }
 -- Telescope
 -- tab V S A are taken by toggle-lsp plugin
 map("n", "<C-I>f", ":Telescope find_files<CR>", default_options)
+map("n", "<C-I>g", ":Telescope git_files<cr>", default_options)
 map("n", "<C-I>r", ":Telescope buffers<CR>", default_options)
 map("n", "<C-I>e", ":Telescope live_grep<CR>", default_options)
-map("n", "<C-I>p", ":Telescope projects<CR>", default_options)
+map("n", "<C-I>o", ":Telescope oldfiles<CR>", default_options)
 
-map("n", "<C-I>g", ":Telescope git_files<cr>", default_options)
+map("n", "<C-I>p", ":Telescope projects<CR>", default_options)
 map("n", "<C-I>h", ":Telescope help_tags<cr>", default_options)
+
+map("n", "<C-I>vc", ":Telescope command_history<CR>", default_options)
+map("n", "<C-I>vs", ":Telescope search_history<CR>", default_options)
+map("n", "<C-I>vk", ":Telescope keymaps<CR>", default_options)
+
+map("n", "<C-I>j", ":Telescope jumplist<CR>", default_options)
+map("n", "<C-I>q", ":Telescope quickfix<CR>", default_options)
+map("n", "<C-I>l", ":Telescope loclist<CR>", default_options)
+
+map("n", "<C-I>z", ":Telescope resume<CR>", default_options)
+
+-- Git pickers
+map("n", "<C-I>gc", ":Telescope git_commits<CR>", default_options)
+map("n", "<C-I>gb", ":Telescope git_bcommits<CR>", default_options)
+map("n", "<C-I>gr", ":Telescope git_branches<CR>", default_options)
+map("n", "<C-I>gs", ":Telescope git_status<CR>", default_options)
+
+-- Treesitter picker
+map("n", "<C-I>va", ":Telescope treesitter<CR>", default_options)
+
+-- Vim pickers
+map("n", "<C-I>va", ":Telescope autocommands<CR>", default_options)
+map("n", "<C-I>vr", ":Telescope registers<CR>", default_options)
+map("n", "<C-I>vo", ":Telescope vim_options<CR>", default_options)
+
+-- LSP pickers
+map("n", "<C-I>lr", ":Telescope lsp_references<CR>", default_options)
+map("n", "<C-I>ld", ":Telescope lsp_document_symbols<CR>", default_options)
+map("n", "<C-I>lc", ":Telescope lsp_code_actionsjCR>", default_options)
+
 
 -- map("n", "<leader>pw", ":lua require(\"telescope.builtin\").grep_string({search=vim.fn.expand(\"<cword>\")})<CR>", default_options)
 -- map("n", "<leader>ps", ":lua require(\"telescope.builtin\").grep_string({ search = vim.fn.input(\"Grep For > \")})<CR>", default_options)
@@ -97,6 +127,7 @@ telescope.setup {
     },
   },
   pickers = {
+
     -- Default configuration for builtin pickers goes here:
     -- picker_name = {
     --   picker_config_key = value,
@@ -104,6 +135,12 @@ telescope.setup {
     -- }
     -- Now the picker_config_key will be applied every time you call this
     -- builtin picker
+
+    buffers = {
+      sort_lastused = true,
+      ignore_current_buffer = true,
+      cwd_only = false,
+    }
   },
   extensions = {
     -- Your extension configuration goes here:
