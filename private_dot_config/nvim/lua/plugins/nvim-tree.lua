@@ -53,13 +53,22 @@ nvim_tree.setup {
   hijack_netrw = true,
   open_on_setup = true,
   ignore_ft_on_setup = {
-    "alpha",
+    -- "alpha",
     -- "startify",
     -- "dashboard",
   },
   auto_close = true,
   open_on_tab = false,
   hijack_cursor = true,
+  hijack_directories = {
+    enable = true,
+    auto_open = true,
+  },
+  -- this is for opening a file with they system file opener (e.g. finder).
+  -- system_open = {
+  --  cmd = nil,
+  --  args = {},
+  -- },
   update_cwd = true,
   update_to_buf_dir = {
     enable = true,
@@ -78,10 +87,6 @@ nvim_tree.setup {
     enable = true,
     update_cwd = true,
     ignore_list = {},
-  },
-  system_open = {
-    cmd = nil,
-    args = {},
   },
   filters = {
     dotfiles = true,
@@ -116,7 +121,7 @@ nvim_tree.setup {
   },
   quit_on_open = 0,
   git_hl = 1,
-  disable_window_picker = 0,
+  disable_window_picker = 1,
   root_folder_modifier = ":t",
   show_icons = {
     git = 1,
