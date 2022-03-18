@@ -274,6 +274,8 @@ return packer.startup({
 			requires = {
 				"nvim-lua/plenary.nvim",
 				"BurntSushi/ripgrep",
+				"nvim-treesitter/nvim-treesitter",
+        "neovim/nvim-lspconfig",
 			},
 			config = function()
 				require("plugins.telescope")
