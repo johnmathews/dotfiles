@@ -1,4 +1,6 @@
 return {
+  -- Schema: https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json
+  -- help: https://github.com/sumneko/lua-language-server/wiki/Setting#working-example 
   settings = {
     Lua = {
       diagnostics = {
@@ -6,6 +8,9 @@ return {
           "vim",
           "require",
         },
+        disable = {
+          "trailing-space",
+        }
       },
       workspace = {
         library = {
