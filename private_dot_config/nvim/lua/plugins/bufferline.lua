@@ -11,7 +11,7 @@ require('bufferline').setup {
         text_align = "left"
       }
     },
-    sort_by = 'relative_directory'
+    sort_by = 'directory'
   }
 }
 
