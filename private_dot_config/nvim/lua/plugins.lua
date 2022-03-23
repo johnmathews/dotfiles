@@ -122,6 +122,8 @@ return packer.startup({
 		use({ "onsails/lspkind-nvim", requires = "famiu/bufdelete.nvim" })
 		use({ "ray-x/lsp_signature.nvim", requires = "neovim/nvim-lspconfig" })
 		use({ "WhoIsSethDaniel/toggle-lsp-diagnostics.nvim" })
+		use({ "RishabhRD/nvim-lsputils", requires = "RishabhRD/popfix" })
+    
 
 		use({
 			"hrsh7th/nvim-cmp",
