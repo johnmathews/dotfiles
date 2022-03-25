@@ -82,6 +82,7 @@ return packer.startup({
 			end,
 		})
 
+    -- the buffer names at the top
 		use({
 			"akinsho/bufferline.nvim",
 			requires = "kyazdani42/nvim-web-devicons",
@@ -90,6 +91,7 @@ return packer.startup({
 			end,
 		})
 
+    -- the statusline at the bottom
 		use({
 			"nvim-lualine/lualine.nvim",
 			requires = { "kyazdani42/nvim-web-devicons", opt = true },
@@ -108,12 +110,11 @@ return packer.startup({
 				require("plugins.comment")
 			end,
 		})
-		-- use({
-		--   "scrooloose/nerdcommenter",
-		--   config = function()
-		--     require("plugins.nerdcommenter")
-		--   end,
-		-- })
+
+  
+    -- cmd is the command that triggers the plugin to be loaded.
+    -- need to run :GoUpdateBinaries after installing the plugin
+		use({ "fatih/vim-go"})
 
 		use({ "neovim/nvim-lspconfig" })
 		use({ "williamboman/nvim-lsp-installer" }) -- simple to use language server installer
@@ -134,9 +135,6 @@ return packer.startup({
 				"hrsh7th/cmp-path",
 				"hrsh7th/cmp-cmdline",
 				"saadparwaiz1/cmp_luasnip",
-				-- "f3fora/cmp-spell",
-				-- "hrsh7th/cmp-calc",
-				-- "hrsh7th/cmp-emoji",
 			},
 			config = function()
 				require("plugins.cmp")
@@ -185,19 +183,10 @@ return packer.startup({
 				require("plugins.toggleterm")
 			end,
 		})
-		-- use({
-		-- 	"voldikss/vim-floaterm",
-		-- 	config = function()
-		-- 		require("plugins.floaterm")
-		-- 	end,
-		-- })
 
 		use("tpope/vim-fugitive")
 
 		use("airblade/vim-gitgutter")
-
-		-- use("glench/vim-jinja2-syntax")
-		-- use("maksimr/vim-jsbeautify")
 
 		use({
 			"plasticboy/vim-markdown",
