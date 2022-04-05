@@ -65,6 +65,8 @@ local new_maker = function(filepath, bufnr, opts)
       local mime_type = vim.split(j:result()[1], "/")[1]
       if mime_type == "text" then
         previewers.buffer_previewer_maker(filepath, bufnr, opts)
+      elseif mime_type == "application/json" then
+        previewers.buffer_previewer_maker(filepath, bufnr, opts)
       else
         -- maybe we want to write something to the buffer here
         vim.schedule(function()
