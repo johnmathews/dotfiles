@@ -273,6 +273,11 @@ return packer.startup({
 			end,
 		})
 
+    use {
+      'nvim-telescope/telescope-fzf-native.nvim', 
+      run = 'make'
+    }
+
 		use({
 			"kyazdani42/nvim-tree.lua",
 			requires = {
