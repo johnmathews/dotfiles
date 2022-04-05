@@ -50,8 +50,6 @@ map("n", "<C-I>lc", ":Telescope lsp_code_actionsjCR>", default_options)
 -- map("n", "<leader>pw", ":lua require(\"telescope.builtin\").grep_string({search=vim.fn.expand(\"<cword>\")})<CR>", default_options)
 -- map("n", "<leader>ps", ":lua require(\"telescope.builtin\").grep_string({ search = vim.fn.input(\"Grep For > \")})<CR>", default_options)
 
-telescope.load_extension('projects')
-
 -- dont preview binaries
 -- https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes#falling-back-to-find_files-if-git_files-cant-find-a-git-directory
 local previewers = require("telescope.previewers")
@@ -181,3 +179,8 @@ telescope.setup {
     }
   },
 }
+
+
+telescope.load_extension('projects')
+telescope.load_extension('fzf')
+
