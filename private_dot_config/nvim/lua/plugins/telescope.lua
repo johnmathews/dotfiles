@@ -7,44 +7,44 @@ local map = vim.api.nvim_set_keymap
 local default_options = { noremap = true, silent = true }
 
 -- Telescope
--- tab V S A are taken by toggle-lsp plugin
-map("n", "<C-I>f", ":Telescope find_files<CR>", default_options)
-map("n", "<C-I>g", ":Telescope git_files<cr>", default_options)
-map("n", "<C-I>r", ":Telescope buffers<CR>", default_options)
-map("n", "<C-I>e", ":Telescope live_grep<CR>", default_options)
-map("n", "<C-I>o", ":Telescope oldfiles<CR>", default_options)
+-- tab-V/S/A are taken by toggle-lsp plugin
+map("n", "<Tab>f", ":Telescope find_files<CR>", default_options)
+map("n", "<Tab>r", ":Telescope buffers<CR>", default_options)
+map("n", "<Tab>e", ":Telescope live_grep<CR>", default_options)
+map("n", "<Tab>o", ":Telescope oldfiles<CR>", default_options)
 
-map("n", "<C-I>p", ":Telescope projects<CR>", default_options)
-map("n", "<C-I>h", ":Telescope help_tags<cr>", default_options)
+map("n", "<Tab>p", ":Telescope projects<CR>", default_options)
+map("n", "<Tab>h", ":Telescope help_tags<cr>", default_options)
 
-map("n", "<C-I>vc", ":Telescope command_history<CR>", default_options)
-map("n", "<C-I>vs", ":Telescope search_history<CR>", default_options)
-map("n", "<C-I>vk", ":Telescope keymaps<CR>", default_options)
+map("n", "<Tab>vc", ":Telescope command_history<CR>", default_options)
+map("n", "<Tab>vs", ":Telescope search_history<CR>", default_options)
+map("n", "<Tab>vk", ":Telescope keymaps<CR>", default_options)
 
-map("n", "<C-I>j", ":Telescope jumplist<CR>", default_options)
-map("n", "<C-I>q", ":Telescope quickfix<CR>", default_options)
-map("n", "<C-I>l", ":Telescope loclist<CR>", default_options)
+map("n", "<Tab>j", ":Telescope jumplist<CR>", default_options)
+map("n", "<Tab>q", ":Telescope quickfix<CR>", default_options)
+map("n", "<Tab>l", ":Telescope loclist<CR>", default_options)
 
-map("n", "<C-I>z", ":Telescope resume<CR>", default_options)
+map("n", "<Tab>z", ":Telescope resume<CR>", default_options)
 
 -- Git pickers
-map("n", "<C-I>gc", ":Telescope git_commits<CR>", default_options)
-map("n", "<C-I>gb", ":Telescope git_bcommits<CR>", default_options)
-map("n", "<C-I>gr", ":Telescope git_branches<CR>", default_options)
-map("n", "<C-I>gs", ":Telescope git_status<CR>", default_options)
+map("n", "<Tab>g", ":Telescope git_files<cr>", default_options)
+map("n", "<Tab>gc", ":Telescope git_commits<CR>", default_options)
+map("n", "<Tab>gb", ":Telescope git_bcommits<CR>", default_options)
+map("n", "<Tab>gr", ":Telescope git_branches<CR>", default_options)
+map("n", "<Tab>gs", ":Telescope git_status<CR>", default_options)
 
 -- Treesitter picker
-map("n", "<C-I>va", ":Telescope treesitter<CR>", default_options)
+map("n", "<Tab>va", ":Telescope treesitter<CR>", default_options)
 
 -- Vim pickers
-map("n", "<C-I>va", ":Telescope autocommands<CR>", default_options)
-map("n", "<C-I>vr", ":Telescope registers<CR>", default_options)
-map("n", "<C-I>vo", ":Telescope vim_options<CR>", default_options)
+map("n", "<Tab>va", ":Telescope autocommands<CR>", default_options)
+map("n", "<Tab>vr", ":Telescope registers<CR>", default_options)
+map("n", "<Tab>vo", ":Telescope vim_options<CR>", default_options)
 
 -- LSP pickers
-map("n", "<C-I>lr", ":Telescope lsp_references<CR>", default_options)
-map("n", "<C-I>ld", ":Telescope lsp_document_symbols<CR>", default_options)
-map("n", "<C-I>lc", ":Telescope lsp_code_actionsjCR>", default_options)
+map("n", "<Tab>lr", ":Telescope lsp_references<CR>", default_options)
+map("n", "<Tab>ld", ":Telescope lsp_document_symbols<CR>", default_options)
+map("n", "<Tab>lc", ":Telescope lsp_code_actionsjCR>", default_options)
 
 
 -- map("n", "<leader>pw", ":lua require(\"telescope.builtin\").grep_string({search=vim.fn.expand(\"<cword>\")})<CR>", default_options)

@@ -4,6 +4,7 @@ alias mouse="defaults write .GlobalPreferences com.apple.mouse.scaling -1"
 
 # Gcloud data developer vm ssh with tunneling
 alias sshddn="gcloud compute ssh ainb-jmatthews4-default --zone us-central1-a --project=wf-gcp-us-ae-dsops-exp --tunnel-through-iap --ssh-flag='-L 8081:localhost:8181'"
+alias sshddnxl="gcloud compute ssh ainb-jmatthews4-extra-large --zone us-central1-b --project=wf-gcp-us-ae-dsops-exp --tunnel-through-iap --ssh-flag='-L 8081:localhost:8181'"
 
 # Vim not vi so that macvim compile options are used (for vimwiki links)
 alias vio="/usr/local/bin/vi"

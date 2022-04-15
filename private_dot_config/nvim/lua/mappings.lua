@@ -33,16 +33,15 @@ map("n", "j", "v:count == 0 ? 'gj' : 'j'", expr_options)
 map("n", "k", "v:count == 0 ? 'gk' : 'k'", expr_options)
 
 -- better indenting
-map("v", "<", "<gv", default_options)
-map("v", ">", ">gv", default_options)
+-- map("v", "<", "<gv", default_options)
+-- map("v", ">", ">gv", default_options)
 
 -- paste over currently selected text without yanking it
 map("v", "p", '"_dP', default_options)
--- map("v", "p", "_dp", default_options)
 
 -- Searching
 map("n", "`", "/", default_options)
-map("n", "``", ":nohlsearch<CR>", default_options)
+map("n", "``", ": nohlsearch<CR>", default_options)
 map("n", "*", "*``", default_options)
 
 map("n", "<leader>lw", ":set nowrap!<CR>", default_options)
@@ -57,18 +56,16 @@ map("n", ":", ";", default_options)
 map("v", ";", ":", default_options)
 map("v", ":", ";", default_options)
 
-map("n", "<C-I>ww", ":wa<CR>", default_options)
---map("n", "<C-I>qq", ":FloatermKill!<CR><BAR>:qa<CR>", default_options)
-map("n", "<C-I>qq", ":qa<CR>", default_options)
-map("n", "<C-I>qo", ":%bd|e#<CR>|:normal ]bqq<CR>", default_options) -- close other buffers
+map("n", "<Tab>ww", ":wa<CR>", default_options)
+--map("n", "<Tab>qq", ":FloatermKill!<CR><BAR>:qa<CR>", default_options)
+map("n", "<Tab>qq", ":qa<CR>", default_options)
+map("n", "<Tab>qo", ":%bd|e#<CR>|:normal ]bqq<CR>", default_options) -- close other buffers
 map("n", "qq", ":bp|bd #<CR>", default_options)
 map("n", "<leader>Q", ":bufdo bdelete<CR>", default_options)
 map("n", "gf", ":edit <cfile><CR>", default_options)
 
 -- query which color - what and which kind of syntax is this color? - wc
-map(
-	"n",
-	"wc",
+map( "n", "wc",
 	":echo 'hi<' . synIDattr(synID(line('.'),col('.'),1),'name') . '> trans<' . synIDattr(synID(line('.'),col('.'),0),'name') .'> lo<' . synIDattr(synIDtrans(synID(line('.'),col('.'),1)),'name') . '>'<CR>",
 	default_options
 )
