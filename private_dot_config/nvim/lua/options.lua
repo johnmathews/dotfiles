@@ -77,6 +77,10 @@ local options = {
 
 vim.cmd("au TextYankPost * lua vim.highlight.on_yank {on_visual = true}")
 
+-- https://vi.stackexchange.com/questions/16161/how-to-map-c-i-separate-from-tab
+-- vim.cmd('let &t_TI = "\\<Esc>[>4;2m"')
+-- vim.cmd('let &t_TE = "\\<Esc>[>4;m"')
+
 vim.g.markdown_fenced_languages = { "html", "javascript", "typescript", "css", "scss", "lua", "vim" }
 
 -- https://dockyard.com/blog/2018/06/01/simple-vim-session-management-part-1
