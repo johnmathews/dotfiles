@@ -83,6 +83,11 @@ map("n", "<C-L>", "<C-W><C-L>", default_options)
 -- FUNCTIONS
 map("n", "cc", ":call ToggleQuickFix()<CR>", default_options)
 
+
+-- Jump List
+map("n", "<C-p>", "<C-i>", default_options)
+
+
 ----- INSERT MODE ---------------
 map("i", "jk", "<ESC>", default_options)
 
