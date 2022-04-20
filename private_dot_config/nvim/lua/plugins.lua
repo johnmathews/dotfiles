@@ -78,7 +78,7 @@ return packer.startup({
 		use({
 			"simeji/winresizer",
 			config = function()
-				vim.cmd([[let g:winresizer_keycode_finish=9 ]])
+				vim.cmd([[let g:winresizer_keycode_finish=96 ]])
 			end,
 		})
 
