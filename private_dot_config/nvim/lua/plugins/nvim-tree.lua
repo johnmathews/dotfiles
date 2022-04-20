@@ -57,7 +57,7 @@ nvim_tree.setup {
     -- "startify",
     -- "dashboard",
   },
-  auto_close = true,
+  -- auto_close = true,  -- deprecated
   open_on_tab = false,
   hijack_cursor = true,
   hijack_directories = {
