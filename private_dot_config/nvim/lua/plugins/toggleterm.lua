@@ -5,16 +5,6 @@ if not toggleterm_status_ok then
 end
 
 
-local Terminal  = require('toggleterm.terminal').Terminal
-local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
-
-function _Lazygit_toggle()
-  lazygit:toggle()
-end
-
-vim.api.nvim_set_keymap("n", "\\tg", "<cmd>lua _Lazygit_toggle()<CR>", {noremap = true, silent = true})
-
-
 toggleterm.setup{
   -- size can be a number or function which is passed the current terminal
   size = function(term)
@@ -25,7 +15,7 @@ toggleterm.setup{
     end
   end,
   -- open_mapping = [[<c-\>]],
-  open_mapping = [[<C-I>t]],
+  open_mapping = [[<Tab>t]],
   insert_mappings = false, -- whether or not the open mapping applies in insert mode
   terminal_mappings = true, -- whether or not the open mapping applies in the opened terminals
   start_in_insert = true, -- open a terminal window in normal mode or insert mode
@@ -58,3 +48,24 @@ toggleterm.setup{
     }
   }
 }
+
+local Terminal = require("toggleterm.terminal").Terminal
+local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
+
+function _LAZYGIT_TOGGLE()
+	lazygit:toggle()
+end
+
+vim.api.nvim_set_keymap("n", "tg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", {noremap = true, silent = true})
+
+local htop = Terminal:new({ cmd = "htop", hidden = true })
+
+function _HTOP_TOGGLE()
+	htop:toggle()
+end
+
+local python = Terminal:new({ cmd = "python", hidden = true })
+
+function _PYTHON_TOGGLE()
+	python:toggle()
+end
