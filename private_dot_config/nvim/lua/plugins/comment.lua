@@ -3,7 +3,7 @@ if not status_ok then
   return
 end
 
-comment.setup = {
+setup = {
   ---Add a space b/w comment and the line
   ---@type boolean|fun():boolean
   padding = true,
@@ -88,6 +88,7 @@ comment.setup = {
       })
     end
   end,
+
   post_hook = function(ctx)
     if ctx.range.srow == ctx.range.erow then
       -- do something with the current line
@@ -98,3 +99,5 @@ comment.setup = {
     end
   end
 }
+
+require('Comment').setup(setup)
