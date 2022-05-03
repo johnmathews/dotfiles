@@ -77,6 +77,9 @@ local options = {
 
 vim.cmd("au TextYankPost * lua vim.highlight.on_yank {on_visual = true}")
 
+-- this lets you do `gf` (go to file) on e.g.: "plugins/monokai.lua"
+vim.cmd("set path+=~/.config/nvim/lua/plugins/")
+
 vim.g.markdown_fenced_languages = { "html", "javascript", "typescript", "css", "scss", "lua", "vim" }
 
 -- https://dockyard.com/blog/2018/06/01/simple-vim-session-management-part-1

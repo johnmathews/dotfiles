@@ -25,7 +25,8 @@ setup = {
     ---Line-comment toggle keymap
     line = 'gcc',
     ---Block-comment toggle keymap
-    block = 'gbc',
+    -- conflicts with bufferline
+    -- block = 'gbc',
   },
 
   ---LHS of operator-pending mappings in NORMAL + VISUAL mode
@@ -34,7 +35,8 @@ setup = {
     ---Line-comment keymap
     line = 'gc',
     ---Block-comment keymap
-    block = 'gb',
+    -- conflicts with bufferline
+    -- block = 'gb',
   },
 
   ---LHS of extra mappings
