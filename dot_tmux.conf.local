@@ -17,6 +17,7 @@ set -g status-interval 10     								# redraw status line every 10 seconds
 
 # -- navigation ----------------------------------------------------------------
 
+
 # if you're running tmux within iTerm2
 #   - and tmux is 1.9 or 1.9a
 #   - and iTerm2 is configured to let option key act as +Esc
@@ -435,8 +436,8 @@ bind S switch-client -l
 
 bind z last-window
 
-# Make C-j display a selectable list of sessions
-bind C-j split-window -v "tmux list-sessions | sed -E 's/:.*$//' | grep -v \"^$(tmux display-message -p '#S')\$\" | fzf --reverse | xargs tmux switch-client -t"
+# Make C-w display a selectable list of sessions
+bind f split-window -v "tmux list-sessions | sed -E 's/:.*$//' | grep -v \"^$(tmux display-message -p '#S')\$\" | fzf --reverse | xargs tmux switch-client -t"
 
 # and now unbind keys
 unbind Up     

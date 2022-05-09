@@ -3,6 +3,11 @@ if not status_ok then
   return
 end
 
+local map = vim.api.nvim_set_keymap
+-- https://github.com/numToStr/Comment.nvim/issues/17#issuecomment-939410954
+map("v", "gcc", ":normal gcc<cr>",  { noremap = true, silent = true })
+
+
 setup = {
   ---Add a space b/w comment and the line
   ---@type boolean|fun():boolean
@@ -103,3 +108,5 @@ setup = {
 }
 
 require('Comment').setup(setup)
+
+

@@ -19,11 +19,6 @@ map("n", "<leader>ve", ":edit $MYVIMRC<CR>", default_options)
 map("n", "<leader>vf", ":edit ~/.config/nvim/ftplugin/<C-R>=&filetype<CR>.vim<CR>", default_options)
 map("n", "<leader>vr", ":source $MYVIMRC<CR>|:autocmd User VimReload<CR>", default_options)
 
-
--- comment
--- https://github.com/numToStr/Comment.nvim/issues/17#issuecomment-939410954
-map("v", "gci", ":normal gcc<cr>", default_options)
-
 -- These commands will sort buffers by directory, language, or a custom criteria
 map("n", "be", ":BufferLineSortByExtension<CR>", default_options)
 map("n", "bd", ":BufferLineSortByDirectory<CR>", default_options)
@@ -60,11 +55,12 @@ map("n", "<Tab>ww", ":wa<CR>", default_options)
 --map("n", "<Tab>qq", ":FloatermKill!<CR><BAR>:qa<CR>", default_options)
 map("n", "<Tab>qq", ":qa<CR>", default_options)
 map("n", "<Tab>qo", ":%bd|e#<CR>|:normal ]bqq<CR>", default_options) -- close other buffers
-map("n", "qq", ":bp|bd #<CR>", default_options)
+map("n", "qq", ":bn|bd #<CR>", default_options)
 map("n", "<leader>Q", ":bufdo bdelete<CR>", default_options)
 map("n", "gf", ":edit <cfile><CR>", default_options)
 
 -- query which color - what and which kind of syntax is this color? - wc
+-- ghl. highlight group
 map( "n", "wc",
 	":echo 'hi<' . synIDattr(synID(line('.'),col('.'),1),'name') . '> trans<' . synIDattr(synID(line('.'),col('.'),0),'name') .'> lo<' . synIDattr(synIDtrans(synID(line('.'),col('.'),1)),'name') . '>'<CR>",
 	default_options

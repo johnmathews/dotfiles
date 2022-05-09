@@ -310,6 +310,13 @@ return packer.startup({
       run = 'make'
     }
 
+    use {
+      'pearofducks/ansible-vim', 
+			config = function()
+				require("plugins.ansible-vim")
+			end,
+    }
+
 		use({
 			"kyazdani42/nvim-tree.lua",
 			requires = {
@@ -323,7 +330,9 @@ return packer.startup({
 		if PACKER_BOOTSTRAP then
 			require("packer").sync()
 		end
+
 	end,
+
 	config = {
 		compile_path = vim.fn.stdpath("config") .. "/plugin/packer_compiled.lua",
 		display = {

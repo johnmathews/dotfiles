@@ -16,9 +16,9 @@ lsp_diagnostics.init({
 })
 
 -- keymaps
-vim.cmd "nmap <C-I>a  <Plug>(toggle-lsp-diag)"
-vim.cmd "nmap <C-I>s <Plug>(toggle-lsp-diag-signs)"
-vim.cmd "nmap <C-I>v <Plug>(toggle-lsp-diag-vtext)"
+vim.cmd "nmap <Tab>a  <Plug>(toggle-lsp-diag)"
+vim.cmd "nmap <Tab>s <Plug>(toggle-lsp-diag-signs)"
+vim.cmd "nmap <Tab>v <Plug>(toggle-lsp-diag-vtext)"
 
 vim.cmd "nmap <leader>tlu <Plug>(toggle-lsp-diag-underline)"
 vim.cmd "nmap <leader>tlp <Plug>(toggle-lsp-diag-update_in_insert)"
