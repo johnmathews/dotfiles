@@ -90,15 +90,15 @@ function choice_popup_close()
 end
 
 vim.cmd([[
-augroup choice_popup
-au!
-au User LuasnipChoiceNodeEnter lua choice_popup(require("luasnip").session.event_node)
-au User LuasnipChoiceNodeLeave lua choice_popup_close()
-au User LuasnipChangeChoice lua update_choice_popup(require("luasnip").session.event_node)
-augroup END
+  augroup choice_popup
+  au!
+  au User LuasnipChoiceNodeEnter lua choice_popup(require("luasnip").session.event_node)
+  au User LuasnipChoiceNodeLeave lua choice_popup_close()
+  au User LuasnipChangeChoice lua update_choice_popup(require("luasnip").session.event_node)
+  augroup END
 ]])
 
 return {
 	all = {},
-	markdown = require("snippets.markdown"),
+	markdown = require("luasnippets.markdown"),
 }

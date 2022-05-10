@@ -57,7 +57,6 @@ plugins=(
     # kubectl
     # minikube
     pep8 # completion for pep8 python coding style
-    poetry
     pip # completion for pip commands
     vi-mode # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/vi-mode
     zsh-autosuggestions

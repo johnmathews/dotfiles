@@ -115,15 +115,17 @@ cmp.setup({
       return vim_item
     end,
   },
-  sources = {
+  sources = cmp.config.sources({
     -- { name = "luasnip" },
     { name = "nvim_lsp" },
     { name = "nvim_lua" },
     { name = "buffer" },
     { name = "path" },
     { name = "emoji" },
-  },
-  confirm_opts = {
+  }, {
+    { name = 'buffer' },
+  }),
+    confirm_opts = {
     behavior = cmp.ConfirmBehavior.Replace,
     select = false,
   },
