@@ -5,7 +5,7 @@ end
 
 local map = vim.api.nvim_set_keymap
 -- https://github.com/numToStr/Comment.nvim/issues/17#issuecomment-939410954
-map("v", "gcc", ":normal gcc<cr>",  { noremap = true, silent = true })
+map("v", "gci", ":normal gcc<cr>",  { noremap = true, silent = true })
 
 
 setup = {
