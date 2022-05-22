@@ -3,6 +3,11 @@ if not status_ok then
 	return
 end
 
+local status_gps_ok, gps = pcall(require, "nvim-gps")
+if not status_gps_ok then
+  return
+end
+
 local function Current_col()
 	local _, column = unpack(vim.api.nvim_win_get_cursor(0))
 	return column + 1
@@ -14,7 +19,12 @@ local function Row_max_row()
 	return row .. "/" .. max_row
 end
 
--- cool function for progress
+-- used to show or hide gps
+local hide_in_width = function()
+  return vim.fn.winwidth(0) > 80
+end
+
+-- progress function
 local progress = function()
 	local current_line = vim.fn.line(".")
 	local total_lines = vim.fn.line("$")
@@ -24,9 +34,20 @@ local progress = function()
 	return chars[index]
 end
 
+-- gps
+local nvim_gps = function()
+  local gps_location = gps.get_location()
+  if gps_location == "error" then
+    return ""
+  else
+    return gps.get_location()
+  end
+end
+
 lualine.setup({
 	options = {
 		icons_enabled = true,
+    globalstatus = true, -- true for laststatus=3, false by default
 		theme = "ayu_mirage",
 		-- theme = "auto",
 		component_separators = { left = "", right = "" },
@@ -37,7 +58,10 @@ lualine.setup({
 	sections = {
 		lualine_a = { progress, '%{ObsessionStatus("$", "!$")}', "progress", Row_max_row, Current_col, "mode" },
 		lualine_b = { "branch", "diff", "diagnostics" },
-		lualine_c = { "filename" },
+    lualine_c = {
+      "filename",
+      { nvim_gps, cond = hide_in_width },
+    },
 		lualine_x = { "encoding", "fileformat", "filetype" },
 		lualine_y = {},
 		lualine_z = {},

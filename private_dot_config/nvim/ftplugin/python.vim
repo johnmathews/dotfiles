@@ -40,10 +40,10 @@ xnoremap <leader>y :!yapf<CR>
 
 
 " ========== print variable and its value ===============
-vnoremap <buffer> <localleader>p y<esc>oprint(f"{<esc>gpa = }")<ESC>
-vnoremap <buffer> <localleader>o y<esc>oprint(f'''{<esc>gpa =<CR><BS><BS><BS>}''')<ESC>
-nnoremap <buffer> <Localleader>p <esc>oprint(f"{<esc>gpa = }")<ESC>
-nnoremap <buffer> <Localleader>o <esc>oprint(f"''{<esc>gpa =<CR><BS><BS><BS>}''')<ESC>
+vnoremap <buffer> <localleader>p y<esc>oprint(f"*** {<esc>gpa = }")<ESC>
+vnoremap <buffer> <localleader>o y<esc>oprint(f'''*** {<esc>gpa =<CR><BS><BS><BS>}''')<ESC>
+nnoremap <buffer> <Localleader>p <esc>oprint(f"***{<esc>gpa = }")<ESC>
+nnoremap <buffer> <Localleader>o <esc>oprint(f"***''{<esc>gpa =<CR><BS><BS><BS>}''')<ESC>
 
 " ========== log variable and its value ================
 vnoremap <buffer> <localleader>l y<esc>ologger.info(f"*** {<esc>gpa = }")<ESC>

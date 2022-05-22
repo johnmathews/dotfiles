@@ -244,7 +244,8 @@ return packer.startup({
 		use("tpope/vim-repeat")
 
 		use({
-			"chentau/marks.nvim",
+			-- "chentau/marks.nvim",
+			"chentoast/marks.nvim",
 			config = function()
 				require("plugins.marks")
 			end,
@@ -317,8 +318,24 @@ return packer.startup({
 			end,
     }
 
-		use({
-			"kyazdani42/nvim-tree.lua",
+    use {
+      "SmiteshP/nvim-gps",
+      requires = "nvim-treesitter/nvim-treesitter",
+      config = function()
+        require("plugins.gps")
+      end,
+    }
+
+   --  use {
+   --    "christianchiarulli/nvim-gps",
+   --    branch = "text_hl",
+			-- config = function()
+			-- 	require("plugins.gps")
+			-- end,
+   --  }
+
+    use({
+      "kyazdani42/nvim-tree.lua",
 			requires = {
 				"kyazdani42/nvim-web-devicons",
 			},

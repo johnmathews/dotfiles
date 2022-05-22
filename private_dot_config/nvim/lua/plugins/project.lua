@@ -18,16 +18,16 @@ require("project_nvim").setup({
 
 	-- Don't calculate root dir on specific directories
 	-- Ex: { "~/.cargo/*", ... }
-	exclude_dirs = {},
+	exclude_dirs = {
+    '~/projects/lettergun/web-app/lettergun/*',
+  },
 
 	-- Show hidden files in telescope
 	show_hidden = true,
 
-	-- When set to false, you will get a message when project.nvim changes your
-	-- directory.
+	-- When set to false, you will get a message when project.nvim changes your directory.
 	silent_chdir = false,
 
-	-- Path where project.nvim will store the project history for use in
-	-- telescope
+	-- Path where project.nvim will store the project history for use in telescope
 	datapath = vim.fn.stdpath("data"),
 })

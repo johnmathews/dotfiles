@@ -54,7 +54,10 @@ map("v", ":", ";", { noremap = true })
 map("n", "<Tab>ww", ":wa<CR>", default_options)
 --map("n", "<Tab>qq", ":FloatermKill!<CR><BAR>:qa<CR>", default_options)
 map("n", "<Tab>qq", ":qa<CR>", default_options)
-map("n", "<Tab>qo", ":%bd|e#<CR>|:normal ]bqq<CR>", default_options) -- close other buffers
+
+vim.api.nvim_create_user_command('BufOnly', '%bdelete|edit #|normal `"', {})
+map("n", "<Tab>qo", ":BufOnly<CR>", default_options) -- close other buffers
+
 map("n", "qq", ":bn|bd #<CR>", default_options)
 map("n", "<leader>Q", ":bufdo bdelete<CR>", default_options)
 map("n", "gf", ":edit <cfile><CR>", default_options)
@@ -77,7 +80,7 @@ map("n", "<C-K>", "<C-W><C-K>", default_options)
 map("n", "<C-L>", "<C-W><C-L>", default_options)
 
 -- FUNCTIONS
-map("n", "cc", ":call ToggleQuickFix()<CR> <C-o>", default_options)
+map("n", "cc", ":call ToggleQuickFix()<CR>", default_options)
 
 -- Jump List
 map("n", "<C-p>", "<C-i>", default_options)
