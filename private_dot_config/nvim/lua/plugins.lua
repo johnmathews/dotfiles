@@ -326,14 +326,6 @@ return packer.startup({
       end,
     }
 
-   --  use {
-   --    "christianchiarulli/nvim-gps",
-   --    branch = "text_hl",
-			-- config = function()
-			-- 	require("plugins.gps")
-			-- end,
-   --  }
-
     use({
       "kyazdani42/nvim-tree.lua",
 			requires = {
