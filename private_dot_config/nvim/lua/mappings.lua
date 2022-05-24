@@ -35,7 +35,7 @@ map("n", "k", "v:count == 0 ? 'gk' : 'k'", expr_options)
 map("v", "p", '"_dP', default_options)
 
 -- Searching
-map("n", "`", "/", default_options)
+map("n", "`", "/", { noremap = true, silent = false })
 map("n", "``", ": nohlsearch<CR>", default_options)
 map("n", "*", "*``", default_options)
 
@@ -46,10 +46,10 @@ map("n", "<leader>ss", ":setlocal spell!<CR>", default_options)
 map("n", "o", "o<ESC>", default_options)
 map("n", "O", "O<ESC>", default_options)
 
-map("n", ";", ":", { noremap = true })
-map("n", ":", ";", { noremap = true })
-map("v", ";", ":", { noremap = true })
-map("v", ":", ";", { noremap = true })
+map("n", ";", ":", { noremap = true, silent = false })
+map("n", ":", ";", { noremap = true, silent = false })
+map("v", ";", ":", { noremap = true, silent = false })
+map("v", ":", ";", { noremap = true, silent = false })
 
 map("n", "<Tab>ww", ":wa<CR>", default_options)
 --map("n", "<Tab>qq", ":FloatermKill!<CR><BAR>:qa<CR>", default_options)

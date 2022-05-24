@@ -2,10 +2,8 @@ local M = {}
 
 local status_gps_ok, gps = pcall(require, "nvim-gps")
 if not status_gps_ok then
-  print("winbar.lua: require nvim-gps not ok")
   return
 else
-  print("winbar.lua require nvim-gps is ok")
 end
 
 local function isempty(s)
@@ -49,7 +47,6 @@ end
 M.gps = function()
   local status_ok, gps_location = pcall(gps.get_location, {})
   if not status_ok then
-    print("winbar.lua: require gps.get_location() is not ok")
     return
   end
 
@@ -65,9 +62,11 @@ M.gps = function()
     return ""
   else
     if not isempty(gps_location) then
-      return retval .. " " .. icons.ui.ChevronRight .. " " .. gps_location
+      -- return retval .. " " .. icons.ui.ChevronRight .. " " .. gps_location
+      return "   " .. gps_location
     else
-      return retval
+      -- return retval
+      return ""
     end
   end
 end

@@ -27,7 +27,7 @@ map("n", "<Tab>l", ":Telescope loclist<CR>", default_options)
 map("n", "<Tab>z", ":Telescope resume<CR>", default_options)
 
 -- Git pickers
-map("n", "<Tab>g", ":Telescope git_files<cr>", default_options)
+map("n", "<Tab>g", "<CMD>lua require'plugins.telescope'.find_files_fallback()<CR>", default_options)
 map("n", "<Tab>gc", ":Telescope git_commits<CR>", default_options)
 map("n", "<Tab>gb", ":Telescope git_bcommits<CR>", default_options)
 map("n", "<Tab>gr", ":Telescope git_branches<CR>", default_options)
@@ -73,14 +73,13 @@ local new_maker = function(filepath, bufnr, opts)
   }):sync()
 end
 
-
 local actions = require("telescope.actions")
 telescope.setup {
   defaults = {
     buffer_previewer_maker = new_maker,
-    prompt_prefix = " ",
+    prompt_prefix = "  ",
     selection_caret = " ",
-    path_display = { "smart" },
+    path_display = { "truncate" },
 
     mappings = {
       i = {
@@ -101,8 +100,9 @@ telescope.setup {
         ["<C-v>"] = actions.select_vertical,
         ["<C-t>"] = actions.select_tab,
 
-        ["<C-u>"] = actions.preview_scrolling_up,
-        ["<C-d>"] = actions.preview_scrolling_down,
+        -- ["<C-u>"] = actions.preview_scrolling_up,
+        -- ["<C-d>"] = actions.preview_scrolling_down,
+        ["<C-d>"] = actions.delete_buffer,
 
         ["<PageUp>"] = actions.results_scrolling_up,
         ["<PageDown>"] = actions.results_scrolling_down,
@@ -171,9 +171,21 @@ telescope.setup {
       override_file_sorter = true,     -- override the file sorter
       case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
     },
-    projects = {}
+    projects = {},
   },
 }
 
 telescope.load_extension('projects')
 telescope.load_extension('fzf')
+
+
+local M = {}
+
+M.find_files_fallback = function()
+  local opts = {} -- define here if you want to define something
+  local ok = pcall(require"telescope.builtin".git_files, opts)
+  if not ok then
+    require"telescope.builtin".find_files(opts) end
+end
+
+return M

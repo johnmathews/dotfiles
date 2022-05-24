@@ -1,9 +1,6 @@
 local status_ok, gps = pcall(require, "nvim-gps")
 if not status_ok then
-  print("gps.lua: nvim-gps is not ok")
   return
-else
-  print("gps.lua: nvim-gps is ok")
 end
 
 local icons = require "plugins.icons"
@@ -94,4 +91,3 @@ gps.setup {
   depth_limit_indicator = "..",
   text_hl = "LineNr"
 }
-print("gps.lua setup finished ok")
