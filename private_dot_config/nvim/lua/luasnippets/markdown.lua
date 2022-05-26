@@ -104,24 +104,24 @@ return {
 	}),
 
   -- my original effort
-	s("meta2", {
-		t({ "Title: " }),
-		i(1),
-		t({ "", "Slug: " }),
-		f(slugify, { 1 }),
-		t({ "", "Date: " }),
-		f(date, {}),
-		t({ "", "Category: " }),
-		c(2, {
-			t("Technical/"),
-			t("Non-technical/"),
-		}),
-		d(3, catChooser, { 2 }),
-		t({ "", "Tags: " }),
-		i(4),
-		t({ "", "", "" }),
-		i(0),
-	}),
+	-- s("meta2", {
+	-- 	t({ "Title: " }),
+	-- 	i(1),
+	-- 	t({ "", "Slug: " }),
+	-- 	f(slugify, { 1 }),
+	-- 	t({ "", "Date: " }),
+	-- 	f(date, {}),
+	-- 	t({ "", "Category: " }),
+	-- 	c(2, {
+	-- 		t("Technical/"),
+	-- 		t("Non-technical/"),
+	-- 	}),
+	-- 	d(3, catChooser, { 2 }),
+	-- 	t({ "", "Tags: " }),
+	-- 	i(4),
+	-- 	t({ "", "", "" }),
+	-- 	i(0),
+	-- }),
 
 	s("snip", {
 		t({ "Title: " }),

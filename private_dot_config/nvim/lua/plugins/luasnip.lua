@@ -3,6 +3,33 @@ if not snip_status_ok then
 	return
 end
 
+local types = require "luasnip.util.types"
+
+ls.config.set_config {
+  -- This tells LuaSnip to remember to keep around the last snippet.
+  -- You can jump back into it even if you move outside of the selection
+  history = true,
+
+  -- This one is cool cause if you have dynamic snippets, it updates as you type!
+  updateevents = "TextChanged,TextChangedI",
+
+  -- Autosnippets:
+  enable_autosnippets = true,
+
+  ext_opts = {
+    [types.choiceNode] = {
+      active = {
+        virt_text = { { " <- Current Choice", "NonTest" } },
+      },
+    },
+  },
+}
+
+
+
+
+require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/lua/luasnippets"})
+
 local current_nsid = vim.api.nvim_create_namespace("LuaSnipChoiceListSelections")
 local current_win = nil
 
@@ -98,7 +125,8 @@ vim.cmd([[
   augroup END
 ]])
 
-return {
-	all = {},
-	markdown = require("luasnippets.markdown"),
-}
+-- return {
+-- 	all = {},
+-- 	markdown = require("luasnippets.markdown"),
+-- }
+

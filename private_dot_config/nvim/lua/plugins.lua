@@ -172,6 +172,8 @@ return packer.startup({
 			end,
 		})
 
+    use "saadparwaiz1/cmp_luasnip" -- snippet completions
+
 		use({ "L3MON4D3/LuaSnip" })
 		use({ "rafamadriz/friendly-snippets" })
 
@@ -316,6 +318,13 @@ return packer.startup({
 			config = function()
 				require("plugins.ansible-vim")
 			end,
+    }
+
+    use {
+      "matbme/JABS.nvim",
+      config = function()
+        require("plugins.jabs")
+      end,
     }
 
     use {

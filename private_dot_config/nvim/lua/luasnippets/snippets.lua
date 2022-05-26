@@ -2,8 +2,6 @@ local snip_status_ok, ls = pcall(require, "luasnip")
 if not snip_status_ok then
   print("luasnip not found")
   return
-else
-  print("luasnip found")
 end
 
 -- some shorthands...
@@ -18,8 +16,6 @@ local dynamicn = ls.dynamic_node
 local date = function()
   return { os.date "%Y-%m-%d" }
 end
-
-print("snippets should be ok")
 
 -- Make sure to not pass an invalid command, as io.popen() may write over nvim-text.
 local function bash(_, _, command)

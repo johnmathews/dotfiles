@@ -3,18 +3,17 @@ if not cmp_status_ok then
   return
 end
 
-local lspkind_status_ok, lspkind = pcall(require, "lspkind")
-if not lspkind_status_ok then
-  return
-end
-
 local snip_status_ok, luasnip = pcall(require, "luasnip")
 if not snip_status_ok then
   return
 end
 
-luasnip.snippets = require("plugins.luasnip")
 require("luasnip/loaders/from_vscode").lazy_load()
+
+-- local lspkind_status_ok, lspkind = pcall(require, "lspkind")
+-- if not lspkind_status_ok then
+--   return
+-- end
 
 local check_backspace = function()
   local col = vim.fn.col(".") - 1
@@ -55,13 +54,14 @@ cmp.setup({
       luasnip.lsp_expand(args.body) -- For `luasnip` users.
     end,
   },
+
   mapping = {
     ["<C-k>"] = cmp.mapping.select_prev_item(),
     ["<C-j>"] = cmp.mapping.select_next_item(),
     ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
     ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
     ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-    ["<C-y>"] = cmp.config.disable,
+    -- ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
     ["<C-e>"] = cmp.mapping({
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),
@@ -104,38 +104,42 @@ cmp.setup({
     format = function(entry, vim_item)
       vim_item.kind = string.format("%s ", kind_icons[vim_item.kind])
       vim_item.menu = ({})[entry.source.name]
-      -- vim_item.menu = ({
-      --   -- luasnip = "[Snippet]",
-      --   nvim_lsp = "[LSP]",
-      --   nvim_lua = "[Nvim]",
-      --   buffer = "[Buffer]",
-      --   path = "[Path]",
-      --   emoji = "[Emoji]",
-      -- })[entry.source.name]
+      vim_item.menu = ({
+        nvim_lsp = "[LSP]",
+        nvim_lua = "[Nvim]",
+        luasnip = "[Snippet]",
+        buffer = "[Buffer]",
+        path = "[Path]",
+        emoji = "[Emoji]",
+      })[entry.source.name]
       return vim_item
     end,
   },
-  sources = cmp.config.sources({
-    -- { name = "luasnip" },
+  sources = {
     { name = "nvim_lsp" },
     { name = "nvim_lua" },
+    { name = "luasnip" },
     { name = "buffer" },
     { name = "path" },
     { name = "emoji" },
-  }, {
-    { name = 'buffer' },
-  }),
+  }, 
     confirm_opts = {
     behavior = cmp.ConfirmBehavior.Replace,
     select = false,
   },
   window = {
+    -- documentation = "native",
     documentation = {
       border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+      winhighlight = "NormalFloat:Pmenu,NormalFloat:Pmenu,CursorLine:PmenuSel,Search:None",
+    },
+    completion = {
+      border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+      winhighlight = "NormalFloat:Pmenu,NormalFloat:Pmenu,CursorLine:PmenuSel,Search:None",
     },
   },
   experimental = {
-    ghost_text = false,
-    native_menu = false,
+    ghost_text = true,
+    -- native_menu = false,
   },
 })
