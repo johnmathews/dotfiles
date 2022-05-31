@@ -10,8 +10,6 @@ end
 
 local tree_cb = nvim_tree_config.nvim_tree_callback
 
--- https://github.com/ahmedkhalf/project.nvim
-vim.g.nvim_tree_respect_buf_cwd = 1
 
 vim.cmd("let g:nvim_tree_width = 40")
 
@@ -23,32 +21,64 @@ map("n", "<Leader>n", ":NvimTreeFindFileToggle<cr>", default_options)
 
 -- following options are the default
 -- each of these are documented in `:help nvim-tree.OPTION_NAME`
-vim.g.nvim_tree_icons = {
-  default = "",
-  symlink = "",
-  git = {
-    unstaged = "",
-    staged = "S",
-    unmerged = "",
-    renamed = "➜",
-    deleted = "",
-    untracked = "U",
-    ignored = "◌",
-  },
-  folder = {
-    -- arrow_open = " ",
-    -- arrow_closed = "",
-    default = "",
-    open = "",
-    empty = "",
-    empty_open = "",
-    symlink = "",
-  },
-}
+-- vim.g.nvim_tree_icons = {
+--   default = "",
+--   symlink = "",
+--   git = {
+--     unstaged = "",
+--     staged = "S",
+--     unmerged = "",
+--     renamed = "➜",
+--     deleted = "",
+--     untracked = "U",
+--     ignored = "◌",
+--   },
+--   folder = {
+--     -- arrow_open = " ",
+--     -- arrow_closed = "",
+--     default = "",
+--     open = "",
+--     empty = "",
+--     empty_open = "",
+--     symlink = "",
+--   },
+-- }
 
-vim.g.nvim_tree_highlight_opened_files = 3
+-- vim.g.nvim_tree_highlight_opened_files = 3
+
+-- https://github.com/ahmedkhalf/project.nvim
+-- vim.g.nvim_tree_respect_buf_cwd = 1
 
 nvim_tree.setup {
+  -- https://github.com/ahmedkhalf/project.nvim
+  renderer = {
+    highlight_opened_files = 'all',
+    icons = {
+      glyphs = {
+        default = "",
+        symlink = "",
+        git = {
+          unstaged = "",
+          staged = "S",
+          unmerged = "",
+          renamed = "➜",
+          deleted = "",
+          untracked = "U",
+          ignored = "◌",
+        },
+        folder = {
+          -- arrow_open = " ",
+          -- arrow_closed = "",
+          default = "",
+          open = "",
+          empty = "",
+          empty_open = "",
+          symlink = "",
+        },
+      }
+    },
+  },
+  respect_buf_cwd = true,
   disable_netrw = true,
   hijack_netrw = true,
   open_on_setup = true,

@@ -8,6 +8,11 @@ local map = vim.api.nvim_set_keymap
 map("v", "gci", ":normal gcc<cr>",  { noremap = true, silent = true })
 
 
+-- Add support for Dockerfile comments
+-- https://github.com/numToStr/Comment.nvim#%EF%B8%8F-filetypes--languages
+local ft = require('Comment.ft')
+ft.Dockerfile = {'#%s', '#%s'}
+
 setup = {
   ---Add a space b/w comment and the line
   ---@type boolean|fun():boolean
