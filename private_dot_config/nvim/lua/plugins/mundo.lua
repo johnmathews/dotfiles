@@ -1,3 +1,1 @@
-vim.cmd([[
-  nnoremap <silent> <C-u> :MundoToggle<CR>
-]])
+vim.cmd("nnoremap <silent> <leader>u :MundoToggle<CR>")

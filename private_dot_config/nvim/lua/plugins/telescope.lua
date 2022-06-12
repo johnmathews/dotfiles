@@ -160,7 +160,8 @@ telescope.setup {
     -- builtin picker
 
     buffers = {
-      sort_lastused = true,
+      sort_lastused = false,
+      sort_mru = true,
       ignore_current_buffer = true,
       cwd_only = false,
     }

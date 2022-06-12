@@ -59,6 +59,7 @@ vim.api.nvim_create_user_command('BufOnly', '%bdelete|edit #|normal `"', {})
 map("n", "<Tab>qo", ":BufOnly<CR>", default_options) -- close other buffers
 
 map("n", "qq", ":bn|bd #<CR>", default_options)
+-- map("n", "qq", ":b#|bd#<CR>", default_options) -- this doesnt work right. reopens a closed buffer
 map("n", "<leader>Q", ":bufdo bdelete<CR>", default_options)
 map("n", "gf", ":edit <cfile><CR>", default_options)
 
