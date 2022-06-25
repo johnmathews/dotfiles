@@ -40,7 +40,7 @@ local options = {
   completeopt = "menu,menuone,noselect",
 
   updatetime = 2000,
-  redrawtime = 100000,
+  redrawtime = 5000,
 
   cmdheight = 2,
 
@@ -71,12 +71,19 @@ local options = {
   cursorline = false,
   cursorcolumn = false,
 
-  smartindent = true, -- Insert indents automatically
+  smartindent = false, -- Insert indents automatically
+  cindent = true, -- https://vim.fandom.com/wiki/Restoring_indent_after_typing_hash
   guicursor = "n-v-c-sm:block-blinkwait50-blinkon50-blinkoff50,i-ci-ve:ver25-Cursor-blinkon100-blinkoff100,r-cr-o:hor20",
 
 
   laststatus = 3,
 }
+
+for k, v in pairs(options) do
+	vim.opt[k] = v
+end
+
+vim.cmd("set indentkeys-=0#") -- https://vim.fandom.com/wiki/Restoring_indent_after_typing_hash
 
 vim.cmd("au TextYankPost * lua vim.highlight.on_yank {on_visual = true}")
 
@@ -108,6 +115,3 @@ vim.g.session_dir = "~/.config/nvim/sessions/"
 
 vim.opt.shortmess:append("c")
 
-for k, v in pairs(options) do
-	vim.opt[k] = v
-end

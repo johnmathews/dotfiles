@@ -14,7 +14,7 @@ local function Row_max_row()
 	return row .. "/" .. max_row
 end
 
-local function better_filename()
+local function filepath_filename()
   local filename = vim.fn.expand "%:t" 
   local parent = vim.fn.expand "%:h" 
   return parent .. '/' .. filename
@@ -44,7 +44,7 @@ lualine.setup({
 	sections = {
 		lualine_a = { progress, '%{ObsessionStatus("$", "!$")}', "progress", Row_max_row, Current_col, "mode" },
 		lualine_b = { "branch", "diff", "diagnostics" },
-    lualine_c = { better_filename, },
+    lualine_c = { filepath_filename, },
 		lualine_x = { "encoding", "fileformat", "filetype" },
 		lualine_y = {},
 		lualine_z = {},
