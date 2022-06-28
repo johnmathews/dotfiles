@@ -156,6 +156,28 @@ return packer.startup({
 		use({ "WhoIsSethDaniel/toggle-lsp-diagnostics.nvim" })
 		use({ "RishabhRD/nvim-lsputils", requires = "RishabhRD/popfix" })
     
+    -- normal copilot setup
+		use({
+			"github/copilot.vim",
+			config = function()
+				require("plugins.copilot-simple")
+			end,
+		})
+
+    -- copilot as a cmp completion source
+    -- use {
+    --   "zbirenbaum/copilot.lua",
+    --   event = { "VimEnter" },
+    --   config = function()
+    --     vim.defer_fn(function()
+    --       require("plugins.copilot")
+    --     end, 100)
+    --   end,
+    -- }
+    -- use {
+    --   "zbirenbaum/copilot-cmp",
+    --   module = "copilot_cmp",
+    -- }
 
 		use({
 			"hrsh7th/nvim-cmp",
@@ -329,6 +351,7 @@ return packer.startup({
 			end,
     }
 
+
     use {
       "matbme/JABS.nvim",
       config = function()
@@ -343,14 +366,6 @@ return packer.startup({
         require("plugins.gps")
       end,
     }
-
-   --  use {
-   --    "christianchiarulli/nvim-gps",
-   --    branch = "text_hl",
-			-- config = function()
-			-- 	require("plugins.gps")
-			-- end,
-   --  }
 
     use({
       "kyazdani42/nvim-tree.lua",

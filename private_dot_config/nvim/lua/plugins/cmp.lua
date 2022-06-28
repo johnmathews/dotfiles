@@ -10,10 +10,12 @@ end
 
 require("luasnip/loaders/from_vscode").lazy_load()
 
--- local lspkind_status_ok, lspkind = pcall(require, "lspkind")
--- if not lspkind_status_ok then
---   return
--- end
+local lspkind_status_ok, lspkind = pcall(require, "lspkind")
+if not lspkind_status_ok then
+  return
+end
+
+-- vim.api.nvim_set_hl(0, "CmpItemKindCopilot", {fg ="#6CC644"})
 
 local check_backspace = function()
   local col = vim.fn.col(".") - 1
@@ -54,6 +56,28 @@ cmp.setup({
       luasnip.lsp_expand(args.body) -- For `luasnip` users.
     end,
   },
+  completion = {
+    autocomplete = false,
+  },
+  -- sorting = {
+  --   priority_weight = 2,
+  --   comparators = {
+  --     require("copilot_cmp.comparators").prioritize,
+  --     require("copilot_cmp.comparators").score,
+
+  --     -- Below is the default comparitor list and order for nvim-cmp
+  --     cmp.config.compare.offset,
+  --     -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
+  --     cmp.config.compare.exact,
+  --     cmp.config.compare.score,
+  --     cmp.config.compare.recently_used,
+  --     cmp.config.compare.locality,
+  --     cmp.config.compare.kind,
+  --     cmp.config.compare.sort_text,
+  --     cmp.config.compare.length,
+  --     cmp.config.compare.order,
+  --   },
+  -- },
 
   mapping = {
     ["<C-k>"] = cmp.mapping.select_prev_item(),
@@ -102,21 +126,29 @@ cmp.setup({
   formatting = {
     fields = { "kind", "abbr", "menu" },
     format = function(entry, vim_item)
-      vim_item.kind = string.format("%s ", kind_icons[vim_item.kind])
-      vim_item.menu = ({})[entry.source.name]
-      vim_item.menu = ({
-        nvim_lsp = "[LSP]",
-        nvim_lua = "[Nvim]",
-        luasnip = "[Snippet]",
-        buffer = "[Buffer]",
-        path = "[Path]",
-        emoji = "[Emoji]",
-      })[entry.source.name]
-      return vim_item
-    end,
+     if entry.source.name == "copilot" then
+        vim_item.kind = "[]] Copilot"
+        vim_item.kind_hl_group = "CmpItemKindCopilot"
+        return vim_item
+      else
+        vim_item.kind = string.format("%s ", kind_icons[vim_item.kind])
+        vim_item.menu = ({})[entry.source.name]
+        vim_item.menu = ({
+          nvim_lsp = "[LSP]",
+          nvim_lua = "[Nvim]",
+          luasnip = "[Snippet]",
+          buffer = "[Buffer]",
+          path = "[Path]",
+          emoji = "[Emoji]",
+        })[entry.source.name]
+        return vim_item
+      end
+      return lspkind.cmp_format({ with_text = false, maxwidth = 50 })(entry, vim_item)
+    end
   },
   sources = {
     { name = "nvim_lsp" },
+    -- { name = "copilot", group_index = 2 },
     { name = "nvim_lua" },
     { name = "luasnip" },
     { name = "buffer" },
@@ -139,7 +171,7 @@ cmp.setup({
     },
   },
   experimental = {
-    ghost_text = true,
+    ghost_text = false,  -- false, otherwise it clobbers copilot
     -- native_menu = false,
   },
 })
