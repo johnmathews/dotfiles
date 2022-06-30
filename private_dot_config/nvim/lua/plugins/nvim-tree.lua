@@ -54,6 +54,7 @@ nvim_tree.setup {
   renderer = {
     highlight_opened_files = 'all',
     icons = {
+      webdev_colors = true,
       glyphs = {
         default = "",
         symlink = "",

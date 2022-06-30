@@ -10,6 +10,7 @@ local default_options = { noremap = true, silent = true }
 -- tab-V/S/A are taken by toggle-lsp plugin
 map("n", "<Tab>r", ":Telescope buffers<CR>", default_options)
 map("n", "<Tab>e", ":Telescope live_grep<CR>", default_options)
+-- map("n", "<Tab>e", ":Telescope grep_string search='' only_sort_text=true<CR>", default_options) -- doesnt find stuff
 map("n", "<Tab>o", ":Telescope oldfiles<CR>", default_options)
 
 map("n", "<Tab>p", ":Telescope projects<CR>", default_options)
