@@ -95,12 +95,12 @@ return packer.startup({
 
 		use("dstein64/vim-startuptime")
 
-		-- use({
-		-- 	"folke/which-key.nvim",
-		-- 	config = function()
-    --     require("plugins.whichkey")
-		-- 	end,
-		-- })
+		use({
+			"folke/which-key.nvim",
+			config = function()
+        require("plugins.whichkey")
+			end,
+		})
 
 		use({
 			"goolord/alpha-nvim",
@@ -176,20 +176,23 @@ return packer.startup({
 			end,
 		})
 
+    -- creates a copilot server that a cmp source can access (like an lsp server)
+    -- cmp is not setup to use this source yet - i cant figure out how to make it work.
+    use {
+      "zbirenbaum/copilot.lua",
+      event = { "VimEnter" },
+      config = function()
+        vim.defer_fn(function()
+          require("plugins.copilot")
+        end, 100)
+      end,
+    }
     -- copilot as a cmp completion source
-    -- use {
-    --   "zbirenbaum/copilot.lua",
-    --   event = { "VimEnter" },
-    --   config = function()
-    --     vim.defer_fn(function()
-    --       require("plugins.copilot").setup()
-    --     end, 100)
-    --   end,
-    -- }
-    -- use {
-    --   "zbirenbaum/copilot-cmp",
-    --   module = "copilot_cmp",
-    -- }
+    -- cmp is not setup to use this source yet - i cant figure out how to make it work.
+    use {
+      "zbirenbaum/copilot-cmp",
+      module = "copilot_cmp",
+    }
 
 		use({
 			"hrsh7th/nvim-cmp",
