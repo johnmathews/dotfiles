@@ -35,6 +35,7 @@ map("n", "k", "v:count == 0 ? 'gk' : 'k'", expr_options)
 map("v", "p", '"_dP', default_options)
 
 -- Searching
+map("n", "/", "`", { noremap = true, silent = false })
 map("n", "`", "/", { noremap = true, silent = false })
 map("n", "``", ": nohlsearch<CR>", default_options)
 map("n", "*", "*``", default_options)

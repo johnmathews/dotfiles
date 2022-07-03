@@ -71,5 +71,4 @@ local setup = {
   },
 }
 
-
 which_key.setup(setup)

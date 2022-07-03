@@ -19,6 +19,20 @@ vim.cmd([[
   autocmd BufEnter,BufNew *.bq setl filetype=sql
 ]])
 
+-- exclude quickfix window from buffer list
+-- https://stackoverflow.com/questions/28613190/exclude-quickfix-buffer-from-bnext-bprevious
+vim.cmd([[
+  augroup qf
+      autocmd!
+      autocmd FileType qf set nobuflisted
+  augroup END
+]])
+
+
+vim.cmd([[
+  autocmd BufEnter,BufNew *.bq setl filetype=sql
+]])
+
 -- tmux
 vim.cmd([[
   autocmd BufNewFile,BufRead {.,}tmux*.local nested setf tmux

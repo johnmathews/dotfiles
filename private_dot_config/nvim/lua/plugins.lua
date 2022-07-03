@@ -70,6 +70,11 @@ return packer.startup({
 		use("nvim-lua/popup.nvim")
 
 		-- COLORSCHEMES
+    use({"folke/lsp-colors.nvim",
+      config = function()
+        require("plugins.lsp_colors")
+      end,
+    })
 		use("Mofiqul/dracula.nvim")
 		use("sainnhe/sonokai")
 		use("glepnir/zephyr-nvim")
@@ -80,14 +85,22 @@ return packer.startup({
 			end,
 		})
 
+    -- this breaks <line_number>gg
+    -- use {
+    --   'declancm/cinnamon.nvim',
+    --   config = function() 
+    --     require('plugins.cinnamon') 
+    --   end
+    -- }
+
 		use("dstein64/vim-startuptime")
 
-		use({
-			"folke/which-key.nvim",
-			config = function()
-        require("plugins.whichkey")
-			end,
-		})
+		-- use({
+		-- 	"folke/which-key.nvim",
+		-- 	config = function()
+    --     require("plugins.whichkey")
+		-- 	end,
+		-- })
 
 		use({
 			"goolord/alpha-nvim",
@@ -98,7 +111,6 @@ return packer.startup({
 
 		use({
 			"ahmedkhalf/project.nvim",
-			-- "johnmathews/project.nvim",
 			config = function()
 				require("plugins.project")
 			end,
