@@ -97,7 +97,7 @@ map("i", "<C-e>", "<C-o>de", default_options)
 -- map("i", "<SPACE>", "<C-o>u<SPACE>", default_options)
 
 -- Luasnip
-vim.cmd([[
-  imap <silent><expr> <C-h> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-h>'
-  smap <silent><expr> <C-h> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-h>'
-]])
+-- vim.cmd([[
+--   imap <silent><expr> <C-h> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-h>'
+--   smap <silent><expr> <C-h> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-h>'
+-- ]])

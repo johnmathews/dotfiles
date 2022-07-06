@@ -7,5 +7,9 @@ vim.cmd([[
   " rebinding s and S removes sneaks double char search. what is the benefit of this? why did you do it?
   map s <Plug>Sneak_;
   map S <Plug>Sneak_,
+
+  " this stops sneak purple highlighting stuff
+  " https://github.com/justinmk/vim-sneak/issues/171
+  autocmd ColorScheme * hi! link Sneak Normal
 ]])
 
