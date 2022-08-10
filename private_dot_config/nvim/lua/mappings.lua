@@ -83,6 +83,9 @@ map("n", "<C-L>", "<C-W><C-L>", default_options)
 
 -- FUNCTIONS
 map("n", "cc", ":call ToggleQuickFix()<CR>", default_options)
+-- vim.cmd([[ nmap cc <Plug>(qf_qf_toggle)]])
+
+    
 
 -- Jump List
 map("n", "<C-p>", "<C-i>", default_options)

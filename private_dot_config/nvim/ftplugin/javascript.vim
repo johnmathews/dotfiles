@@ -28,5 +28,6 @@ let b:ale_pattern_options = {'\.min.js$': {'ale_enabled': 0}}
 nnoremap <buffer>  <c-f> :call JsBeautify()<cr>
 
 " ==== console.log() something =====
-vnoremap <buffer> <localleader>p y<esc>oconsole.log(`<esc>gpa: ${<esc>gpa}`);<ESC>
-nnoremap <buffer> <Localleader>p <esc>oconsole.log(`<esc>gpa: ${<esc>gpa}`);<ESC>
+" vnoremap <buffer> <localleader>p y<esc>oconsole.log(`--- debug <esc>gpa: ${<esc>gpa}`);<ESC>
+vnoremap <buffer> <localleader>p y<esc>oconsole.log('--- debug <esc>gpa: ', <esc>gpa);<ESC>
+nnoremap <buffer> <Localleader>p <esc>oconsole.log(`--- debug <esc>gpa: ${<esc>gpa}`);<ESC>

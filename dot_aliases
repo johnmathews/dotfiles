@@ -1,3 +1,4 @@
+#! bash
 
 # set mouse acceleation to 0
 alias mouse="defaults write .GlobalPreferences com.apple.mouse.scaling -1"
@@ -9,6 +10,20 @@ alias sshddnxl="gcloud compute ssh ainb-jmatthews4-extra-large --zone us-central
 # Vim not vi so that macvim compile options are used (for vimwiki links)
 alias vio="/usr/local/bin/vi"
 alias vi="nvim"
+
+
+# LETTERGUN 
+alias fast-deploy-staging="gcloud app deploy app.staging.yaml -q --project lettergun-staging"
+alias fast-deploy-prod="gcloud app deploy app.yaml -q --project lettergun"
+alias fast-deploy-both="fast-deploy-prod && fast-deploy-staging"
+
+alias deploy-both="./deploy-production && ./deploy-staging"
+
+
+
+alias cypress-local="CYPRESS_HOST=localhost:8000 npx cypress open"
+alias cypress-staging="CYPRESS_HOST=https://lettergun-staging.ey.r.appspot.com npx cypress open"
+alias cypress-prod="CYPRESS_HOST=https:lettergun.com npx cypress open"
 
 # open vim in read only mode
 # alias ri="vim -R"

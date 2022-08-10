@@ -27,7 +27,7 @@ map("n", "<Tab>l", ":Telescope loclist<CR>", default_options)
 map("n", "<Tab>z", ":Telescope resume<CR>", default_options)
 
 -- Git pickers
-map("n", "<Tab>f", "<CMD>lua require'plugins.telescope'.find_files_fallback()<CR>", default_options)
+map("n", "<Tab>w", "<CMD>lua require'plugins.telescope'.find_files_fallback()<CR>", default_options)
 map("n", "<Tab>g", ":Telescope find_files<CR>", default_options)
 map("n", "<Tab>gc", ":Telescope git_commits<CR>", default_options)
 map("n", "<Tab>gb", ":Telescope git_bcommits<CR>", default_options)

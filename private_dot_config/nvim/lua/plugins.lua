@@ -209,6 +209,8 @@ return packer.startup({
 			end,
 		})
 
+		use({ "romainl/vim-qf" })
+  
     use "saadparwaiz1/cmp_luasnip" -- snippet completions
 
 		use({ "L3MON4D3/LuaSnip" })
