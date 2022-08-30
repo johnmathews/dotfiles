@@ -4,7 +4,7 @@ if not status_ok then
 end
 
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained",
+  ensure_installed = {"maintained", "python"},
   sync_install = false,
   ignore_install = {},
   autopairs = {
@@ -40,5 +40,10 @@ require'nvim-treesitter.configs'.setup {
       goto_node = '<cr>',
       show_help = '?',
     },
-  }
+  },
+  query_linter = {
+    enable = true,
+    use_virtual_text = true,
+    lint_events = {"BufWrite", "CursorHold"},
+  },
 }

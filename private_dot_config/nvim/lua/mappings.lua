@@ -10,6 +10,15 @@ local map = vim.api.nvim_set_keymap
 local default_options = { noremap = true, silent = true }
 local expr_options = { noremap = true, expr = true, silent = true }
 
+----- INSERT MODE ---------------
+map("i", "jk", "<ESC>", default_options)
+--jump back one word
+map("i", "<C-h>", "<C-o>b", default_options)
+-- delete the word infront of the cursor
+map("i", "<C-e>", "<C-o>de", default_options)
+-- try to make each word an undo step
+-- map("i", "<SPACE>", "<C-o>u<SPACE>", default_options)
+
 --Remap space as leader key
 map("n", "<Space>", "<Nop>", default_options)
 vim.g.mapleader = " "
@@ -35,7 +44,7 @@ map("n", "k", "v:count == 0 ? 'gk' : 'k'", expr_options)
 map("v", "p", '"_dP', default_options)
 
 -- Searching
-map("n", "/", "`", { noremap = true, silent = false })
+-- map("n", "/", "`", { noremap = true, silent = false })
 map("n", "`", "/", { noremap = true, silent = false })
 map("n", "``", ": nohlsearch<CR>", default_options)
 map("n", "*", "*``", default_options)
@@ -66,6 +75,7 @@ map("n", "gf", ":edit <cfile><CR>", default_options)
 
 -- query which color - what and which kind of syntax is this color? - wc
 -- ghl. highlight group
+-- also >> :TSHighlightCapturesUnderCursor to see the treesitter highlight color groups
 map( "n", "wc",
 	":echo 'hi<' . synIDattr(synID(line('.'),col('.'),1),'name') . '> trans<' . synIDattr(synID(line('.'),col('.'),0),'name') .'> lo<' . synIDattr(synIDtrans(synID(line('.'),col('.'),1)),'name') . '>'<CR>",
 	default_options
@@ -89,15 +99,6 @@ map("n", "cc", ":call ToggleQuickFix()<CR>", default_options)
 
 -- Jump List
 map("n", "<C-p>", "<C-i>", default_options)
-
------ INSERT MODE ---------------
-map("i", "jk", "<ESC>", default_options)
---jump back one word
-map("i", "<C-h>", "<C-o>b", default_options)
--- delete the word infront of the cursor
-map("i", "<C-e>", "<C-o>de", default_options)
--- try to make each word an undo step
--- map("i", "<SPACE>", "<C-o>u<SPACE>", default_options)
 
 -- Luasnip
 -- vim.cmd([[

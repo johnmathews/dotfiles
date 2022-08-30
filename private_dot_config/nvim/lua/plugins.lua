@@ -75,11 +75,16 @@ return packer.startup({
         require("plugins.lsp_colors")
       end,
     })
-		use("Mofiqul/dracula.nvim")
-		use("sainnhe/sonokai")
-		use("glepnir/zephyr-nvim")
+
+    use 'Mofiqul/vscode.nvim' -- no
+    use 'marko-cerovac/material.nvim' -- no
+
+		use("Mofiqul/dracula.nvim") -- no
+		use("sainnhe/sonokai") -- no
+		use("glepnir/zephyr-nvim") -- no
 		use({
-			"johnmathews/monokai.nvim",
+			-- "johnmathews/monokai.nvim",
+      'tanvirtin/monokai.nvim',
 			config = function()
 				require("plugins.monokai")
 			end,
@@ -216,6 +221,10 @@ return packer.startup({
 		use({ "L3MON4D3/LuaSnip" })
 		use({ "rafamadriz/friendly-snippets" })
 
+
+    -- python syntax highlighting
+		-- use({ "numirias/semshi" })
+
 		use({
 			"nvim-treesitter/nvim-treesitter",
 			run = ":TSUpdate",
@@ -281,7 +290,6 @@ return packer.startup({
 			end,
 		})
 		use("tpope/vim-projectionist")
-		use("vim-scripts/pylint.vim")
 		use("tpope/vim-repeat")
 
 		use({
@@ -292,31 +300,41 @@ return packer.startup({
 			end,
 		})
 
+		use("vim-scripts/pylint.vim")
+
+    -- adds various text objects to give you more targets to operate on
+		use("wellle/targets.vim")
+    -- Jump to any location specified by two characters.
 		use({
 			"justinmk/vim-sneak",
 			config = function()
 				require("plugins.sneak")
 			end,
 		})
-		use("shmup/vim-sql-syntax")
+
 		use("tpope/vim-surround")
+		use("tpope/vim-unimpaired")
+
+
+		--use({ "kana/vim-textobj-user", requires = { "whatyouhide/vim-textobj-xmlattr" } })
+
+		use("shmup/vim-sql-syntax")
 		use("godlygeek/tabular")
-		use({
-			"preservim/tagbar",
+
+    -- like tagbar, but in lua
+    use ({'simrat39/symbols-outline.nvim',
 			config = function()
-				require("plugins.tagbar")
+				require("plugins.symbols-outline")
 			end,
-		})
-		use("wellle/targets.vim")
+    })
+
 		use({
 			"janko-m/vim-test",
 			config = function()
 				require("plugins.test")
 			end,
 		})
-		use({ "kana/vim-textobj-user", requires = { "whatyouhide/vim-textobj-xmlattr" } })
 
-		use("tpope/vim-unimpaired")
 		use("hashivim/vim-vagrant")
 		use({
 			"lervag/vimtex",
@@ -402,12 +420,14 @@ return packer.startup({
 
 	config = {
 		compile_path = vim.fn.stdpath("config") .. "/plugin/packer_compiled.lua",
+    max_jobs = 16,
 		display = {
-			open_fn = require("packer.util").float,
+			open_fn = nil
+			-- open_fn = require("packer.util").float,
 		},
 		profile = {
 			-- PackerCompile profile=true then reopen nvim and run :PackerProfile
-			enable = false,
+			enable = true,
 			threshold = 0.1, -- the amount in ms that a plugins load time must be over for it to be included in the profile
 		},
 	},

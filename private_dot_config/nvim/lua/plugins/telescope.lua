@@ -8,6 +8,9 @@ local default_options = { noremap = true, silent = true }
 
 -- Telescope
 -- tab-V/S/A are taken by toggle-lsp plugin
+
+map("n", "<Tab>i", ":Telescope current_buffer_fuzzy_find fuzzy=true<CR>", default_options)
+
 map("n", "<Tab>r", ":Telescope buffers<CR>", default_options)
 map("n", "<Tab>e", ":Telescope live_grep<CR>", default_options)
 -- map("n", "<Tab>e", ":Telescope grep_string search='' only_sort_text=true<CR>", default_options) -- doesnt find stuff
@@ -35,7 +38,7 @@ map("n", "<Tab>gr", ":Telescope git_branches<CR>", default_options)
 map("n", "<Tab>gs", ":Telescope git_status<CR>", default_options)
 
 -- Treesitter picker
-map("n", "<Tab>va", ":Telescope treesitter<CR>", default_options)
+map("n", "<Tab>vt", ":Telescope treesitter<CR>", default_options)
 
 -- Vim pickers
 map("n", "<Tab>va", ":Telescope autocommands<CR>", default_options)
@@ -43,9 +46,9 @@ map("n", "<Tab>vr", ":Telescope registers<CR>", default_options)
 map("n", "<Tab>vo", ":Telescope vim_options<CR>", default_options)
 
 -- LSP pickers
-map("n", "<Tab>lr", ":Telescope lsp_references<CR>", default_options)
-map("n", "<Tab>ld", ":Telescope lsp_document_symbols<CR>", default_options)
-map("n", "<Tab>lc", ":Telescope lsp_code_actionsjCR>", default_options)
+map("n", "<Localleader>r", ":Telescope lsp_references<CR>", default_options)
+map("n", "<Tab>b", ":Telescope lsp_workspace_symbols<CR>", default_options)
+map("n", "<Localleader>a", ":Telescope lsp_code_actions<CR>", default_options)
 
 
 -- map("n", "<leader>pw", ":lua require(\"telescope.builtin\").grep_string({search=vim.fn.expand(\"<cword>\")})<CR>", default_options)

@@ -15,7 +15,10 @@ require("mappings")
 require("autocmd")
 
 -- sonokai, zephyr, monokai_pro
-vim.cmd("colorscheme monokai_pro")
+-- vim.cmd("colorscheme monokai_pro")
+-- vim.cmd("colorscheme monokai_pro")
+-- require('monokai').setup { palette = require('monokai').pro }
+
 
 -- load custom snippets. dont remove this.
 require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/lua/luasnippets"})

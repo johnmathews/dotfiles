@@ -26,18 +26,11 @@ else
     au! BufEnter <buffer> match ColorColumn /\%121v.*/
 endif
 
-highlight clear pythonComment
-highlight pythonComment ctermfg=lightyellow guifg=#f1fa8c
-highlight clear DraculaComment
-highlight DraculaComment ctermfg=lightyellow guifg=#f1fa8c
-
 " ====================== YAPF ===========================
 " nnoremap <Leader>y :w<bar>:call system("yapf -i -l ".line(".")."-".line(".")." ".expand('%:p'))<CR><bar>:e<CR>
 nnoremap <Leader>y <ESC>V:!yapf<CR>
 xnoremap <leader>y :!yapf<CR>
 " nnoremap <leader>y :0,$!yapf<Cr>
-
-
 
 " ========== print variable and its value ===============
 vnoremap <buffer> <localleader>p y<esc>oprint(f"--- {<esc>gpa = }")<ESC>
