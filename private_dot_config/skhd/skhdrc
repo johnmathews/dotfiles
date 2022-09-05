@@ -1,10 +1,10 @@
 #!/usr/bin/env sh
 
 
-alt - f     : yabai -m window --toggle zoom-fullscreen
-alt - n     : yabai -m space --create; id="$(yabai -m query --spaces --display | jq '.[-1].index')"; yabai -m window --space $id; yabai -m space --focus $id
-alt - c     : yabai -m window --toggle float; yabai -m window --grid 4:4:1:1:2:2
-alt - space : yabai -m window --toggle float
+alt - f : yabai -m window --toggle zoom-fullscreen
+alt - n : yabai -m space --create; id="$(yabai -m query --spaces --display | jq '.[-1].index')"; yabai -m window --space $id; yabai -m space --focus $id
+alt - c : yabai -m window --toggle float; yabai -m window --grid 4:4:1:1:2:2
+alt - t : yabai -m window --toggle float
 
 # Navigation
 alt - h : yabai -m window --focus west
