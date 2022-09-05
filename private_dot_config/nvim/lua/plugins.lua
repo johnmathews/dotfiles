@@ -90,14 +90,6 @@ return packer.startup({
 			end,
 		})
 
-    -- this breaks <line_number>gg
-    -- use {
-    --   'declancm/cinnamon.nvim',
-    --   config = function() 
-    --     require('plugins.cinnamon') 
-    --   end
-    -- }
-
 		use("dstein64/vim-startuptime")
 
 		use({
@@ -107,6 +99,7 @@ return packer.startup({
 			end,
 		})
 
+    -- neovim entrance screen
 		use({
 			"goolord/alpha-nvim",
 			config = function()
@@ -114,6 +107,7 @@ return packer.startup({
 			end,
 		})
 
+    -- finding the project root and setting it as the working directory
 		use({
 			"ahmedkhalf/project.nvim",
 			config = function()
@@ -121,14 +115,37 @@ return packer.startup({
 			end,
 		})
 
+    -- saving sessions
 		use("tpope/vim-obsession")
 
+    -- resizing windows
 		use({
 			"simeji/winresizer",
 			config = function()
 				vim.cmd([[let g:winresizer_keycode_finish=96 ]])
 			end,
 		})
+
+
+    -- find anything
+		use({
+			"nvim-telescope/telescope.nvim",
+      -- commit = "23e28d066a55a8e33bff33196f7bd65ea3ecbdbe",
+			requires = {
+				"nvim-lua/plenary.nvim",
+				"BurntSushi/ripgrep",
+				"nvim-treesitter/nvim-treesitter",
+        "neovim/nvim-lspconfig",
+			},
+			config = function()
+				require("plugins.telescope")
+			end,
+		})
+    use {
+      'nvim-telescope/telescope-fzf-native.nvim', 
+      run = 'make'
+    }
+
 
     -- the buffer names at the top
 		use({
@@ -148,6 +165,27 @@ return packer.startup({
 			end,
 		})
 
+    -- shows what method or function you're in
+    use {
+      "SmiteshP/nvim-gps",
+      requires = "nvim-treesitter/nvim-treesitter",
+      config = function()
+        require("plugins.gps")
+      end,
+    }
+
+    -- file explorer
+    use({
+      "kyazdani42/nvim-tree.lua",
+			requires = {
+				"kyazdani42/nvim-web-devicons",
+			},
+			config = function()
+				require("plugins.nvim-tree")
+			end,
+		})
+
+    -- comments
 		use({
 			"numToStr/Comment.nvim",
 			requires = {
@@ -159,11 +197,8 @@ return packer.startup({
 			end,
 		})
 
-  
-    -- cmd is the command that triggers the plugin to be loaded.
-    -- need to run :GoUpdateBinaries after installing the plugin
-		use({ "fatih/vim-go"})
 
+    -- use("lukas-reineke/lsp-format.nvim")
 		use({ "neovim/nvim-lspconfig" })
 		use({ "williamboman/nvim-lsp-installer" }) -- simple to use language server installer
 		use({ "tamago324/nlsp-settings.nvim" }) -- language server settings defined in json for
@@ -183,22 +218,23 @@ return packer.startup({
 
     -- creates a copilot server that a cmp source can access (like an lsp server)
     -- cmp is not setup to use this source yet - i cant figure out how to make it work.
-    use {
-      "zbirenbaum/copilot.lua",
-      event = { "VimEnter" },
-      config = function()
-        vim.defer_fn(function()
-          require("plugins.copilot")
-        end, 100)
-      end,
-    }
+    -- use {
+    --   "zbirenbaum/copilot.lua",
+    --   event = { "VimEnter" },
+    --   config = function()
+    --     vim.defer_fn(function()
+    --       require("plugins.copilot")
+    --     end, 100)
+    --   end,
+    -- }
     -- copilot as a cmp completion source
     -- cmp is not setup to use this source yet - i cant figure out how to make it work.
-    use {
-      "zbirenbaum/copilot-cmp",
-      module = "copilot_cmp",
-    }
+    -- use {
+    --   "zbirenbaum/copilot-cmp",
+    --   module = "copilot_cmp",
+    -- }
 
+    -- completions
 		use({
 			"hrsh7th/nvim-cmp",
 			requires = {
@@ -213,17 +249,20 @@ return packer.startup({
 				require("plugins.cmp")
 			end,
 		})
+    -- snippets in cmp completion window
+    use "saadparwaiz1/cmp_luasnip"
 
-		use({ "romainl/vim-qf" })
-  
-    use "saadparwaiz1/cmp_luasnip" -- snippet completions
-
+    -- snippets engine
 		use({ "L3MON4D3/LuaSnip" })
+
+    -- library of snippets
 		use({ "rafamadriz/friendly-snippets" })
 
+    -- tame the quickfix window
+		use({ "romainl/vim-qf" })
+  
 
-    -- python syntax highlighting
-		-- use({ "numirias/semshi" })
+
 
 		use({
 			"nvim-treesitter/nvim-treesitter",
@@ -237,24 +276,38 @@ return packer.startup({
 		})
 
 		use({
-			"p00f/nvim-ts-rainbow",
-			config = function()
-				require("plugins.rainbow")
-			end,
-		})
-
-		use("townk/vim-autoclose")
-
-		use({
 			"skywind3000/asyncrun.vim",
 			config = function()
 				require("plugins.asyncrun")
 			end,
 		})
 
-		use("chrisbra/csv.vim")
+		use({
+			"p00f/nvim-ts-rainbow",
+			config = function()
+				require("plugins.rainbow")
+			end,
+		})
 
-		use("ekalinin/Dockerfile.vim")
+		use({
+			"windwp/nvim-autopairs",
+			config = function()
+				require("plugins.autopairs")
+			end,
+		})
+
+
+    -- OLD
+		-- use("townk/vim-autoclose")
+
+    -- python syntax highlighting
+		-- use({ "numirias/semshi" })
+
+    -- show hexcodes etc with a bg that matches the color they represent
+    -- off by default, use :ColorHighlight! to toggle. see :h colorizer
+		use({ "chrisbra/Colorizer" })
+
+		use("chrisbra/csv.vim")
 
 		use("nvie/vim-flake8")
 
@@ -292,6 +345,7 @@ return packer.startup({
 		use("tpope/vim-projectionist")
 		use("tpope/vim-repeat")
 
+    --  interacting with and manipulating Vim marks
 		use({
 			-- "chentau/marks.nvim",
 			"chentoast/marks.nvim",
@@ -335,6 +389,12 @@ return packer.startup({
 			end,
 		})
 
+  
+    -- cmd is the command that triggers the plugin to be loaded.
+    -- need to run :GoUpdateBinaries after installing the plugin
+    -- for GO language
+		use({ "fatih/vim-go"})
+
 		use("hashivim/vim-vagrant")
 		use({
 			"lervag/vimtex",
@@ -343,41 +403,11 @@ return packer.startup({
 			end,
 		})
 
-		-- use({ "valloric/matchtagalways" })
-		use({
-			"windwp/nvim-autopairs",
-			config = function()
-				require("plugins.autopairs")
-			end,
-		})
+    -- highlights the XML/HTML tags that enclose your cursor location.
+		use({ "valloric/matchtagalways" })
 
-
-		use({
-			"raimon49/requirements.txt.vim",
-			-- config = function()
-			-- 	require("plugins.autopairs")
-			-- end,
-		})
-
-
-		use({
-			"nvim-telescope/telescope.nvim",
-      -- commit = "23e28d066a55a8e33bff33196f7bd65ea3ecbdbe",
-			requires = {
-				"nvim-lua/plenary.nvim",
-				"BurntSushi/ripgrep",
-				"nvim-treesitter/nvim-treesitter",
-        "neovim/nvim-lspconfig",
-			},
-			config = function()
-				require("plugins.telescope")
-			end,
-		})
-
-    use {
-      'nvim-telescope/telescope-fzf-native.nvim', 
-      run = 'make'
-    }
+    -- syntax highlighting for requirements.txt files
+		use("raimon49/requirements.txt.vim")
 
     use {
       'pearofducks/ansible-vim', 
@@ -386,31 +416,8 @@ return packer.startup({
 			end,
     }
 
+		use("ekalinin/Dockerfile.vim")
 
-    use {
-      "matbme/JABS.nvim",
-      config = function()
-        require("plugins.jabs")
-      end,
-    }
-
-    use {
-      "SmiteshP/nvim-gps",
-      requires = "nvim-treesitter/nvim-treesitter",
-      config = function()
-        require("plugins.gps")
-      end,
-    }
-
-    use({
-      "kyazdani42/nvim-tree.lua",
-			requires = {
-				"kyazdani42/nvim-web-devicons",
-			},
-			config = function()
-				require("plugins.nvim-tree")
-			end,
-		})
 
 		if PACKER_BOOTSTRAP then
 			require("packer").sync()

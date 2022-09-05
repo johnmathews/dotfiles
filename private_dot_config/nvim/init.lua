@@ -9,7 +9,6 @@ require("options")
 require("plugins.lsp")
 require("plugins")
 
-
 require("functions")
 require("mappings")
 require("autocmd")
@@ -23,4 +22,4 @@ require("autocmd")
 -- load custom snippets. dont remove this.
 require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/lua/luasnippets"})
 
-vim.cmd[[highlight CopilotSuggestion guifg=#555555 ctermfg=3]]
+-- vim.cmd[[highlight CopilotSuggestion guifg=#555555 ctermfg=3]]

@@ -39,6 +39,18 @@ monokai.setup {
     diff_text = '#23324d',
   },
   custom_hlgroups = {
+
+    CopilotSuggestion = {
+      fg = palette.base0,
+      bg = palette.green,
+    },
+
+    -- hrsh7th/nvim-cmp
+    CmpDocumentation = { 
+      fg = palette.white,
+      bg = palette.base1 
+    },
+
     TSInclude = {
       fg = palette.aqua,
     },
@@ -55,9 +67,39 @@ monokai.setup {
       bg = palette.base2
     },
 
-    -- my edits
+    -- background, and normal text
+    normal = { 
+      fg = palette.white,
+      bg = palette.black 
+    },
+
+    MatchParen = { 
+      fg = palette.black,
+      bg = palette.yellow 
+    },
+
+    -- rainbow colors for matching pairs of parentheses
+    rainbowcol1 = {
+      fg = 'red',
+    },
+    rainbowcol2 = {
+      fg = palette.yellow,
+    },
+    rainbowcol3 = {
+      fg = palette.green,
+    },
+    rainbowcol4 = {
+      fg = palette.yellow,
+    },
+    rainbowcol5 = {
+      fg = palette.red,
+    },
+    rainbowcol6 = {
+      fg = palette.aqua,
+    },
     LineNr = {
-      fg = palette.base8,
+      fg = palette.green,
+      -- fg = palette.base8,
     },
     Comment = {
       fg = palette.aqua,
@@ -149,9 +191,5 @@ monokai.setup {
       fg = palette.yellow,
     },
 
-    -- hrsh7th/nvim-cmp
-    CmpDocumentation = { 
-      fg = palette.white, bg = palette.base1 
-    }
   }
 }

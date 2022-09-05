@@ -1,3 +1,6 @@
+-- following options are the default
+-- each of these are documented in `:help nvim-tree.OPTION_NAME`
+
 local status_ok, nvim_tree = pcall(require, "nvim-tree")
 if not status_ok then
   return
@@ -10,44 +13,11 @@ end
 
 local tree_cb = nvim_tree_config.nvim_tree_callback
 
-
 vim.cmd("let g:nvim_tree_width = 40")
-
 
 local map = vim.api.nvim_set_keymap
 local default_options = { noremap = true, silent = true }
 map("n", "<Leader>n", ":NvimTreeFindFileToggle<cr>", default_options)
-
-
--- following options are the default
--- each of these are documented in `:help nvim-tree.OPTION_NAME`
--- vim.g.nvim_tree_icons = {
---   default = "",
---   symlink = "",
---   git = {
---     unstaged = "",
---     staged = "S",
---     unmerged = "",
---     renamed = "➜",
---     deleted = "",
---     untracked = "U",
---     ignored = "◌",
---   },
---   folder = {
---     -- arrow_open = " ",
---     -- arrow_closed = "",
---     default = "",
---     open = "",
---     empty = "",
---     empty_open = "",
---     symlink = "",
---   },
--- }
-
--- vim.g.nvim_tree_highlight_opened_files = 3
-
--- https://github.com/ahmedkhalf/project.nvim
--- vim.g.nvim_tree_respect_buf_cwd = 1
 
 nvim_tree.setup {
   -- https://github.com/ahmedkhalf/project.nvim
@@ -68,8 +38,6 @@ nvim_tree.setup {
           ignored = "◌",
         },
         folder = {
-          -- arrow_open = " ",
-          -- arrow_closed = "",
           default = "",
           open = "",
           empty = "",
@@ -84,9 +52,7 @@ nvim_tree.setup {
   hijack_netrw = true,
   open_on_setup = true,
   ignore_ft_on_setup = {
-    -- "alpha",
-    -- "startify",
-    -- "dashboard",
+    "alpha",
   },
   open_on_tab = false,
   hijack_cursor = true,
@@ -94,16 +60,7 @@ nvim_tree.setup {
     enable = true,
     auto_open = true,
   },
-  -- this is for opening a file with they system file opener (e.g. finder).
-  -- system_open = {
-  --  cmd = nil,
-  --  args = {},
-  -- },
   update_cwd = false,
-  -- update_to_buf_dir = {
-  --   enable = true,
-  --   auto_open = true,
-  -- },
   diagnostics = {
     enable = false,
     icons = {
@@ -129,13 +86,12 @@ nvim_tree.setup {
   },
   view = {
     width = 40,
-    -- height = 30,
     hide_root_folder = false,
     side = "left",
-    -- auto_resize = true,
     mappings = {
       custom_only = false,
       list = {
+        { key = "?", action = "toggle_help" },
         { key = { "l", "<CR>", "o" }, action = "edit" },
         { key = "h", action = "close_node" },
         { key = "v", action = "vsplit" },

@@ -4,9 +4,10 @@ if not status_ok then
 end
 
 local map = vim.api.nvim_set_keymap
+
+-- invert commenting of visually selected lines
 -- https://github.com/numToStr/Comment.nvim/issues/17#issuecomment-939410954
 map("v", "gci", ":normal gcc<cr>",  { noremap = true, silent = true })
-
 
 -- Add support for Dockerfile comments
 -- https://github.com/numToStr/Comment.nvim#%EF%B8%8F-filetypes--languages
@@ -77,7 +78,6 @@ setup = {
   },
 
 
-  ---@param ctx Ctx
   pre_hook = function(ctx)
     -- Only calculate commentstring for tsx filetypes
     if vim.bo.filetype == 'typescriptreact' then
