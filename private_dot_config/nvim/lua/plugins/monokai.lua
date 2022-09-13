@@ -1,15 +1,13 @@
--- require('monokai').setup {}
--- require('monokai').setup { palette = require('monokai').pro }
-
-
 local status_ok, monokai = pcall(require, "monokai")
 if not status_ok then
   return
 end
 
+-- pro, soda, ristretto
 local palette = monokai.pro
 
 monokai.setup {
+
   palette = {
     name = 'monokai_pro',
     base0 = '#222426',
@@ -38,8 +36,8 @@ monokai.setup {
     diff_change = '#27406b',
     diff_text = '#23324d',
   },
-  custom_hlgroups = {
 
+  custom_hlgroups = {
     CopilotSuggestion = {
       fg = palette.base0,
       bg = palette.green,

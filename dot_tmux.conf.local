@@ -443,15 +443,15 @@ bind z last-window
 bind f split-window -v "tmux list-sessions | sed -E 's/:.*$//' | grep -v \"^$(tmux display-message -p '#S')\$\" | fzf --reverse | xargs tmux switch-client -t"
 
 # and now unbind keys
-unbind Up     
-unbind Down   
-unbind Left   
-unbind Right  
+unbind Up
+unbind Down
+unbind Left
+unbind Right
 
-unbind h     
-unbind j     
-unbind k     
-unbind l     
+unbind h
+unbind j
+unbind k
+unbind l
 
 # pane resizing  
 # -r means the key can repeat
