@@ -226,7 +226,7 @@
 	autocrlf = false
 	preloadindex = true
 	fscache = true
-	symlinks = false
+	symlinks = true
 	longpaths = true
 
 [interactive]
