@@ -1,6 +1,5 @@
 #!/usr/bin/env sh
 
-
 alt - f : yabai -m window --toggle zoom-fullscreen
 alt - n : yabai -m space --create; id="$(yabai -m query --spaces --display | jq '.[-1].index')"; yabai -m window --space $id; yabai -m space --focus $id
 alt - c : yabai -m window --toggle float; yabai -m window --grid 4:4:1:1:2:2
@@ -11,7 +10,6 @@ alt - h : yabai -m window --focus west
 alt - j : yabai -m window --focus south
 alt - k : yabai -m window --focus north
 alt - l : yabai -m window --focus east
-
 
 # close tabs in browser
 # alt - r
@@ -25,6 +23,7 @@ alt - 3 : yabai -m space --focus 3
 alt - 4 : yabai -m space --focus 4
 alt - 5 : yabai -m space --focus 5
 alt - 6 : yabai -m space --focus 6
+alt - 7 : yabai -m space --focus 7
 
 # Moving windows
 alt + shift - h : yabai -m window --warp west
@@ -39,6 +38,7 @@ alt + shift - 3 : yabai -m window --space 3
 alt + shift - 4 : yabai -m window --space 4
 alt + shift - 5 : yabai -m window --space 5
 alt + shift - 6 : yabai -m window --space 6
+alt + shift - 7 : yabai -m window --space 7
 
 # Move app to workspace and follow
 # meh 
@@ -48,6 +48,7 @@ alt + shift + ctrl - 3 : yabai -m window --space 3; yabai -m space --focus 3
 alt + shift + ctrl - 4 : yabai -m window --space 4; yabai -m space --focus 4
 alt + shift + ctrl - 5 : yabai -m window --space 5; yabai -m space --focus 5
 alt + shift + ctrl - 6 : yabai -m window --space 6; yabai -m space --focus 6
+alt + shift + ctrl - 7 : yabai -m window --space 6; yabai -m space --focus 7
 
 # Resize windows
 alt + ctrl - h : yabai -m window --resize left:-100:0 ; yabai -m window --resize right:-100:0
@@ -60,6 +61,3 @@ alt + shift + ctrl - h : yabai -m window --insert west
 alt + shift + ctrl - j : yabai -m window --insert south
 alt + shift + ctrl - k : yabai -m window --insert north
 alt + shift + ctrl - l : yabai -m window --insert east
-
-
-
