@@ -5,9 +5,7 @@
 sudo yabai --load-sa
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 
-
-# !*!*! THE KEYBOARD COMMANDS THEMSELVES ARE IN SKHD/SKHDRC !*!*!
-
+# !*!*! keyboard commands are in skhd/skhdrc !*!*!
 
 # ===========================================================================================
 # YABAI CONFIGURATION
@@ -69,7 +67,7 @@ setup_space 6 calendar
 setup_space 7 messages
 
 # clean up spaces with index greater than $MAX_SPACES
-for idx in $(yabai -m query --spaces | jq '.[].index | select(. > 6)' | sort -nr); do
+for idx in $(yabai -m query --spaces | jq '.[].index | select(. > 7)' | sort -nr); do
   yabai -m space --destroy "$idx"
 done
 
