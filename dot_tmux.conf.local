@@ -1,5 +1,4 @@
 # : << EOF
-
 # https://github.com/gpakosz/.tmux
 # (‑●‑●)> dual licensed under the WTFPL v2 license and the MIT license,
 #         without any warranty.
@@ -439,7 +438,7 @@ bind S switch-client -l
 
 bind z last-window
 
-# Make C-w display a selectable list of sessions
+# Make C-f display a selectable list of sessions
 bind f split-window -v "tmux list-sessions | sed -E 's/:.*$//' | grep -v \"^$(tmux display-message -p '#S')\$\" | fzf --reverse | xargs tmux switch-client -t"
 
 # and now unbind keys
