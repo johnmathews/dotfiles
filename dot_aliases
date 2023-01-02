@@ -102,7 +102,7 @@ alias ls="exa -lh --git --group-directories-first"
 alias la="echo 'detailed listing of all files and dirs inlcuding hidden files:';exa -lah --git --group-directories-first"
 alias lsa="la"
 
-alias ld="echo 'list normal directories, excluding hidden dirs\n'; exa --long --git --tree --level=0 */"
+alias lds="echo 'list normal directories, excluding hidden dirs\n'; exa --long --git --tree --level=0 */"
 alias lsd="ld"
 
 alias lda="echo 'list all directories, including hidden dirs\n'; exa --long --git --tree --level=0 {*/,.*/}"

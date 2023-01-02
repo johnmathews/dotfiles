@@ -198,7 +198,7 @@
 	insteadOf = "gist:"
 [user]
 	name = John Mathews
-	email = john.mathews@partner.air-up.com
+	email = john.mathews@air-up.com
 	signingkey = A8BB6EB3
 [credential]
 	helper = osxkeychain
