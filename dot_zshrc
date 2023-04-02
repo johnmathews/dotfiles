@@ -58,10 +58,10 @@ plugins=(
     # minikube
     pep8 # completion for pep8 python coding style
     pip # completion for pip commands
-    vi-mode # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/vi-mode
+    # vi-mode # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/vi-mode
+    zsh-vi-mode # https://github.com/jeffreytse/zsh-vi-mode
     zsh-autosuggestions
     zsh-syntax-highlighting
-    # zsh-vi-mode # https://github.com/jeffreytse/zsh-vi-mode
 )
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
@@ -109,6 +109,9 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 [[ ! -f /Users/$USER/.config/broot/launcher/bash/br ]] || source /Users/$USER/.config/broot/launcher/bash/br 
 [[ ! -f /Users/$USER/Library/Preferences/org.dystroy.broot/launcher/bash/br ]] || source /Users/$USER/Library/Preferences/org.dystroy.broot/launcher/bash/br 
 
+# forgit https://github.com/wfxr/forgit - clashes with omz git plugin keybinds
+# [ -f ~/.forgit/forgit.plugin.zsh ] && source ~/.forgit/forgit.plugin.zsh
+
 # kubernetes
 source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
 PS1='$(kube_ps1)'$PS1
@@ -134,7 +137,7 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
 
 # https://github.com/jeffreytse/zsh-vi-mode#custom-escape-key
 # Only changing the escape key to `jk` in insert mode, we still
-# keep using the default keybindings `^[` in other modes
+# .p10k.zsh provides config for prompt styling
 ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
 
 # vi-mode

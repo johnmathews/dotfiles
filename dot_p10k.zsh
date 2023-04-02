@@ -35,10 +35,10 @@
   # The list of segments shown on the left. Fill it with the most important segments.
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
     # =========================[ Line #1 ]=========================
+    vi_mode                 # vi mode (you don't need this if you've enabled prompt_char)
     context                 # user@hostname
     time
     command_execution_time  # duration of the last command
-    vi_mode                 # vi mode (you don't need this if you've enabled prompt_char)
     # os_icon               # os identifier
     dir                     # current directory
     # virtual_env_name
@@ -233,7 +233,7 @@
   # Default prompt symbol.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIINS_CONTENT_EXPANSION='❯'
   # Prompt symbol in command vi mode.
-  typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VICMD_CONTENT_EXPANSION='❮'
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VICMD_CONTENT_EXPANSION='N'
   # Prompt symbol in visual vi mode.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIVIS_CONTENT_EXPANSION='Ⅴ'
   # Prompt symbol in overwrite vi mode.

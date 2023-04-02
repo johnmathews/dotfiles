@@ -228,6 +228,7 @@
 	fscache = true
 	symlinks = true
 	longpaths = true
+	ignorecase = false
 
 [interactive]
 	diffFilter = "diff-so-fancy --patch"

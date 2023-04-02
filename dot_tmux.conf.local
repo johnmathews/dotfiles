@@ -435,6 +435,7 @@ bind p previous-window
 bind N switch-client -p
 bind P switch-client -n
 bind S switch-client -l
+bind s choose-tree -swZ -O name
 
 bind z last-window
 
