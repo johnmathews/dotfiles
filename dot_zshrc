@@ -140,6 +140,9 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
 # .p10k.zsh provides config for prompt styling
 ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
 
+# https://github.com/jeffreytse/zsh-vi-mode#execute-extra-commands
+zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh')
+
 # vi-mode
 # bindkey -v
 bindkey "jk" vi-cmd-mode
