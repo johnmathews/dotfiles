@@ -102,7 +102,7 @@ tmux_conf_theme_window_bg="default"
 tmux_conf_theme_highlight_focused_pane=true
 
 # focused pane colours:
-tmux_conf_theme_focused_pane_bg="$tmux_conf_theme_colour_1"
+tmux_conf_theme_focused_pane_bg="$tmux_conf_theme_colour_2"
 
 # pane border style, possible values are:
 #   - thin (default)
@@ -408,6 +408,7 @@ bind p previous-window
 
 bind N switch-client -p
 bind P switch-client -n
+bind S switch-client -l
 
 bind z last-window
 
@@ -473,3 +474,14 @@ set -g pane-border-status top
 set -g pane-border-format "#{pane_index} #T #{pane_current_command}"
 bind-key -T prefix R send-keys "renamePane" C-m
 
+# if run as "tmux attach", create a session if one does not already exist - https://unix.stackexchange.com/questions/103898/how-to-start-tmux-with-attach-if-a-session-exists
+new-session -n $HOST
+
+set -g default-terminal "xterm-256color"
+set -ga terminal-overrides ",-256color:Tc"
+
+
+# Undercurl - https://github.com/folke/lsp-colors.nvim
+# set -g default-terminal "${TERM}"
+set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'  # undercurl support
+set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colours - needs tmux-3.0

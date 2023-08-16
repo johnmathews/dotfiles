@@ -13,8 +13,8 @@
 export LC_ALL=en_US.utf-8 
 export LANG="$LC_ALL"
 export ZSH=$HOME/.oh-my-zsh
-export EDITOR=vi
-export VISUAL=vi
+export EDITOR=nvim
+export VISUAL=nvim
 
 export FZF_BASE="~/.fzf/install"
 
@@ -34,7 +34,7 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH:/usr/sbin
 
 if [ "$(uname)" = "Darwin" ]; then
   # add Google Cloud Platform CLI tools to PATH
-  source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
+  # source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
 
   export PATH="$HOME/.cargo/bin:$PATH"
   source "$HOME/.cargo/env"
@@ -78,7 +78,6 @@ export PKG_CONFIG_PATH="${PKG_CONFIG_PATH} /usr/local/opt/zlib/lib/pkgconfig"
 # bat configuration file location
 export BAT_CONFIG_PATH="~/.dotfiles/bat.conf"
 export BAT_THEME="ansi-dark"
-export TERM="xterm-256color"
 
 # virtualenvwrapper
 # export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
@@ -111,3 +110,9 @@ if [ "$(uname)" = "Linux" ]; then
     export FZF_BASE=" /home/linuxbrew/.linuxbrew/opt/fzf/install "
 fi
 
+. "$HOME/.cargo/env"
+
+# 1PASSWORD - isn't practical because you have to authenticate _everytime_
+# OP_BIOMETRIC_UNLOCK_ENABLED=false
+# export OPENAI_API_KEY=$(op item get "OpenAI API Key" --fields "api key")
+source ~/.api_keys_tokens_passwords_very_private

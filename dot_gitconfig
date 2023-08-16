@@ -197,7 +197,7 @@
 
 	insteadOf = "gist:"
 [user]
-	name = johnmathews
+	name = John Mathews
 	email = mthwsjc@gmail.com
 	signingkey = A8BB6EB3
 [credential]

@@ -105,7 +105,7 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 # PS1='$(kube_ps1)'$PS1
 
 # Google Cloud Platform (GCP) shell command completion - use it instead of the plugin because this is updated more frequently
-source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
+# source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
 
 # colors for ls commands
 source ~/.zsh/zsh-dircolors-solarized/zsh-dircolors-solarized.zsh
@@ -155,3 +155,10 @@ bindkey "^q" push-line-or-edit
 fpath=(/opt/vagrant/embedded/gems/2.2.16/gems/vagrant-2.2.16/contrib/zsh $fpath)
 compinit
 # <<<<  Vagrant command completion (end)
+source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+eval "$(direnv hook zsh)"
