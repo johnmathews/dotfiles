@@ -115,4 +115,4 @@ fi
 # 1PASSWORD - isn't practical because you have to authenticate _everytime_
 # OP_BIOMETRIC_UNLOCK_ENABLED=false
 # export OPENAI_API_KEY=$(op item get "OpenAI API Key" --fields "api key")
-source ~/.api_keys_tokens_passwords_very_private
+source ~/.config/.api_keys_tokens_passwords_very_private

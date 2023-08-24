@@ -1,7 +1,3 @@
-#!/usr/bin/env zsh
-# vim:syntax=zsh
-# vim:filetype=zsh
-
 # `.zlogin' is sourced in login shells. It should contain commands that should be executed only in login shells.
 # `.zlogin' is not the place for alias definitions, options, environment variable settings, etc.;
 # as a general rule, it should not change the shell environment at all. Rather, it should be used to set the terminal type and run a series of external commands (fortune, msgs, etc).
@@ -24,12 +20,7 @@
     zrecompile -pq ${ZDOTDIR:-${HOME}}/.zprofile
     zrecompile -pq ${ZDOTDIR:-${HOME}}/.zshenv
 
-    # # recompile all zsh or sh
-    # for f in $ZSHCONFIG/**/*.*sh
-    # do
-    #     zrecompile -pq $f
-    # done
+    export PYENV_ROOT="$HOME/.pyenv"
+
+    export PATH="$HOME/.local/bin:$PATH"
 ) &!
-
-
-#eval "$(rbenv init -)"
