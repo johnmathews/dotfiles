@@ -1,15 +1,21 @@
+# vim: ft=zsh:
 
 # Vim not vi so that macvim compile options are used (for vimwiki links)
 alias vi="nvim"
 
-# open vim in read only mode
-# alias ri="vim -R"
-# alias rim="vim -R"
-
-# can't use <C-K> in tmux.
 alias cl="clear"
+alias b="clear"
 # alias c="clear" # c has another (removed) alias below
 
+# Reload the shell (i.e. invoke as a login shell)
+alias reload="exec $SHELL -l"
+
+# TODO
+alias todo='grep -rHn "TODO" --exclude="*.{.pyc,.swp,}" --exclude-dir={.git,htmlcov,}'
+
+#PostgreSQL start/stop server 
+alias pg_start="launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
+alias pg_stop="launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
 
 alias an="ansible"
 alias cm="chezmoi"
@@ -27,15 +33,6 @@ alias edit="open -a MacVim.app $1"
 # italic text in terminal
 # https://weibeld.net/terminals-and-shells/italics.html
 alias ssh="TERM=xterm-256color ssh"
-
-# games
-alias tetris="emacs -q --no-splash -f tetris"
-alias doctor="emacs -q --no-splash -f doctor"
-alias dunnet="emacs -q --no-splash -f dunnet"
-alias life="emacs -q --no-splash -f life"
-alias pong="emacs -q --no-splash -f pong"
-alias snake="emacs -q --no-splash -f snake"
-alias solitaire="emacs -q --no-splash -f solitaire"
 
 alias wtf="wtfutil"
 
@@ -55,6 +52,7 @@ alias ctags="`brew --prefix`/bin/ctags"
 
 
 # Easier navigation: .., ..., ...., ....., ~ and -
+alias c="cd"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
@@ -176,17 +174,12 @@ alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.ar
 # Usage: `mergepdf -o output.pdf input{1,2,3}.pdf`
 alias mergepdf='/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Resources/join.py'
 
-# Disable Spotlight
-alias spotoff="sudo mdutil -a -i off"
-# Enable Spotlight
-alias spoton="sudo mdutil -a -i on"
-
 # PlistBuddy alias, because sometimes `defaults` just doesn’t cut it
 alias plistbuddy="/usr/libexec/PlistBuddy"
 
-# Ring the terminal bell, and put a badge on Terminal.app’s Dock icon
+# Ring the terminal bell, and put a bell on Terminal.app’s Dock icon
 # (useful when executing time-consuming commands)
-alias badge="tput bel"
+alias bell="tput bel"
 
 # Intuitive map function
 # For example, to list all directories that contain a certain file:
@@ -209,25 +202,4 @@ alias pumpitup="osascript -e 'set volume 7'"
 # [C] explained: http://www.commandlinefu.com/commands/view/402/exclude-grep-from-your-grepped-output-of-ps-alias-included-in-description
 alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2 | xargs kill"
 
-# Lock the screen (when going AFK)
-alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
-
-# Reload the shell (i.e. invoke as a login shell)
-alias reload="exec $SHELL -l"
-
-# list blog articles
-# use single quotes to evaluate variables when alias is used, not when shell first loads
-alias ba='dir=$(pwd) && cd ~/projects/websites/blog.johnmathews.eu/content/articles && ls -1atr **.{md,ipynb,ipynb-meta} && cd $dir'
-
-# hollywood toy. needs docker
-alias hw='docker run -it jess/hollywood'
-
 alias clock='watch -n1 "date '+%D%n%T'|figlet -k"'
-
-#PostgreSQL start/stop server 
-alias pg_start="launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
-alias pg_stop="launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
-
-
-# TODO
-alias todo='grep -rHn "TODO" --exclude="*.{.pyc,.swp,}" --exclude-dir={.git,htmlcov,}'
