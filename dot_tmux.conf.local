@@ -389,10 +389,14 @@ set -g @plugin 'tmux-plugins/tmux-cpu'
 set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'tmux-plugins/tmux-continuum'
 
+# https://github.com/tmux-plugins/tmux-continuum/blob/master/docs/automatic_start.md
 set -g @continuum-restore 'on'
+set -g @continuum-boot 'on'
+set -g @continuum-boot-options 'iterm,fullscreen'
+set -g @continuum-save-interval '60'
 set -g @resurrect-strategy-vim 'session'
+set -g @resurrect-strategy-nvim 'session'
 set -g @resurrect-capture-pane-contents 'on'
-
 
 # MY STUFF
 
@@ -485,3 +489,15 @@ set -ga terminal-overrides ",-256color:Tc"
 # set -g default-terminal "${TERM}"
 set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'  # undercurl support
 set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colours - needs tmux-3.0
+
+# swap (or move) window
+# https://superuser.com/questions/343572/how-do-i-reorder-tmux-windows
+bind-key -n C-S-Left swap-window -t -1
+bind-key -n C-S-Right swap-window -t +1
+bind-key T swap-window -t 1
+
+# sort sessions alphabetically by name https://stackoverflow.com/questions/17891867/how-to-reorder-tmux-sessions/63854302#63854302
+set -g choose-tree -sZ
+
+# NOTE tmux kill-server will restart
+

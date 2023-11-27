@@ -57,11 +57,11 @@
     status                  # exit code of the last command
     # command_execution_time  # duration of the last command
     background_jobs         # presence of background jobs
-    direnv                  # direnv status (https://direnv.net/)
     asdf                    # asdf version manager (https://github.com/asdf-vm/asdf)
     # virtualenv            # python virtual environment (https://docs.python.org/3/library/venv.html)
     anaconda                # conda environment (https://conda.io/)
     pyenv                   # python environment (https://github.com/pyenv/pyenv)
+    direnv                  # direnv status (https://direnv.net/)
     goenv                   # go environment (https://github.com/syndbg/goenv)
     nodenv                  # node.js version from nodenv (https://github.com/nodenv/nodenv)
     nvm                     # node.js version from nvm (https://github.com/nvm-sh/nvm)
@@ -557,10 +557,10 @@
 
   #######################[ direnv: direnv status (https://direnv.net/) ]########################
   # Direnv color.
-  # typeset -g POWERLEVEL9K_DIRENV_FOREGROUND=3
-  # typeset -g POWERLEVEL9K_DIRENV_BACKGROUND=0
+  typeset -g POWERLEVEL9K_DIRENV_FOREGROUND=3
+  typeset -g POWERLEVEL9K_DIRENV_BACKGROUND=0
   # Custom icon.
-  # typeset -g POWERLEVEL9K_DIRENV_VISUAL_IDENTIFIER_EXPANSION='⭐'
+  typeset -g POWERLEVEL9K_DIRENV_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
   ###############[ asdf: asdf version manager (https://github.com/asdf-vm/asdf) ]###############
   # Default asdf color. Only used to display tools for which there is no color override (see below).
@@ -882,7 +882,7 @@
  
   
   typeset -g POWERLEVEL9K_VIRTUALENV_BACKGROUND=083 
-  typeset -g POWERLEVEL9K_VIRTUALENV_SHOW_PYTHON_VERSION=false
+  typeset -g POWERLEVEL9K_VIRTUALENV_SHOW_PYTHON_VERSION=true
   # Separate environment name from Python version only with a space.
   typeset -g POWERLEVEL9K_VIRTUALENV_{LEFT,RIGHT}_DELIMITER=
   # Custom icon.
@@ -893,7 +893,7 @@
   # typeset -g POWERLEVEL9K_ANACONDA_FOREGROUND=0
   # typeset -g POWERLEVEL9K_ANACONDA_BACKGROUND=4
   # Don't show Python version next to the anaconda environment name.
-  typeset -g POWERLEVEL9K_ANACONDA_SHOW_PYTHON_VERSION=false
+  typeset -g POWERLEVEL9K_ANACONDA_SHOW_PYTHON_VERSION=true
   # Separate environment name from Python version only with a space.
   typeset -g POWERLEVEL9K_ANACONDA_{LEFT,RIGHT}_DELIMITER=
   # Custom icon.

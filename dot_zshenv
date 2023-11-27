@@ -1,7 +1,6 @@
 # ====== .zshenv ======
 # ENVIRONMENT VARIABLES
-# $PATH
-# should be set in this file..
+# $PATH should be set in this file..
 #
 # sourced on all invocations of the shell, unless the -f option is set.
 # should contain commands to set the command search path plus other important environment variables.
@@ -19,6 +18,7 @@ export VISUAL=nvim
 export FZF_BASE="~/.fzf/install"
 
 export PATH="/usr/local/sbin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -74,19 +74,6 @@ export PKG_CONFIG_PATH="${PKG_CONFIG_PATH} /usr/local/opt/zlib/lib/pkgconfig"
 
 # For pkg-config to find zlib you may need to set:
 export PKG_CONFIG_PATH="${PKG_CONFIG_PATH} /usr/local/opt/zlib/lib/pkgconfig"
-
-# bat configuration file location
-export BAT_CONFIG_PATH="~/.dotfiles/bat.conf"
-export BAT_THEME="ansi-dark"
-
-# virtualenvwrapper
-# export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-# export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
-# export WORKON_HOME=$HOME/.virtualenvs
-# export PROJECT_HOME=$HOME/Devel
-# export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
-# export PYTHON_CONFIGURE_OPTS="--enable-shared"
-# export VIRTUALENVWRAPPER_WORKON_CD=1
 
 # For compilers to find zlib you may need to set:
 # turn off for pyenv install
