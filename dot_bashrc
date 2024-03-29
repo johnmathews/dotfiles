@@ -55,3 +55,6 @@ source /Users/jm943l/.config/broot/launcher/bash/br
 . "$HOME/.cargo/env"
 
 source /Users/john/Library/Application Support/org.dystroy.broot/launcher/bash/br
+
+[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
+eval "$(atuin init bash)"

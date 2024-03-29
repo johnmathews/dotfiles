@@ -5,9 +5,10 @@ alias vi="nvim"
 
 alias cl="clear"
 alias b="clear"
-# alias c="clear" # c has another (removed) alias below
+alias readme="vi readme.md"
 
 # Reload the shell (i.e. invoke as a login shell)
+# note this is not `alias reset`. `reset` is a binary. see `man reset`
 alias reload="exec $SHELL -l"
 
 # Always enable colored `grep` output
@@ -26,7 +27,7 @@ alias pg_stop="launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.
 alias an="ansible"
 alias cm="chezmoi"
 
-# this is a -global alias. type `cm aa` to get chezmoi status, and then add each of the files that have been changed. 
+# this is a -global alias. type `cm status` to get chezmoi status, and then add each of the files that have been changed. 
 # Add Again - aa - seems better
 alias -g aa="status | cut -c 4- | xargs -I % -p sh -c 'chezmoi add ~/%'"
 

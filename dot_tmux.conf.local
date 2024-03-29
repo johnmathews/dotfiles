@@ -481,7 +481,8 @@ bind-key -T prefix R send-keys "renamePane" C-m
 # if run as "tmux attach", create a session if one does not already exist - https://unix.stackexchange.com/questions/103898/how-to-start-tmux-with-attach-if-a-session-exists
 new-session -n $HOST
 
-set -g default-terminal "xterm-256color"
+# set -g default-terminal "xterm-256color"
+set -g default-terminal "tmux-256color" # neovim checkhealth wants this
 set -ga terminal-overrides ",-256color:Tc"
 
 
@@ -497,7 +498,7 @@ bind-key -n C-S-Right swap-window -t +1
 bind-key T swap-window -t 1
 
 # sort sessions alphabetically by name https://stackoverflow.com/questions/17891867/how-to-reorder-tmux-sessions/63854302#63854302
-set -g choose-tree -sZ
+# set -g choose-tree -sZ
+set -g choose-tree -sZ -0 name
 
 # NOTE tmux kill-server will restart
-

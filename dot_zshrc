@@ -110,6 +110,8 @@ source ~/.zsh/zsh-dircolors-solarized/zsh-dircolors-solarized.zsh
 # https://medium.freecodecamp.org/manage-multiple-python-versions-and-virtual-environments-venv-pyenv-pyvenv-a29fb00c296f
 eval "$(pyenv init -)"
 
+eval "$(rbenv init -)"
+
 # colorful less
 export LESS='-R'
 export LESSOPEN='|~/.lessfilter %s'
@@ -157,4 +159,9 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# load a pyenv or run arbitrary commands automatically when entering a directory
 eval "$(direnv hook zsh)"
+
+# shell history - https://github.com/atuinsh/atuin
+# atuin will ignore commands prefixed with a space
+eval "$(atuin init zsh)"
